@@ -1,8 +1,10 @@
 const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+// const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-  entry: ['babel-polyfill', './src/js/entry.js'],
+  entry: ['babel-polyfill', './src/js/index.js'],
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',
@@ -11,15 +13,6 @@ module.exports = {
   mode: 'production',
   module: {
     rules: [
-      // {
-      //   test: /\.js$/,
-      //   enforce: 'pre',
-      //   exclude: /node_modules/,
-      //   loader: 'eslint-loader',
-      //   options: {
-      //     fix: true,
-      //   },
-      // },
       {
         test: /\.js$/, 
         exclude: [/node_modules/], 
@@ -29,22 +22,24 @@ module.exports = {
         },
       },
       {
-        test: /\.css$/,
-        loader: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: 'css-loader?url=false',
-        }),
+        test: /\.scss$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'sass-loader',
+        ],
       },
       {
-        test: /\.scss$/,
-        loader: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: 'css-loader?url=false!sass-loader',
-        }),
+        test: /\.(jpg|png|woff|woff2|eot|ttf|svg)$/,
+        loader: 'url-loader?limit=100000',
       },
     ],
   },
   plugins: [
-    new ExtractTextPlugin('styles.css'),
+    new MiniCssExtractPlugin({ filename: 'styles.css' }),
+    new HtmlWebpackPlugin({
+      template: path.join(__dirname, 'src/html/index.html'),
+      filename: path.join(__dirname, 'dist/index.html'),
+    }),
   ],
 };

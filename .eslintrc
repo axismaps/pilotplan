@@ -8,7 +8,8 @@
     "$": false,
     "_": false,
     "document": false,
-    "alert": false
+    "alert": false,
+    "mapboxgl": false
   },
   "rules": {
     "max-lines": "warn",
