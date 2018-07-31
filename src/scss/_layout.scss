@@ -1,38 +1,45 @@
-.panel-toggle {
+body {
+  padding: 0px;
+  margin: 0px;
+}
 
-  align-items: center;
+.outer-container {
   position: absolute;
-  background-color: white;
-  z-index: 700;
-  height: 20px;
-  padding: 10px 20px;
-  cursor: pointer;
-  line-height: 20px;
-  font-weight: bold;
-  box-shadow: 4px 0 4px rgba(0,0,0,.1);
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100vh;
 }
 
-.panel-toggle > * {
-  display: inline-block;
-  vertical-align: middle;
+.map-outer {
+  position: absolute;
+  top: $header-height + $timeline-height;
+  left: 0px;
+  height: calc(100% - #{$header-height + $timeline-height});
+  width: 100%;
 }
 
-.panel-toggle span {
-  margin-left: 15px;
+#map {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  margin: 0px;
 }
 
-.panel-toggle > i {
-  float: right;
+.timeline-container {
+  position: absolute;
+  top: $header-height;
+  left: 0px;
+  height: $timeline-height;
+  width: 100%;
 }
 
-.panel-toggle i.open {
-  display: none;
-}
-
-.panel.collapsed .panel-toggle i.close {
-  display: none;
-}
-
-.panel.collapsed .panel-toggle i.open {
-  display: inline-block;
+.timeline-slider-container {
+  position: absolute;
+  top: 0px;
+  left: $timeline-stepper-width;
+  height: $timeline-height;
+  width: calc(100% - #{$timeline-stepper-width});
 }
