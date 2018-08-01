@@ -11,6 +11,7 @@ const app = {
   init() {
     components.state = new State({
       year: 2016,
+      screenSize: [window.innerWidth, window.innerHeight],
     });
 
     const { state } = components;
@@ -28,8 +29,17 @@ const app = {
     });
   },
   onLoad() {
-    console.log('initialize other components', this);
+    this.setStateEvents();
+    this.listenForResize();
+  },
+  setStateEvents() {
     setStateEvents({ components });
+  },
+  listenForResize() {
+    const { state } = components;
+    d3.select(window).on('resize', () => {
+      state.update({ screenSize: [window.innerWidth, window.innerHeight] });
+    });
   },
 };
 

@@ -33,29 +33,29 @@
 //   text-align: center;
 // }
 
-// .year-stepper i {
-//   cursor: pointer;
-// }
+.timeline-stepper__icon {
+  cursor: pointer;
+}
 
-// .year-stepper i:before, .stepper i:before {
-//   color: $stepper-color;
-//   border-radius: 12.5px;
-//   border: 1px solid $stepper-color;
-//   width: 25px;
-//   line-height: 25px;
-//   margin: 0 5px;
-//   font-size: 18px;
-// }
+.timeline-stepper__icon:before, .stepper i:before {
+  color: $stepper-color;
+  border-radius: 12.5px;
+  border: 1px solid $stepper-color;
+  width: 25px;
+  line-height: 25px;
+  margin: 0 5px;
+  font-size: 18px;
+}
 
-// .year-stepper i:hover:before {
-//   color: $stepper-color-hover;
-//   border-color: $stepper-color-hover;
-// }
+.timeline-stepper__icon:hover:before {
+  color: $stepper-color-hover;
+  border-color: $stepper-color-hover;
+}
 
-// .year-stepper i.disabled:before, .year-stepper i.disabled:hover:before {
-//   color: $stepper-color-disabled;
-//   border-color: $stepper-color-disabled;
-// }
+.timeline-stepper__icon.disabled:before, .timeline-stepper__icon.disabled:hover:before {
+  color: $stepper-color-disabled;
+  border-color: $stepper-color-disabled;
+}
 
 // .timeline {
 //   position: relative;
