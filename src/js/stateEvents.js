@@ -23,6 +23,17 @@ const setStateEvents = ({ components }) => {
         })
         .updateYear();
     },
+    screenSize() {
+      const {
+        screenSize,
+      } = this.props();
+      const {
+        timeline,
+      } = components;
+      console.log(screenSize);
+      timeline
+        .updateScreenSize();
+    },
   });
 };
 

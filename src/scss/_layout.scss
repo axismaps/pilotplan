@@ -1,6 +1,13 @@
+html, body {
+  // margin: 0;
+  font: 13px/17px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  // color: #666;
+}
+
 body {
   padding: 0px;
   margin: 0px;
+  background: $main-background;
 }
 
 .outer-container {
@@ -28,12 +35,42 @@ body {
   margin: 0px;
 }
 
+.header-container {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: $timeline-height + $header-height;
+}
+
 .timeline-container {
   position: absolute;
   top: $header-height;
   left: 0px;
   height: $timeline-height;
   width: 100%;
+}
+
+.timeline-stepper-container {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: $timeline-height;
+  width: $timeline-stepper-width;
+  display: flex;
+  
+  align-items: center;
+  justify-content: center;
+}
+
+.timeline-stepper {
+  width: 180px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 30px;
+  font-weight: bold;
 }
 
 .timeline-slider-container {

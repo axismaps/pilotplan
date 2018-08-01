@@ -42,15 +42,33 @@ const privateMethods = {
       svg,
       handleHeight,
       size,
+      handleWidth,
     } = props;
 
     props.handle = svg
-      .append('circle')
+      .append('g');
+
+    props.handle
+      .append('rect')
       .attrs({
         class: 'slider__handle',
-        r: handleHeight / 2,
-        cy: size.height / 2,
-        'pointer-events': 'none',
+        width: handleWidth,
+        height: handleHeight,
+        y: 0,
+        x: 0,
+        rx: 3,
+        ry: 3,
+      });
+
+    const lineHeight = 20;
+    props.handle
+      .append('line')
+      .attrs({
+        class: 'slider__line',
+        x1: handleWidth / 2,
+        x2: handleWidth / 2,
+        y1: (handleHeight / 2) - (lineHeight / 2),
+        y2: (handleHeight / 2) + (lineHeight / 2),
       });
   },
   setHandlePosition() {
@@ -59,9 +77,15 @@ const privateMethods = {
       handleScale,
       handle,
       currentValue,
+      handleWidth,
+      size,
+      handleHeight,
     } = props;
 
-    handle.attr('cx', handleScale(currentValue));
+    // handle.attr('cx', handleScale(currentValue));
+    // handle.attr('x', handleScale(currentValue) - (handleWidth / 2));
+    handle
+      .attr('transform', `translate(${handleScale(currentValue) - (handleWidth / 2)}, ${(size.height / 2) - (handleHeight / 2)})`);
   },
   setActiveTrackPosition() {
     const props = privateProps.get(this);

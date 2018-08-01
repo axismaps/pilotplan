@@ -1,3 +1,15 @@
 .slider__track {
-  fill: grey;
+  fill: #666666;
+}
+
+.slider__handle {
+  stroke: #999999;
+  stroke-width: 1;
+  fill: white;
+  pointer-events: none;
+}
+
+.slider__line {
+  stroke: #999999;
+  stroke-width: 1;
 }
