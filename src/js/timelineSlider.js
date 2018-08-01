@@ -61,7 +61,6 @@ const privateMethods = {
       currentValue,
     } = props;
 
-
     handle.attr('cx', handleScale(currentValue));
   },
   setActiveTrackPosition() {
@@ -103,19 +102,33 @@ const privateMethods = {
         detectionTrack.interrupt();
       })
       .on('end drag', () => {
-        onDragEnd(props.currentValue);
+        // onDragEnd(props.currentValue);
+        const { valueRange } = props;
+        const sliderValue = scale.invert(d3.event.x);
+
+        if (sliderValue >= valueRange[0] && sliderValue <= valueRange[1]) {
+          onDragEnd(sliderValue);
+        } else if (sliderValue < valueRange[0]) {
+          onDragEnd(valueRange[0]);
+        } else if (sliderValue > valueRange[1]) {
+          onDragEnd(valueRange[1]);
+        }
       })
       .on('start drag', () => {
         const { valueRange } = props;
         const sliderValue = scale.invert(d3.event.x);
 
+        let newValue;
         if (sliderValue >= valueRange[0] && sliderValue <= valueRange[1]) {
-          onDrag(sliderValue);
+          newValue = sliderValue;
         } else if (sliderValue < valueRange[0]) {
-          onDrag(valueRange[0]);
+          /* eslint-disable prefer-destructuring */
+          newValue = valueRange[0];
         } else if (sliderValue > valueRange[1]) {
-          onDrag(valueRange[1]);
+          newValue = valueRange[1];
+          /* eslint-enable prefer-destructuring */
         }
+        props.currentValue = newValue;
         updateSliderPosition.call(this);
       }));
   },
