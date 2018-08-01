@@ -8,6 +8,7 @@ const privateMethods = {
     const {
       year,
       sliderContainer,
+      updateYear,
     } = props;
 
     const size = sliderContainer.node().getBoundingClientRect();
@@ -17,28 +18,35 @@ const privateMethods = {
 
     props.slider = new TimelineSlider({
       container: sliderContainer,
-      trackHeight: 20,
+      trackHeight: 30,
       backgroundTrackAttrs: {
-        rx: 10,
-        ry: 10,
+        rx: 8,
+        ry: 8,
       },
       activeTrackAttrs: {
-        rx: 10,
-        ry: 10,
+        rx: 8,
+        ry: 8,
       },
       valueRange: [1950, 2016],
       currentValue: year,
       size: { width, height },
       padding: { left: 20, right: 20 },
-      onDragEnd: () => console.log('dragend'),
-      onDrag: () => console.log('drag'),
+      onDragEnd: updateYear,
+      onDrag: d => console.log('drag', d),
     });
   },
   initEvents() {
     console.log('init timeline events');
   },
   updateYear() {
+    const {
+      slider,
+      year,
+    } = privateProps.get(this);
 
+    slider
+      .config({ currentValue: year })
+      .update();
   },
 };
 
@@ -60,6 +68,7 @@ class Timeline {
   }
   config(config) {
     Object.assign(privateProps.get(this), config);
+    return this;
   }
   updateYear() {
     const { updateYear } = privateMethods;

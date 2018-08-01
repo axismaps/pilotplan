@@ -22,9 +22,10 @@ const getSliderBase = ({ privateProps }) => ({
     } = privateProps.get(this);
 
     scale
-      .range([padding.left, size.width - padding.right]);
-    handleScale
-      .range([scale.range()[0] + (handleHeight / 2), scale.range()[1] - (handleHeight / 2)]);
+      .range([padding.left + (handleHeight / 2), size.width - padding.right - (handleHeight / 2)]);
+    // handleScale
+    //   .range([scale.range()[0] + (handleHeight / 2), scale.range()[1] - (handleHeight / 2)]);
+    handleScale.range(scale.range());
   },
   updateScaleValueRange() {
     const {
@@ -135,10 +136,13 @@ const getSliderBase = ({ privateProps }) => ({
       size,
       padding,
       backgroundTrack,
+      scale,
     } = privateProps.get(this);
+    console.log('update background');
     backgroundTrack
       .attrs({
-        width: size.width - padding.left - padding.right,
+        x: scale.range()[0],
+        width: scale.range()[1] - scale.range()[0],
       });
   },
   drawActiveTrack() {
@@ -159,6 +163,7 @@ const getSliderBase = ({ privateProps }) => ({
       'pointer-events': 'none',
       rx: 3,
       ry: 3,
+      opacity: 0,
     };
 
     const overrideAttrs = activeTrackAttrs !== undefined ? activeTrackAttrs : {};

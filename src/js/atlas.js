@@ -17,6 +17,35 @@ const privateMethods = {
     })
       .on('load', onLoad);
   },
+  updateYear() {
+    const {
+      year,
+      mbMap,
+    } = privateProps.get(this);
+    console.log('map', mbMap);
+    const styleCopy = JSON.parse(JSON.stringify(mbMap.getStyle()));
+    console.log('style', styleCopy);
+    console.log('year', year);
+    styleCopy.layers = styleCopy.layers.map((layer) => {
+      if (!('filter' in layer)) return layer;
+      layer.filter = layer.filter.map((f) => {
+        if (f[0] === 'all') {
+          return f.map((dd, i) => {
+            if (i === 0) return dd;
+            const copyFilter = [...dd];
+            if (copyFilter[1] === 'FirstYear' || copyFilter[1] === 'LastYear') {
+              copyFilter[2] = year;
+            }
+            return copyFilter;
+          });
+        }
+        return f;
+      });
+      return layer;
+    });
+    mbMap.setStyle(styleCopy);
+    // const layers = mbMap.getStyle().layers;
+  },
 };
 
 class Atlas {
@@ -34,6 +63,12 @@ class Atlas {
   config(config) {
     Object.assign(privateProps.get(this), config);
     return this;
+  }
+  updateYear() {
+    const {
+      updateYear,
+    } = privateMethods;
+    updateYear.call(this);
   }
 }
 
