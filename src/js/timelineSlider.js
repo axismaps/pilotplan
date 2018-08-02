@@ -41,7 +41,7 @@ const privateMethods = {
     const {
       svg,
       handleHeight,
-      size,
+      // size,
       handleWidth,
     } = props;
 
@@ -116,10 +116,10 @@ const privateMethods = {
       scale,
       detectionTrack,
       onDragEnd,
-      onDrag,
+      // onDrag,
     } = props;
 
-    const { updateSliderPosition } = privateMethods;
+    // const { updateSliderPosition } = privateMethods;
 
     detectionTrack.call(d3.drag()
       .on('start.interrupt', () => {
