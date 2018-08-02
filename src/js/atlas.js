@@ -55,7 +55,7 @@ const privateMethods = {
     const styleCopy = JSON.parse(JSON.stringify(mbMap.getStyle()));
     styleCopy.layers = styleCopy.layers.map(layer => getLayerStyle({ layer, year }));
     mbMap.setStyle(styleCopy);
-    console.log('newlayers', mbMap.getStyle());
+    // console.log('newlayers', mbMap.getStyle());
   },
   // updateYear() {
   //   const props = privateProps.get(this);

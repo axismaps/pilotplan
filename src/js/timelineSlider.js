@@ -152,8 +152,9 @@ const privateMethods = {
           newValue = valueRange[1];
           /* eslint-enable prefer-destructuring */
         }
-        props.currentValue = newValue;
-        updateSliderPosition.call(this);
+        // props.currentValue = newValue;
+        // updateSliderPosition.call(this);
+        onDragEnd(newValue);
       }));
   },
 };

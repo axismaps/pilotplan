@@ -9,7 +9,7 @@ const setStateEvents = ({ components }) => {
       const {
         year,
       } = this.props();
-      console.log('year', year);
+      // console.log('year', year);
 
       timeline
         .config({
