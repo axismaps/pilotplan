@@ -35,7 +35,7 @@ body {
   margin: 0px;
 }
 
-.header-container {
+.top-container {
   position: absolute;
   top: 0px;
   left: 0px;
@@ -79,4 +79,27 @@ body {
   left: $timeline-stepper-width;
   height: $timeline-height;
   width: calc(100% - #{$timeline-stepper-width});
+}
+
+.sidebar {
+  position: absolute;
+  top: $header-height + $timeline-height;
+  left: 0px;
+  width: 0px;
+  // background: white;
+  overflow-x: hidden;
+  overflow-y: auto;
+  color: white;
+  height: calc(100% - #{$header-height + $timeline-height});
+}
+
+.outer-container.sidebar-open {
+  .map-outer {
+    left: $legend-width;
+    width: calc(100% - #{$legend-width});
+  }
+
+  .sidebar {
+    width: $legend-width;
+  }
 }

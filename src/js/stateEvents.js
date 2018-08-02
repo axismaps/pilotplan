@@ -22,6 +22,11 @@ const setStateEvents = ({ components }) => {
           year,
         })
         .updateYear();
+
+      // setTimeout(() => {
+      //   const renderedLayers = atlas.getRenderedLayers();
+      //   console.log('rendered', renderedLayers.length);
+      // }, 0);
     },
     screenSize() {
       const {
@@ -33,6 +38,41 @@ const setStateEvents = ({ components }) => {
       console.log(screenSize);
       timeline
         .updateScreenSize();
+    },
+    sidebarOpen() {
+      const {
+        sidebarOpen,
+      } = this.props();
+      const {
+        layout,
+      } = components;
+
+      layout
+        .config({
+          sidebarOpen,
+        })
+        .updateLayout();
+    },
+    currentLayers() {
+      const {
+        currentLayers,
+      } = this.props();
+      const {
+        atlas,
+        sidebar,
+      } = components;
+
+      atlas
+        .config({
+          currentLayers,
+        })
+        .updateLayers();
+
+      sidebar
+        .config({
+          currentLayers,
+        })
+        .updateLayers();
     },
   });
 };

@@ -41,7 +41,15 @@ const privateMethods = {
       })
       .on('click', (e) => {
         console.log('click', e);
+      })
+      .on('mouseover', 'building-Work', (e) => {
+        console.log('LAYER', e);
       });
+    // .on('render', () => {
+    //   setTimeout(() => {
+    //     console.log('render done', this.getRenderedLayers().length);
+    //   });
+    // });
   },
   updateYear() {
     const {
@@ -91,8 +99,12 @@ class Atlas {
     this.config(config);
 
     createMBMap.call(this, () => {
-      const { mbMap } = privateProps.get(this);
-      console.log(mbMap.getStyle().layers);
+      // const { mbMap } = privateProps.get(this);
+      // console.log(mbMap.getStyle().layers.map(d => mbMap.getLayer(d.id)));
+      // console.log('layer', mbMap.getLayer('field-Uncovered Area'));
+      // console.log('features', mbMap.querySourceFeatures('composite', {
+      //   sourceLayer: 'SectorsPoly',
+      // }));
     });
   }
   config(config) {
@@ -100,10 +112,52 @@ class Atlas {
     return this;
   }
   updateYear() {
+    const { mbMap } = privateProps.get(this);
     const {
       updateYear,
     } = privateMethods;
     updateYear.call(this);
+    // console.log(mbMap.getLayer(mbMap.getStyle().layers[23].id));
+    // console.log('features', mbMap.querySourceFeatures('composite', {
+    //   sourceLayer: 'BuildingsPoly',
+    // }));
+    // console.log('rendered', mbMap.queryRenderedFeatures({
+    //   layers: ['building-Live'],
+    // }));
+  }
+  getMap() {
+    const { mbMap } = privateProps.get(this);
+    return mbMap;
+  }
+  getLayers() {
+    const { mbMap } = privateProps.get(this);
+    return mbMap
+      .getStyle().layers
+      // .filter(d => 'filter' in d)
+      .map(d => mbMap.getLayer(d.id));
+  }
+  getRenderedLayers() {
+    const { mbMap } = privateProps.get(this);
+    return mbMap.getStyle().layers
+      .map(d => d.id)
+      .filter(d => mbMap.queryRenderedFeatures({ layers: [d] }).length > 0);
+  }
+  updateLayers() {
+    const {
+      mbMap,
+      currentLayers,
+    } = privateProps.get(this);
+    const { layers } = mbMap.getStyle();
+
+    layers.forEach((layer) => {
+      const visible = mbMap.getLayoutProperty(layer.id, 'visibility') === 'visible';
+      const toggled = currentLayers.includes(layer.id);
+      if (visible && !toggled) {
+        mbMap.setLayoutProperty(layer.id, 'visibility', 'none');
+      } else if (!visible && toggled) {
+        mbMap.setLayoutProperty(layer.id, 'visibility', 'visible');
+      }
+    });
   }
 }
 

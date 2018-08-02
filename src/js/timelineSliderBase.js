@@ -133,8 +133,8 @@ const getSliderBase = ({ privateProps }) => ({
   },
   updateBackgroundTrack() {
     const {
-      size,
-      padding,
+      // size,
+      // padding,
       backgroundTrack,
       scale,
     } = privateProps.get(this);
