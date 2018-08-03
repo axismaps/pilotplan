@@ -9,30 +9,27 @@ const privateMethods = {
       year,
       sliderContainer,
       updateYear,
+      sliderSize,
+      trackHeight,
+      handleHeight,
+      handleWidth,
+      backgroundTrackAttrs,
+      activeTrackAttrs,
+      yearRange,
+      sliderPadding,
     } = props;
-
-    const size = sliderContainer.node().getBoundingClientRect();
-    const { width, height } = size;
-
-    console.log('draw slider', width, height);
 
     props.slider = new TimelineSlider({
       container: sliderContainer,
-      trackHeight: 30,
-      handleHeight: 40,
-      handleWidth: 17,
-      backgroundTrackAttrs: {
-        rx: 8,
-        ry: 8,
-      },
-      activeTrackAttrs: {
-        rx: 8,
-        ry: 8,
-      },
-      valueRange: [1950, 2016],
       currentValue: year,
-      size: { width, height },
-      padding: { left: 20, right: 20 },
+      size: sliderSize,
+      padding: sliderPadding,
+      trackHeight,
+      handleHeight,
+      handleWidth,
+      backgroundTrackAttrs,
+      activeTrackAttrs,
+      valueRange: yearRange,
       onDragEnd: updateYear,
       onDrag: d => console.log('drag', d),
     });
@@ -47,16 +44,14 @@ const privateMethods = {
   resizeSlider() {
     const props = privateProps.get(this);
     const {
-      sliderContainer,
       slider,
+      sliderSize,
     } = props;
-
-    const size = sliderContainer.node().getBoundingClientRect();
-    const { width, height } = size;
+    console.log('slider size', sliderSize);
 
     slider
       .config({
-        size: { width, height },
+        size: sliderSize,
       })
       .updateDimensions();
   },
@@ -89,11 +84,25 @@ const privateMethods = {
       .config({ currentValue: year })
       .update();
   },
+  setSliderSize() {
+    const props = privateProps.get(this);
+    const {
+      sliderContainer,
+    } = props;
+    const size = sliderContainer.node().getBoundingClientRect();
+    const { width, height } = size;
+
+    props.sliderSize = {
+      width,
+      height,
+    };
+  },
 };
 
 class Timeline {
   constructor(config) {
     const {
+      setSliderSize,
       drawSlider,
       initEvents,
       setText,
@@ -105,9 +114,23 @@ class Timeline {
       stepperTextContainer: d3.select('.timeline-stepper__year'),
       stepperLeftButton: d3.select('.timeline-stepper__left'),
       stepperRightButton: d3.select('.timeline-stepper__right'),
+      trackHeight: 30,
+      handleHeight: 40,
+      handleWidth: 17,
+      backgroundTrackAttrs: {
+        rx: 8,
+        ry: 8,
+      },
+      activeTrackAttrs: {
+        rx: 8,
+        ry: 8,
+      },
+      // valueRange: [1950, 2016],
+      sliderPadding: { left: 20, right: 20 },
     });
     this.config(config);
 
+    setSliderSize.call(this);
     drawSlider.call(this);
     initEvents.call(this);
     setText.call(this);
@@ -125,7 +148,11 @@ class Timeline {
     setText.call(this);
   }
   updateScreenSize() {
-    const { resizeSlider } = privateMethods;
+    const {
+      setSliderSize,
+      resizeSlider,
+    } = privateMethods;
+    setSliderSize.call(this);
     resizeSlider.call(this);
   }
 }

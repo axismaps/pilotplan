@@ -13,3 +13,19 @@
   stroke: #999999;
   stroke-width: 1;
 }
+
+.slider__axis {
+  pointer-events: none;
+}
+
+.slider__axis line {
+  stroke: white;
+}
+
+.slider__axis text {
+  fill: white;
+}
+
+.slider__axis .domain {
+  display: none;
+}
