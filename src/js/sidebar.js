@@ -1,3 +1,5 @@
+import getSearchMethods from './sidebarSearch';
+
 const privateProps = new WeakMap();
 
 const privateMethods = {
@@ -68,16 +70,29 @@ const privateMethods = {
   },
 };
 
+Object.assign(
+  privateMethods,
+  getSearchMethods({ privateMethods, privateProps }),
+);
+
 class Sidebar {
   constructor(config) {
-    const { init } = privateMethods;
+    const {
+      init,
+      listenForText,
+    } = privateMethods;
 
     privateProps.set(this, {
       contentContainer: d3.select('.sidebar__content'),
+      searchInput: d3.select('.sidebar__input'),
+      searchResults: null,
     });
 
     this.config(config);
+
     init.call(this);
+    listenForText.call(this);
+
     this.updateLayers();
   }
   config(config) {

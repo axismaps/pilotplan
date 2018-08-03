@@ -45,11 +45,6 @@ const privateMethods = {
       .on('mouseover', 'building-Work', (e) => {
         console.log('LAYER', e);
       });
-    // .on('render', () => {
-    //   setTimeout(() => {
-    //     console.log('render done', this.getRenderedLayers().length);
-    //   });
-    // });
   },
   updateYear() {
     const {
@@ -63,29 +58,21 @@ const privateMethods = {
     const styleCopy = JSON.parse(JSON.stringify(mbMap.getStyle()));
     styleCopy.layers = styleCopy.layers.map(layer => getLayerStyle({ layer, year }));
     mbMap.setStyle(styleCopy);
-    // console.log('newlayers', mbMap.getStyle());
   },
-  // updateYear() {
-  //   const props = privateProps.get(this);
-  //   const {
-  //     mbMap,
-  //     year,
-  //   } = props;
-  //   mbMap.getStyle()
-  //     .layers
-  //     .forEach((layer) => {
-  //       const currentFilter = mbMap.getFilter(layer.id);
-  //       const all = currentFilter.find(d => d[0] === 'all');
-  //       if (all === undefined) return;
-  //       all.forEach((d) => {
-  //         if (d[1] === 'FirstYear' || d[1] === 'LastYear') {
-  //           d[2] = year;
-  //         }
-  //       });
-  //       console.log('changed filter', currentFilter);
-  //     });
-  //   console.log('new', mbMap.getStyle().layers);
-  // },
+  setLayers() {
+    const props = privateProps.get(this);
+    const { mbMap } = props;
+
+    const layers = mbMap
+      .getStyle().layers
+      .map(d => mbMap.getLayer(d.id));
+
+    const sourceLayers = new Set(layers
+      .filter(d => d.sourceLayer !== undefined).map(d => d.sourceLayer));
+
+    props.layers = layers;
+    props.sourceLayers = [...sourceLayers];
+  },
 };
 
 class Atlas {
@@ -98,29 +85,24 @@ class Atlas {
 
     this.config(config);
 
-    createMBMap.call(this, () => {
-      // const { mbMap } = privateProps.get(this);
-      // console.log(mbMap.getStyle().layers.map(d => mbMap.getLayer(d.id)));
-      // console.log('layer', mbMap.getLayer('field-Uncovered Area'));
-      // console.log('features', mbMap.querySourceFeatures('composite', {
-      //   sourceLayer: 'SectorsPoly',
-      // }));
-    });
+    createMBMap.call(this, this.init.bind(this));
+  }
+  init() {
+    const {
+      setLayers,
+    } = privateMethods;
+    setLayers.call(this);
   }
   config(config) {
     Object.assign(privateProps.get(this), config);
     return this;
   }
   updateYear() {
-    const { mbMap } = privateProps.get(this);
     const {
       updateYear,
     } = privateMethods;
     updateYear.call(this);
-    // console.log(mbMap.getLayer(mbMap.getStyle().layers[23].id));
-    // console.log('features', mbMap.querySourceFeatures('composite', {
-    //   sourceLayer: 'BuildingsPoly',
-    // }));
+
     // console.log('rendered', mbMap.queryRenderedFeatures({
     //   layers: ['building-Live'],
     // }));
@@ -130,11 +112,8 @@ class Atlas {
     return mbMap;
   }
   getLayers() {
-    const { mbMap } = privateProps.get(this);
-    return mbMap
-      .getStyle().layers
-      // .filter(d => 'filter' in d)
-      .map(d => mbMap.getLayer(d.id));
+    const { layers } = privateProps.get(this);
+    return layers;
   }
   getRenderedLayers() {
     const { mbMap } = privateProps.get(this);
@@ -158,6 +137,30 @@ class Atlas {
         mbMap.setLayoutProperty(layer.id, 'visibility', 'visible');
       }
     });
+  }
+  textSearch(val) {
+    const {
+      mbMap,
+      sourceLayers,
+      year,
+    } = privateProps.get(this);
+    console.log('style', mbMap.getStyle());
+    const results = sourceLayers.reduce((accumulator, sourceLayer) => {
+      const result = mbMap.querySourceFeatures('composite', {
+        sourceLayer,
+        filter: [
+          'all',
+          ['<=', 'FirstYear', year],
+          ['>=', 'LastYear', year],
+          // ['match', 'Name', val],
+        ],
+      });
+      return [...accumulator, ...result];
+    }, []);
+
+    const filtered = results
+      .filter(d => d.properties.Name.toLowerCase().includes(val.toLowerCase()));
+    return filtered;
   }
 }
 

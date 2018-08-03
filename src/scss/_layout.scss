@@ -86,10 +86,7 @@ body {
   top: $header-height + $timeline-height;
   left: 0px;
   width: 0px;
-  // background: white;
-  overflow-x: hidden;
-  overflow-y: auto;
-  color: white;
+  
   height: calc(100% - #{$header-height + $timeline-height});
 }
 

@@ -74,6 +74,18 @@ const setStateEvents = ({ components }) => {
         })
         .updateLayers();
     },
+    textSearch() {
+      const {
+        textSearch,
+      } = this.props();
+      const {
+        sidebar,
+        atlas,
+      } = components;
+      console.log('SEARCH: ', textSearch);
+      const results = atlas.textSearch(textSearch);
+      console.log('results', results);
+    },
   });
 };
 
