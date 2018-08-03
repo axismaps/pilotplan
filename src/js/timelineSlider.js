@@ -1,4 +1,5 @@
 import getSliderBase from './timelineSliderBase';
+import getSliderAxis from './timelineSliderAxis';
 
 const privateProps = new WeakMap();
 
@@ -16,6 +17,7 @@ const privateMethods = {
       drawActiveTrack,
       drawHighlightedRange,
       drawHandle,
+      initAxis,
       updateSliderPosition,
       setDrag,
     } = privateMethods;
@@ -30,7 +32,9 @@ const privateMethods = {
     updateBackgroundTrack.call(this);
     drawActiveTrack.call(this);
     drawHighlightedRange.call(this);
+    initAxis.call(this);
     drawHandle.call(this);
+
     updateSliderPosition.call(this);
     setDrag.call(this);
 
@@ -160,27 +164,9 @@ const privateMethods = {
 };
 
 const baseMethods = getSliderBase({ privateProps, privateMethods });
+const axisMethods = getSliderAxis({ privateProps, privateMethods });
 
-Object.assign(privateMethods, baseMethods);
-
-// const publicProps = new Props({
-//   target: privateProps,
-//   fields: [
-//     'activeTrackAttrs',
-//     'backgroundTrackAttrs',
-//     'container',
-//     'currentValue',
-//     'handleAttrs',
-//     'highlightColor',
-//     'highlightedRange',
-//     'onDrag',
-//     'onDragEnd',
-//     'padding',
-//     'size',
-//     'trackHeight',
-//     'valueRange',
-//   ],
-// });
+Object.assign(privateMethods, baseMethods, axisMethods);
 
 class TimelineSlider {
   constructor(config) {
@@ -264,18 +250,26 @@ class TimelineSlider {
     const { svg } = privateProps.get(this);
     return svg;
   }
+  getSize() {
+    return privateProps.get(this).size;
+  }
+  getTrackHeight() {
+    return privateProps.get(this).trackHeight;
+  }
   updateDimensions() {
     const {
       updateScale,
       updateSvgSize,
       updateBackgroundTrack,
       updateDetectionTrack,
+      updateAxis,
     } = privateMethods;
 
     updateScale.call(this);
     updateSvgSize.call(this);
     updateBackgroundTrack.call(this);
     updateDetectionTrack.call(this);
+    updateAxis.call(this);
 
     this.update();
   }
