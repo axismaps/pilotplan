@@ -5,7 +5,6 @@ const axisMethods = ({ privateProps, privateMethods }) => ({
       setAxisGenerator,
       updateAxis,
     } = privateMethods;
-    console.log('init axis');
 
     drawAxisGroup.call(this);
     setAxisGenerator.call(this);
@@ -19,7 +18,6 @@ const axisMethods = ({ privateProps, privateMethods }) => ({
       size,
     } = props;
 
-    const { updateAxis } = privateMethods;
     const { height } = size;
 
     props.axisGroup = svg.append('g')
@@ -36,7 +34,6 @@ const axisMethods = ({ privateProps, privateMethods }) => ({
     const {
       scale,
     } = props;
-    console.log('set axis');
 
     props.axis = d3.axisBottom(scale)
       .tickFormat(d => d);
@@ -48,8 +45,8 @@ const axisMethods = ({ privateProps, privateMethods }) => ({
       axis,
     } = props;
 
-    console.log('axisgroup', axisGroup);
-    console.log('axis', axis);
+    // console.log('axisgroup', axisGroup);
+    // console.log('axis', axis);
 
     axisGroup
       .call(axis);

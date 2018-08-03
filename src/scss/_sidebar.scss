@@ -1,5 +1,20 @@
+.sidebar {
+  overflow-x: hidden;
+  overflow-y: auto;
+  color: white;
+}
+
+.sidebar__top {
+  height: $search-input-height;
+  padding-left: 15px;
+  padding-right: 20px;
+}
+
 .sidebar__content {
   padding-left: 15px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: calc(100% - #{$search-input-height});
 }
 
 .sidebar__layer-row {
@@ -8,5 +23,19 @@
 
 .sidebar__layer-row--off {
   color: grey;
+}
+
+.sidebar__input {
+  font-size: 15px;
+  line-height: 30px;
+  // border-top-left-radius: 5px;
+  // border-bottom-left-radius: 5px;
+  // margin-left: 15px !important;
+  outline: none;
+  margin: 0;
+  padding: 1px 5px;
+  border: none;
+  width: 100%;
+  cursor: text;
 }
 

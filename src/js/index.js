@@ -15,6 +15,10 @@ const app = {
     components.state = new State({
       year: 2016,
       sidebarOpen: true,
+      sidebarState: 'legend', // searching, results
+      textSearch: null,
+      clickSearch: null,
+      areaSearch: null,
       screenSize: [window.innerWidth, window.innerHeight],
     });
 
@@ -72,6 +76,9 @@ const app = {
             ],
           });
         }
+      },
+      onTextInput(val) {
+        state.update({ textSearch: val });
       },
     });
   },
