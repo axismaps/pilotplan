@@ -68,6 +68,53 @@ const privateMethods = {
         onLayerClick(d.id);
       });
   },
+  setView() {
+    const {
+      view,
+      container,
+    } = privateProps.get(this);
+    console.log('view', view);
+    const classesForViews = new Map([
+      ['legend', 'sidebar--legend'],
+      ['textSearch', 'sidebar--text-search'],
+      ['clickSearch', 'sidebar--click-search'],
+    ]);
+    classesForViews.forEach((val, key) => {
+      container.classed(val, key === view);
+    });
+  },
+  clearResults() {
+    const {
+      resultRowContainer,
+    } = privateProps.get(this);
+
+    if (resultRowContainer === undefined) return;
+    resultRowContainer.remove();
+  },
+  drawResults() {
+    const props = privateProps.get(this);
+    const {
+      resultsContainer,
+      results,
+      view,
+    } = props;
+
+    const resultRowContainer = resultsContainer.append('div')
+      .attr('class', 'sidebar__results-rows');
+
+    console.log('rows', resultRowContainer);
+    console.log('results', results);
+    const resultRows = resultRowContainer
+      .selectAll('.sidebar__results-row')
+      .data(results)
+      .enter()
+      .append('div')
+      .attr('class', 'sidebar__results-row')
+      .text(d => d.properties.Name);
+
+
+    props.resultRowContainer = resultRowContainer;
+  },
 };
 
 Object.assign(
@@ -83,12 +130,18 @@ class Sidebar {
     } = privateMethods;
 
     privateProps.set(this, {
+      container: d3.select('.sidebar'),
       contentContainer: d3.select('.sidebar__content'),
+      resultsContainer: d3.select('.sidebar__results'),
       searchInput: d3.select('.sidebar__input'),
-      searchResults: null,
+      view: null,
+      previousView: null,
+      results: null,
     });
 
     this.config(config);
+
+    privateProps.get(this).previousView = config.view;
 
     init.call(this);
     listenForText.call(this);
@@ -105,6 +158,29 @@ class Sidebar {
       layerRows,
     } = privateProps.get(this);
     layerRows.classed('sidebar__layer-row--off', d => !currentLayers.includes(d.id));
+  }
+  updateResults() {
+    const props = privateProps.get(this);
+    const {
+      view,
+      previousView,
+    } = props;
+    const {
+      setView,
+      clearResults,
+      drawResults,
+    } = privateMethods;
+
+    // console.log('update?', checkNeedsUpdate.call(this));
+    if (previousView === 'legend' && view === 'legend') return;
+
+    setView.call(this);
+    // use enter/exit instead of this
+    clearResults.call(this);
+    if (view !== 'legend') {
+      drawResults.call(this);
+    }
+    props.previousView = view;
   }
 }
 

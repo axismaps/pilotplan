@@ -83,8 +83,23 @@ const setStateEvents = ({ components }) => {
         atlas,
       } = components;
       console.log('SEARCH: ', textSearch);
-      const results = atlas.textSearch(textSearch);
-      console.log('results', results);
+      if (textSearch.length < 3) {
+        sidebar
+          .config({
+            results: null,
+            view: 'legend',
+          })
+          .updateResults();
+      } else {
+        const results = atlas.textSearch(textSearch);
+        sidebar
+          .config({
+            results,
+            view: 'textSearch',
+          })
+          .updateResults();
+        console.log('results', results);
+      }
     },
   });
 };
