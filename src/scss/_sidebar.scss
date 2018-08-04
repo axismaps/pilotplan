@@ -10,7 +10,8 @@
   padding-right: 20px;
 }
 
-.sidebar__content {
+.sidebar__content,
+.sidebar__results {
   padding-left: 15px;
   overflow-x: hidden;
   overflow-y: auto;
@@ -39,3 +40,14 @@
   cursor: text;
 }
 
+.sidebar--legend {
+  .sidebar__results {
+    display: none;
+  }
+}
+
+.sidebar--text-search {
+  .sidebar__content {
+    display: none;
+  }
+}

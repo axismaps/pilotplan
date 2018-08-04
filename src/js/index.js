@@ -15,7 +15,7 @@ const app = {
     components.state = new State({
       year: 2016,
       sidebarOpen: true,
-      sidebarState: 'legend', // searching, results
+      sidebarView: 'legend', // searching, results
       textSearch: null,
       clickSearch: null,
       areaSearch: null,
@@ -61,6 +61,7 @@ const app = {
       sidebarOpen: state.get('sidebarOpen'),
       layers: atlas.getLayers(),
       currentLayers: state.get('currentLayers'),
+      view: state.get('sidebarView'),
       onLayerClick(layerId) {
         const currentLayers = state.get('currentLayers');
 

@@ -144,7 +144,7 @@ class Atlas {
       sourceLayers,
       year,
     } = privateProps.get(this);
-    console.log('style', mbMap.getStyle());
+
     const results = sourceLayers.reduce((accumulator, sourceLayer) => {
       const result = mbMap.querySourceFeatures('composite', {
         sourceLayer,
