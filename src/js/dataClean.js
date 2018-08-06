@@ -5,11 +5,12 @@ const cleanData = (rawData) => {
   const layers = Object.keys(rawLayers)
     .map((groupKey) => {
       const groupRecord = Object.assign({}, rawLayers[groupKey]);
-      groupRecord.name = groupKey;
+      groupRecord.id = groupKey;
       groupRecord.features = Object.keys(groupRecord.features)
         .map((featureKey) => {
           const featureRecord = Object.assign({}, groupRecord.features[featureKey]);
-          featureRecord.name = featureKey;
+          featureRecord.id = featureRecord.style;
+          delete featureRecord.style;
           return featureRecord;
         });
       return groupRecord;

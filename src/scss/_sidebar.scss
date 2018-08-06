@@ -18,12 +18,28 @@
   height: calc(100% - #{$search-input-height});
 }
 
+.sidebar__layer-group {
+  margin-bottom: 15px;
+}
+
+.sidebar__layer-group-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
 .sidebar__layer-row {
   cursor: pointer;
 }
 
 .sidebar__layer-row--off {
   color: grey;
+}
+
+.sidebar__layer-row--inactive {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: auto;
 }
 
 .sidebar__input {

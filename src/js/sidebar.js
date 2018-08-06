@@ -17,6 +17,7 @@ const privateMethods = {
     const {
       layers,
       contentContainer,
+      language,
     } = props;
 
     // console.log('LAYERS', layers);
@@ -26,24 +27,28 @@ const privateMethods = {
 
     const layerGroups = contentContainer
       .selectAll('.sidebar__layer-group')
-      .data(layers, d => d.name);
+      .data(layers, d => d.id);
 
     const layerGroupsNew = layerGroups
       .enter()
       .append('div')
-      .attr('class', 'sidebar__layer-group')
-      .text(d => d.name);
+      .attr('class', 'sidebar__layer-group');
 
-    props.layerContainers = layerGroupsNew.append('div')
+    layerGroupsNew
+      .append('div')
+      .attr('class', 'sidebar__layer-group-title')
+      .text(d => d[language]);
+
+    layerGroupsNew.append('div')
       .attr('class', 'sidebar__layers');
 
     layerGroups.exit().remove();
 
-    props.layerGroups = layerGroups;
+    props.layerGroups = layerGroupsNew.merge(layerGroups);
   },
   drawLayerRows() {
     const {
-      layerContainers,
+      layerGroups,
       onLayerClick,
       language,
     } = privateProps.get(this);
@@ -52,19 +57,25 @@ const privateMethods = {
     //   d3.select(this)
     //     .select()
     // });
-    layerContainers.each(function addRows(d) {
+    // console.log('draw layer rows');
+    layerGroups.each(function addRows(d) {
+      console.log(d);
+      if (d.id === 'RoadsLine') {
+        console.log(d);
+      }
       const layers = d3.select(this)
+        .select('.sidebar__layers')
         .selectAll('.sidebar__layer-row')
-        .data(d.features, dd => dd.name);
+        .data(d.features, dd => dd.en);
 
       layers
         .enter()
         .append('div')
         .attr('class', 'sidebar__layer-row')
-        // .merge(layers)
+        .classed('sidebar__layer-row--inactive', dd => dd.id === undefined)
         .text(dd => dd[language])
         .on('click', (dd) => {
-          onLayerClick(dd.name);
+          onLayerClick(dd.id);
         });
 
       layers.exit().remove();
@@ -192,7 +203,7 @@ class Sidebar {
     return this;
   }
   updateAvailableLayers() {
-    // console.log(this);
+    // console.log('update available layers');
     const {
       drawLayerGroups,
       drawLayerRows,
@@ -209,7 +220,7 @@ class Sidebar {
 
     contentContainer
       .selectAll('.sidebar__layer-row')
-      .classed('sidebar__layer-row--off', d => !currentLayers.includes(d.name));
+      .classed('sidebar__layer-row--off', d => !currentLayers.includes(d.id));
   }
   updateResults() {
     const props = privateProps.get(this);

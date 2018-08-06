@@ -25,6 +25,7 @@ const setStateEvents = ({ components }) => {
         })
         .updateYear();
 
+      // console.log('update year');
       sidebar
         .config({
           layers: this.getAvailableLayers(),
