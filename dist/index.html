@@ -19,207 +19,46 @@
   </style>
   <meta property="og:url" content="https://imaginerio.org" />
   <meta property="og:title" content="imagineRio" />
-  <meta property="og:description" content="The platform imagineRio is a searchable atlas that illustrates the social and urban evolution of Rio de Janeiro over the entire history of the city, as it existed and as it was often imagined. Views of the city created by artists, maps by historical cartographers, and ground floor plans by architects –from iconographic, cartographic, and architectural archives– are located in both time and space while their associated visual and spatial data are integrated across a number of databases and servers including an open-access digital library of images, a geographic information system, an open source relational database, and a content delivery web service. The relationship between the various project elements produces a web environment where vector, spatial, and raster data are simultaneously streamed in, probed, toggled, viewed, or queried in a system that supports multiple and interconnected expressions of diverse data sources. It is an environment where, for example, historians can visualize specific sites of inquiry both temporally and spatially, where architects and urbanists can see proposed design projects in situ, where literary scholars can map out novels while visualizing their specific contexts, and where archaeologists can reconstruct their complex stratigraphy. Scaled down into a mobile app, tourists and residents are able to walk about town while visualizing the city as it once was as well as it was once projected. Rio de Janeiro's urban history is particularly well suited to being captured in a diachronic web map environment considering how much the city's natural environment, urban fabric, and self-representation has changed over time. To make Rio what it is today, mountains were leveled, swamps drained, shorelines redrawn, ridgelines altered, and islands joined to the mainland, while the adjacent Tijuca Forest was first cleared for planting coffee and extracting charcoal only to later be replanted for the protection of the city's water sources. Such a changing physical and social landscape, with all its political consequences, lends itself to being spatially contextualized in a digital platform that maps and illustrates transformation over time." />
+  <meta property="og:description" content="" />
   <meta property="og:image" content="img/cover.png" />
 <link href="styles.css" rel="stylesheet"></head>
 <body>
-
-  <main class='flex-column eras start'>
-  <div class="intro-pattern"></div>
-  <div class="language-dropdown-button language-dropdown"><span class="language-dropdown-current desktop"> English Version</span> <i class="icon-down-dir desktop"></i>
-  <i class="icon-globe mobile"></i>
-  </div>
-    <div class="language-dropdown-content language-dropdown">
-      <div class="language-dropdown-current--mobile mobile">
-        English Version
+  <div class="outer-container">
+    <div class="top-container">
+      <div class="header"></div>
+      <div class="timeline-container">
+        <div class="timeline-stepper-container">
+          <div class="timeline-stepper">
+            <i class="icon-angle-left timeline-stepper__icon timeline-stepper__left"></i>
+            <div class="timeline-stepper__year">year</div>
+            <i class="icon-angle-right timeline-stepper__icon timeline-stepper__right"></i>
+          </div>
+        </div>
+        <div class="timeline-slider-container"></div>
       </div>
-      <div class="language-dropdown-option" data-language="pr">Versão em Português</div>
-      <div class="language-dropdown-option language-dropdown-option--hidden" data-language="en">English Version</div>
     </div>
-  <header>
-
-    
-
-    <div id='eras-button'><div class="desktop"><i class='icon-reply'></i><span class="back-to-text">Back to</span> <span class="back-to-page-text">eras</span></div><i class="icon-left-big mobile"></i></div>
-    <div id='controls-right'>
-      <div class="register-button">
-        <i class="icon-user-plus"></i>Register
+    <div class="map-outer">
+      <div id="map">
       </div>
-      <div id='top-right-buttons' class='search-hide'>
+    </div>
+    <div class="sidebar sidebar--legend">
+      <div class="sidebar__top">
+          <input placeholder="Search map layers..." class="sidebar__input" />
+      </div>
+      <div class="sidebar__content">
+
+      </div>
+      <div class="sidebar__results">
         
-        <a class="fb-share-btn" target="_blank" data-href="https://www.facebook.com/sharer/sharer.php?">
-          <i class='icon-facebook'></i>
-        </a><a class="twitter" target="_blank" data-href="https://twitter.com/intent/tweet?">
-          <i class='icon-twitter'></i>
-        </a>
-        <a>
-          <i class='icon-download' id='export' title="Download map image"></i>
-        </a>
-        <a href="http://hrc.rice.edu/imagineRio/home" target="_blank">
-          <i class='icon-info-1'></i>
-        </a>
-      </div>
-    </div>
-  </header>
-  <div id="intro">
-    <div class='title-container'>
-      <div class='mobile'></div>
-      <h1>imagineRio</h1>
-    </div>
-    <div class="era-intro">
-      <div id="era-stepper">
-        <i class="icon-angle-left"></i>
-        <div class='era-years-container'>
-          <p class="era-years">XXX</p>
-        </div>
-        <i class="icon-angle-right"></i>
-      </div>
-      <div class='era-description-container'>
-        <div class='era-description-inner'>
-          <p class="era-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna wirl aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisinuli.</p>
-        </div>
-      </div>
-    </div>
-    <div class="start-intro">
-      <p class="era-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In fringilla posuere dolor, condimentum tempus purus aliquet nec. Proin vitae condimentum sapien, id scelerisque nunc. Ut ut velit vel tellus mollis ultricies quis vel felis. Quisque volutpat, leo at bibendum pharetra, sapien orci fermentum mauris, nec sodales odio lacus gravida libero. Maecenas in elit sed est vulputate vehicula. Donec tempor elit sapien, ac ullamcorper nulla elementum et. Aenean aliquam tellus ut sapien feugiat, quis luctus sapien auctor. In commodo sem nec ligula iaculis, sit amet viverra sapien finibus. Pellentesque auctor vitae massa a congue.</p>
-    </div>
-    <div class="intro-buttons">
-      <div class="go-button"><i class="icon-binoculars"></i> <span class="explore-map-button-text">Begin Exploring</span></div>
-      <div class="era-dropdown">
-        <select>
-          <option value="" disabled selected>Jump to era...</option>
-        </select>
-        <div class='dropdown-button'><span class="era-dropdown-text">Jump to era... </span><i class="icon-sort desktop"></i>
-        </div>
-      </div>
-    </div>
-    
-    
-    <div class="disclaimer">
-      <div class="intro-logos desktop">
-        <a href="http://hrc.rice.edu/" target="_blank"><img class="logo" src='img/hrc-logo.png'/></a>
-        <a href="http://www.axismaps.com/" target="_blank"><img class="logo" src='img/axis-logo.png'/></a>
-      </div>
-      <div class="disclaimer-text">
-        This product is for informational purposes and was neither prepared nor is suitable for legal, engineering, or surveying purposes. Represented objects have approximate locations relative to a particular moment of the research project. No warranty is made regarding specific accuracy or completeness. Rice University and the imagineRio research team assume no liability or damages due to errors or omissions.
       </div>
     </div>
   </div>
-  <section id="timeline"></section>
-  <div class="flex-row right-side">
-    <aside id="legend" class="panel collapsed">
-      <div class="panel-toggle legend-toggle">
-        <i class="icon-search mobile"></i>
-        <div>
-        <i class="icon-search desktop"></i>
-          <span class="desktop legend-title-text">Map Legend</span>
-        </div>
-        <i class="icon-angle-double-right open desktop"></i>
-        <i class="icon-angle-double-left close desktop"></i>
-      </div>
-      
-        <div class="search-button-container">
-          <i class="icon-left-big mobile mobile-back-to-map-button"></i>
-          <div id="search-button" class="search-hide">
-            <i class="icon-search desktop"></i>
-            <span class="search-map-layers-text">Search map layers...</span>
-          </div>
-        </div>
-        <div class="search-input-container">
-          <i class="icon-left-circled search-return-button desktop"></i>
-          <i class="icon-left-big search-return-button mobile"></i>
-          <input placeholder="Search map layers..." class="search-input" />
-        </div>
-        <!-- <div class="search-clear-button desktop">
-          Clear results <i class="icon-times"></i>
-        </div> -->
-        <div class="search-return-container">
-          <i class="icon-left-circled search-return-button desktop"></i>
-          <i class="icon-left-big search-return-button mobile"></i> <span class="search-return-to-legend-text">Back to Legend</span>
-        </div>
-      <div class='legend-contents'></div>
-    </aside>
-    <div class='flex-column'>
-      <section id='map'></section>
-      <section id='filmstrip' class='panel'>
-        <div class='panel-toggle filmstrip-toggle'><div class='mini-thumbs desktop'></div><span class="desktop">Historical Overlays</span><i class='icon-angle-double-up open desktop'></i><i class='icon-angle-double-down close desktop'></i><i class="icon-th-large mobile"></i></div>
-        <div class='filmstrip-contents'>
-          <div class="raster-type-labels mobile">
-            <span class="views">Views</span>
-            <span class="maps">Maps</span>
-            <span class="plans">Plans</span>
-            <span class="surveys">Surveys</span>
-          </div>
-          <div class="raster-types">
-            <i class="icon-camera selected" data-layer="viewsheds"></i>
-            <i class="icon-map-o" data-layer="maps"></i>
-            <i class="icon-tsquare" data-layer="plans"></i>
-            <i class="icon-flight" data-layer="surveys"></i>
-          </div>
-          <div class="filmstrip-thumbnails"></div>
-          <div class="filmstrip-showall desktop">Show all</div>
-        </div>
-      </section>
-    </div>
-  </div>
-
-  <div class="probe" id="fixed-probe">
-    <!-- <i class="icon-times mobile"></i> -->
-    <div class='content'></div>
-  </div>
-  <div class="probe" id="filmstrip-probe">
-    <div class="content"></div>
-    <div class="tail"></div>
-  </div>
-  <div class="probe" id="map-probe">
-    <div class="content"></div>
-  </div>
-  <div class="probe-hint-container desktop">
-    <div class="probe-hint">
-      <i class="icon-click-to-explore"></i>
-        <span class="probe-hint-text">Click the map to explore, or</span>
-    </div>
-    <div class="probe-area">
-      <i class="icon-search-area"></i>
-      <span class="probe-area-text">Explore by area </span>
-      <!-- <i class="icon-times"></i> -->
-      <!-- <span class="probe-area-bug-fix">.</span> -->
-    </div>
-  </div>
-  <div class="probe-hint--mobile mobile">
-    <span class="probe-hint-text--mobile">Tap the map to explore...</span>
-  </div>
-  <div class="probe-area--mobile mobile">
-      <i class="icon-search-area"></i>
-  </div>
-  <div class="probe-area-hint mobile">
-    Click+drag to explore an area
-  </div>
-
-  <div id="overlay-info"><i class="icon-info"></i></div>
-
-  <div class="lightbox">
-    <div class="content">
-      <i class="icon-times"></i>
-    </div>
-  </div>
-  </main>
-  <div class="loading-screen loading-screen--off">
-    <div class="loading-image-container">
-      <img src="img/loading.gif">
-    </div>
-    <div class="loading-text">
-      Loading...
-    </div>
-  </div>
-  <iframe id="download_iframe" style="display:none;"></iframe>
 
   <script src="libraries/jquery.min.js"></script>
   <script src="libraries/underscore-min.js"></script>
-  <script src="libraries/d3-dispatch.min.js"></script>
+  <script src="libraries/d3.min.js"></script>
+  <script src="libraries/d3-selection-multi.min.js"></script>
   <script src="libraries/hammer.min.js"></script>
   <script src="libraries/mapbox-gl.js"></script>
-
-  <script src="bundle.js"></script>
 <script type="text/javascript" src="bundle.js"></script></body>
 </html>

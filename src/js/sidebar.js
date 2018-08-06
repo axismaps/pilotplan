@@ -5,29 +5,70 @@ const privateProps = new WeakMap();
 const privateMethods = {
   init() {
     const {
+      drawLayerGroups,
       drawLayerRows,
-      drawLayerContent,
     } = privateMethods;
 
+    drawLayerGroups.call(this);
     drawLayerRows.call(this);
-    drawLayerContent.call(this);
   },
-  drawLayerRows() {
+  drawLayerGroups() {
     const props = privateProps.get(this);
     const {
       layers,
       contentContainer,
     } = props;
 
-    props.layersContainer = contentContainer.append('div')
-      .attr('class', 'sidebar__layers');
+    // console.log('LAYERS', layers);
 
-    props.layerRows = props.layersContainer
-      .selectAll('.sidebar__layer-row')
-      .data(layers.filter(d => 'filter' in d))
+    // props.layersContainer = contentContainer.append('div')
+    //   .attr('class', 'sidebar__layers');
+
+    const layerGroups = contentContainer
+      .selectAll('.sidebar__layer-group')
+      .data(layers, d => d.name);
+
+    const layerGroupsNew = layerGroups
       .enter()
       .append('div')
-      .attr('class', 'sidebar__layer-row');
+      .attr('class', 'sidebar__layer-group')
+      .text(d => d.name);
+
+    props.layerContainers = layerGroupsNew.append('div')
+      .attr('class', 'sidebar__layers');
+
+    layerGroups.exit().remove();
+
+    props.layerGroups = layerGroups;
+  },
+  drawLayerRows() {
+    const {
+      layerContainers,
+      onLayerClick,
+      language,
+    } = privateProps.get(this);
+    // layerGroups.each(function addRows(d) {
+    //   console.log('d', d);
+    //   d3.select(this)
+    //     .select()
+    // });
+    layerContainers.each(function addRows(d) {
+      const layers = d3.select(this)
+        .selectAll('.sidebar__layer-row')
+        .data(d.features, dd => dd.name);
+
+      layers
+        .enter()
+        .append('div')
+        .attr('class', 'sidebar__layer-row')
+        // .merge(layers)
+        .text(dd => dd[language])
+        .on('click', (dd) => {
+          onLayerClick(dd.name);
+        });
+
+      layers.exit().remove();
+    });
   },
   drawLayerContent() {
     const {
@@ -36,37 +77,37 @@ const privateMethods = {
     } = privateProps.get(this);
 
     // recursive search to find clean layer name
-    const findFilter = (filters, field) => {
-      const filter = filters.slice(1)
-        .find(d => d[1] === field);
-      if (filter !== undefined) {
-        return filter[2];
-      }
-      const newFilters = filters.slice(1)
-        .find(d => d[0] === 'all');
-      if (newFilters !== undefined) {
-        return findFilter(newFilters, field);
-      }
-      return undefined;
-    };
+    // const findFilter = (filters, field) => {
+    //   const filter = filters.slice(1)
+    //     .find(d => d[1] === field);
+    //   if (filter !== undefined) {
+    //     return filter[2];
+    //   }
+    //   const newFilters = filters.slice(1)
+    //     .find(d => d[0] === 'all');
+    //   if (newFilters !== undefined) {
+    //     return findFilter(newFilters, field);
+    //   }
+    //   return undefined;
+    // };
 
-    layerRows.append('div')
-      .attr('class', 'sidebar__layer-text')
-      .text((d) => {
-        const styleName = findFilter(d.filter, 'StyleName');
-        const subType = findFilter(d.filter, 'SubType');
-        if (styleName === undefined && subType === undefined) {
-          return d.id;
-        } else if (subType === undefined) {
-          return styleName;
-        }
+    // layerRows.append('div')
+    //   .attr('class', 'sidebar__layer-text')
+    //   .text((d) => {
+    //     const styleName = findFilter(d.filter, 'StyleName');
+    //     const subType = findFilter(d.filter, 'SubType');
+    //     if (styleName === undefined && subType === undefined) {
+    //       return d.id;
+    //     } else if (subType === undefined) {
+    //       return styleName;
+    //     }
 
-        return `${styleName}: ${subType}`;
-      })
-      .on('click', (d) => {
-        console.log('layer', d);
-        onLayerClick(d.id);
-      });
+    //     return `${styleName}: ${subType}`;
+    //   })
+    //   .on('click', (d) => {
+    //     console.log('layer', d);
+    //     onLayerClick(d.id);
+    //   });
   },
   setView() {
     const {
@@ -96,15 +137,13 @@ const privateMethods = {
     const {
       resultsContainer,
       results,
-      view,
+      // view,
     } = props;
 
     const resultRowContainer = resultsContainer.append('div')
       .attr('class', 'sidebar__results-rows');
 
-    console.log('rows', resultRowContainer);
-    console.log('results', results);
-    const resultRows = resultRowContainer
+    resultRowContainer
       .selectAll('.sidebar__results-row')
       .data(results)
       .enter()
@@ -146,18 +185,31 @@ class Sidebar {
     init.call(this);
     listenForText.call(this);
 
-    this.updateLayers();
+    this.updateCurrentLayers();
   }
   config(config) {
     Object.assign(privateProps.get(this), config);
     return this;
   }
-  updateLayers() {
+  updateAvailableLayers() {
+    // console.log(this);
     const {
+      drawLayerGroups,
+      drawLayerRows,
+    } = privateMethods;
+    drawLayerGroups.call(this);
+    drawLayerRows.call(this);
+    this.updateCurrentLayers();
+  }
+  updateCurrentLayers() {
+    const {
+      contentContainer,
       currentLayers,
-      layerRows,
     } = privateProps.get(this);
-    layerRows.classed('sidebar__layer-row--off', d => !currentLayers.includes(d.id));
+
+    contentContainer
+      .selectAll('.sidebar__layer-row')
+      .classed('sidebar__layer-row--off', d => !currentLayers.includes(d.name));
   }
   updateResults() {
     const props = privateProps.get(this);

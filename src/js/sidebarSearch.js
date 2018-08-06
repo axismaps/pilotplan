@@ -1,4 +1,4 @@
-const searchMethods = ({ privateProps, privateMethods }) => ({
+const searchMethods = ({ privateProps }) => ({
   listenForText() {
     const {
       searchInput,

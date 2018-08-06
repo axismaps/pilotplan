@@ -5,7 +5,9 @@ const setStateEvents = ({ components }) => {
       const {
         timeline,
         atlas,
+        sidebar,
       } = components;
+
       const {
         year,
       } = this.props();
@@ -22,6 +24,12 @@ const setStateEvents = ({ components }) => {
           year,
         })
         .updateYear();
+
+      sidebar
+        .config({
+          layers: this.getAvailableLayers(),
+        })
+        .updateAvailableLayers();
 
       // setTimeout(() => {
       //   const renderedLayers = atlas.getRenderedLayers();
@@ -72,7 +80,7 @@ const setStateEvents = ({ components }) => {
         .config({
           currentLayers,
         })
-        .updateLayers();
+        .updateCurrentLayers();
     },
     textSearch() {
       const {
