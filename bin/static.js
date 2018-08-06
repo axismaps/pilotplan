@@ -35,7 +35,7 @@ fs.readdir(path.join(__dirname, '../data/geojson/geography'), (err, files) => {
           layer.features[sub].startYear = layer.features[sub].startYear ?
             Math.min(layer.features[sub].startYear, p.FirstYear) : p.FirstYear;
           layer.features[sub].endYear = layer.features[sub].endYear ?
-            Math.min(layer.features[sub].startYear, p.LastYear) : p.LastYear;
+            Math.max(layer.features[sub].startYear, p.LastYear) : p.LastYear;
         }
       });
 
