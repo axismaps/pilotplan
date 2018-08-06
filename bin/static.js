@@ -28,7 +28,11 @@ fs.readdir(path.join(__dirname, '../data/geojson'), (err, files) => {
 
       config[name] = layer;
       loaded += 1;
-      if (loaded === files.length) console.log(config);
+      if (loaded === files.length) {
+        fs.writeFile(path.join(__dirname, '../src/data/config.json'), JSON.stringify(config, null, 2), () => {
+          console.log('FILE WRITTEN');
+        });
+      }
     });
   });
 });
