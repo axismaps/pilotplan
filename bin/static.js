@@ -4,14 +4,17 @@ const path = require('path');
 const config = {};
 let loaded = 0;
 
-fs.readdir(path.join(__dirname, '../data/geojson'), (err, files) => {
+fs.readdir(path.join(__dirname, '../data/geojson/geography'), (err, files) => {
   files.forEach((f) => {
-    fs.readFile(path.join(__dirname, '../data/geojson', f), (err2, data) => {
+    fs.readFile(path.join(__dirname, '../data/geojson/geography', f), (err2, data) => {
       const name = f.replace(/\.json$/, '');
-      const props = getProps(JSON.parse(data));
+      const json = JSON.parse(data);
+      const props = getProps(json);
 
       const layer = {};
       layer.features = {};
+      layer.group = name === 'WatersLine' || name === 'WaterBodiesPoly' || name === 'OpenSpacesPoly' ? 'Landscape' : 'Urbanism';
+      layer.icon = json.features[0].geometry.type === 'LineString' ? 'line.svg' : 'poly.svg';
       props.forEach((p) => {
         layer.startYear = layer.startYear ? Math.min(layer.startYear, p.FirstYear) : p.FirstYear;
         layer.endYear = layer.endYear ? Math.max(layer.endYear, p.LastYear) : p.LastYear;
