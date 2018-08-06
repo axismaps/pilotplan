@@ -15,6 +15,11 @@ fs.readdir(path.join(__dirname, '../data/geojson/geography'), (err, files) => {
       layer.features = {};
       layer.group = name === 'WatersLine' || name === 'WaterBodiesPoly' || name === 'OpenSpacesPoly' ? 'Landscape' : 'Urbanism';
       layer.icon = json.features[0].geometry.type === 'LineString' ? 'line.svg' : 'poly.svg';
+
+      // Fake translation for now
+      layer.en = name;
+      layer.pr = name;
+
       props.forEach((p) => {
         layer.startYear = layer.startYear ? Math.min(layer.startYear, p.FirstYear) : p.FirstYear;
         layer.endYear = layer.endYear ? Math.max(layer.endYear, p.LastYear) : p.LastYear;
@@ -22,6 +27,11 @@ fs.readdir(path.join(__dirname, '../data/geojson/geography'), (err, files) => {
         if (p.SubType) {
           const sub = p.SubType;
           if (!layer.features[sub]) layer.features[sub] = {};
+
+          // Fake translation for now
+          layer.features[sub].en = sub;
+          layer.features[sub].pr = sub;
+
           layer.features[sub].startYear = layer.features[sub].startYear ?
             Math.min(layer.features[sub].startYear, p.FirstYear) : p.FirstYear;
           layer.features[sub].endYear = layer.features[sub].endYear ?
