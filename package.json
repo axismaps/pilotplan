@@ -8,7 +8,9 @@
     "dev": "npm run start-dev-server",
     "start-dev-server": "node_modules/.bin/webpack-dev-server --hot --inline",
     "remove-css": "rm -f -- dist/styles.css",
-    "build": "node_modules/.bin/webpack -p --config webpack.config.prod.js"
+    "build": "node_modules/.bin/webpack -p --config webpack.config.prod.js",
+    "static": "node bin/static.js",
+    "tiles": "tippecanoe --exclude='osm_id,Shape_Leng,Shape_Area' -aD -aG -ab -o  data/tiles/pilot.mbtiles data/geojson/geography/*"
   },
   "author": "",
   "license": "ISC",
