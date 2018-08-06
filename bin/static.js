@@ -12,8 +12,6 @@ fs.readdir(path.join(__dirname, '../data/geojson/geography'), (err, files) => {
       const json = JSON.parse(data);
       const props = getProps(json);
 
-      console.log(props);
-
       const layer = {};
       layer.features = {};
       layer.group = name === 'WatersLine' || name === 'WaterBodiesPoly' || name === 'OpenSpacesPoly' ? 'Landscape' : 'Urbanism';
@@ -59,14 +57,21 @@ function getStyleInfo() {
   fs.readFile(path.join(__dirname, '../src/data/style.json'), (err, data) => {
     const json = JSON.parse(data);
     _.each(config, (layer, name) => {
+      let unmatch = true;
       const styles = _.filter(json.layers, l => l['source-layer'] === name);
       _.each(layer.features, (f, fname) => {
         const id = _.find(styles, (s) => {
           const filter = _.flatten(s.filter);
           return _.some(filter, f1 => f1 === fname);
         });
-        if (id) f.style = id.id;
+        if (id) {
+          f.style = id.id;
+          unmatch = false;
+        }
       });
+      if (unmatch && styles.length === 1) {
+        layer.style = styles[0].id;
+      }
     });
     fs.writeFile(path.join(__dirname, '../src/data/config.json'), JSON.stringify(config, null, 2), () => {
       console.log('FILE WRITTEN');
