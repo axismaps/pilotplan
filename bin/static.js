@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const _ = require('underscore');
 
 const config = {};
 let loaded = 0;
@@ -42,9 +43,7 @@ fs.readdir(path.join(__dirname, '../data/geojson/geography'), (err, files) => {
       config[name] = layer;
       loaded += 1;
       if (loaded === files.length) {
-        fs.writeFile(path.join(__dirname, '../src/data/config.json'), JSON.stringify(config, null, 2), () => {
-          console.log('FILE WRITTEN');
-        });
+        getStyleInfo();
       }
     });
   });
@@ -52,4 +51,23 @@ fs.readdir(path.join(__dirname, '../data/geojson/geography'), (err, files) => {
 
 function getProps(json) {
   return json.features.map(f => f.properties);
+}
+
+function getStyleInfo() {
+  fs.readFile(path.join(__dirname, '../src/data/style.json'), (err, data) => {
+    const json = JSON.parse(data);
+    _.each(config, (layer, name) => {
+      const styles = _.filter(json.layers, l => l['source-layer'] === name);
+      _.each(layer.features, (f, fname) => {
+        const id = _.find(styles, (s) => {
+          const filter = _.flatten(s.filter);
+          return _.some(filter, f1 => f1 === fname);
+        });
+        if (id) f.style = id.id;
+      });
+    });
+    fs.writeFile(path.join(__dirname, '../src/data/config.json'), JSON.stringify(config, null, 2), () => {
+      console.log('FILE WRITTEN');
+    });
+  });
 }
