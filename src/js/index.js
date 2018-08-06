@@ -54,7 +54,11 @@ const app = {
 
     components.atlas = new Atlas({
       year: state.get('year'),
+      layerNames: data.layerNames,
       onLoad: this.onAtlasLoad.bind(this),
+      onClickSearch(features) {
+        state.update({ clickSearch: features });
+      },
     });
   },
   onAtlasLoad() {
@@ -91,7 +95,7 @@ const app = {
 
     components.sidebar = new Sidebar({
       sidebarOpen: state.get('sidebarOpen'),
-      layers: state.getAvailableLayers(),
+      availableLayers: state.getAvailableLayers(),
       currentLayers: state.get('currentLayers'),
       language: state.get('language'),
       view: state.get('sidebarView'),
@@ -117,7 +121,7 @@ const app = {
     });
   },
   setStateEvents() {
-    setStateEvents({ components });
+    setStateEvents({ components, data });
   },
   listenForResize() {
     const { state } = components;

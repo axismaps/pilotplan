@@ -110,6 +110,33 @@ const setStateEvents = ({ components }) => {
         console.log('results', results);
       }
     },
+    clickSearch() {
+      const {
+        clickSearch,
+      } = this.props();
+      const {
+        sidebar,
+      } = components;
+
+      console.log('features', clickSearch);
+      const results = [...new Set(clickSearch.map(d => d.sourceLayer))]
+        .map((groupName) => {
+          const group = {
+            id: groupName,
+            features: clickSearch
+              .filter(d => d.sourceLayer === groupName)
+              .map(d => d.properties),
+          };
+          return group;
+        });
+      console.log('results', results);
+      sidebar
+        .config({
+          results,
+          view: 'clickSearch',
+        })
+        .updateResults();
+    },
   });
 };
 

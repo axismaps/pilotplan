@@ -18,7 +18,8 @@
   height: calc(100% - #{$search-input-height});
 }
 
-.sidebar__layer-group {
+.sidebar__layer-group,
+.sidebar__results-group {
   margin-bottom: 15px;
 }
 
@@ -62,7 +63,8 @@
   }
 }
 
-.sidebar--text-search {
+.sidebar--text-search,
+.sidebar--click-search {
   .sidebar__content {
     display: none;
   }

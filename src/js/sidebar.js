@@ -15,7 +15,7 @@ const privateMethods = {
   drawLayerGroups() {
     const props = privateProps.get(this);
     const {
-      layers,
+      availableLayers,
       contentContainer,
       language,
     } = props;
@@ -27,7 +27,7 @@ const privateMethods = {
 
     const layerGroups = contentContainer
       .selectAll('.sidebar__layer-group')
-      .data(layers, d => d.id);
+      .data(availableLayers, d => d.id);
 
     const layerGroupsNew = layerGroups
       .enter()
@@ -59,10 +59,6 @@ const privateMethods = {
     // });
     // console.log('draw layer rows');
     layerGroups.each(function addRows(d) {
-      console.log(d);
-      if (d.id === 'RoadsLine') {
-        console.log(d);
-      }
       const layers = d3.select(this)
         .select('.sidebar__layers')
         .selectAll('.sidebar__layer-row')
@@ -81,45 +77,6 @@ const privateMethods = {
       layers.exit().remove();
     });
   },
-  drawLayerContent() {
-    const {
-      layerRows,
-      onLayerClick,
-    } = privateProps.get(this);
-
-    // recursive search to find clean layer name
-    // const findFilter = (filters, field) => {
-    //   const filter = filters.slice(1)
-    //     .find(d => d[1] === field);
-    //   if (filter !== undefined) {
-    //     return filter[2];
-    //   }
-    //   const newFilters = filters.slice(1)
-    //     .find(d => d[0] === 'all');
-    //   if (newFilters !== undefined) {
-    //     return findFilter(newFilters, field);
-    //   }
-    //   return undefined;
-    // };
-
-    // layerRows.append('div')
-    //   .attr('class', 'sidebar__layer-text')
-    //   .text((d) => {
-    //     const styleName = findFilter(d.filter, 'StyleName');
-    //     const subType = findFilter(d.filter, 'SubType');
-    //     if (styleName === undefined && subType === undefined) {
-    //       return d.id;
-    //     } else if (subType === undefined) {
-    //       return styleName;
-    //     }
-
-    //     return `${styleName}: ${subType}`;
-    //   })
-    //   .on('click', (d) => {
-    //     console.log('layer', d);
-    //     onLayerClick(d.id);
-    //   });
-  },
   setView() {
     const {
       view,
@@ -135,36 +92,7 @@ const privateMethods = {
       container.classed(val, key === view);
     });
   },
-  clearResults() {
-    const {
-      resultRowContainer,
-    } = privateProps.get(this);
 
-    if (resultRowContainer === undefined) return;
-    resultRowContainer.remove();
-  },
-  drawResults() {
-    const props = privateProps.get(this);
-    const {
-      resultsContainer,
-      results,
-      // view,
-    } = props;
-
-    const resultRowContainer = resultsContainer.append('div')
-      .attr('class', 'sidebar__results-rows');
-
-    resultRowContainer
-      .selectAll('.sidebar__results-row')
-      .data(results)
-      .enter()
-      .append('div')
-      .attr('class', 'sidebar__results-row')
-      .text(d => d.properties.Name);
-
-
-    props.resultRowContainer = resultRowContainer;
-  },
 };
 
 Object.assign(
@@ -187,6 +115,8 @@ class Sidebar {
       view: null,
       previousView: null,
       results: null,
+      availableLayers: null,
+      currentLayers: null,
     });
 
     this.config(config);
@@ -231,7 +161,9 @@ class Sidebar {
     const {
       setView,
       clearResults,
-      drawResults,
+      drawTextSearchResults,
+      drawClickSearchResults,
+      drawResultRowContainer,
     } = privateMethods;
 
     // console.log('update?', checkNeedsUpdate.call(this));
@@ -240,8 +172,11 @@ class Sidebar {
     setView.call(this);
     // use enter/exit instead of this
     clearResults.call(this);
-    if (view !== 'legend') {
-      drawResults.call(this);
+    drawResultRowContainer.call(this);
+    if (view === 'textSearch') {
+      drawTextSearchResults.call(this);
+    } else if (view === 'clickSearch') {
+      drawClickSearchResults.call(this);
     }
     props.previousView = view;
   }

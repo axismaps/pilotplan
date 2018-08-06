@@ -26,6 +26,7 @@ const privateMethods = {
 
     const {
       onLoad,
+      onClickSearch,
     } = props;
 
     mapboxgl.accessToken = 'pk.eyJ1IjoiYXhpc21hcHMiLCJhIjoieUlmVFRmRSJ9.CpIxovz1TUWe_ecNLFuHNg';
@@ -41,10 +42,13 @@ const privateMethods = {
       })
       .on('click', (e) => {
         console.log('click', e);
-      })
-      .on('mouseover', 'building-Work', (e) => {
-        console.log('LAYER', e);
+        const bbox = [[e.point.x - 5, e.point.y - 5], [e.point.x + 5, e.point.y + 5]];
+        const features = props.mbMap.queryRenderedFeatures(bbox);
+        onClickSearch(features);
       });
+    // .on('mouseover', 'building-Work', (e) => {
+    //   console.log('LAYER', e);
+    // });
   },
   updateYear() {
     const {

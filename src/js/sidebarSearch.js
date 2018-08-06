@@ -11,6 +11,68 @@ const searchMethods = ({ privateProps }) => ({
       onTextInput(val);
     });
   },
+  clearResults() {
+    const {
+      resultRowContainer,
+    } = privateProps.get(this);
+
+    if (resultRowContainer === undefined) return;
+    resultRowContainer.remove();
+  },
+  drawResultRowContainer() {
+    const props = privateProps.get(this);
+    const {
+      resultsContainer,
+
+    } = props;
+    const resultRowContainer = resultsContainer.append('div')
+      .attr('class', 'sidebar__results-rows');
+    props.resultRowContainer = resultRowContainer;
+  },
+  drawTextSearchResults() {
+    const props = privateProps.get(this);
+    const {
+      resultRowContainer,
+      results,
+    } = props;
+
+    resultRowContainer
+      .selectAll('.sidebar__results-row')
+      .data(results)
+      .enter()
+      .append('div')
+      .attr('class', 'sidebar__results-row')
+      .text(d => d.properties.Name);
+  },
+  drawClickSearchResults() {
+    const props = privateProps.get(this);
+    const {
+      resultRowContainer,
+      results,
+    } = props;
+    const groups = resultRowContainer.selectAll('.sidebar__results-group')
+      .data(results)
+      .enter()
+      .append('div')
+      .attr('class', 'sidebar__results-group');
+
+    groups.append('div')
+      .attr('class', 'sidebar__layer-group-title')
+      .text(d => d.id);
+
+    groups.append('div')
+      .attr('class', 'sidebar__result-layers');
+    groups.each(function addResultsLayers(d) {
+      d3.select(this)
+        .select('.sidebar__result-layers')
+        .selectAll('.sidebar__results-row')
+        .data(d.features)
+        .enter()
+        .append('div')
+        .attr('class', 'sidebar__results-row')
+        .text(dd => (dd.Name === '' ? dd.SubType : dd.Name));
+    });
+  },
 });
 
 export default searchMethods;
