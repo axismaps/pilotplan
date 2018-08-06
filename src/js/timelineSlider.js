@@ -130,17 +130,16 @@ const privateMethods = {
         detectionTrack.interrupt();
       })
       .on('end drag', () => {
-        // onDragEnd(props.currentValue);
-        const { valueRange } = props;
-        const sliderValue = scale.invert(d3.event.x);
+        // const { valueRange } = props;
+        // const sliderValue = scale.invert(d3.event.x);
 
-        if (sliderValue >= valueRange[0] && sliderValue <= valueRange[1]) {
-          onDragEnd(sliderValue);
-        } else if (sliderValue < valueRange[0]) {
-          onDragEnd(valueRange[0]);
-        } else if (sliderValue > valueRange[1]) {
-          onDragEnd(valueRange[1]);
-        }
+        // if (sliderValue >= valueRange[0] && sliderValue <= valueRange[1]) {
+        //   onDragEnd(sliderValue);
+        // } else if (sliderValue < valueRange[0]) {
+        //   onDragEnd(valueRange[0]);
+        // } else if (sliderValue > valueRange[1]) {
+        //   onDragEnd(valueRange[1]);
+        // }
       })
       .on('start drag', () => {
         const { valueRange } = props;

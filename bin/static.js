@@ -12,6 +12,8 @@ fs.readdir(path.join(__dirname, '../data/geojson/geography'), (err, files) => {
       const json = JSON.parse(data);
       const props = getProps(json);
 
+      console.log(props);
+
       const layer = {};
       layer.features = {};
       layer.group = name === 'WatersLine' || name === 'WaterBodiesPoly' || name === 'OpenSpacesPoly' ? 'Landscape' : 'Urbanism';

@@ -5,13 +5,24 @@ import Timeline from './timeline';
 import Layout from './layout';
 import Sidebar from './sidebar';
 import config from './config';
+import loadData from './dataLoad';
 
 require('../scss/index.scss');
 
 const components = {};
+let data;
 
 const app = {
+  components: {},
+  data: null,
   init() {
+    loadData((cleanedData) => {
+      data = cleanedData;
+      this.initState();
+      this.initAtlas();
+    });
+  },
+  initState() {
     components.state = new State({
       year: 2016,
       sidebarOpen: true,
@@ -19,17 +30,34 @@ const app = {
       textSearch: null,
       clickSearch: null,
       areaSearch: null,
+      currentLayers: null,
+      language: 'en',
       screenSize: [window.innerWidth, window.innerHeight],
     });
 
+    components.state.getAvailableLayers = () => {
+      const year = components.state.get('year');
+      const { layers } = data;
+
+      const categories = layers.filter(d => d.startYear <= year);
+
+      const filteredFeatures = categories.map((cat) => {
+        const category = Object.assign({}, cat);
+        category.features = category.features.filter(d => d.startYear <= year);
+        return category;
+      });
+      return filteredFeatures;
+    };
+  },
+  initAtlas() {
     const { state } = components;
 
     components.atlas = new Atlas({
       year: state.get('year'),
-      onLoad: this.onLoad.bind(this),
+      onLoad: this.onAtlasLoad.bind(this),
     });
   },
-  onLoad() {
+  onAtlasLoad() {
     this.initComponents();
     this.setStateEvents();
     this.listenForResize();
@@ -39,6 +67,10 @@ const app = {
       state,
       atlas,
     } = components;
+
+    console.log('layers', atlas.getLayers());
+
+    // console.log(data.layers);
 
     state.set('currentLayers', atlas
       .getLayers()
@@ -59,8 +91,9 @@ const app = {
 
     components.sidebar = new Sidebar({
       sidebarOpen: state.get('sidebarOpen'),
-      layers: atlas.getLayers(),
+      layers: state.getAvailableLayers(),
       currentLayers: state.get('currentLayers'),
+      language: state.get('language'),
       view: state.get('sidebarView'),
       onLayerClick(layerId) {
         const currentLayers = state.get('currentLayers');

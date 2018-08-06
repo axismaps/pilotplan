@@ -1,7 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-// const CopyWebpackPlugin = require('copy-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: ['babel-polyfill', './src/js/index.js'],
@@ -41,5 +41,12 @@ module.exports = {
       template: path.join(__dirname, 'src/html/index.html'),
       filename: path.join(__dirname, 'dist/index.html'),
     }),
+    new CopyWebpackPlugin([
+      {
+        from: 'src/data/*',
+        to: 'data',
+        flatten: true,
+      },
+    ]),
   ],
 };
