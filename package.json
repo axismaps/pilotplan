@@ -1,5 +1,5 @@
 {
-  "name": "imaginerio",
+  "name": "pilotplan",
   "version": "0.0.1",
   "description": "instituteRice",
   "main": "index.js",
@@ -10,11 +10,13 @@
     "remove-css": "rm -f -- dist/styles.css",
     "build": "node_modules/.bin/webpack -p --config webpack.config.prod.js",
     "static": "node bin/static.js",
+    "style": "node bin/styles.js",
     "tiles": "tippecanoe -x osm_id -x Shape_Leng -x Shape_Area -x layer -x Date -x Address -x SHAPE_Le1 -x SHAPE_Area -aD -aG -ab -ai -f -o data/tiles/pilot.mbtiles data/geojson/geography/* && source .env && mapbox upload axismaps.dd66zwg7 data/tiles/pilot.mbtiles"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@mapbox/mapbox-sdk": "^0.4.0",
     "compression": "^1.7.0",
     "d3": "^5.5.0",
     "d3-dispatch": "1.0.3",
