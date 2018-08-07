@@ -26,6 +26,14 @@ body {
   width: 100%;
 }
 
+.area-button-container {
+  position: absolute;
+  right: 20px;
+  top: $header-height + $timeline-height + 20px;
+  height: $probe-button-height;
+}
+
+
 #map {
   position: absolute;
   left: 0px;

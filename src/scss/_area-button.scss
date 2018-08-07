@@ -1,0 +1,14 @@
+.area-button-container {
+  background: $main-background;
+  color: white;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: $button-shadow;
+}
+
+.area-button {
+  padding-left: 15px;
+  padding-right: 15px;
+}
