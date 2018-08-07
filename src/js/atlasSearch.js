@@ -87,7 +87,14 @@ const atlasSearchMethods = ({ privateProps, privateMethods }) => {
 
       const bbox = [start, getMousePos({ e, canvas })];
 
-      const features = mbMap.queryRenderedFeatures(bbox);
+      const features = mbMap.queryRenderedFeatures(bbox, {
+        filter: [
+          'all',
+          ['<=', 'FirstYear', year],
+          ['>=', 'LastYear', year],
+          // ['match', 'Name', val],
+        ],
+      });
       // console.log('features', features);
       onAreaSearch(features);
     },

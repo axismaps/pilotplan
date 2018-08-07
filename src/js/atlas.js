@@ -39,6 +39,9 @@ const privateMethods = {
       .on('load', () => {
         init();
         onLoad();
+      })
+      .on('mouseover', 'building-Work', (e) => {
+        console.log('LAYER', e.features[0].properties.LastYear);
       });
     props.canvas = props.mbMap.getCanvasContainer();
   },
@@ -46,9 +49,17 @@ const privateMethods = {
     const props = privateProps.get(this);
     const { onClickSearch } = props;
     props.clickSearch = (e) => {
+      const { year } = props;
       console.log('click', e);
       const bbox = [[e.point.x - 5, e.point.y - 5], [e.point.x + 5, e.point.y + 5]];
-      const features = props.mbMap.queryRenderedFeatures(bbox);
+      const features = props.mbMap.queryRenderedFeatures(bbox, {
+        filter: [
+          'all',
+          ['<=', 'FirstYear', year],
+          ['>=', 'LastYear', year],
+          // ['match', 'Name', val],
+        ],
+      });
       onClickSearch(features);
     };
   },
