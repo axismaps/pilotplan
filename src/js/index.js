@@ -72,8 +72,6 @@ const app = {
       atlas,
     } = components;
 
-    console.log('layers', atlas.getLayers());
-
     // console.log(data.layers);
 
     state.set('currentLayers', atlas

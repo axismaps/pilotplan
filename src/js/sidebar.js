@@ -59,6 +59,7 @@ const privateMethods = {
     // });
     // console.log('draw layer rows');
     layerGroups.each(function addRows(d) {
+      // console.log(d);
       const layers = d3.select(this)
         .select('.sidebar__layers')
         .selectAll('.sidebar__layer-row')
