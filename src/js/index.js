@@ -35,6 +35,8 @@ const app = {
       screenSize: [window.innerWidth, window.innerHeight],
     });
 
+    console.log('all layers', data.layers);
+
     components.state.getAvailableLayers = () => {
       const year = components.state.get('year');
       const { layers } = data;
@@ -43,7 +45,9 @@ const app = {
 
       const filteredFeatures = categories.map((cat) => {
         const category = Object.assign({}, cat);
-        category.features = category.features.filter(d => d.startYear <= year);
+        category.features = category.features.filter(d =>
+          d.startYear <= year &&
+          d.endYear >= year);
         return category;
       });
       return filteredFeatures;

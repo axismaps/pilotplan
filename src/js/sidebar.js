@@ -24,10 +24,12 @@ const privateMethods = {
 
     // props.layersContainer = contentContainer.append('div')
     //   .attr('class', 'sidebar__layers');
+    const groupsWithData = availableLayers
+      .filter(d => d.features.length > 0);
 
     const layerGroups = contentContainer
       .selectAll('.sidebar__layer-group')
-      .data(availableLayers, d => d.id);
+      .data(groupsWithData, d => d.id);
 
     const layerGroupsNew = layerGroups
       .enter()
