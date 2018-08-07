@@ -29,6 +29,7 @@ const app = {
       sidebarView: 'legend', // searching, results
       textSearch: null,
       clickSearch: null,
+      areaSearchActive: false,
       areaSearch: null,
       currentLayers: null,
       language: 'en',
@@ -63,6 +64,9 @@ const app = {
       onClickSearch(features) {
         state.update({ clickSearch: features });
       },
+      onAreaSearch(features) {
+        state.update({ areaSearch: features });
+      },
     });
   },
   onAtlasLoad() {
@@ -93,6 +97,11 @@ const app = {
 
     components.layout = new Layout({
       sidebarOpen: state.get('sidebarOpen'),
+      areaSearchActive: state.get('areaSearchActive'),
+      onAreaButtonClick: () => {
+        const areaSearchActive = !state.get('areaSearchActive');
+        state.update({ areaSearchActive });
+      },
     });
 
     components.sidebar = new Sidebar({

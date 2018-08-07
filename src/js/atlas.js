@@ -1,3 +1,5 @@
+import getSearchMethods from './atlasSearch';
+
 const privateProps = new WeakMap();
 
 const utils = {
@@ -26,7 +28,6 @@ const privateMethods = {
 
     const {
       onLoad,
-      onClickSearch,
     } = props;
 
     mapboxgl.accessToken = 'pk.eyJ1IjoiYXhpc21hcHMiLCJhIjoieUlmVFRmRSJ9.CpIxovz1TUWe_ecNLFuHNg';
@@ -34,22 +35,40 @@ const privateMethods = {
     props.mbMap = new mapboxgl.Map({
       container: 'map',
       style: './data/style.json',
-      // style: 'mapbox://styles/axismaps/cjj4qi4hm4imk2ss5oavv3jv4',
     })
       .on('load', () => {
         init();
         onLoad();
-      })
-      .on('click', (e) => {
-        console.log('click', e);
-        const bbox = [[e.point.x - 5, e.point.y - 5], [e.point.x + 5, e.point.y + 5]];
-        const features = props.mbMap.queryRenderedFeatures(bbox);
-        onClickSearch(features);
       });
-    // .on('mouseover', 'building-Work', (e) => {
-    //   console.log('LAYER', e);
-    // });
+    props.canvas = props.mbMap.getCanvasContainer();
   },
+  setClickSearch() {
+    const props = privateProps.get(this);
+    const { onClickSearch } = props;
+    props.clickSearch = (e) => {
+      console.log('click', e);
+      const bbox = [[e.point.x - 5, e.point.y - 5], [e.point.x + 5, e.point.y + 5]];
+      const features = props.mbMap.queryRenderedFeatures(bbox);
+      onClickSearch(features);
+    };
+  },
+  initClickSearchListener() {
+    const {
+      mbMap,
+      clickSearch,
+    } = privateProps.get(this);
+
+    mbMap.on('click', clickSearch);
+  },
+  disableClickSearchListener() {
+    const {
+      mbMap,
+      clickSearch,
+    } = privateProps.get(this);
+
+    mbMap.off('click', clickSearch);
+  },
+
   updateYear() {
     const {
       year,
@@ -79,13 +98,17 @@ const privateMethods = {
   },
 };
 
+Object.assign(privateMethods, getSearchMethods({ privateMethods, privateProps }));
+
 class Atlas {
   constructor(config) {
     const {
       createMBMap,
     } = privateMethods;
 
-    privateProps.set(this, {});
+    privateProps.set(this, {
+      areaSearchActive: null,
+    });
 
     this.config(config);
 
@@ -94,8 +117,15 @@ class Atlas {
   init() {
     const {
       setLayers,
+      setClickSearch,
+      initAreaMethods,
+      initAreaSearchListener,
     } = privateMethods;
     setLayers.call(this);
+    setClickSearch.call(this);
+    initAreaMethods.call(this);
+    initAreaSearchListener.call(this);
+    this.updateAreaSearch();
   }
   config(config) {
     Object.assign(privateProps.get(this), config);
@@ -106,10 +136,6 @@ class Atlas {
       updateYear,
     } = privateMethods;
     updateYear.call(this);
-
-    // console.log('rendered', mbMap.queryRenderedFeatures({
-    //   layers: ['building-Live'],
-    // }));
   }
   getMap() {
     const { mbMap } = privateProps.get(this);
@@ -165,6 +191,23 @@ class Atlas {
     const filtered = results
       .filter(d => d.properties.Name.toLowerCase().includes(val.toLowerCase()));
     return filtered;
+  }
+  updateAreaSearch() {
+    const {
+      areaSearchActive,
+      mbMap,
+    } = privateProps.get(this);
+    const {
+      initClickSearchListener,
+      disableClickSearchListener,
+    } = privateMethods;
+    if (areaSearchActive) {
+      disableClickSearchListener.call(this);
+      mbMap.dragPan.disable();
+    } else {
+      initClickSearchListener.call(this);
+      mbMap.dragPan.enable();
+    }
   }
 }
 

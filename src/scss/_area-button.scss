@@ -1,4 +1,8 @@
-.area-button-container {
+.probe-buttons-container {
+  
+}
+
+.area-button {
   background: $main-background;
   color: white;
   display: flex;
@@ -6,9 +10,7 @@
   border-radius: 5px;
   cursor: pointer;
   box-shadow: $button-shadow;
-}
-
-.area-button {
+  height: 100%;
   padding-left: 15px;
   padding-right: 15px;
 }

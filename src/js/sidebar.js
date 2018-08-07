@@ -178,7 +178,7 @@ class Sidebar {
     drawResultRowContainer.call(this);
     if (view === 'textSearch') {
       drawTextSearchResults.call(this);
-    } else if (view === 'clickSearch') {
+    } else if (view === 'clickSearch' || view === 'areaSearch') {
       drawClickSearchResults.call(this);
     }
     props.previousView = view;

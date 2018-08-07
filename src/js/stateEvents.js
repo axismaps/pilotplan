@@ -1,5 +1,22 @@
 const setStateEvents = ({ components }) => {
   const { state } = components;
+
+  const utils = {
+    formatResults(features) {
+      const results = [...new Set(features.map(d => d.sourceLayer))]
+        .map((groupName) => {
+          const group = {
+            id: groupName,
+            features: features
+              .filter(d => d.sourceLayer === groupName)
+              .map(d => d.properties),
+          };
+          return group;
+        });
+      return results;
+    },
+  };
+
   state.registerCallbacks({
     year() {
       const {
@@ -60,7 +77,7 @@ const setStateEvents = ({ components }) => {
         .config({
           sidebarOpen,
         })
-        .updateLayout();
+        .updateSidebar();
     },
     currentLayers() {
       const {
@@ -119,20 +136,52 @@ const setStateEvents = ({ components }) => {
       } = components;
 
       console.log('features', clickSearch);
-      const results = [...new Set(clickSearch.map(d => d.sourceLayer))]
-        .map((groupName) => {
-          const group = {
-            id: groupName,
-            features: clickSearch
-              .filter(d => d.sourceLayer === groupName)
-              .map(d => d.properties),
-          };
-          return group;
-        });
+      const results = utils.formatResults(clickSearch);
       console.log('results', results);
       sidebar
         .config({
           results,
+          view: 'clickSearch',
+        })
+        .updateResults();
+    },
+    areaSearchActive() {
+      const {
+        areaSearchActive,
+      } = this.props();
+      const {
+        layout,
+        atlas,
+      } = components;
+
+      layout
+        .config({
+          areaSearchActive,
+        })
+        .updateAreaSearch();
+
+      atlas
+        .config({
+          areaSearchActive,
+        })
+        .updateAreaSearch();
+    },
+    areaSearch() {
+      const {
+        areaSearch,
+      } = this.props();
+      const {
+        layout,
+        sidebar,
+      } = components;
+      console.log('area', areaSearch);
+      console.log('formatted', utils.formatResults(areaSearch));
+
+      layout.config({ });
+
+      sidebar
+        .config({
+          results: utils.formatResults(areaSearch),
           view: 'clickSearch',
         })
         .updateResults();
