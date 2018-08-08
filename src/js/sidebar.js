@@ -110,7 +110,7 @@ const privateMethods = {
       view,
       container,
     } = privateProps.get(this);
-    console.log('view', view);
+    // console.log('view', view);
     const classesForViews = new Map([
       ['legend', 'sidebar--legend'],
       ['textSearch', 'sidebar--text-search'],

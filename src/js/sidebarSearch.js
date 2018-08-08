@@ -34,6 +34,7 @@ const searchMethods = ({ privateProps }) => ({
     const {
       resultRowContainer,
       results,
+      onFeatureClick,
     } = props;
 
     resultRowContainer
@@ -42,6 +43,7 @@ const searchMethods = ({ privateProps }) => ({
       .enter()
       .append('div')
       .attr('class', 'sidebar__results-row')
+      .on('click', onFeatureClick)
       .text(d => d.properties.Name);
   },
   drawClickSearchResults() {
@@ -49,7 +51,9 @@ const searchMethods = ({ privateProps }) => ({
     const {
       resultRowContainer,
       results,
+      onFeatureClick,
     } = props;
+    // console.log('results', results);
     const groups = resultRowContainer.selectAll('.sidebar__results-group')
       .data(results)
       .enter()
@@ -70,7 +74,8 @@ const searchMethods = ({ privateProps }) => ({
         .enter()
         .append('div')
         .attr('class', 'sidebar__results-row')
-        .text(dd => (dd.Name === '' ? dd.SubType : dd.Name));
+        .on('click', onFeatureClick)
+        .text(dd => (dd.properties.Name === '' ? dd.properties.SubType : dd.properties.Name));
     });
   },
 });

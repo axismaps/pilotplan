@@ -39,10 +39,10 @@ const privateMethods = {
       .on('load', () => {
         init();
         onLoad();
-      })
-      .on('mouseover', 'building-Work', (e) => {
-        console.log('LAYER', e.features[0].properties.LastYear);
       });
+    // .on('mouseover', 'building-Work', (e) => {
+    // console.log('LAYER', e.features[0].properties.LastYear);
+    // });
     props.canvas = props.mbMap.getCanvasContainer();
   },
   setClickSearch() {
@@ -120,6 +120,7 @@ class Atlas {
     privateProps.set(this, {
       areaSearchActive: null,
       mapContainer: d3.select('#map'),
+      highlightedFeature: null,
     });
 
     this.config(config);
@@ -183,22 +184,29 @@ class Atlas {
   textSearch(val) {
     const {
       mbMap,
-      sourceLayers,
+      // sourceLayers,
       year,
     } = privateProps.get(this);
 
-    const results = sourceLayers.reduce((accumulator, sourceLayer) => {
-      const result = mbMap.querySourceFeatures('composite', {
-        sourceLayer,
-        filter: [
-          'all',
-          ['<=', 'FirstYear', year],
-          ['>=', 'LastYear', year],
-          // ['match', 'Name', val],
-        ],
-      });
-      return [...accumulator, ...result];
-    }, []);
+    // const results = sourceLayers.reduce((accumulator, sourceLayer) => {
+    //   const result = mbMap.querySourceFeatures('composite', {
+    //     sourceLayer,
+    //     filter: [
+    //       'all',
+    //       ['<=', 'FirstYear', year],
+    //       ['>=', 'LastYear', year],
+    //       // ['match', 'Name', val],
+    //     ],
+    //   });
+    //   return [...accumulator, ...result];
+    // }, []);
+    const results = mbMap.queryRenderedFeatures({
+      filter: [
+        'all',
+        ['<=', 'FirstYear', year],
+        ['>=', 'LastYear', year],
+      ],
+    });
 
     const filtered = results
       .filter(d => d.properties.Name.toLowerCase().includes(val.toLowerCase()));
@@ -222,6 +230,38 @@ class Atlas {
       initClickSearchListener.call(this);
       mbMap.dragPan.enable();
     }
+  }
+  updateHighlightedFeature() {
+    const {
+      highlightedFeature,
+      mbMap,
+    } = privateProps.get(this);
+
+    const existingHighlighted = mbMap.getLayer('highlighted');
+
+    if (existingHighlighted !== undefined) {
+      mbMap.removeLayer('highlighted');
+      mbMap.removeSource('highlighted');
+    }
+
+    if (highlightedFeature === null) return;
+
+    const featureJSON = highlightedFeature.toJSON();
+    const newLayer = {
+      id: 'highlighted',
+      type: 'fill',
+      source: {
+        type: 'geojson',
+        data: featureJSON,
+      },
+      layout: {},
+      paint: {
+        'fill-color': '#ff0000',
+        'fill-opacity': 0.8,
+      },
+    };
+
+    mbMap.addLayer(newLayer);
   }
 }
 

@@ -3,16 +3,17 @@ const setStateEvents = ({ components }) => {
 
   const utils = {
     formatResults(features) {
+      console.log('features', features);
       const results = [...new Set(features.map(d => d.sourceLayer))]
         .map((groupName) => {
           const group = {
             id: groupName,
             features: features
-              .filter(d => d.sourceLayer === groupName)
-              .map(d => d.properties),
+              .filter(d => d.sourceLayer === groupName),
           };
           return group;
         });
+      console.log('formatted results', results);
       return results;
     },
   };
@@ -174,8 +175,8 @@ const setStateEvents = ({ components }) => {
         layout,
         sidebar,
       } = components;
-      console.log('area', areaSearch);
-      console.log('formatted', utils.formatResults(areaSearch));
+      // console.log('area', areaSearch);
+      // console.log('formatted', utils.formatResults(areaSearch));
 
       layout.config({ });
 
@@ -185,6 +186,20 @@ const setStateEvents = ({ components }) => {
           view: 'clickSearch',
         })
         .updateResults();
+    },
+    highlightedFeature() {
+      const {
+        highlightedFeature,
+      } = this.props();
+      const {
+        atlas,
+        sidebar,
+      } = components;
+      atlas
+        .config({
+          highlightedFeature,
+        })
+        .updateHighlightedFeature();
     },
   });
 };

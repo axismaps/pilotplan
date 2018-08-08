@@ -32,6 +32,7 @@ const app = {
       areaSearchActive: false,
       areaSearch: null,
       currentLayers: null,
+      highlightedFeature: null,
       language: 'en',
       screenSize: [window.innerWidth, window.innerHeight],
     });
@@ -56,6 +57,7 @@ const app = {
     const { state } = components;
 
     components.atlas = new Atlas({
+      highlightedFeature: state.get('highlightedFeature'),
       year: state.get('year'),
       layerNames: data.layerNames,
       onLoad: this.onAtlasLoad.bind(this),
@@ -103,6 +105,7 @@ const app = {
     });
 
     components.sidebar = new Sidebar({
+      highlightedFeature: state.get('highlightedFeature'),
       sidebarOpen: state.get('sidebarOpen'),
       availableLayers: state.getAvailableLayers(),
       currentLayers: state.get('currentLayers'),
@@ -126,6 +129,18 @@ const app = {
       },
       onTextInput(val) {
         state.update({ textSearch: val });
+      },
+      onFeatureClick(feature) {
+        console.log('feature', feature);
+        const oldFeature = state.get('highlightedFeature');
+        let newFeature;
+        if (oldFeature === null) {
+          newFeature = feature;
+        } else {
+          newFeature = oldFeature.id === feature.id ? null : feature;
+        }
+
+        state.update({ highlightedFeature: newFeature });
       },
     });
   },
