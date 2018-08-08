@@ -20,11 +20,20 @@ const privateMethods = {
     const props = privateProps.get(this);
     const {
       searchReturnContainer,
+      textSearchReturnButton,
+      searchInput,
     } = props;
 
     searchReturnContainer
       .on('click', () => {
         props.view = 'legend';
+        searchInput.node().value = '';
+        this.updateResults();
+      });
+    textSearchReturnButton
+      .on('click', () => {
+        props.view = 'legend';
+        searchInput.node().value = '';
         this.updateResults();
       });
   },
@@ -131,6 +140,7 @@ class Sidebar {
       contentContainer: d3.select('.sidebar__content'),
       resultsContainer: d3.select('.sidebar__results'),
       searchReturnContainer: d3.select('.sidebar__search-return'),
+      textSearchReturnButton: d3.select('.sidebar__text-search-return-icon'),
       searchInput: d3.select('.sidebar__input'),
       view: null,
       previousView: null,

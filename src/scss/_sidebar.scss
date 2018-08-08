@@ -65,6 +65,11 @@
   align-items: center;
 }
 
+.sidebar__text-search-return-icon {
+  cursor: pointer;
+}
+
+.sidebar__text-search-return-icon,
 .sidebar__search-return-icon {
   font-size: 30px;
 }
@@ -79,6 +84,7 @@
 }
 
 .sidebar--legend {
+  .sidebar__text-search-return-icon,
   .sidebar__results {
     display: none;
   }
@@ -93,6 +99,7 @@
 
 .sidebar--text-search,
 .sidebar--click-search {
+  .sidebar__search-icon,
   .sidebar__content {
     display: none;
   }
@@ -100,6 +107,13 @@
 
 .sidebar--click-search {
   .sidebar__input {
+    display: none;
+  }
+}
+
+.sidebar--legend,
+.sidebar--click-search {
+  .sidebar__text-search-return-icon {
     display: none;
   }
 }

@@ -63,7 +63,7 @@ const app = {
         state.update({ clickSearch: features });
       },
       onAreaSearch(features) {
-        state.update({ areaSearch: features });
+        state.update({ areaSearchActive: false, areaSearch: features });
       },
     });
   },
