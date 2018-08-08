@@ -7,10 +7,26 @@ const privateMethods = {
     const {
       drawLayerGroups,
       drawLayerRows,
+      listenForText,
+      setSearchReturnListener,
     } = privateMethods;
 
     drawLayerGroups.call(this);
     drawLayerRows.call(this);
+    listenForText.call(this);
+    setSearchReturnListener.call(this);
+  },
+  setSearchReturnListener() {
+    const props = privateProps.get(this);
+    const {
+      searchReturnContainer,
+    } = props;
+
+    searchReturnContainer
+      .on('click', () => {
+        props.view = 'legend';
+        this.updateResults();
+      });
   },
   drawLayerGroups() {
     const props = privateProps.get(this);
@@ -107,13 +123,14 @@ class Sidebar {
   constructor(config) {
     const {
       init,
-      listenForText,
+      // listenForText,
     } = privateMethods;
 
     privateProps.set(this, {
       container: d3.select('.sidebar'),
       contentContainer: d3.select('.sidebar__content'),
       resultsContainer: d3.select('.sidebar__results'),
+      searchReturnContainer: d3.select('.sidebar__search-return'),
       searchInput: d3.select('.sidebar__input'),
       view: null,
       previousView: null,
@@ -127,7 +144,7 @@ class Sidebar {
     privateProps.get(this).previousView = config.view;
 
     init.call(this);
-    listenForText.call(this);
+
 
     this.updateCurrentLayers();
   }

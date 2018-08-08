@@ -1,0 +1,11 @@
+.outer-container--desktop {
+  .mobile {
+    display: none;
+  }
+}
+
+.outer-container--mobile {
+  .desktop {
+    display: none;
+  }
+}
