@@ -119,6 +119,7 @@ class Atlas {
 
     privateProps.set(this, {
       areaSearchActive: null,
+      mapContainer: d3.select('#map'),
     });
 
     this.config(config);
@@ -207,11 +208,13 @@ class Atlas {
     const {
       areaSearchActive,
       mbMap,
+      mapContainer,
     } = privateProps.get(this);
     const {
       initClickSearchListener,
       disableClickSearchListener,
     } = privateMethods;
+    mapContainer.classed('map--area-search', areaSearchActive);
     if (areaSearchActive) {
       disableClickSearchListener.call(this);
       mbMap.dragPan.disable();

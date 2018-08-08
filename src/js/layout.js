@@ -17,6 +17,7 @@ class Layout {
       areaSearching: false,
       container: d3.select('.outer-container'),
       areaSearchButton: d3.select('.area-button'),
+      probeButtonsContainer: d3.select('.probe-buttons-container'),
       onAreaButtonClick: null,
       areaSearchActive: null,
     });
@@ -42,6 +43,11 @@ class Layout {
   }
   updateAreaSearch() {
     console.log('layout area', privateProps.get(this).areaSearchActive);
+    const {
+      probeButtonsContainer,
+      areaSearchActive,
+    } = privateProps.get(this);
+    probeButtonsContainer.classed('probe-buttons-container--area-search', areaSearchActive);
   }
 }
 

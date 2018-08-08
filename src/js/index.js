@@ -36,8 +36,6 @@ const app = {
       screenSize: [window.innerWidth, window.innerHeight],
     });
 
-    console.log('all layers', data.layers);
-
     components.state.getAvailableLayers = () => {
       const year = components.state.get('year');
       const { layers } = data;
