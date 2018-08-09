@@ -1,3 +1,4 @@
+import getBBox from '@turf/bbox';
 import getSearchMethods from './atlasSearch';
 
 const privateProps = new WeakMap();
@@ -247,6 +248,8 @@ class Atlas {
     if (highlightedFeature === null) return;
 
     const featureJSON = highlightedFeature.toJSON();
+    const bbox = getBBox(featureJSON);
+    console.log(bbox);
     const newLayer = {
       id: 'highlighted',
       type: 'fill',
@@ -262,6 +265,7 @@ class Atlas {
     };
 
     mbMap.addLayer(newLayer);
+    mbMap.fitBounds(bbox, { padding: 100 });
   }
 }
 
