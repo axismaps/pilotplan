@@ -41,16 +41,34 @@ const app = {
       const year = components.state.get('year');
       const { layers } = data;
 
-      const categories = layers.filter(d => d.startYear <= year);
-
-      const filteredFeatures = categories.map((cat) => {
-        const category = Object.assign({}, cat);
-        category.features = category.features.filter(d =>
+      const newLayers = layers.map((group) => {
+        const newGroup = Object.assign({}, group);
+        newGroup.layers = group.layers.filter(d =>
           d.startYear <= year &&
-          d.endYear >= year);
-        return category;
-      });
-      return filteredFeatures;
+          d.endYear >= year)
+          .map((layer) => {
+            const newLayer = Object.assign({}, layer);
+            newLayer.features = layer.features.filter(d =>
+              d.startYear <= year &&
+              d.endYear >= year);
+            return newLayer;
+          })
+          .filter(layer => layer.features.length > 0);
+        return newGroup;
+      })
+        .filter(group => group.layers.length > 0);
+
+      return newLayers;
+      // const categories = layers.filter(d => d.startYear <= year);
+
+      // const filteredFeatures = categories.map((cat) => {
+      //   const category = Object.assign({}, cat);
+      //   category.features = category.features.filter(d =>
+      //     d.startYear <= year &&
+      //     d.endYear >= year);
+      //   return category;
+      // });
+      // return filteredFeatures;
     };
   },
   initAtlas() {

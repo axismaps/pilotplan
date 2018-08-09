@@ -6,13 +6,16 @@ const privateMethods = {
   init() {
     const {
       drawLayerGroups,
-      drawLayerRows,
+      drawLayers,
+      drawFeatures, // draw features
       listenForText,
       setSearchReturnListener,
     } = privateMethods;
 
+    // drawLayerCategories.call(this);
     drawLayerGroups.call(this);
-    drawLayerRows.call(this);
+    drawLayers.call(this);
+    drawFeatures.call(this);
     listenForText.call(this);
     setSearchReturnListener.call(this);
   },
@@ -42,69 +45,120 @@ const privateMethods = {
     const {
       availableLayers,
       contentContainer,
+    } = props;
+
+    const groups = contentContainer
+      .selectAll('.sidebar__layer-group-block')
+      .data(availableLayers, d => d.group);
+
+    const newGroups = groups
+      .enter()
+      .append('div')
+      .attr('class', 'sidebar__layer-group-block');
+    newGroups
+      .append('div')
+      .attr('class', 'sidebar__layer-group-title')
+      .text(d => d.group);
+
+    newGroups.append('div')
+      .attr('class', 'sidebar__layer-block');
+
+    groups.exit().remove();
+
+    props.layerGroups = newGroups.merge(groups);
+  },
+  drawLayers() {
+    const props = privateProps.get(this);
+    const {
+      contentContainer,
+      layerGroups,
       language,
     } = props;
 
-    // console.log('LAYERS', layers);
-
-    // props.layersContainer = contentContainer.append('div')
-    //   .attr('class', 'sidebar__layers');
-    const groupsWithData = availableLayers
-      .filter(d => d.features.length > 0);
-
-    const layerGroups = contentContainer
-      .selectAll('.sidebar__layer-group')
-      .data(groupsWithData, d => d.id);
-
-    const layerGroupsNew = layerGroups
-      .enter()
-      .append('div')
-      .attr('class', 'sidebar__layer-group');
-
-    layerGroupsNew
-      .append('div')
-      .attr('class', 'sidebar__layer-group-title')
-      .text(d => d[language]);
-
-    layerGroupsNew.append('div')
-      .attr('class', 'sidebar__layers');
-
-    layerGroups.exit().remove();
-
-    props.layerGroups = layerGroupsNew.merge(layerGroups);
-  },
-  drawLayerRows() {
-    const {
-      layerGroups,
-      onLayerClick,
-      language,
-    } = privateProps.get(this);
-    // layerGroups.each(function addRows(d) {
-    //   console.log('d', d);
-    //   d3.select(this)
-    //     .select()
-    // });
-    // console.log('draw layer rows');
-    layerGroups.each(function addRows(d) {
-      // console.log(d);
+    layerGroups.each(function addLayers(d) {
       const layers = d3.select(this)
-        .select('.sidebar__layers')
+        .select('.sidebar__layer-block')
         .selectAll('.sidebar__layer-row')
-        .data(d.features, dd => dd.en);
+        .data(d.layers, layer => layer.id);
 
-      layers
-        .enter()
+      const layersNew = layers.enter()
         .append('div')
-        .attr('class', 'sidebar__layer-row')
-        .classed('sidebar__layer-row--inactive', dd => dd.id === undefined)
-        .text(dd => dd[language])
-        .on('click', (dd) => {
-          onLayerClick(dd.id);
-        });
+        .attr('class', 'sidebar__layer-row');
+
+      layersNew.append('div')
+        .attr('class', 'sidebar__layer-title-row')
+        .html(layer => `
+          <input type="checkbox" value="builtdomain" checked="checked">
+          <span class="sidebar__layer-name">${layer[language]}</span>
+          `);
+
+      layersNew
+        .append('div')
+        .attr('class', 'sidebar__feature-block');
 
       layers.exit().remove();
     });
+    props.layers = contentContainer.selectAll('.sidebar__layer-row');
   },
+  drawFeatures() {
+    const props = privateProps.get(this);
+    const {
+      layers,
+      language,
+      contentContainer,
+      onLayerClick,
+    } = props;
+
+    layers.each(function addFeature(d) {
+      const features = d3.select(this)
+        .select('.sidebar__feature-block')
+        .selectAll('.sidebar__feature-row')
+        .data(d.features, feature => feature.id);
+
+      features
+        .enter()
+        .append('div')
+        .attr('class', 'sidebar__feature-row')
+        .classed('sidebar__feature-row--inactive', feature => feature.id === undefined)
+        .html(feature => `
+          <i class="icon-binoculars"></i>
+          <span class="sidebar__feature-name">${feature[language]}</span>
+        `)
+        .on('click', (feature) => {
+          onLayerClick(feature.id);
+        });
+
+      features.exit().remove();
+    });
+    props.features = contentContainer.selectAll('.sidebar__feature-row');
+  },
+  // drawFeatures() {
+  // const {
+  //   layerGroups,
+  //   onLayerClick,
+  //   language,
+  // } = privateProps.get(this);
+
+  // layerGroups.each(function addRows(d) {
+  //   // console.log(d);
+  //   const layers = d3.select(this)
+  //     .select('.sidebar__layers')
+  //     .selectAll('.sidebar__layer-block')
+  //     .data(d.features, dd => dd.en);
+
+  //   layers
+  //     .enter()
+  //     .append('div')
+  //     .attr('class', 'sidebar__layer-block')
+  //     .classed('sidebar__layer-row--inactive', dd => dd.id === undefined)
+  //     .text(dd => dd[language])
+  //     .on('click', (dd) => {
+  //       onLayerClick(dd.id);
+  //     });
+
+  //   layers.exit().remove();
+  // });
+  // },
   setView() {
     const {
       view,
@@ -166,10 +220,12 @@ class Sidebar {
     // console.log('update available layers');
     const {
       drawLayerGroups,
-      drawLayerRows,
+      drawLayers,
+      drawFeatures,
     } = privateMethods;
     drawLayerGroups.call(this);
-    drawLayerRows.call(this);
+    drawLayers.call(this);
+    drawFeatures.call(this);
     this.updateCurrentLayers();
   }
   updateCurrentLayers() {
@@ -179,8 +235,8 @@ class Sidebar {
     } = privateProps.get(this);
 
     contentContainer
-      .selectAll('.sidebar__layer-row')
-      .classed('sidebar__layer-row--off', d => !currentLayers.includes(d.id));
+      .selectAll('.sidebar__feature-row')
+      .classed('sidebar__feature-row--off', d => !currentLayers.includes(d.id));
   }
   updateResults() {
     const props = privateProps.get(this);
