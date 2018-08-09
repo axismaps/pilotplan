@@ -1,5 +1,6 @@
 import getBBox from '@turf/bbox';
 import getSearchMethods from './atlasSearch';
+import { colors } from './config';
 
 const privateProps = new WeakMap();
 
@@ -238,19 +239,40 @@ class Atlas {
       mbMap,
     } = privateProps.get(this);
 
-    const existingHighlighted = mbMap.getSource('highlighted');
-    const existingLayer = mbMap.getLayer('highlighted-feature');
+    const polyLayers = [
+      'highlighted-feature-fill',
+      'highlighted-feature-outline-top',
+      'highlighted-feature-outline-bottom',
+    ];
 
-    if (existingHighlighted !== undefined && existingLayer !== undefined) {
-      console.log(existingHighlighted);
-      mbMap.removeLayer('highlighted-feature');
-      // mbMap.removeSource('highlighted');
+    const lineLayers = [
+      'highlighted-feature-outline-top',
+      'highlighted-feature-outline-bottom',
+    ];
+
+    const existingHighlighted = mbMap.getSource('highlighted');
+    console.log(existingHighlighted);
+    const existingPoly = mbMap.getLayer('highlighted-feature-fill');
+    const existingOutline = mbMap.getLayer('highlighted-feature-outline-top');
+
+    if (existingHighlighted !== undefined) {
+      if (existingPoly !== undefined) {
+        polyLayers.forEach((layer) => {
+          mbMap.removeLayer(layer);
+        });
+      } else if (existingOutline !== undefined) {
+        lineLayers.forEach((layer) => {
+          mbMap.removeLayer(layer);
+        });
+      }
     }
 
     if (highlightedFeature === null) return;
-
     const featureJSON = highlightedFeature.toJSON();
     const bbox = getBBox(featureJSON);
+
+    console.log('featureJSON', featureJSON);
+
 
     if (existingHighlighted === undefined) {
       mbMap.addSource('highlighted', {
@@ -261,18 +283,45 @@ class Atlas {
       existingHighlighted.setData(featureJSON);
     }
 
-    const newLayer = {
-      id: 'highlighted-feature',
+    const fillLayer = {
+      id: 'highlighted-feature-fill',
       type: 'fill',
       source: 'highlighted',
       layout: {},
       paint: {
-        'fill-color': '#ff0000',
-        'fill-opacity': 0.8,
+        // 'fill-outline-color': 'blue',
+        'fill-color': colors.highlightColor,
+        'fill-opacity': 0.2,
+      },
+    };
+    const outlineLayerTop = {
+      id: 'highlighted-feature-outline-top',
+      type: 'line',
+      source: 'highlighted',
+      layout: {},
+      paint: {
+        'line-width': 2,
+        'line-color': '#1a1a1a',
       },
     };
 
-    mbMap.addLayer(newLayer);
+    const outlineLayerBottom = {
+      id: 'highlighted-feature-outline-bottom',
+      type: 'line',
+      source: 'highlighted',
+      layout: {},
+      paint: {
+        'line-width': 8,
+        'line-color': colors.highlightColor,
+        'line-opacity': 0.5,
+      },
+    };
+    if (featureJSON.geometry.type === 'Polygon') {
+      mbMap.addLayer(fillLayer);
+    }
+    mbMap.addLayer(outlineLayerBottom);
+    mbMap.addLayer(outlineLayerTop);
+
     mbMap.fitBounds(bbox, { padding: 100 });
   }
 }

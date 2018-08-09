@@ -4,7 +4,7 @@ import Atlas from './atlas';
 import Timeline from './timeline';
 import Layout from './layout';
 import Sidebar from './sidebar';
-import config from './config';
+import { yearRange } from './config';
 import loadData from './dataLoad';
 
 require('../scss/index.scss');
@@ -92,7 +92,7 @@ const app = {
       updateYear(newYear) {
         state.update({ year: Math.round(newYear) });
       },
-      yearRange: config.yearRange,
+      yearRange,
     });
 
     components.layout = new Layout({

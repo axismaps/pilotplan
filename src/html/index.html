@@ -24,41 +24,43 @@
 </head>
 <body>
   <div class="outer-container outer-container--desktop">
-    <div class="top-container">
-      <div class="header"></div>
-      <div class="timeline-container">
-        <div class="timeline-stepper-container">
-          <div class="timeline-stepper">
-            <i class="icon-angle-left timeline-stepper__icon timeline-stepper__left"></i>
-            <div class="timeline-stepper__year">year</div>
-            <i class="icon-angle-right timeline-stepper__icon timeline-stepper__right"></i>
+    <div class="outer-map-view">
+      <div class="top-container">
+        <div class="header"></div>
+        <div class="timeline-container">
+          <div class="timeline-stepper-container">
+            <div class="timeline-stepper">
+              <i class="icon-angle-left timeline-stepper__icon timeline-stepper__left"></i>
+              <div class="timeline-stepper__year">year</div>
+              <i class="icon-angle-right timeline-stepper__icon timeline-stepper__right"></i>
+            </div>
           </div>
+          <div class="timeline-slider-container"></div>
         </div>
-        <div class="timeline-slider-container"></div>
       </div>
-    </div>
-    <div class="map-outer">
-      <div id="map">
+      <div class="map-outer">
+        <div id="map">
+        </div>
       </div>
-    </div>
-    <div class="sidebar sidebar--legend">
-      <div class="sidebar__top">
-          <i class="icon-search sidebar__search-icon desktop"></i>
-          <i class="icon-left-circled sidebar__text-search-return-icon desktop"></i>
-          <input placeholder="Search map layers..." class="sidebar__input" />
-          <div class="sidebar__search-return">
-            <i class="icon-left-circled sidebar__search-return-icon desktop"></i>
-            <i class="icon-left-big sidebar__search-return-icon mobile"></i> <span class="sidebar__search-return-text">Back to Legend</span>
-          </div>
+      <div class="sidebar sidebar--legend">
+        <div class="sidebar__top">
+            <i class="icon-search sidebar__search-icon desktop"></i>
+            <i class="icon-left-circled sidebar__text-search-return-icon desktop"></i>
+            <input placeholder="Search map layers..." class="sidebar__input" />
+            <div class="sidebar__search-return">
+              <i class="icon-left-circled sidebar__search-return-icon desktop"></i>
+              <i class="icon-left-big sidebar__search-return-icon mobile"></i> <span class="sidebar__search-return-text">Back to Legend</span>
+            </div>
+        </div>
+        <div class="sidebar__content">
+        </div>
+        <div class="sidebar__results">
+        </div>
       </div>
-      <div class="sidebar__content">
-      </div>
-      <div class="sidebar__results">
-      </div>
-    </div>
-    <div class="probe-buttons-container">
-      <div class="area-button">
-        <i class="icon-search-area"></i> <span class="area-button-text">Explore by area</span>
+      <div class="probe-buttons-container">
+        <div class="area-button">
+          <i class="icon-search-area"></i> <span class="area-button-text">Explore by area</span>
+        </div>
       </div>
     </div>
   </div>

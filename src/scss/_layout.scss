@@ -10,7 +10,8 @@ body {
   background: $main-background;
 }
 
-.outer-container {
+.outer-container,
+.outer-map-view {
   position: absolute;
   left: 0px;
   top: 0px;
