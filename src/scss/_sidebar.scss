@@ -55,12 +55,17 @@
   // border-top-left-radius: 5px;
   // border-bottom-left-radius: 5px;
   // margin-left: 15px !important;
+  background: none;
   outline: none;
   margin: 0;
   padding: 1px 5px;
   border: none;
   width: 100%;
   cursor: text;
+}
+
+.sidebar__input:focus {
+  color: white;
 }
 
 .sidebar__search-return {
