@@ -238,25 +238,33 @@ class Atlas {
       mbMap,
     } = privateProps.get(this);
 
-    const existingHighlighted = mbMap.getLayer('highlighted');
+    const existingHighlighted = mbMap.getSource('highlighted');
+    const existingLayer = mbMap.getLayer('highlighted-feature');
 
-    if (existingHighlighted !== undefined) {
-      mbMap.removeLayer('highlighted');
-      mbMap.removeSource('highlighted');
+    if (existingHighlighted !== undefined && existingLayer !== undefined) {
+      console.log(existingHighlighted);
+      mbMap.removeLayer('highlighted-feature');
+      // mbMap.removeSource('highlighted');
     }
 
     if (highlightedFeature === null) return;
 
     const featureJSON = highlightedFeature.toJSON();
     const bbox = getBBox(featureJSON);
-    console.log(bbox);
-    const newLayer = {
-      id: 'highlighted',
-      type: 'fill',
-      source: {
+
+    if (existingHighlighted === undefined) {
+      mbMap.addSource('highlighted', {
         type: 'geojson',
         data: featureJSON,
-      },
+      });
+    } else {
+      existingHighlighted.setData(featureJSON);
+    }
+
+    const newLayer = {
+      id: 'highlighted-feature',
+      type: 'fill',
+      source: 'highlighted',
       layout: {},
       paint: {
         'fill-color': '#ff0000',
