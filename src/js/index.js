@@ -79,6 +79,7 @@ const app = {
 
     components.atlas = new Atlas({
       highlightedFeature: state.get('highlightedFeature'),
+      highlightedLayer: state.get('highlightedLayer'),
       currentLayers: state.get('currentLayers'),
       year: state.get('year'),
       layerNames: data.layerNames,
@@ -145,16 +146,12 @@ const app = {
           { id: layer.id, status: !currentLayers[layerIndex].status },
           ...currentLayers.slice(layerIndex + 1),
         ];
-        // console.log('current', currentLayers);
-        // console.log('layer', layer);
-        // console.log('newlayers', newLayers);
         state.update({ currentLayers: newLayers });
       },
       onTextInput(val) {
         state.update({ textSearch: val });
       },
       onFeatureClick(feature) {
-        console.log('feature', feature);
         const oldFeature = state.get('highlightedFeature');
         let newFeature;
         if (oldFeature === null) {

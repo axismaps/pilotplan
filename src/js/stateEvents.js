@@ -192,11 +192,19 @@ const setStateEvents = ({ components }) => {
         highlightedFeature,
       } = this.props();
 
+      console.log('hf', highlightedFeature);
+      console.log('test', typeof highlightedFeature);
       const {
         atlas,
         sidebar,
       } = components;
       atlas
+        .config({
+          highlightedFeature,
+        })
+        .updateHighlightedFeature();
+
+      sidebar
         .config({
           highlightedFeature,
         })

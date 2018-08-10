@@ -132,8 +132,9 @@ const privateMethods = {
           <span class="sidebar__feature-name">${feature[language]}</span>
         `)
         .on('click', (feature) => {
-          console.log(feature);
-          onFeatureClick(feature.id);
+          // console.log(feature, d.id);
+
+          onFeatureClick(Object.assign({}, feature, { sourceLayer: d.id }));
         });
 
       features.exit().remove();
@@ -214,8 +215,6 @@ class Sidebar {
       currentLayers,
       layers,
     } = privateProps.get(this);
-    console.log('cl', currentLayers);
-    console.log('check', layers.data());
 
     layers.each(function checkBox(d) {
       const row = d3.select(this);
