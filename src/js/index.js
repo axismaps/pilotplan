@@ -32,6 +32,7 @@ const app = {
       areaSearchActive: false,
       areaSearch: null,
       currentLayers: null,
+      highlightedLayer: null,
       highlightedFeature: null,
       language: 'en',
       screenSize: [window.innerWidth, window.innerHeight],
@@ -50,32 +51,35 @@ const app = {
             const newLayer = Object.assign({}, layer);
             newLayer.features = layer.features.filter(d =>
               d.startYear <= year &&
-              d.endYear >= year);
+              d.endYear >= year &&
+              d.id !== undefined);
             return newLayer;
           })
           .filter(layer => layer.features.length > 0);
         return newGroup;
       })
         .filter(group => group.layers.length > 0);
-
       return newLayers;
-      // const categories = layers.filter(d => d.startYear <= year);
-
-      // const filteredFeatures = categories.map((cat) => {
-      //   const category = Object.assign({}, cat);
-      //   category.features = category.features.filter(d =>
-      //     d.startYear <= year &&
-      //     d.endYear >= year);
-      //   return category;
-      // });
-      // return filteredFeatures;
     };
+
+    components.state.getAllAvailableLayers = () => components.state.getAvailableLayers()
+      .reduce((accumulator, group) => {
+        console.log('group', group);
+        return [...accumulator, ...group.layers];
+      }, [])
+      .map(layer => ({
+        id: layer.id,
+        status: true,
+      }));
+
+    components.state.set('currentLayers', components.state.getAllAvailableLayers());
   },
   initAtlas() {
     const { state } = components;
 
     components.atlas = new Atlas({
       highlightedFeature: state.get('highlightedFeature'),
+      currentLayers: state.get('currentLayers'),
       year: state.get('year'),
       layerNames: data.layerNames,
       onLoad: this.onAtlasLoad.bind(this),
@@ -100,10 +104,12 @@ const app = {
 
     // console.log(data.layers);
 
-    state.set('currentLayers', atlas
-      .getLayers()
-      .filter(d => d.visibility === 'visible')
-      .map(d => d.id));
+    // state.set('currentLayers', atlas
+    //   .getLayers()
+    //   .filter(d => d.visibility === 'visible')
+    //   .map(d => d.id));
+
+    // console.log('current layers', state.get('currentLayers'));
 
     components.timeline = new Timeline({
       year: state.get('year'),
@@ -126,24 +132,23 @@ const app = {
       highlightedFeature: state.get('highlightedFeature'),
       sidebarOpen: state.get('sidebarOpen'),
       availableLayers: state.getAvailableLayers(),
-      currentLayers: state.get('currentLayers'),
+      highlightedLayer: state.get('highlightedLayer'),
+      // currentLayers: state.get('currentLayers'),
       language: state.get('language'),
       view: state.get('sidebarView'),
-      onLayerClick(layerId) {
+      onLayerClick(layer) {
         const currentLayers = state.get('currentLayers');
-
-        const layerIndex = currentLayers.indexOf(layerId);
-
-        if (layerIndex === -1) {
-          state.update({ currentLayers: [...currentLayers, layerId] });
-        } else {
-          state.update({
-            currentLayers: [
-              ...currentLayers.slice(0, layerIndex),
-              ...currentLayers.slice(layerIndex + 1),
-            ],
-          });
-        }
+        const layerIndex = currentLayers.map(d => d.id)
+          .indexOf(layer.id);
+        const newLayers = [
+          ...currentLayers.slice(0, layerIndex),
+          { id: layer.id, status: !currentLayers[layerIndex].status },
+          ...currentLayers.slice(layerIndex + 1),
+        ];
+        // console.log('current', currentLayers);
+        // console.log('layer', layer);
+        // console.log('newlayers', newLayers);
+        state.update({ currentLayers: newLayers });
       },
       onTextInput(val) {
         state.update({ textSearch: val });

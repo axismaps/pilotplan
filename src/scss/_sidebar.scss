@@ -44,6 +44,13 @@
   padding-left: 15px;
 }
 
+.sidebar__layer-title-row {
+  cursor: pointer;
+}
+.sidebar__layer-checkbox {
+  pointer-events: none;
+}
+
 .sidebar__feature-row {
   padding-left: 15px;
   cursor: pointer;
@@ -51,14 +58,15 @@
   display: flex;
   align-items: center;
   // max-width: 205px;
-  margin-top: 3px;
-  margin-bottom: 3px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 
 .sidebar__feature-button {
   background: $main-medium-dark-gray;
   transition: background 250ms;
+  border: 1px solid $main-medium-gray;
   display: flex;
   align-items: center;
   flex-grow: 2;
@@ -83,7 +91,7 @@
 // }
 
 .sidebar__feature-button--inactive {
-  opacity: 0.5;
+  opacity: 0.35;
   pointer-events: none;
   cursor: auto;
 }

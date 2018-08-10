@@ -140,6 +140,8 @@ class Atlas {
     setClickSearch.call(this);
     initAreaMethods.call(this);
     initAreaSearchListener.call(this);
+
+    this.updateCurrentLayers();
     this.updateAreaSearch();
   }
   config(config) {
@@ -166,7 +168,7 @@ class Atlas {
       .map(d => d.id)
       .filter(d => mbMap.queryRenderedFeatures({ layers: [d] }).length > 0);
   }
-  updateLayers() {
+  updateCurrentLayers() {
     const {
       mbMap,
       currentLayers,
@@ -174,8 +176,13 @@ class Atlas {
     const { layers } = mbMap.getStyle();
 
     layers.forEach((layer) => {
+      // console.log(allCurrentFeatureIds);
       const visible = mbMap.getLayoutProperty(layer.id, 'visibility') === 'visible';
-      const toggled = currentLayers.includes(layer.id);
+      const currentLayer = currentLayers
+        .find(d => d.id === layer['source-layer']);
+
+      const toggled = currentLayer === undefined ? true : currentLayer.status;
+
       if (visible && !toggled) {
         mbMap.setLayoutProperty(layer.id, 'visibility', 'none');
       } else if (!visible && toggled) {

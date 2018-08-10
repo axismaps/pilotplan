@@ -73,6 +73,7 @@ const privateMethods = {
       contentContainer,
       layerGroups,
       language,
+      onLayerClick,
     } = props;
 
     layerGroups.each(function addLayers(d) {
@@ -88,9 +89,10 @@ const privateMethods = {
       layersNew.append('div')
         .attr('class', 'sidebar__layer-title-row')
         .html(layer => `
-          <input type="checkbox" value="builtdomain" checked="checked">
+          <input class="sidebar__layer-checkbox" type="checkbox" value="builtdomain" checked="checked">
           <span class="sidebar__layer-name">${layer[language]}</span>
-          `);
+          `)
+        .on('click', onLayerClick);
 
       layersNew
         .append('div')
@@ -99,6 +101,7 @@ const privateMethods = {
       layers.exit().remove();
     });
     props.layers = contentContainer.selectAll('.sidebar__layer-row');
+    props.checkBoxes = contentContainer.selectAll('.sidebar__layer-checkbox');
   },
   drawFeatures() {
     const props = privateProps.get(this);
@@ -106,7 +109,7 @@ const privateMethods = {
       layers,
       language,
       contentContainer,
-      onLayerClick,
+      onFeatureClick,
     } = props;
 
     layers.each(function addFeature(d) {
@@ -129,40 +132,14 @@ const privateMethods = {
           <span class="sidebar__feature-name">${feature[language]}</span>
         `)
         .on('click', (feature) => {
-          onLayerClick(feature.id);
+          console.log(feature);
+          onFeatureClick(feature.id);
         });
 
       features.exit().remove();
     });
     props.features = contentContainer.selectAll('.sidebar__feature-row');
   },
-  // drawFeatures() {
-  // const {
-  //   layerGroups,
-  //   onLayerClick,
-  //   language,
-  // } = privateProps.get(this);
-
-  // layerGroups.each(function addRows(d) {
-  //   // console.log(d);
-  //   const layers = d3.select(this)
-  //     .select('.sidebar__layers')
-  //     .selectAll('.sidebar__layer-block')
-  //     .data(d.features, dd => dd.en);
-
-  //   layers
-  //     .enter()
-  //     .append('div')
-  //     .attr('class', 'sidebar__layer-block')
-  //     .classed('sidebar__layer-row--inactive', dd => dd.id === undefined)
-  //     .text(dd => dd[language])
-  //     .on('click', (dd) => {
-  //       onLayerClick(dd.id);
-  //     });
-
-  //   layers.exit().remove();
-  // });
-  // },
   setView() {
     const {
       view,
@@ -214,7 +191,7 @@ class Sidebar {
     init.call(this);
 
 
-    this.updateCurrentLayers();
+    // this.updateCurrentLayers();
   }
   config(config) {
     Object.assign(privateProps.get(this), config);
@@ -230,17 +207,33 @@ class Sidebar {
     drawLayerGroups.call(this);
     drawLayers.call(this);
     drawFeatures.call(this);
-    this.updateCurrentLayers();
+    // this.updateCurrentLayers();
   }
   updateCurrentLayers() {
     const {
-      contentContainer,
       currentLayers,
+      layers,
+    } = privateProps.get(this);
+    console.log('cl', currentLayers);
+    console.log('check', layers.data());
+
+    layers.each(function checkBox(d) {
+      const row = d3.select(this);
+      const check = row.select('.sidebar__layer-checkbox');
+      check.property('checked', currentLayers.find(dd => dd.id === d.id).status);
+    });
+  }
+  updateHighlightedLayer() {
+    const {
+      contentContainer,
+      highlightedLayer,
     } = privateProps.get(this);
 
+    console.log(contentContainer
+      .selectAll('.sidebar__feature-button').data());
     contentContainer
-      .selectAll('.sidebar__feature-button')
-      .classed('sidebar__feature-button--off', d => !currentLayers.includes(d.id));
+      .selectAll('.sidebar__feature-button');
+    // .classed('sidebar__feature-button--off', d => !currentLayers.includes(d.id));
   }
   updateResults() {
     const props = privateProps.get(this);

@@ -93,7 +93,7 @@ const setStateEvents = ({ components }) => {
         .config({
           currentLayers,
         })
-        .updateLayers();
+        .updateCurrentLayers();
 
       sidebar
         .config({
@@ -191,6 +191,7 @@ const setStateEvents = ({ components }) => {
       const {
         highlightedFeature,
       } = this.props();
+
       const {
         atlas,
         sidebar,
@@ -200,6 +201,26 @@ const setStateEvents = ({ components }) => {
           highlightedFeature,
         })
         .updateHighlightedFeature();
+    },
+    highlightedLayer() {
+      const { highlightedLayer } = this.props();
+      console.log('id', highlightedLayer);
+      const {
+        atlas,
+        sidebar,
+      } = components;
+
+      atlas
+        .config({
+          highlightedLayer,
+        })
+        .updateHighlightedLayer();
+
+      sidebar
+        .config({
+          highlightedLayer,
+        })
+        .updateCurrentLayers();
     },
   });
 };
