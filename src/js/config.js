@@ -32,5 +32,4 @@ export const colors = {
 
 export const yearRange = d3.extent(eras
   .reduce((accumulator, value) => [...accumulator, ...value.dates], []));
-console.log('RANGe', eras
-  .reduce((accumulator, value) => [...accumulator, ...value.dates]));
+

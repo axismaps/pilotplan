@@ -115,13 +115,17 @@ const privateMethods = {
         .selectAll('.sidebar__feature-row')
         .data(d.features, feature => feature.id);
 
-      features
+      const newFeatureRows = features
         .enter()
         .append('div')
-        .attr('class', 'sidebar__feature-row')
-        .classed('sidebar__feature-row--inactive', feature => feature.id === undefined)
+        .attr('class', 'sidebar__feature-row');
+
+      newFeatureRows
+        .append('div')
+        .attr('class', 'sidebar__feature-button')
+        .classed('sidebar__feature-button--inactive', feature => feature.id === undefined)
         .html(feature => `
-          <i class="icon-binoculars"></i>
+          <i class="icon-binoculars sidebar__feature-icon"></i>
           <span class="sidebar__feature-name">${feature[language]}</span>
         `)
         .on('click', (feature) => {
@@ -235,8 +239,8 @@ class Sidebar {
     } = privateProps.get(this);
 
     contentContainer
-      .selectAll('.sidebar__feature-row')
-      .classed('sidebar__feature-row--off', d => !currentLayers.includes(d.id));
+      .selectAll('.sidebar__feature-button')
+      .classed('sidebar__feature-button--off', d => !currentLayers.includes(d.id));
   }
   updateResults() {
     const props = privateProps.get(this);

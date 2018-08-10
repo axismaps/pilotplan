@@ -47,13 +47,42 @@
 .sidebar__feature-row {
   padding-left: 15px;
   cursor: pointer;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  // max-width: 205px;
+  margin-top: 3px;
+  margin-bottom: 3px;
 }
 
-.sidebar__feature-row--off {
-  color: grey;
+
+.sidebar__feature-button {
+  background: $main-medium-dark-gray;
+  transition: background 250ms;
+  display: flex;
+  align-items: center;
+  flex-grow: 2;
+  height: 100%;
+  max-width: 195px;
+  padding-left: 10px;
+  border-radius: 5px;
 }
 
-.sidebar__feature-row--inactive {
+.sidebar__feature-button:hover {
+  background: $main-medium-gray;
+  color: white;
+}
+
+.sidebar__feature-button--highlighted {
+  background: $main-medium-gray;
+}
+
+// .sidebar__feature-button--off {
+//   background: $main-medium-dark-gray;
+//   color: grey;
+// }
+
+.sidebar__feature-button--inactive {
   opacity: 0.5;
   pointer-events: none;
   cursor: auto;

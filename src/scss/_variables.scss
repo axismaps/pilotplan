@@ -1,54 +1,81 @@
-$mobile-width: 700px;
-$mobile-landscape-min-width: 415px;
-$mobile-portrait-max-width: 414px;
-
-$main-background: #333333;
-$main-light-gray: #666666; 
-
-$pale-green: #92A1BE;
-$dark-green: #032A74;
-$darker-green: rgb(1, 34, 95);
-
-$search-input-height: 60px;
-$header-height: 70px;
-$timeline-height: 50px;
-$timeline-stepper-width: 325px;
-
-$legend-toggle-top: 20px;
-
-$mobile-header-height: 50px;
-$mobile-search-height: 60px;
-$mobile-timeline-height: 50px;
-
-$legend-toggle-mobile-top: 110px;
-$legend-toggle-mobile-size: 15px;
-$legend-width: 320px;
-
-$standard-icon-size: 16px;
-$probe-button-height: 36px;
 $button-shadow: 0 0 8px rgba(0,0,0,0.5);
 
-$hint-probe-height: 38px;
+$header-height: 70px;
 
-$standard-button-background: #eee;
-$standard-button-background-hover: #ccc;
+$legend-width: 320px;
 
-$standard-button-color-hover: #333;
 
-$dark-button-background: #999999;
-$dark-button-background-hover: #909090;
+$main-background: #333333;
+$main-medium-dark-gray: #3b3b3b;
+$main-medium-gray: #4B4B4B;
+$main-lighter-gray: #808080;
+$main-light-gray: #666666; 
+$probe-button-height: 36px;
 
-$stepper-color: #666;
+
+$timeline-height: 50px;
+$timeline-stepper-width: 325px;
+$search-input-height: 60px;
+
 $stepper-color-hover: white;
 $stepper-color-disabled: #ccc;
 
-$fixed-probe-padding: 20px;
+// derived variables
 
-$mobile-filmstrip-button-bottom: 115px;
-$mobile-filmstrip-label-bottom: $mobile-filmstrip-button-bottom + 20px;
+$stepper-color: $main-light-gray;
+$legend-button-background: $main-light-gray;
 
-@mixin mobile-back-arrow() {
-  color: $dark-green;
-  font-weight: bold;
-  font-size: 24px;
-}
+// $mobile-width: 700px;
+// $mobile-landscape-min-width: 415px;
+// $mobile-portrait-max-width: 414px;
+
+// $main-background: #333333;
+// $main-light-gray: #666666; 
+
+// $pale-green: #92A1BE;
+// $dark-green: #032A74;
+// $darker-green: rgb(1, 34, 95);
+
+// $search-input-height: 60px;
+// $header-height: 70px;
+// $timeline-height: 50px;
+// $timeline-stepper-width: 325px;
+
+// $legend-toggle-top: 20px;
+
+// $mobile-header-height: 50px;
+// $mobile-search-height: 60px;
+// $mobile-timeline-height: 50px;
+
+// $legend-toggle-mobile-top: 110px;
+// $legend-toggle-mobile-size: 15px;
+// $legend-width: 320px;
+
+// $standard-icon-size: 16px;
+// $probe-button-height: 36px;
+// $button-shadow: 0 0 8px rgba(0,0,0,0.5);
+
+// $hint-probe-height: 38px;
+
+// $standard-button-background: #eee;
+// $standard-button-background-hover: #ccc;
+
+// $standard-button-color-hover: #333;
+
+// $dark-button-background: #999999;
+// $dark-button-background-hover: #909090;
+
+// $stepper-color: #666;
+// $stepper-color-hover: white;
+// $stepper-color-disabled: #ccc;
+
+// $fixed-probe-padding: 20px;
+
+// $mobile-filmstrip-button-bottom: 115px;
+// $mobile-filmstrip-label-bottom: $mobile-filmstrip-button-bottom + 20px;
+
+// @mixin mobile-back-arrow() {
+//   color: $dark-green;
+//   font-weight: bold;
+//   font-size: 24px;
+// }
