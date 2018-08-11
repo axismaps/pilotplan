@@ -76,14 +76,12 @@
   border-radius: 5px;
 }
 
-.sidebar__feature-button:hover {
-  background: $main-medium-gray;
+.sidebar__feature-button:hover,
+.sidebar__feature-button--highlighted {
+  background: $main-light-gray;
   color: white;
 }
 
-.sidebar__feature-button--highlighted {
-  background: $main-medium-gray;
-}
 
 // .sidebar__feature-button--off {
 //   background: $main-medium-dark-gray;

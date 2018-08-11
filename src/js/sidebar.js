@@ -228,11 +228,25 @@ class Sidebar {
       highlightedLayer,
     } = privateProps.get(this);
 
-    console.log(contentContainer
-      .selectAll('.sidebar__feature-button').data());
+    console.log('update highlighted layer');
     contentContainer
       .selectAll('.sidebar__feature-button');
     // .classed('sidebar__feature-button--off', d => !currentLayers.includes(d.id));
+  }
+  updateHighlightedFeature() {
+    const {
+      contentContainer,
+      highlightedFeature,
+    } = privateProps.get(this);
+
+    contentContainer
+      .selectAll('.sidebar__feature-button')
+      .classed('sidebar__feature-button--highlighted', (d) => {
+        if (highlightedFeature === null) {
+          return false;
+        }
+        return d.id === highlightedFeature.id;
+      });
   }
   updateResults() {
     const props = privateProps.get(this);

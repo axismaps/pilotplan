@@ -79,7 +79,7 @@ const app = {
 
     components.atlas = new Atlas({
       highlightedFeature: state.get('highlightedFeature'),
-      highlightedLayer: state.get('highlightedLayer'),
+      // highlightedLayer: state.get('highlightedLayer'),
       currentLayers: state.get('currentLayers'),
       year: state.get('year'),
       layerNames: data.layerNames,
@@ -133,7 +133,7 @@ const app = {
       highlightedFeature: state.get('highlightedFeature'),
       sidebarOpen: state.get('sidebarOpen'),
       availableLayers: state.getAvailableLayers(),
-      highlightedLayer: state.get('highlightedLayer'),
+      // highlightedLayer: state.get('highlightedLayer'),
       // currentLayers: state.get('currentLayers'),
       language: state.get('language'),
       view: state.get('sidebarView'),
