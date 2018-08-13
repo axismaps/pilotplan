@@ -5,9 +5,7 @@ const mbxUploads = require('@mapbox/mapbox-sdk/services/uploads');
 
 const uploadsClient = mbxUploads({ accessToken: process.env.MAPBOX_ACCESS_TOKEN });
 
-const file = path.join(__dirname, '../data/geotiff/plans/SSID15585657.tif');
-
-const getCredentials = () =>
+const getCredentials = file =>
   uploadsClient
     .createUploadCredentials()
     .send()
@@ -30,8 +28,7 @@ const putFileOnS3 = (credentials) => {
     Key: credentials.key,
     Body: fs.createReadStream(credentials.file),
   }).promise()
-    .then(() => makeUpload(credentials))
-    .then(v => console.log(v));
+    .then(() => makeUpload(credentials));
 };
 
 const makeUpload = (credentials) => {
@@ -44,8 +41,20 @@ const makeUpload = (credentials) => {
     .send()
     .then((response) => {
       console.log(response.body);
-      return response.body;
     });
 };
 
-getCredentials().then(putFileOnS3);
+async function uploadTiffs(tiffs) {
+  for (const t of tiffs) {
+    await getCredentials(t).then(putFileOnS3).catch((err) => { console.log(err); });
+  }
+}
+
+const dirs = fs.readdirSync(path.join(__dirname, '../data/geotiff/'));
+dirs.forEach((d) => {
+  if (!d.match(/^\./)) {
+    let tiffs = fs.readdirSync(path.join(__dirname, '../data/geotiff/', d));
+    tiffs = tiffs.map(t => path.join(__dirname, '../data/geotiff/', d, t));
+    uploadTiffs(tiffs);
+  }
+});
