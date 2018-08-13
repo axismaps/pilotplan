@@ -1,6 +1,6 @@
 npm-debug.log*
 node_modules/
-dist/data/config.json
+dist/data
 bundle.js
 styles.css
 old

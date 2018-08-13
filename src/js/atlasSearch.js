@@ -1,6 +1,6 @@
 const localProps = new WeakMap();
 
-const atlasSearchMethods = ({ privateProps, privateMethods }) => {
+const atlasSearchMethods = ({ privateProps }) => {
   const utils = {
     getMousePos({ e, canvas }) {
       const rect = canvas.getBoundingClientRect();
@@ -101,6 +101,40 @@ const atlasSearchMethods = ({ privateProps, privateMethods }) => {
   };
 
   return {
+    setClickSearch() {
+      const props = privateProps.get(this);
+      const { onClickSearch } = props;
+      props.clickSearch = (e) => {
+        const { year } = props;
+        console.log('click', e);
+        const bbox = [[e.point.x - 5, e.point.y - 5], [e.point.x + 5, e.point.y + 5]];
+        const features = props.mbMap.queryRenderedFeatures(bbox, {
+          filter: [
+            'all',
+            ['<=', 'FirstYear', year],
+            ['>=', 'LastYear', year],
+            // ['match', 'Name', val],
+          ],
+        });
+        onClickSearch(features);
+      };
+    },
+    initClickSearchListener() {
+      const {
+        mbMap,
+        clickSearch,
+      } = privateProps.get(this);
+
+      mbMap.on('click', clickSearch);
+    },
+    disableClickSearchListener() {
+      const {
+        mbMap,
+        clickSearch,
+      } = privateProps.get(this);
+
+      mbMap.off('click', clickSearch);
+    },
     initAreaMethods() {
       localProps.set(this, {
         start: null,

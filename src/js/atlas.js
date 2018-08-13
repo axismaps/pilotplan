@@ -1,6 +1,7 @@
-import getBBox from '@turf/bbox';
+
 import getSearchMethods from './atlasSearch';
-import { colors } from './config';
+import getHighlightMethods from './atlasHighlight';
+
 
 const privateProps = new WeakMap();
 
@@ -47,41 +48,6 @@ const privateMethods = {
     // });
     props.canvas = props.mbMap.getCanvasContainer();
   },
-  setClickSearch() {
-    const props = privateProps.get(this);
-    const { onClickSearch } = props;
-    props.clickSearch = (e) => {
-      const { year } = props;
-      console.log('click', e);
-      const bbox = [[e.point.x - 5, e.point.y - 5], [e.point.x + 5, e.point.y + 5]];
-      const features = props.mbMap.queryRenderedFeatures(bbox, {
-        filter: [
-          'all',
-          ['<=', 'FirstYear', year],
-          ['>=', 'LastYear', year],
-          // ['match', 'Name', val],
-        ],
-      });
-      onClickSearch(features);
-    };
-  },
-  initClickSearchListener() {
-    const {
-      mbMap,
-      clickSearch,
-    } = privateProps.get(this);
-
-    mbMap.on('click', clickSearch);
-  },
-  disableClickSearchListener() {
-    const {
-      mbMap,
-      clickSearch,
-    } = privateProps.get(this);
-
-    mbMap.off('click', clickSearch);
-  },
-
   updateYear() {
     const {
       year,
@@ -102,6 +68,7 @@ const privateMethods = {
     const layers = mbMap
       .getStyle().layers
       .map(d => mbMap.getLayer(d.id));
+    console.log(mbMap.getStyle());
 
     const sourceLayers = new Set(layers
       .filter(d => d.sourceLayer !== undefined).map(d => d.sourceLayer));
@@ -109,135 +76,37 @@ const privateMethods = {
     props.layers = layers;
     props.sourceLayers = [...sourceLayers];
   },
-  clearHighlightedFeature() {
+
+  addRaster() {
     const {
       mbMap,
     } = privateProps.get(this);
+    console.log('map', mbMap);
 
-    const polyLayers = [
-      'highlighted-feature-fill',
-      'highlighted-feature-outline-top',
-      'highlighted-feature-outline-bottom',
-    ];
-
-    const lineLayers = [
-      'highlighted-feature-outline-top',
-      'highlighted-feature-outline-bottom',
-    ];
-
-    const existingHighlighted = mbMap.getSource('highlighted');
-
-    const existingPoly = mbMap.getLayer('highlighted-feature-fill');
-    const existingOutline = mbMap.getLayer('highlighted-feature-outline-top');
-
-    if (existingHighlighted !== undefined) {
-      if (existingPoly !== undefined) {
-        polyLayers.forEach((layer) => {
-          mbMap.removeLayer(layer);
-        });
-      } else if (existingOutline !== undefined) {
-        lineLayers.forEach((layer) => {
-          mbMap.removeLayer(layer);
-        });
-      }
-    }
-  },
-  drawHighlightedFeature() {
-    const {
-      highlightedFeature,
-      mbMap,
-      year,
-    } = privateProps.get(this);
-
-    console.log('highlighted', highlightedFeature);
-    const existingHighlighted = mbMap.getSource('highlighted');
-
-    if (highlightedFeature === null) return;
-    let featureJSON;
-    if (highlightedFeature.type === 'Feature') {
-      featureJSON = highlightedFeature.toJSON();
-    } else {
-      featureJSON = {
-        type: 'FeatureCollection',
-        // features: mbMap.queryRenderedFeatures({ layers: [highlightedFeature.id] })
-        //   .map(d => d.toJSON()),
-        features: mbMap.querySourceFeatures('composite', {
-          sourceLayer: highlightedFeature.sourceLayer,
-          layers: [highlightedFeature.id],
-          filter: [
-            'all',
-            ['<=', 'FirstYear', year],
-            ['>=', 'LastYear', year],
-            ['==', 'SubType', highlightedFeature.en],
-          ],
-        }),
-      };
-    }
-    console.log('featureJSON', featureJSON);
-    const bbox = getBBox(featureJSON);
-    console.log('bbox', bbox);
-
-    if (existingHighlighted === undefined) {
-      mbMap.addSource('highlighted', {
-        type: 'geojson',
-        data: featureJSON,
-      });
-    } else {
-      existingHighlighted.setData(featureJSON);
-    }
-
-    const fillLayer = {
-      id: 'highlighted-feature-fill',
-      type: 'fill',
-      source: 'highlighted',
-      layout: {},
-      paint: {
-        // 'fill-outline-color': 'blue',
-        'fill-color': colors.highlightColor,
-        'fill-opacity': 0.2,
+    mbMap.addSource(
+      'overlaytest',
+      {
+        type: 'raster',
+        url: 'mapbox://axismaps.pilot15584775',
       },
-    };
-    const outlineLayerTop = {
-      id: 'highlighted-feature-outline-top',
-      type: 'line',
-      source: 'highlighted',
-      layout: {},
-      paint: {
-        'line-width': 2,
-        'line-color': '#1a1a1a',
-      },
-    };
+    );
 
-    const outlineLayerBottom = {
-      id: 'highlighted-feature-outline-bottom',
-      type: 'line',
-      source: 'highlighted',
-      layout: {},
-      paint: {
-        'line-width': 8,
-        'line-color': colors.highlightColor,
-        'line-opacity': 0.5,
-      },
-    };
-    if (featureJSON.type === 'FeatureCollection') {
-      mbMap.addLayer(fillLayer);
-      mbMap.addLayer(outlineLayerBottom);
-      mbMap.addLayer(outlineLayerTop);
-    } else {
-      if (featureJSON.geometry.type === 'Polygon') {
-        mbMap.addLayer(fillLayer);
-      }
-      mbMap.addLayer(outlineLayerBottom);
-      mbMap.addLayer(outlineLayerTop);
-    }
+    // mbMap.addLayer({
+    //   id: 'overlay-layer',
+    //   type: 'raster',
+    //   source: 'overlaytest',
+    // });
 
-    if (bbox.includes(Infinity)) return;
-
-    mbMap.fitBounds(bbox, { padding: 100 });
+    // console.log('raster', mbMap.getLayer('overlay-layer'));
   },
 };
 
-Object.assign(privateMethods, getSearchMethods({ privateMethods, privateProps }));
+Object.assign(
+  privateMethods,
+  getSearchMethods({ privateMethods, privateProps }),
+  getHighlightMethods({ privateMethods, privateProps }),
+);
+
 
 class Atlas {
   constructor(config) {
@@ -261,11 +130,13 @@ class Atlas {
       setClickSearch,
       initAreaMethods,
       initAreaSearchListener,
+      addRaster,
     } = privateMethods;
     setLayers.call(this);
     setClickSearch.call(this);
     initAreaMethods.call(this);
     initAreaSearchListener.call(this);
+    addRaster.call(this);
 
     this.updateCurrentLayers();
     this.updateAreaSearch();
