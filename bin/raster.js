@@ -37,16 +37,20 @@ const makeUpload = (credentials) => {
     .createUpload({
       mapId: `axismaps.${title}`,
       url: credentials.url,
+      tilesetName: `PilotPlan - SSID${title}`,
     })
     .send()
     .then((response) => {
       console.log(response.body);
+    })
+    .catch((err) => {
+      console.log(err);
     });
 };
 
 async function uploadTiffs(tiffs) {
-  for (const t of tiffs) {
-    await getCredentials(t).then(putFileOnS3).catch((err) => { console.log(err); });
+  for (const t of tiffs) { // eslint-disable-line no-restricted-syntax
+    await getCredentials(t).then(putFileOnS3).catch((err) => { console.log(err); }); // eslint-disable-line no-await-in-loop, max-len
   }
 }
 

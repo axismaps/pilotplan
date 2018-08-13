@@ -9,6 +9,7 @@
     "start-dev-server": "node_modules/.bin/webpack-dev-server --hot --inline",
     "remove-css": "rm -f -- dist/styles.css",
     "build": "node_modules/.bin/webpack -p --config webpack.config.prod.js",
+    "raster": "node bin/raster.js",
     "static": "node bin/static.js",
     "style": "node bin/styles.js",
     "tiles": "tippecanoe -x osm_id -x Shape_Leng -x Shape_Area -x layer -x Date -x Address -x SHAPE_Le1 -x SHAPE_Area -aD -aG -ab -ai -f -o data/tiles/pilot.mbtiles data/geojson/geography/* && source .env && mapbox upload axismaps.dd66zwg7 data/tiles/pilot.mbtiles",
