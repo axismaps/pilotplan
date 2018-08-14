@@ -210,26 +210,6 @@ const setStateEvents = ({ components }) => {
         })
         .updateHighlightedFeature();
     },
-    highlightedLayer() {
-      const { highlightedLayer } = this.props();
-      console.log('id', highlightedLayer);
-      const {
-        atlas,
-        sidebar,
-      } = components;
-
-      atlas
-        .config({
-          highlightedLayer,
-        })
-        .updateHighlightedLayer();
-
-      sidebar
-        .config({
-          highlightedLayer,
-        })
-        .updateCurrentLayers();
-    },
   });
 };
 

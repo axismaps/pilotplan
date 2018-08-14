@@ -8,12 +8,16 @@ const privateMethods = {
 
     areaSearchButton.on('click', onAreaButtonClick);
   },
+  updateFooter({ container, footerOpen }) {
+    container.classed('footer-open', footerOpen);
+  },
 };
 
 class Layout {
   constructor(config) {
     privateProps.set(this, {
       sidebarOpen: false,
+      footerOpen: true,
       areaSearching: false,
       container: d3.select('.outer-container'),
       areaSearchButton: d3.select('.area-button'),
@@ -28,6 +32,7 @@ class Layout {
 
     initAreaButton.call(this);
     this.updateSidebar();
+    this.updateFooter();
   }
   config(config) {
     Object.assign(privateProps.get(this), config);
@@ -40,6 +45,15 @@ class Layout {
     } = privateProps.get(this);
 
     container.classed('sidebar-open', sidebarOpen);
+  }
+  updateFooter() {
+    const {
+      container,
+      footerOpen,
+    } = privateProps.get(this);
+    const { updateFooter } = privateMethods;
+
+    updateFooter({ container, footerOpen });
   }
   updateAreaSearch() {
     console.log('layout area', privateProps.get(this).areaSearchActive);

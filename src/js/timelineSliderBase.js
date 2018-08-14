@@ -138,7 +138,7 @@ const getSliderBase = ({ privateProps }) => ({
       backgroundTrack,
       scale,
     } = privateProps.get(this);
-    console.log('update background');
+
     backgroundTrack
       .attrs({
         x: scale.range()[0],

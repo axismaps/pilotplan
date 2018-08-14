@@ -1,12 +1,24 @@
 const cleanData = (rawData) => {
   // console.log('raw data', rawData);
-  const [rawLayers] = rawData;
-  console.log('raw', rawData);
+  const [
+    rawLayers,
+    rawViewsheds,
+    rawAerials,
+    rawMaps,
+    rawPlans,
+  ] = rawData;
+
   const layerGroups = [
     'Views',
     'Landscape',
     'Urbanism',
   ];
+
+  console.log('rawLayers', rawLayers);
+  console.log('rawview', rawViewsheds);
+  console.log('rawAerials', rawAerials);
+  console.log('rawMaps', rawMaps);
+  console.log('rawPlans', rawPlans);
 
   const layers = layerGroups
     .map((group) => {
@@ -30,10 +42,19 @@ const cleanData = (rawData) => {
       return groupRecord;
     });
 
+  const views = rawViewsheds.features.map(d => d.properties);
+
   console.log('layers', layers);
 
   const data = {
     layers,
+    viewshedsGeo: rawViewsheds,
+    rasters: {
+      views,
+      aerials: rawAerials,
+      maps: rawMaps,
+      plans: rawPlans,
+    },
   };
 
   return data;

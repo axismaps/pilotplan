@@ -99,6 +99,15 @@ body {
   height: calc(100% - #{$header-height + $timeline-height});
 }
 
+.footer {
+  position: absolute;
+  bottom: 0px;
+  // height: $footer-height;
+  height: 0px;
+  width: 100%;
+  left: 0px;
+}
+
 .outer-container.sidebar-open {
   .map-outer {
     left: $legend-width;
@@ -107,5 +116,20 @@ body {
 
   .sidebar {
     width: $legend-width;
+  }
+
+  .footer {
+    left: $legend-width;
+    width: calc(100% - #{$legend-width});
+  }
+}
+
+.outer-container.footer-open {
+  .footer {
+    height: $footer-height;
+  }
+
+  .map-outer {
+    height: calc(100% - #{$header-height + $timeline-height + $footer-height});
   }
 }

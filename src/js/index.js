@@ -26,12 +26,15 @@ const app = {
     components.state = new State({
       year: 2016,
       sidebarOpen: true,
+      footerOpen: true,
       sidebarView: 'legend', // searching, results
+      footerView: 'aerials',
       textSearch: null,
       clickSearch: null,
       areaSearchActive: false,
       areaSearch: null,
       currentLayers: null,
+      currentOverlay: null,
       highlightedLayer: null,
       highlightedFeature: null,
       language: 'en',
@@ -61,6 +64,18 @@ const app = {
         .filter(group => group.layers.length > 0);
       return newLayers;
     };
+    console.log('views', data.rasters.views);
+
+    components.state.getAvailableRasters = () => {
+      const year = components.state.get('year');
+      const footerView = components.state.get('footerView');
+      const rasters = data.rasters[footerView];
+      console.log(data, rasters);
+      return rasters.filter(d => d.FirstYear <= year &&
+        d.LastYear >= year);
+    };
+
+    console.log('current raster', components.state.getAvailableRasters());
 
     components.state.getAllAvailableLayers = () => components.state.getAvailableLayers()
       .reduce((accumulator, group) => [...accumulator, ...group.layers], [])
@@ -119,6 +134,7 @@ const app = {
 
     components.layout = new Layout({
       sidebarOpen: state.get('sidebarOpen'),
+      footerOpen: state.get('footerOpen'),
       areaSearchActive: state.get('areaSearchActive'),
       onAreaButtonClick: () => {
         const areaSearchActive = !state.get('areaSearchActive');

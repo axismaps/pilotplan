@@ -1,5 +1,6 @@
 { 
   "extends": ["airbnb"],
+  "plugins": ["jest"],
   "globals": {
     "d3": false,
     "L": false,
@@ -10,6 +11,9 @@
     "document": false,
     "alert": false,
     "mapboxgl": false
+  },
+  "env": {
+    "jest/globals": true
   },
   "rules": {
     "max-lines": "warn",
