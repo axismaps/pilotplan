@@ -47,7 +47,6 @@ const privateMethods = {
       slider,
       sliderSize,
     } = props;
-    console.log('slider size', sliderSize);
 
     slider
       .config({

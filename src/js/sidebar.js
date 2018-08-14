@@ -222,22 +222,13 @@ class Sidebar {
       check.property('checked', currentLayers.find(dd => dd.id === d.id).status);
     });
   }
-  updateHighlightedLayer() {
-    const {
-      contentContainer,
-      highlightedLayer,
-    } = privateProps.get(this);
-
-    console.log('update highlighted layer');
-    contentContainer
-      .selectAll('.sidebar__feature-button');
-    // .classed('sidebar__feature-button--off', d => !currentLayers.includes(d.id));
-  }
   updateHighlightedFeature() {
     const {
       contentContainer,
       highlightedFeature,
     } = privateProps.get(this);
+
+    console.log('update highlighted feature');
 
     contentContainer
       .selectAll('.sidebar__feature-button')

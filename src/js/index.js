@@ -63,10 +63,7 @@ const app = {
     };
 
     components.state.getAllAvailableLayers = () => components.state.getAvailableLayers()
-      .reduce((accumulator, group) => {
-        console.log('group', group);
-        return [...accumulator, ...group.layers];
-      }, [])
+      .reduce((accumulator, group) => [...accumulator, ...group.layers], [])
       .map(layer => ({
         id: layer.id,
         status: true,
@@ -100,7 +97,7 @@ const app = {
   initComponents() {
     const {
       state,
-      atlas,
+      // atlas,
     } = components;
 
     // console.log(data.layers);

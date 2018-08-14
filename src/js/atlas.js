@@ -68,7 +68,6 @@ const privateMethods = {
     const layers = mbMap
       .getStyle().layers
       .map(d => mbMap.getLayer(d.id));
-    console.log(mbMap.getStyle());
 
     const sourceLayers = new Set(layers
       .filter(d => d.sourceLayer !== undefined).map(d => d.sourceLayer));
@@ -81,7 +80,6 @@ const privateMethods = {
     const {
       mbMap,
     } = privateProps.get(this);
-    console.log('map', mbMap);
 
     mbMap.addSource(
       'overlaytest',

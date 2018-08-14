@@ -29,38 +29,11 @@ const cleanData = (rawData) => {
       };
       return groupRecord;
     });
-  // console.log('layers', layers);
 
-  // const layers = Object.keys(rawLayers)
-  //   .map((groupKey) => {
-  //     const groupRecord = Object.assign({}, rawLayers[groupKey]);
-  //     groupRecord.id = groupKey;
-  //     groupRecord.features = Object.keys(groupRecord.features)
-  //       .map((featureKey) => {
-  //         const featureRecord = Object.assign({}, groupRecord.features[featureKey]);
-  //         featureRecord.id = featureRecord.style;
-  //         delete featureRecord.style;
-  //         return featureRecord;
-  //       });
-  //     return groupRecord;
-  //   });
-
-  // const layerCategories = [...new Set(layers.map(d => d.group))];
-
-  // const layerNames = layers.reduce((accumulator, layerGroup) => {
-  //   layerGroup.features.forEach((layer) => {
-  //     if (layer.id !== undefined) {
-  //       const { en, pr } = layer;
-  //       accumulator[layer.id] = { en, pr };
-  //     }
-  //   });
-  //   return accumulator;
-  // }, {});
+  console.log('layers', layers);
 
   const data = {
     layers,
-    // layerNames,
-    // layerCategories,
   };
 
   return data;
