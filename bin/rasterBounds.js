@@ -2,7 +2,7 @@ const fs = require('fs');
 const getBBox = require('@turf/bbox').default;
 
 const processFile = (fileName) => {
-  const path = 'scratch/';
+  const path = 'data/geojson/visual/';
   fs.readFile(`${path}${fileName}`, (err, dataRaw) => {
     if (err) throw err;
     const data = JSON.parse(dataRaw);
