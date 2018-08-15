@@ -14,11 +14,11 @@ const cleanData = (rawData) => {
     'Urbanism',
   ];
 
-  console.log('rawLayers', rawLayers);
-  console.log('rawview', rawViewsheds);
-  console.log('rawAerials', rawAerials);
-  console.log('rawMaps', rawMaps);
-  console.log('rawPlans', rawPlans);
+  // console.log('rawLayers', rawLayers);
+  // console.log('rawview', rawViewsheds);
+  // console.log('rawAerials', rawAerials);
+  // console.log('rawMaps', rawMaps);
+  // console.log('rawPlans', rawPlans);
 
   const layers = layerGroups
     .map((group) => {
@@ -42,7 +42,17 @@ const cleanData = (rawData) => {
       return groupRecord;
     });
 
-  const views = rawViewsheds.features.map(d => d.properties);
+  const views = rawViewsheds.features.map((d) => {
+    const record = Object.assign({}, d.properties);
+    record.type = 'view';
+    return record;
+  });
+
+  const processOverlay = data => data.map((d) => {
+    const record = Object.assign({}, d);
+    record.type = 'overlay';
+    return record;
+  });
 
   console.log('layers', layers);
 
@@ -51,9 +61,9 @@ const cleanData = (rawData) => {
     viewshedsGeo: rawViewsheds,
     rasters: {
       views,
-      aerials: rawAerials,
-      maps: rawMaps,
-      plans: rawPlans,
+      aerials: processOverlay(rawAerials),
+      maps: processOverlay(rawMaps),
+      plans: processOverlay(rawPlans),
     },
   };
 

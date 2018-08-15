@@ -1,14 +1,26 @@
-import pureMethods from './footerPureFunctions';
+import methods from './footerMethods';
 
 const privateProps = new WeakMap();
 
 
 const privateMethods = {
-  setCategoryListeners() {
+  init() {
+    const props = privateProps.get(this);
+    const {
+      rasterData,
+      imagesContainer,
+      onRasterClick,
+    } = props;
 
-  },
-  drawImages() {
+    const {
+      drawRasters,
+    } = methods;
 
+    props.rasters = drawRasters({
+      rasterData,
+      imagesContainer,
+      onRasterClick,
+    });
   },
 };
 
@@ -18,13 +30,12 @@ class Footer {
       categoriesContainer: d3.select('.footer__categories'),
       imagesContainer: d3.select('.footer__images'),
       showAllContainer: d3.select('.footer__show-all'),
+      rasterData: null,
     });
 
     this.config(config);
-
-    const props = privateProps.get(this);
-
-
+    const { init } = privateMethods;
+    init.call(this);
   }
   config(config) {
     Object.assign(privateProps.get(this), config);

@@ -102,10 +102,15 @@ body {
 .footer {
   position: absolute;
   bottom: 0px;
-  // height: $footer-height;
   height: 0px;
   width: 100%;
   left: 0px;
+  display: flex;
+}
+
+.footer__categories {
+  width: $footer-button-width;
+  height: 100%;
 }
 
 .outer-container.sidebar-open {

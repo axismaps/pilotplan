@@ -210,6 +210,23 @@ const setStateEvents = ({ components }) => {
         })
         .updateHighlightedFeature();
     },
+    currentOverlay() {
+      const {
+        currentOverlay,
+      } = this.props();
+
+      const {
+        atlas,
+      } = components;
+
+      atlas
+        .config({
+          currentOverlay,
+        })
+        .updateOverlay();
+
+      console.log('state Overlay', currentOverlay);
+    },
   });
 };
 

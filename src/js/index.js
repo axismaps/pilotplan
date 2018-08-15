@@ -4,6 +4,7 @@ import Atlas from './atlas';
 import Timeline from './timeline';
 import Layout from './layout';
 import Sidebar from './sidebar';
+import Footer from './footer';
 import { yearRange } from './config';
 import loadData from './dataLoad';
 
@@ -35,6 +36,7 @@ const app = {
       areaSearch: null,
       currentLayers: null,
       currentOverlay: null,
+      currentView: null,
       highlightedLayer: null,
       highlightedFeature: null,
       language: 'en',
@@ -64,18 +66,17 @@ const app = {
         .filter(group => group.layers.length > 0);
       return newLayers;
     };
-    console.log('views', data.rasters.views);
+    // console.log('views', data.rasters.views);
 
     components.state.getAvailableRasters = () => {
       const year = components.state.get('year');
       const footerView = components.state.get('footerView');
       const rasters = data.rasters[footerView];
-      console.log(data, rasters);
       return rasters.filter(d => d.FirstYear <= year &&
         d.LastYear >= year);
     };
 
-    console.log('current raster', components.state.getAvailableRasters());
+    // console.log('current raster', components.state.getAvailableRasters());
 
     components.state.getAllAvailableLayers = () => components.state.getAvailableLayers()
       .reduce((accumulator, group) => [...accumulator, ...group.layers], [])
@@ -91,8 +92,8 @@ const app = {
 
     components.atlas = new Atlas({
       highlightedFeature: state.get('highlightedFeature'),
-      // highlightedLayer: state.get('highlightedLayer'),
       currentLayers: state.get('currentLayers'),
+      currentOverlay: state.get('currentOverlay'),
       year: state.get('year'),
       layerNames: data.layerNames,
       onLoad: this.onAtlasLoad.bind(this),
@@ -142,12 +143,28 @@ const app = {
       },
     });
 
+    components.footer = new Footer({
+      footerView: state.get('footerView'),
+      rasterData: state.getAvailableRasters(),
+      onRasterClick(rasterData) {
+        const getId = d => (d === null ? null : d.SS_ID);
+        if (rasterData.type === 'overlay') {
+          const currentOverlay = state.get('currentOverlay');
+          if (getId(currentOverlay) === getId(rasterData)) {
+            state.update({ currentOverlay: null });
+          } else {
+            state.update({ currentOverlay: rasterData });
+          }
+        } else if (rasterData.type === 'view') {
+          state.update({ currentView: rasterData });
+        }
+      },
+    });
+
     components.sidebar = new Sidebar({
       highlightedFeature: state.get('highlightedFeature'),
       sidebarOpen: state.get('sidebarOpen'),
       availableLayers: state.getAvailableLayers(),
-      // highlightedLayer: state.get('highlightedLayer'),
-      // currentLayers: state.get('currentLayers'),
       language: state.get('language'),
       view: state.get('sidebarView'),
       onLayerClick(layer) {

@@ -116,6 +116,8 @@ class Atlas {
       areaSearchActive: null,
       mapContainer: d3.select('#map'),
       highlightedFeature: null,
+      currentLayers: null,
+      currentOverlay: null,
     });
 
     this.config(config);
@@ -244,6 +246,40 @@ class Atlas {
 
     clearHighlightedFeature.call(this);
     drawHighlightedFeature.call(this);
+  }
+  updateOverlay() {
+    const props = privateProps.get(this);
+    const {
+      currentOverlay,
+      mbMap,
+    } = props;
+
+
+    if (mbMap.getSource('overlay') !== undefined) {
+      mbMap.removeLayer('overlay-layer');
+      mbMap.removeSource('overlay');
+    }
+
+
+    if (currentOverlay === null) return;
+
+    const sourceUrl = `mapbox://axismaps.pilot${currentOverlay.SS_ID}`;
+
+    mbMap.addSource(
+      'overlay',
+      {
+        type: 'raster',
+        url: sourceUrl,
+      },
+    );
+
+    mbMap.addLayer({
+      id: 'overlay-layer',
+      type: 'raster',
+      source: 'overlay',
+    });
+
+    console.log('raster', mbMap.getSource('overlay'));
   }
 }
 

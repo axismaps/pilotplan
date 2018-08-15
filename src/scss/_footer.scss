@@ -1,0 +1,14 @@
+.footer__images {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.footer__image {
+  width: $footer-image-height;
+  height: $footer-image-height;
+  background: gray;
+  margin-left: 10px;
+  border-radius: $footer-image-height / 2;
+  cursor: pointer;
+}
