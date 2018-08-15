@@ -92,6 +92,7 @@ const app = {
     const { state } = components;
 
     components.atlas = new Atlas({
+      viewshedsGeo: data.viewshedsGeo,
       highlightedFeature: state.get('highlightedFeature'),
       currentLayers: state.get('currentLayers'),
       currentOverlay: state.get('currentOverlay'),

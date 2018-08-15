@@ -142,9 +142,9 @@ const setStateEvents = ({ components }) => {
         sidebar,
       } = components;
 
-      // console.log('features', clickSearch);
+      console.log('features', clickSearch);
       const results = utils.formatResults(clickSearch);
-      // console.log('results', results);
+      console.log('results', results);
       sidebar
         .config({
           results,

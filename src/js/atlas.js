@@ -33,6 +33,7 @@ const privateMethods = {
     const {
       onLoad,
       year,
+      viewshedsGeo,
     } = props;
 
     const { getLayerStyle } = utils;
@@ -51,6 +52,38 @@ const privateMethods = {
           .on('load', () => {
             init();
             onLoad();
+          })
+          .on('mouseover', 'viewconespoint', (d) => {
+            console.log('point', d);
+
+            const coneFeature = viewshedsGeo.features.find(cone =>
+              cone.properties.SS_ID === d.features[0].properties.SS_ID);
+            console.log('cone', coneFeature);
+            const existingSource = props.mbMap.getSource('viewshed');
+            if (existingSource === undefined) {
+              props.mbMap.addSource('viewshed', {
+                type: 'geojson',
+                data: coneFeature,
+              });
+            } else {
+              existingSource.setData(coneFeature);
+            }
+            props.mbMap.addLayer({
+              id: 'viewshed-feature',
+              type: 'fill',
+              source: 'viewshed',
+              layout: {},
+              paint: {
+                'fill-color': 'black',
+                'fill-opacity': 0.5,
+              },
+            });
+            // get geojson
+            // add to map as source
+            // add to map as layer
+          })
+          .on('mouseout', 'viewconespoint', () => {
+            props.mbMap.removeLayer('viewshed-feature');
           });
 
         props.canvas = props.mbMap.getCanvasContainer();
@@ -126,6 +159,7 @@ class Atlas {
       highlightedFeature: null,
       currentLayers: null,
       currentOverlay: null,
+      viewshedsGeo: null,
     });
 
     this.config(config);
