@@ -24,6 +24,7 @@ const setStateEvents = ({ components }) => {
         timeline,
         atlas,
         sidebar,
+        footer,
       } = components;
 
       const {
@@ -42,6 +43,12 @@ const setStateEvents = ({ components }) => {
           year,
         })
         .updateYear();
+
+      footer
+        .config({
+          rasterData: this.getAvailableRasters(),
+        })
+        .updateRasterData();
 
 
       sidebar

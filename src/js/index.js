@@ -29,7 +29,7 @@ const app = {
       sidebarOpen: true,
       footerOpen: true,
       sidebarView: 'legend', // searching, results
-      footerView: 'aerials',
+      footerView: Object.keys(data.rasters)[1],
       textSearch: null,
       clickSearch: null,
       areaSearchActive: false,
@@ -142,7 +142,7 @@ const app = {
         state.update({ areaSearchActive });
       },
     });
-
+    console.log(Object.keys(data.rasters));
     components.footer = new Footer({
       footerView: state.get('footerView'),
       rasterData: state.getAvailableRasters(),
