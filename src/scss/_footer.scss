@@ -2,13 +2,36 @@
   display: flex;
   align-items: center;
   height: 100%;
+  overflow: hidden;
 }
 
 .footer__image {
   width: $footer-image-height;
   height: $footer-image-height;
-  background: gray;
-  margin-left: 10px;
+  background: $main-light-gray;
+  margin-left: 20px;
   border-radius: $footer-image-height / 2;
+  flex-shrink: 0;
   cursor: pointer;
+}
+
+.footer__categories {
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+  // justify-content: stretch;
+}
+
+.footer__category {
+  // background: white;
+  flex-grow: 1;
+  display: flex;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.footer__category--selected {
+  background: $main-light-gray;
 }

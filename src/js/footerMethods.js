@@ -17,6 +17,21 @@ const footerMethods = {
 
     return newImages.merge(images);
   },
+  drawCategoryButtons({
+    rasterCategories,
+    categoriesContainer,
+    onCategoryClick,
+  }) {
+    console.log('categories', rasterCategories);
+    return categoriesContainer
+      .selectAll('.footer__category')
+      .data(rasterCategories)
+      .enter()
+      .append('div')
+      .attr('class', 'footer__category')
+      .text('x')
+      .on('click', onCategoryClick);
+  },
 };
 
 export default footerMethods;

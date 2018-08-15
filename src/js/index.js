@@ -25,11 +25,12 @@ const app = {
   },
   initState() {
     components.state = new State({
-      year: 2016,
+      // year: 2016,
+      year: 1957,
       sidebarOpen: true,
       footerOpen: true,
       sidebarView: 'legend', // searching, results
-      footerView: Object.keys(data.rasters)[1],
+      footerView: Object.keys(data.rasters)[0],
       textSearch: null,
       clickSearch: null,
       areaSearchActive: false,
@@ -142,10 +143,16 @@ const app = {
         state.update({ areaSearchActive });
       },
     });
-    console.log(Object.keys(data.rasters));
+
     components.footer = new Footer({
       footerView: state.get('footerView'),
       rasterData: state.getAvailableRasters(),
+      rasterCategories: Object.keys(data.rasters),
+      onCategoryClick(newCategory) {
+        const currentView = state.get('footerView');
+        if (newCategory === currentView) return;
+        state.update({ footerView: newCategory });
+      },
       onRasterClick(rasterData) {
         const getId = d => (d === null ? null : d.SS_ID);
         if (rasterData.type === 'overlay') {

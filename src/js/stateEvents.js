@@ -3,7 +3,6 @@ const setStateEvents = ({ components }) => {
 
   const utils = {
     formatResults(features) {
-      console.log('features', features);
       const results = [...new Set(features.map(d => d.sourceLayer))]
         .map((groupName) => {
           const group = {
@@ -13,7 +12,6 @@ const setStateEvents = ({ components }) => {
           };
           return group;
         });
-      console.log('formatted results', results);
       return results;
     },
   };
@@ -57,19 +55,20 @@ const setStateEvents = ({ components }) => {
         })
         .updateAvailableLayers();
 
+      state.update({ currentOverlay: null });
       // setTimeout(() => {
       //   const renderedLayers = atlas.getRenderedLayers();
       //   console.log('rendered', renderedLayers.length);
       // }, 0);
     },
     screenSize() {
-      const {
-        screenSize,
-      } = this.props();
+      // const {
+      //   screenSize,
+      // } = this.props();
       const {
         timeline,
       } = components;
-      console.log(screenSize);
+      // console.log(screenSize);
       timeline
         .updateScreenSize();
     },
@@ -132,7 +131,7 @@ const setStateEvents = ({ components }) => {
             view: 'textSearch',
           })
           .updateResults();
-        console.log('results', results);
+        // console.log('results', results);
       }
     },
     clickSearch() {
@@ -143,9 +142,9 @@ const setStateEvents = ({ components }) => {
         sidebar,
       } = components;
 
-      console.log('features', clickSearch);
+      // console.log('features', clickSearch);
       const results = utils.formatResults(clickSearch);
-      console.log('results', results);
+      // console.log('results', results);
       sidebar
         .config({
           results,
@@ -199,8 +198,6 @@ const setStateEvents = ({ components }) => {
         highlightedFeature,
       } = this.props();
 
-      console.log('hf', highlightedFeature);
-      console.log('test', typeof highlightedFeature);
       const {
         atlas,
         sidebar,
@@ -231,8 +228,22 @@ const setStateEvents = ({ components }) => {
           currentOverlay,
         })
         .updateOverlay();
+    },
+    footerView() {
+      const {
+        footerView,
+      } = this.props();
+      const {
+        footer,
+      } = components;
 
-      console.log('state Overlay', currentOverlay);
+      footer
+        .config({
+          footerView,
+          rasterData: this.getAvailableRasters(),
+        })
+        .updateFooterView()
+        .updateRasterData();
     },
   });
 };

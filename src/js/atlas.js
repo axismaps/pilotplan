@@ -23,6 +23,7 @@ const utils = {
     });
     return layer;
   },
+
 };
 
 const privateMethods = {
@@ -31,22 +32,29 @@ const privateMethods = {
 
     const {
       onLoad,
+      year,
     } = props;
 
-    mapboxgl.accessToken = 'pk.eyJ1IjoiYXhpc21hcHMiLCJhIjoieUlmVFRmRSJ9.CpIxovz1TUWe_ecNLFuHNg';
+    const { getLayerStyle } = utils;
 
-    props.mbMap = new mapboxgl.Map({
-      container: 'map',
-      style: './data/style.json',
-    })
-      .on('load', () => {
-        init();
-        onLoad();
+    mapboxgl.accessToken = 'pk.eyJ1IjoiYXhpc21hcHMiLCJhIjoieUlmVFRmRSJ9.CpIxovz1TUWe_ecNLFuHNg';
+    console.log('??');
+    d3.json('./data/style.json')
+      .then((style) => {
+        const styleCopy = JSON.parse(JSON.stringify(style));
+        styleCopy.layers = styleCopy.layers.map(layer => getLayerStyle({ layer, year }));
+
+        props.mbMap = new mapboxgl.Map({
+          container: 'map',
+          style: styleCopy,
+        })
+          .on('load', () => {
+            init();
+            onLoad();
+          });
+
+        props.canvas = props.mbMap.getCanvasContainer();
       });
-    // .on('mouseover', 'building-Work', (e) => {
-    // console.log('LAYER', e.features[0].properties.LastYear);
-    // });
-    props.canvas = props.mbMap.getCanvasContainer();
   },
   updateYear() {
     const {
@@ -140,6 +148,7 @@ class Atlas {
 
     this.updateCurrentLayers();
     this.updateAreaSearch();
+    this.updateYear();
   }
   config(config) {
     Object.assign(privateProps.get(this), config);

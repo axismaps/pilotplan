@@ -4,8 +4,20 @@ const privateProps = new WeakMap();
 
 
 const privateMethods = {
-  init() {
+  initCategoryButtons() {
+    const props = privateProps.get(this);
+    const {
+      rasterCategories,
+      categoriesContainer,
+      onCategoryClick,
+    } = props;
+    const { drawCategoryButtons } = methods;
 
+    props.categoryButtons = drawCategoryButtons({
+      rasterCategories,
+      categoriesContainer,
+      onCategoryClick,
+    });
   },
 };
 
@@ -17,11 +29,17 @@ class Footer {
       showAllContainer: d3.select('.footer__show-all'),
       rasterData: null,
       rasterCategories: null,
+      footerView: null,
     });
 
+    const {
+      initCategoryButtons,
+    } = privateMethods;
+
     this.config(config);
-    // const { init } = privateMethods;
-    // init.call(this);
+
+    initCategoryButtons.call(this);
+    this.updateFooterView();
     this.updateRasterData();
   }
   config(config) {
@@ -45,6 +63,19 @@ class Footer {
       imagesContainer,
       onRasterClick,
     });
+
+    return this;
+  }
+  updateFooterView() {
+    const {
+      categoryButtons,
+      footerView,
+    } = privateProps.get(this);
+
+    categoryButtons
+      .classed('footer__category--selected', d => d === footerView);
+
+    return this;
   }
 }
 
