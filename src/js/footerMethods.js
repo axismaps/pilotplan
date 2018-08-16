@@ -29,7 +29,16 @@ const footerMethods = {
       .enter()
       .append('div')
       .attr('class', 'footer__category')
-      .text('x')
+      .html((d) => {
+        const icons = {
+          views: 'icon-camera',
+          aerials: 'icon-flight',
+          maps: 'icon-map-o',
+          plans: 'icon-tsquare',
+        };
+
+        return `<i class="${icons[d]}"></i>`;
+      })
       .on('click', onCategoryClick);
   },
 };
