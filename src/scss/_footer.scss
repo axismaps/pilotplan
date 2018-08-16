@@ -38,3 +38,27 @@
 .footer__category--selected {
   background: $main-light-gray;
 }
+
+.footer__show-all {
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  width: $footer-height - 15;
+  height: $footer-height;
+  background: $main-background;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer__show-all-circle {
+  width: $footer-image-height;
+  height: $footer-image-height;
+  background: $main-light-gray;
+  border-radius: $footer-image-height / 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  cursor: pointer;
+}
