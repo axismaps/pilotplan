@@ -1,4 +1,5 @@
 import methods from './footerMethods';
+import allRasterMethods from './FooterAllRasterMethods';
 
 const privateProps = new WeakMap();
 
@@ -58,6 +59,21 @@ const privateMethods = {
     categoryButtons
       .classed('footer__category--selected', d => d === footerView);
   },
+  setAllRasterBackgroundClick() {
+    const {
+      allRasterInnerContainer,
+      allRasterOuterContainer,
+      onAllRasterCloseClick,
+    } = privateProps.get(this);
+
+    const { setAllRasterBackgroundClick } = allRasterMethods;
+
+    setAllRasterBackgroundClick({
+      allRasterInnerContainer,
+      allRasterOuterContainer,
+      onAllRasterCloseClick,
+    });
+  },
 };
 
 class Footer {
@@ -66,21 +82,27 @@ class Footer {
       categoriesContainer: d3.select('.footer__categories'),
       imagesContainer: d3.select('.footer__images'),
       showAllContainer: d3.select('.footer__show-all'),
+      allRasterOuterContainer: d3.select('.allraster__outer'),
+      allRasterInnerContainer: d3.select('.allraster__inner'),
+      allRasterContentContainer: d3.select('.allraster__content'),
+      onAllRasterCloseClick: null,
       rasterData: null,
       rasterCategories: null,
       footerView: null,
-      cachedMetadata: new Map(),
+      cachedMetadata: null,
     });
 
     const {
       initCategoryButtons,
       initAllRasterButton,
+      setAllRasterBackgroundClick,
     } = privateMethods;
 
     this.config(config);
 
     initCategoryButtons.call(this);
     initAllRasterButton.call(this);
+    setAllRasterBackgroundClick.call(this);
     this.updateFooterView();
     this.updateRasterData();
   }

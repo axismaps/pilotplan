@@ -4,7 +4,6 @@ import Timeline from './timeline';
 import Layout from './layout';
 import Sidebar from './sidebar';
 import Footer from './footer';
-import AllRaster from './allRaster';
 import getState from './initState';
 import { yearRange } from './config';
 import loadData from './dataLoad';
@@ -60,15 +59,6 @@ const app = {
       // atlas,
     } = components;
 
-    // console.log(data.layers);
-
-    // state.set('currentLayers', atlas
-    //   .getLayers()
-    //   .filter(d => d.visibility === 'visible')
-    //   .map(d => d.id));
-
-    // console.log('current layers', state.get('currentLayers'));
-
     components.timeline = new Timeline({
       year: state.get('year'),
       updateYear(newYear) {
@@ -88,37 +78,55 @@ const app = {
       },
     });
 
-    components.allRaster = new AllRaster({
-      onOuterClick() {
-        state.update({ allRasterOpen: false });
-      },
-    });
+    // should allRaster and footer be combined into one module?
+    // have a lot of shared properties/methods
+    const cachedMetadata = new Map();
+
+    const onRasterClick = (rasterData) => {
+      const getId = d => (d === null ? null : d.SS_ID);
+      if (rasterData.type === 'overlay') {
+        const currentOverlay = state.get('currentOverlay');
+        if (getId(currentOverlay) === getId(rasterData)) {
+          state.update({ currentOverlay: null });
+        } else {
+          state.update({ currentOverlay: rasterData });
+        }
+      } else if (rasterData.type === 'view') {
+        state.update({ currentView: rasterData });
+      }
+    };
 
     const rasterCategories = [];
     data.rasters.forEach((val, key) => {
       rasterCategories.push(key);
     });
+
+    // components.allRaster = new AllRaster({
+    //   cachedMetadata,
+    //   rasterData: state.getAvailableRasters(data),
+    // onOuterClick() {
+    //   state.update({ allRasterOpen: false });
+    // },
+    //   onRasterClick(rasterData) {
+    //     // close allRaster screen first
+    //     onRasterClick(rasterData);
+    //   },
+    // });
+
+
     components.footer = new Footer({
       footerView: state.get('footerView'),
       rasterData: state.getAvailableRasters(data),
       rasterCategories,
+      cachedMetadata,
       onCategoryClick(newCategory) {
         const currentView = state.get('footerView');
         if (newCategory === currentView) return;
         state.update({ footerView: newCategory });
       },
-      onRasterClick(rasterData) {
-        const getId = d => (d === null ? null : d.SS_ID);
-        if (rasterData.type === 'overlay') {
-          const currentOverlay = state.get('currentOverlay');
-          if (getId(currentOverlay) === getId(rasterData)) {
-            state.update({ currentOverlay: null });
-          } else {
-            state.update({ currentOverlay: rasterData });
-          }
-        } else if (rasterData.type === 'view') {
-          state.update({ currentView: rasterData });
-        }
+      onRasterClick,
+      onAllRasterCloseClick() {
+        state.update({ allRasterOpen: false });
       },
       onAllRasterClick() {
         state.update({ allRasterOpen: true });

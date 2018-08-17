@@ -125,7 +125,7 @@ class Timeline {
         ry: 8,
       },
       // valueRange: [1950, 2016],
-      sliderPadding: { left: 0, right: 20 },
+      sliderPadding: { left: 0, right: 2 },
     });
     this.config(config);
 

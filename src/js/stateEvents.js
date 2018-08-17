@@ -247,7 +247,6 @@ const setStateEvents = ({ components, data }) => {
       } = this.props();
       const {
         layout,
-        allRaster,
       } = components;
 
       layout
