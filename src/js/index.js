@@ -5,6 +5,7 @@ import Timeline from './timeline';
 import Layout from './layout';
 import Sidebar from './sidebar';
 import Footer from './footer';
+import AllRaster from './allRaster';
 import { yearRange } from './config';
 import loadData from './dataLoad';
 
@@ -29,6 +30,7 @@ const app = {
       year: 1957,
       sidebarOpen: true,
       footerOpen: true,
+      allRasterOpen: false,
       sidebarView: 'legend', // searching, results
       footerView: Object.keys(data.rasters)[0],
       textSearch: null,
@@ -71,13 +73,20 @@ const app = {
 
     components.state.getAvailableRasters = () => {
       const year = components.state.get('year');
-      const footerView = components.state.get('footerView');
-      const rasters = data.rasters[footerView];
-      return rasters.filter(d => d.FirstYear <= year &&
-        d.LastYear >= year);
+      // const footerView = components.state.get('footerView');
+      const availableRasters = Object.keys(data.rasters).reduce((accumulator, key) => {
+        accumulator[key] = data.rasters[key]
+          .filter(d => d.FirstYear <= year &&
+            d.LastYear >= year);
+        return accumulator;
+      }, {});
+      return availableRasters;
+      // const rasters = data.rasters[footerView];
+      // return rasters.filter(d => d.FirstYear <= year &&
+      //   d.LastYear >= year);
     };
 
-    // console.log('current raster', components.state.getAvailableRasters());
+    console.log('current raster', components.state.getAvailableRasters());
 
     components.state.getAllAvailableLayers = () => components.state.getAvailableLayers()
       .reduce((accumulator, group) => [...accumulator, ...group.layers], [])
@@ -138,10 +147,17 @@ const app = {
     components.layout = new Layout({
       sidebarOpen: state.get('sidebarOpen'),
       footerOpen: state.get('footerOpen'),
+      allRasterOpen: state.get('allRasterOpen'),
       areaSearchActive: state.get('areaSearchActive'),
       onAreaButtonClick: () => {
         const areaSearchActive = !state.get('areaSearchActive');
         state.update({ areaSearchActive });
+      },
+    });
+
+    components.allRaster = new AllRaster({
+      onOuterClick() {
+        state.update({ allRasterOpen: false });
       },
     });
 
@@ -166,6 +182,9 @@ const app = {
         } else if (rasterData.type === 'view') {
           state.update({ currentView: rasterData });
         }
+      },
+      onAllRasterClick() {
+        state.update({ allRasterOpen: true });
       },
     });
 

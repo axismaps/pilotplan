@@ -113,6 +113,18 @@ body {
   height: 100%;
 }
 
+.allraster__outer {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  display: none;
+}
+
+.allraster__inner {
+  width: 796px;
+  max-height: 85%;
+}
+
 .outer-container.sidebar-open {
   .map-outer {
     left: $legend-width;
@@ -136,5 +148,11 @@ body {
 
   .map-outer {
     height: calc(100% - #{$header-height + $timeline-height + $footer-height});
+  }
+}
+
+.outer-container.allraster-open {
+  .allraster__outer {
+    display: flex;
   }
 }

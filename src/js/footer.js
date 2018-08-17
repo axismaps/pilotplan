@@ -19,6 +19,14 @@ const privateMethods = {
       onCategoryClick,
     });
   },
+  initAllRasterButton() {
+    const props = privateProps.get(this);
+    const {
+      showAllContainer,
+      onAllRasterClick,
+    } = props;
+    showAllContainer.on('click', onAllRasterClick);
+  },
 };
 
 class Footer {
@@ -34,11 +42,13 @@ class Footer {
 
     const {
       initCategoryButtons,
+      initAllRasterButton,
     } = privateMethods;
 
     this.config(config);
 
     initCategoryButtons.call(this);
+    initAllRasterButton.call(this);
     this.updateFooterView();
     this.updateRasterData();
   }
@@ -52,6 +62,7 @@ class Footer {
       rasterData,
       imagesContainer,
       onRasterClick,
+      footerView,
     } = props;
 
     const {
@@ -62,6 +73,7 @@ class Footer {
       rasterData,
       imagesContainer,
       onRasterClick,
+      footerView,
     });
 
     return this;

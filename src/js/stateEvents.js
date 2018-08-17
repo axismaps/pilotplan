@@ -245,6 +245,21 @@ const setStateEvents = ({ components }) => {
         .updateFooterView()
         .updateRasterData();
     },
+    allRasterOpen() {
+      const {
+        allRasterOpen,
+      } = this.props();
+      const {
+        layout,
+        allRaster,
+      } = components;
+
+      layout
+        .config({
+          allRasterOpen,
+        })
+        .updateAllRaster();
+    },
   });
 };
 

@@ -3,9 +3,10 @@ const footerMethods = {
     rasterData,
     imagesContainer,
     onRasterClick,
+    footerView,
   }) {
     const images = imagesContainer.selectAll('.footer__image')
-      .data(rasterData);
+      .data(rasterData[footerView]);
 
     const newImages = images
       .enter()

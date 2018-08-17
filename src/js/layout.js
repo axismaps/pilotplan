@@ -33,6 +33,7 @@ class Layout {
     initAreaButton.call(this);
     this.updateSidebar();
     this.updateFooter();
+    this.updateAllRaster();
   }
   config(config) {
     Object.assign(privateProps.get(this), config);
@@ -62,6 +63,14 @@ class Layout {
       areaSearchActive,
     } = privateProps.get(this);
     probeButtonsContainer.classed('probe-buttons-container--area-search', areaSearchActive);
+  }
+  updateAllRaster() {
+    const {
+      allRasterOpen,
+      container,
+    } = privateProps.get(this);
+
+    container.classed('allraster-open', allRasterOpen);
   }
 }
 
