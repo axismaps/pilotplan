@@ -56,15 +56,17 @@ const cleanData = (rawData) => {
 
   console.log('layers', layers);
 
+  const rasters = new Map();
+
+  rasters.set('views', views);
+  rasters.set('maps', processOverlay(rawMaps));
+  rasters.set('plans', processOverlay(rawPlans));
+  rasters.set('aerials', processOverlay(rawAerials));
+
   const data = {
     layers,
     viewshedsGeo: rawViewsheds,
-    rasters: {
-      views,
-      aerials: processOverlay(rawAerials),
-      maps: processOverlay(rawMaps),
-      plans: processOverlay(rawPlans),
-    },
+    rasters,
   };
 
   return data;

@@ -1,4 +1,3 @@
-import State from './state/state';
 import setStateEvents from './stateEvents';
 import Atlas from './atlas';
 import Timeline from './timeline';
@@ -6,6 +5,7 @@ import Layout from './layout';
 import Sidebar from './sidebar';
 import Footer from './footer';
 import AllRaster from './allRaster';
+import getState from './initState';
 import { yearRange } from './config';
 import loadData from './dataLoad';
 
@@ -25,80 +25,13 @@ const app = {
     });
   },
   initState() {
-    components.state = new State({
-      // year: 2016,
-      year: 1957,
-      sidebarOpen: true,
-      footerOpen: true,
-      allRasterOpen: false,
-      sidebarView: 'legend', // searching, results
-      footerView: Object.keys(data.rasters)[0],
-      textSearch: null,
-      clickSearch: null,
-      areaSearchActive: false,
-      areaSearch: null,
-      currentLayers: null,
-      currentOverlay: null,
-      currentView: null,
-      highlightedLayer: null,
-      highlightedFeature: null,
-      language: 'en',
-      screenSize: [window.innerWidth, window.innerHeight],
-    });
-
-    components.state.getAvailableLayers = () => {
-      const year = components.state.get('year');
-      const { layers } = data;
-
-      const newLayers = layers.map((group) => {
-        const newGroup = Object.assign({}, group);
-        newGroup.layers = group.layers.filter(d =>
-          d.startYear <= year &&
-          d.endYear >= year)
-          .map((layer) => {
-            const newLayer = Object.assign({}, layer);
-            newLayer.features = layer.features.filter(d =>
-              d.startYear <= year &&
-              d.endYear >= year &&
-              d.id !== undefined);
-            return newLayer;
-          })
-          .filter(layer => layer.features.length > 0);
-        return newGroup;
-      })
-        .filter(group => group.layers.length > 0);
-      return newLayers;
-    };
-    // console.log('views', data.rasters.views);
-
-    components.state.getAvailableRasters = () => {
-      const year = components.state.get('year');
-      // const footerView = components.state.get('footerView');
-      const availableRasters = Object.keys(data.rasters).reduce((accumulator, key) => {
-        accumulator[key] = data.rasters[key]
-          .filter(d => d.FirstYear <= year &&
-            d.LastYear >= year);
-        return accumulator;
-      }, {});
-      return availableRasters;
-      // const rasters = data.rasters[footerView];
-      // return rasters.filter(d => d.FirstYear <= year &&
-      //   d.LastYear >= year);
-    };
-
-    console.log('current raster', components.state.getAvailableRasters());
-
-    components.state.getAllAvailableLayers = () => components.state.getAvailableLayers()
-      .reduce((accumulator, group) => [...accumulator, ...group.layers], [])
-      .map(layer => ({
-        id: layer.id,
-        status: true,
-      }));
-
-    components.state.set('currentLayers', components.state.getAllAvailableLayers());
+    components.state = getState();
+    components.state.set('currentLayers', components.state.getAllAvailableLayers(data));
   },
   initAtlas() {
     const { state } = components;
+    console.log('test state', state.get('currentLayers'));
+    console.log('state', state.props());
 
     components.atlas = new Atlas({
       viewshedsGeo: data.viewshedsGeo,
@@ -161,10 +94,14 @@ const app = {
       },
     });
 
+    const rasterCategories = [];
+    data.rasters.forEach((val, key) => {
+      rasterCategories.push(key);
+    });
     components.footer = new Footer({
       footerView: state.get('footerView'),
-      rasterData: state.getAvailableRasters(),
-      rasterCategories: Object.keys(data.rasters),
+      rasterData: state.getAvailableRasters(data),
+      rasterCategories,
       onCategoryClick(newCategory) {
         const currentView = state.get('footerView');
         if (newCategory === currentView) return;
@@ -191,7 +128,7 @@ const app = {
     components.sidebar = new Sidebar({
       highlightedFeature: state.get('highlightedFeature'),
       sidebarOpen: state.get('sidebarOpen'),
-      availableLayers: state.getAvailableLayers(),
+      availableLayers: state.getAvailableLayers(data),
       language: state.get('language'),
       view: state.get('sidebarView'),
       onLayerClick(layer) {

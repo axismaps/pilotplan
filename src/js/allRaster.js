@@ -19,6 +19,7 @@ class AllRaster {
     privateProps.set(this, {
       outerContainer: d3.select('.allraster__outer'),
       innerContainer: d3.select('.allraster__inner'),
+      rasterData: null,
     });
 
     const {

@@ -39,7 +39,7 @@ const privateMethods = {
     const { getLayerStyle } = utils;
 
     mapboxgl.accessToken = 'pk.eyJ1IjoiYXhpc21hcHMiLCJhIjoieUlmVFRmRSJ9.CpIxovz1TUWe_ecNLFuHNg';
-    console.log('??');
+
     d3.json('./data/style.json')
       .then((style) => {
         const styleCopy = JSON.parse(JSON.stringify(style));

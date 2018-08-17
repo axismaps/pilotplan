@@ -1,4 +1,4 @@
-const setStateEvents = ({ components }) => {
+const setStateEvents = ({ components, data }) => {
   const { state } = components;
 
   const utils = {
@@ -44,22 +44,20 @@ const setStateEvents = ({ components }) => {
 
       footer
         .config({
-          rasterData: this.getAvailableRasters(),
+          rasterData: this.getAvailableRasters(data),
         })
         .updateRasterData();
 
+      const rasters = this.getAvailableRasters(data);
+      console.log('available rasters', rasters);
 
       sidebar
         .config({
-          availableLayers: this.getAvailableLayers(),
+          availableLayers: this.getAvailableLayers(data),
         })
         .updateAvailableLayers();
 
       state.update({ currentOverlay: null });
-      // setTimeout(() => {
-      //   const renderedLayers = atlas.getRenderedLayers();
-      //   console.log('rendered', renderedLayers.length);
-      // }, 0);
     },
     screenSize() {
       // const {
@@ -142,9 +140,8 @@ const setStateEvents = ({ components }) => {
         sidebar,
       } = components;
 
-      console.log('features', clickSearch);
       const results = utils.formatResults(clickSearch);
-      console.log('results', results);
+
       sidebar
         .config({
           results,
@@ -240,7 +237,7 @@ const setStateEvents = ({ components }) => {
       footer
         .config({
           footerView,
-          rasterData: this.getAvailableRasters(),
+          rasterData: this.getAvailableRasters(data),
         })
         .updateFooterView()
         .updateRasterData();
