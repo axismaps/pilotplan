@@ -1,6 +1,5 @@
 const footerMethods = {
   getScaledCircleDim({ width, height, maxDim }) {
-    console.log('raw', width, height, maxDim);
     if (width > height) {
       return {
         height: maxDim,
@@ -31,18 +30,43 @@ const footerMethods = {
         'background-size': 'cover',
       });
   },
+  setBackgroundFromAPI({ metadata, maxDim, selection }) {
+    const {
+      getScaledCircleDim,
+      getImageUrl,
+      setRasterBackground,
+    } = footerMethods;
+
+    const { width, height } = metadata;
+
+    const scaledDim = getScaledCircleDim({
+      width,
+      height,
+      maxDim,
+    });
+
+    const url = getImageUrl({
+      scaledDim,
+      metadata,
+    });
+
+    setRasterBackground({
+      url,
+      selection,
+    });
+  },
   drawRasters({
     rasterData,
     imagesContainer,
     onRasterClick,
     footerView,
+    cachedMetadata,
   }) {
     const {
       getMetadata,
-      getScaledCircleDim,
-      getImageUrl,
-      setRasterBackground,
+      setBackgroundFromAPI,
     } = footerMethods;
+
     // console.log(rasterData.get(footerView));
     const images = imagesContainer.selectAll('.footer__image')
       .data(rasterData.get(footerView), d => d.SS_ID);
@@ -57,25 +81,26 @@ const footerMethods = {
       if (i === 0) {
         maxDim = this.getBoundingClientRect().width;
       }
-      getMetadata(d, (metadata) => {
-        const { width, height } = metadata;
-
-        const scaledDim = getScaledCircleDim({
-          width,
-          height,
-          maxDim,
-        });
-
-        const url = getImageUrl({
-          scaledDim,
+      const selection = d3.select(this);
+      // console.log('cache', cachedMetadata.size);
+      if (cachedMetadata.has(d.SS_ID)) {
+        // console.log('use cached');
+        const metadata = cachedMetadata.get(d.SS_ID);
+        setBackgroundFromAPI({
           metadata,
+          maxDim,
+          selection,
         });
-
-        setRasterBackground({
-          url,
-          selection: d3.select(this),
+      } else {
+        getMetadata(d, (metadata) => {
+          cachedMetadata.set(d.SS_ID, metadata);
+          setBackgroundFromAPI({
+            metadata,
+            maxDim,
+            selection,
+          });
         });
-      });
+      }
     });
 
     images.exit().remove();

@@ -27,6 +27,37 @@ const privateMethods = {
     } = props;
     showAllContainer.on('click', onAllRasterClick);
   },
+  drawRasters() {
+    const props = privateProps.get(this);
+    const {
+      rasterData,
+      imagesContainer,
+      onRasterClick,
+      footerView,
+      cachedMetadata,
+    } = props;
+
+    const {
+      drawRasters,
+    } = methods;
+
+    props.rasters = drawRasters({
+      rasterData,
+      imagesContainer,
+      onRasterClick,
+      footerView,
+      cachedMetadata,
+    });
+  },
+  updateFooterView() {
+    const {
+      categoryButtons,
+      footerView,
+    } = privateProps.get(this);
+
+    categoryButtons
+      .classed('footer__category--selected', d => d === footerView);
+  },
 };
 
 class Footer {
@@ -38,6 +69,7 @@ class Footer {
       rasterData: null,
       rasterCategories: null,
       footerView: null,
+      cachedMetadata: new Map(),
     });
 
     const {
@@ -57,36 +89,22 @@ class Footer {
     return this;
   }
   updateRasterData() {
-    const props = privateProps.get(this);
-    const {
-      rasterData,
-      imagesContainer,
-      onRasterClick,
-      footerView,
-    } = props;
-
     const {
       drawRasters,
-    } = methods;
-    // console.log('raster data', rasterData);
-    props.rasters = drawRasters({
-      rasterData,
-      imagesContainer,
-      onRasterClick,
-      footerView,
-    });
+    } = privateMethods;
 
+    // clearCachedMetadata.call(this);
+    drawRasters.call(this);
     return this;
   }
   updateFooterView() {
     const {
-      categoryButtons,
-      footerView,
-    } = privateProps.get(this);
+      updateFooterView,
+      drawRasters,
+    } = privateMethods;
 
-    categoryButtons
-      .classed('footer__category--selected', d => d === footerView);
-
+    updateFooterView.call(this);
+    drawRasters.call(this);
     return this;
   }
 }

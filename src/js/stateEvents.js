@@ -239,8 +239,7 @@ const setStateEvents = ({ components, data }) => {
           footerView,
           rasterData: this.getAvailableRasters(data),
         })
-        .updateFooterView()
-        .updateRasterData();
+        .updateFooterView();
     },
     allRasterOpen() {
       const {
