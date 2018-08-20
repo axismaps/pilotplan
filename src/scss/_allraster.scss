@@ -17,6 +17,14 @@
 
 .allraster__title {
   // padding: 20px;
+  display: flex;
+  font-size: 18px;
+  // margin-bottom: 30px;
+}
+
+.allraster__title-text {
+  margin-left: 5px;
+  text-transform: capitalize;
 }
 
 .allraster__content {
@@ -26,6 +34,8 @@
 .allraster__image-block {
   display: flex;
   flex-wrap: wrap;
+  margin-top: 25px;
+  margin-bottom: 25px;
 }
 
 .allraster__image {

@@ -1,4 +1,5 @@
 import footerMethods from './footerMethods';
+import { footerCategoryIcons } from './config';
 
 const {
   setEachRasterBackground,
@@ -38,9 +39,16 @@ const allRasterMethods = {
   drawAllRasterTitles({
     allRasterSections,
   }) {
-    allRasterSections
+    const titles = allRasterSections
       .append('div')
-      .attr('class', 'allraster__title')
+      .attr('class', 'allraster__title');
+
+    titles.append('i')
+      .attr('class', d => footerCategoryIcons[d.key]);
+
+    titles
+      .append('div')
+      .attr('class', 'allraster__title-text')
       .text(d => d.key);
   },
   drawAllRasterImageBlocks({
