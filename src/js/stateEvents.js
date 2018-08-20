@@ -217,6 +217,7 @@ const setStateEvents = ({ components, data }) => {
         currentOverlay,
       } = this.props();
 
+      console.log('current overlay', currentOverlay);
       const {
         atlas,
       } = components;
@@ -226,6 +227,12 @@ const setStateEvents = ({ components, data }) => {
           currentOverlay,
         })
         .updateOverlay();
+    },
+    currentView() {
+      const {
+        currentView,
+      } = this.props();
+      console.log('current view', currentView);
     },
     footerView() {
       const {

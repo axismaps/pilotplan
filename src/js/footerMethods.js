@@ -90,9 +90,7 @@ const footerMethods = {
         maxDim = this.getBoundingClientRect().width;
       }
       const selection = d3.select(this);
-      // console.log('cache', cachedMetadata.size);
       if (cachedMetadata.has(d.SS_ID)) {
-        // console.log('use cached');
         const metadata = cachedMetadata.get(d.SS_ID);
         setBackgroundFromAPI({
           metadata,

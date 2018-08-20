@@ -4,6 +4,7 @@ import Timeline from './timeline';
 import Layout from './layout';
 import Sidebar from './sidebar';
 import Footer from './footer';
+import RasterProbe from './rasterProbe';
 import getState from './initState';
 import { yearRange } from './config';
 import loadData from './dataLoad';
@@ -92,7 +93,12 @@ const app = {
           state.update({ currentOverlay: rasterData });
         }
       } else if (rasterData.type === 'view') {
-        state.update({ currentView: rasterData });
+        const currentView = state.get('currentView');
+        if (getId(currentView) === getId(rasterData)) {
+          state.update({ currentView: null });
+        } else {
+          state.update({ currentView: rasterData });
+        }
       }
     };
 
