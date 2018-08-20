@@ -1,6 +1,9 @@
 import footerMethods from './footerMethods';
 
-const { setEachRasterBackground } = footerMethods;
+const {
+  setEachRasterBackground,
+  getRasterDataByCategory,
+} = footerMethods;
 
 const allRasterMethods = {
   setAllRasterBackgroundClick({
@@ -17,17 +20,8 @@ const allRasterMethods = {
     rasterData,
     allRasterContentContainer,
   }) {
-    const data = [];
-    rasterData.forEach((values, key) => {
-      if (values.length > 0) {
-        data.push({
-          values,
-          key,
-        });
-      }
-    });
-    console.log('data', data);
-    // allRasterContentContainer.selectAll('.allraster__section').remove();
+    const data = getRasterDataByCategory({ rasterData });
+
     const allRasterSections = allRasterContentContainer
       .selectAll('.allraster__section')
       .data(data, d => d.key);
@@ -60,6 +54,7 @@ const allRasterMethods = {
     allRasterImageBlocks,
     onRasterClick,
     cachedMetadata,
+    onAllRasterCloseClick,
   }) {
     allRasterImageBlocks.each(function drawRasters(d) {
       const block = d3.select(this);
@@ -72,6 +67,7 @@ const allRasterMethods = {
         .attr('class', 'footer__image allraster__image')
         .on('click', (dd) => {
           onRasterClick(dd);
+          onAllRasterCloseClick();
         });
 
       setEachRasterBackground({

@@ -96,10 +96,6 @@ const app = {
       }
     };
 
-    const rasterCategories = [];
-    data.rasters.forEach((val, key) => {
-      rasterCategories.push(key);
-    });
 
     // components.allRaster = new AllRaster({
     //   cachedMetadata,
@@ -117,7 +113,6 @@ const app = {
     components.footer = new Footer({
       footerView: state.get('footerView'),
       rasterData: state.getAvailableRasters(data),
-      rasterCategories,
       cachedMetadata,
       onCategoryClick(newCategory) {
         const currentView = state.get('footerView');

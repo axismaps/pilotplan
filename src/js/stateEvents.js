@@ -46,9 +46,10 @@ const setStateEvents = ({ components, data }) => {
         .config({
           rasterData: this.getAvailableRasters(data),
         })
+        // .updateFooterView();
         .updateRasterData();
 
-      const rasters = this.getAvailableRasters(data);
+      // const rasters = this.getAvailableRasters(data);
       // console.log('available rasters', rasters);
 
       sidebar
@@ -239,7 +240,8 @@ const setStateEvents = ({ components, data }) => {
           footerView,
           rasterData: this.getAvailableRasters(data),
         })
-        .updateFooterView();
+        .updateRasterData();
+      // .updateFooterView();
     },
     allRasterOpen() {
       const {

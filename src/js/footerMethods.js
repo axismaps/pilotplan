@@ -1,4 +1,25 @@
+import { footerCategoryIcons } from './config';
+
 const footerMethods = {
+  getRasterCategories({ rasterData }) {
+    const rasterCategories = [];
+    rasterData.forEach((val, key) => {
+      rasterCategories.push(key);
+    });
+    return rasterCategories;
+  },
+  getRasterDataByCategory({ rasterData }) {
+    const data = [];
+    rasterData.forEach((values, key) => {
+      if (values.length > 0) {
+        data.push({
+          values,
+          key,
+        });
+      }
+    });
+    return data;
+  },
   getScaledCircleDim({ width, height, maxDim }) {
     if (width > height) {
       return {
@@ -132,16 +153,7 @@ const footerMethods = {
       .enter()
       .append('div')
       .attr('class', 'footer__category')
-      .html((d) => {
-        const icons = {
-          views: 'icon-camera',
-          aerials: 'icon-flight',
-          maps: 'icon-map-o',
-          plans: 'icon-tsquare',
-        };
-
-        return `<i class="${icons[d]}"></i>`;
-      })
+      .html(d => `<i class="${footerCategoryIcons[d]}"></i>`)
       .on('click', onCategoryClick);
   },
 };

@@ -8,14 +8,17 @@ const privateMethods = {
   initCategoryButtons() {
     const props = privateProps.get(this);
     const {
-      rasterCategories,
+      rasterData,
       categoriesContainer,
       onCategoryClick,
     } = props;
-    const { drawCategoryButtons } = methods;
+    const {
+      drawCategoryButtons,
+      getRasterCategories,
+    } = methods;
 
     props.categoryButtons = drawCategoryButtons({
-      rasterCategories,
+      rasterCategories: getRasterCategories({ rasterData }),
       categoriesContainer,
       onCategoryClick,
     });
@@ -40,7 +43,9 @@ const privateMethods = {
 
     const {
       drawRasters,
+      getRasterDataByCategory,
     } = methods;
+
 
     props.rasters = drawRasters({
       rasterData,
@@ -54,10 +59,12 @@ const privateMethods = {
     const {
       categoryButtons,
       footerView,
+      rasterData,
     } = privateProps.get(this);
 
     categoryButtons
-      .classed('footer__category--selected', d => d === footerView);
+      .classed('footer__category--selected', d => d === footerView)
+      .classed('footer__category--disabled', d => rasterData.get(d).length === 0);
   },
   drawAllRaster() {
     const props = privateProps.get(this);
@@ -106,6 +113,7 @@ const privateMethods = {
       allRasterImageBlocks,
       onRasterClick,
       cachedMetadata,
+      onAllRasterCloseClick,
     });
 
     props.firstAllRasterLoad = false;
@@ -124,7 +132,6 @@ class Footer {
       allRasterOpen: false,
       onAllRasterCloseClick: null,
       rasterData: null,
-      rasterCategories: null,
       footerView: null,
       cachedMetadata: null,
       firstAllRasterLoad: true,
@@ -141,7 +148,7 @@ class Footer {
     initCategoryButtons.call(this);
     initAllRasterButton.call(this);
     // setAllRasterBackgroundClick.call(this);
-    this.updateFooterView();
+    // this.updateFooterView();
     this.updateRasterData();
   }
   config(config) {
@@ -149,24 +156,45 @@ class Footer {
     return this;
   }
   updateRasterData() {
+    const props = privateProps.get(this);
+
+    const {
+      rasterData,
+      footerView,
+    } = props;
+
     const {
       drawRasters,
+      updateFooterView,
     } = privateMethods;
 
-    // clearCachedMetadata.call(this);
-    drawRasters.call(this);
-    return this;
-  }
-  updateFooterView() {
     const {
-      updateFooterView,
-      drawRasters,
-    } = privateMethods;
+      getRasterDataByCategory,
+    } = methods;
+
+    const dataByCategory = getRasterDataByCategory({ rasterData });
+    if (dataByCategory.length === 0) {
+      console.log('NO RESULTS, CLOSE FOOTER');
+      props.footerView = 'views';
+    } else if (rasterData.get(footerView).length === 0) {
+      props.footerView = dataByCategory[0].key;
+    }
+
 
     updateFooterView.call(this);
     drawRasters.call(this);
     return this;
   }
+  // updateFooterView() {
+  //   const {
+  //     updateFooterView,
+  //     drawRasters,
+  //   } = privateMethods;
+
+  //   updateFooterView.call(this);
+  //   drawRasters.call(this);
+  //   return this;
+  // }
   updateAllRaster() {
     const {
       allRasterOpen,

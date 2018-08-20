@@ -39,6 +39,11 @@
   background: $main-light-gray;
 }
 
+.footer__category--disabled {
+  pointer-events: none;
+  opacity: 0.25;
+}
+
 .footer__show-all {
   position: absolute;
   right: 0px;

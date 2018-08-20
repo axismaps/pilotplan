@@ -33,3 +33,10 @@ export const colors = {
 export const yearRange = d3.extent(eras
   .reduce((accumulator, value) => [...accumulator, ...value.dates], []));
 
+export const footerCategoryIcons = {
+  views: 'icon-camera',
+  aerials: 'icon-flight',
+  maps: 'icon-map-o',
+  plans: 'icon-tsquare',
+};
+
