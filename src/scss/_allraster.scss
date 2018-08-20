@@ -12,6 +12,7 @@
   background: $main-background;
   box-shadow: 0 0 8px rgba(255,255,255,0.25);
   border-radius: 5px;
+  overflow-y: auto;
 }
 
 .allraster__title {
@@ -20,4 +21,13 @@
 
 .allraster__content {
   padding: 20px;
+}
+
+.allraster__image-block {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.allraster__image {
+  margin-bottom: 20px;
 }

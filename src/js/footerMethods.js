@@ -55,29 +55,16 @@ const footerMethods = {
       selection,
     });
   },
-  drawRasters({
-    rasterData,
-    imagesContainer,
-    onRasterClick,
-    footerView,
+  setEachRasterBackground({
+    images,
     cachedMetadata,
   }) {
     const {
       getMetadata,
       setBackgroundFromAPI,
     } = footerMethods;
-
-    // console.log(rasterData.get(footerView));
-    const images = imagesContainer.selectAll('.footer__image')
-      .data(rasterData.get(footerView), d => d.SS_ID);
-
-    const newImages = images
-      .enter()
-      .append('div')
-      .attr('class', 'footer__image')
-      .on('click', onRasterClick);
     let maxDim;
-    newImages.each(function addData(d, i) {
+    images.each(function addData(d, i) {
       if (i === 0) {
         maxDim = this.getBoundingClientRect().width;
       }
@@ -101,6 +88,32 @@ const footerMethods = {
           });
         });
       }
+    });
+  },
+  drawRasters({
+    rasterData,
+    imagesContainer,
+    onRasterClick,
+    footerView,
+    cachedMetadata,
+  }) {
+    const {
+      setEachRasterBackground,
+    } = footerMethods;
+
+    // console.log(rasterData.get(footerView));
+    const images = imagesContainer.selectAll('.footer__image')
+      .data(rasterData.get(footerView), d => d.SS_ID);
+
+    const newImages = images
+      .enter()
+      .append('div')
+      .attr('class', 'footer__image')
+      .on('click', onRasterClick);
+
+    setEachRasterBackground({
+      images: newImages,
+      cachedMetadata,
     });
 
     images.exit().remove();

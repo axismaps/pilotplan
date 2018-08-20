@@ -59,20 +59,56 @@ const privateMethods = {
     categoryButtons
       .classed('footer__category--selected', d => d === footerView);
   },
-  setAllRasterBackgroundClick() {
+  drawAllRaster() {
+    const props = privateProps.get(this);
     const {
       allRasterInnerContainer,
       allRasterOuterContainer,
       onAllRasterCloseClick,
-    } = privateProps.get(this);
+      firstAllRasterLoad,
+      allRasterContentContainer,
+      rasterData,
+      onRasterClick,
+      cachedMetadata,
+    } = props;
 
-    const { setAllRasterBackgroundClick } = allRasterMethods;
+    const {
+      setAllRasterBackgroundClick,
+      drawAllRasterCategories,
+      drawAllRasterTitles,
+      drawAllRasterImageBlocks,
+      drawAllRasterImages,
+    } = allRasterMethods;
 
-    setAllRasterBackgroundClick({
-      allRasterInnerContainer,
-      allRasterOuterContainer,
-      onAllRasterCloseClick,
+    if (firstAllRasterLoad) {
+      setAllRasterBackgroundClick({
+        allRasterInnerContainer,
+        allRasterOuterContainer,
+        onAllRasterCloseClick,
+        firstAllRasterLoad,
+      });
+    }
+
+    const allRasterSections = drawAllRasterCategories({
+      rasterData,
+      allRasterContentContainer,
     });
+
+    drawAllRasterTitles({
+      allRasterSections,
+    });
+
+    const allRasterImageBlocks = drawAllRasterImageBlocks({
+      allRasterSections,
+    });
+
+    drawAllRasterImages({
+      allRasterImageBlocks,
+      onRasterClick,
+      cachedMetadata,
+    });
+
+    props.firstAllRasterLoad = false;
   },
 };
 
@@ -85,24 +121,26 @@ class Footer {
       allRasterOuterContainer: d3.select('.allraster__outer'),
       allRasterInnerContainer: d3.select('.allraster__inner'),
       allRasterContentContainer: d3.select('.allraster__content'),
+      allRasterOpen: false,
       onAllRasterCloseClick: null,
       rasterData: null,
       rasterCategories: null,
       footerView: null,
       cachedMetadata: null,
+      firstAllRasterLoad: true,
     });
 
     const {
       initCategoryButtons,
       initAllRasterButton,
-      setAllRasterBackgroundClick,
+      // setAllRasterBackgroundClick,
     } = privateMethods;
 
     this.config(config);
 
     initCategoryButtons.call(this);
     initAllRasterButton.call(this);
-    setAllRasterBackgroundClick.call(this);
+    // setAllRasterBackgroundClick.call(this);
     this.updateFooterView();
     this.updateRasterData();
   }
@@ -128,6 +166,18 @@ class Footer {
     updateFooterView.call(this);
     drawRasters.call(this);
     return this;
+  }
+  updateAllRaster() {
+    const {
+      allRasterOpen,
+    } = privateProps.get(this);
+    const {
+      drawAllRaster,
+    } = privateMethods;
+
+    if (allRasterOpen) {
+      drawAllRaster.call(this);
+    }
   }
 }
 
