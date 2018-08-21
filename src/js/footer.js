@@ -1,5 +1,7 @@
 import methods from './footerMethods';
-import allRasterMethods from './FooterAllRasterMethods';
+import allRasterMethods from './footerAllRasterMethods';
+import rasterMethods from './rasterMethods';
+import { selections } from './config';
 
 const privateProps = new WeakMap();
 
@@ -14,8 +16,10 @@ const privateMethods = {
     } = props;
     const {
       drawCategoryButtons,
-      getRasterCategories,
     } = methods;
+    const {
+      getRasterCategories,
+    } = rasterMethods;
 
     props.categoryButtons = drawCategoryButtons({
       rasterCategories: getRasterCategories({ rasterData }),
@@ -122,13 +126,22 @@ const privateMethods = {
 
 class Footer {
   constructor(config) {
+    const {
+      categoriesContainer,
+      imagesContainer,
+      showAllContainer,
+      allRasterOuterContainer,
+      allRasterInnerContainer,
+      allRasterContentContainer,
+    } = selections;
+
     privateProps.set(this, {
-      categoriesContainer: d3.select('.footer__categories'),
-      imagesContainer: d3.select('.footer__images'),
-      showAllContainer: d3.select('.footer__show-all'),
-      allRasterOuterContainer: d3.select('.allraster__outer'),
-      allRasterInnerContainer: d3.select('.allraster__inner'),
-      allRasterContentContainer: d3.select('.allraster__content'),
+      categoriesContainer,
+      imagesContainer,
+      showAllContainer,
+      allRasterOuterContainer,
+      allRasterInnerContainer,
+      allRasterContentContainer,
       allRasterOpen: false,
       onAllRasterCloseClick: null,
       rasterData: null,
@@ -170,7 +183,7 @@ class Footer {
 
     const {
       getRasterDataByCategory,
-    } = methods;
+    } = rasterMethods;
 
     const dataByCategory = getRasterDataByCategory({ rasterData });
     if (dataByCategory.length === 0) {

@@ -29,9 +29,9 @@ body {
 
 .probe-buttons-container {
   position: absolute;
-  right: 20px;
-  top: $header-height + $timeline-height + 20px;
-  height: $probe-button-height;
+  right: $probe-buttons-right;
+  top: $probe-buttons-top;
+  height: $probe-buttons-height;
 }
 
 
@@ -155,4 +155,8 @@ body {
   .allraster__outer {
     display: flex;
   }
+}
+
+.outer-container.overlay-on {
+  
 }

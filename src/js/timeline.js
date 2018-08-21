@@ -1,4 +1,5 @@
 import TimelineSlider from './timelineSlider';
+import { selections } from './config';
 
 const privateProps = new WeakMap();
 
@@ -101,6 +102,14 @@ const privateMethods = {
 class Timeline {
   constructor(config) {
     const {
+      timelineContainer,
+      sliderContainer,
+      stepperTextContainer,
+      stepperLeftButton,
+      stepperRightButton,
+    } = selections;
+
+    const {
       setSliderSize,
       drawSlider,
       initEvents,
@@ -108,11 +117,11 @@ class Timeline {
     } = privateMethods;
 
     privateProps.set(this, {
-      container: d3.select('.timeline-container'),
-      sliderContainer: d3.select('.timeline-slider-container'),
-      stepperTextContainer: d3.select('.timeline-stepper__year'),
-      stepperLeftButton: d3.select('.timeline-stepper__left'),
-      stepperRightButton: d3.select('.timeline-stepper__right'),
+      container: timelineContainer,
+      sliderContainer,
+      stepperTextContainer,
+      stepperLeftButton,
+      stepperRightButton,
       trackHeight: 30,
       handleHeight: 40,
       handleWidth: 17,

@@ -11,35 +11,38 @@ import loadData from './dataLoad';
 
 require('../scss/index.scss');
 
-const components = {};
-let data;
+// const components = {};
+// const cachedMetadata = new Map();
+// let data;
 
 const app = {
   components: {},
   data: null,
+  cachedMetadata: new Map(),
   init() {
     loadData((cleanedData) => {
-      data = cleanedData;
+      this.data = cleanedData;
       this.initState();
       this.initAtlas();
     });
   },
   initState() {
-    components.state = getState();
-    components.state.set('currentLayers', components.state.getAllAvailableLayers(data));
+    this.components.state = getState();
+    this.components.state.set('currentLayers', this.components.state.getAllAvailableLayers(this.data));
   },
   initAtlas() {
-    const { state } = components;
-    console.log('test state', state.get('currentLayers'));
-    console.log('state', state.props());
+    const { state } = this.components;
+    // console.log('test state', state.get('currentLayers'));
+    // console.log('state', state.props());
 
-    components.atlas = new Atlas({
-      viewshedsGeo: data.viewshedsGeo,
+    this.components.atlas = new Atlas({
+      viewshedsGeo: this.data.viewshedsGeo,
       highlightedFeature: state.get('highlightedFeature'),
       currentLayers: state.get('currentLayers'),
       currentOverlay: state.get('currentOverlay'),
+      rasterData: state.getAvailableRasters(this.data),
       year: state.get('year'),
-      layerNames: data.layerNames,
+      layerNames: this.data.layerNames,
       onLoad: this.onAtlasLoad.bind(this),
       onClickSearch(features) {
         state.update({ clickSearch: features });
@@ -58,9 +61,9 @@ const app = {
     const {
       state,
       // atlas,
-    } = components;
+    } = this.components;
 
-    components.timeline = new Timeline({
+    this.components.timeline = new Timeline({
       year: state.get('year'),
       updateYear(newYear) {
         state.update({ year: Math.round(newYear) });
@@ -68,7 +71,8 @@ const app = {
       yearRange,
     });
 
-    components.layout = new Layout({
+    this.components.layout = new Layout({
+      overlayOn: state.get('currentOverlay') !== null,
       sidebarOpen: state.get('sidebarOpen'),
       footerOpen: state.get('footerOpen'),
       allRasterOpen: state.get('allRasterOpen'),
@@ -78,10 +82,6 @@ const app = {
         state.update({ areaSearchActive });
       },
     });
-
-    // should allRaster and footer be combined into one module?
-    // have a lot of shared properties/methods
-    const cachedMetadata = new Map();
 
     const onRasterClick = (rasterData) => {
       const getId = d => (d === null ? null : d.SS_ID);
@@ -103,23 +103,17 @@ const app = {
     };
 
 
-    // components.allRaster = new AllRaster({
-    //   cachedMetadata,
-    //   rasterData: state.getAvailableRasters(data),
-    // onOuterClick() {
-    //   state.update({ allRasterOpen: false });
-    // },
-    //   onRasterClick(rasterData) {
-    //     // close allRaster screen first
-    //     onRasterClick(rasterData);
-    //   },
-    // });
+    this.components.rasterProbe = new RasterProbe({
+      cachedMetadata: this.cachedMetadata,
+      currentView: state.get('currentView'),
+      currentOverlay: state.get('currentOverlay'),
+    });
 
 
-    components.footer = new Footer({
+    this.components.footer = new Footer({
       footerView: state.get('footerView'),
-      rasterData: state.getAvailableRasters(data),
-      cachedMetadata,
+      rasterData: state.getAvailableRasters(this.data),
+      cachedMetadata: this.cachedMetadata,
       onCategoryClick(newCategory) {
         const currentView = state.get('footerView');
         if (newCategory === currentView) return;
@@ -134,16 +128,18 @@ const app = {
       },
     });
 
-    components.sidebar = new Sidebar({
+    this.components.sidebar = new Sidebar({
       highlightedFeature: state.get('highlightedFeature'),
       sidebarOpen: state.get('sidebarOpen'),
-      availableLayers: state.getAvailableLayers(data),
+      availableLayers: state.getAvailableLayers(this.data),
       language: state.get('language'),
       view: state.get('sidebarView'),
       onLayerClick(layer) {
         const currentLayers = state.get('currentLayers');
         const layerIndex = currentLayers.map(d => d.id)
           .indexOf(layer.id);
+        console.log('currentlayers', currentLayers);
+        console.log('layer', layer, layerIndex);
         const newLayers = [
           ...currentLayers.slice(0, layerIndex),
           { id: layer.id, status: !currentLayers[layerIndex].status },
@@ -168,10 +164,10 @@ const app = {
     });
   },
   setStateEvents() {
-    setStateEvents({ components, data });
+    setStateEvents({ components: this.components, data: this.data });
   },
   listenForResize() {
-    const { state } = components;
+    const { state } = this.components;
     d3.select(window).on('resize', () => {
       state.update({ screenSize: [window.innerWidth, window.innerHeight] });
     });

@@ -39,6 +39,7 @@ const setStateEvents = ({ components, data }) => {
       atlas
         .config({
           year,
+          rasterData: this.getAvailableRasters(data),
         })
         .updateYear();
 
@@ -58,7 +59,10 @@ const setStateEvents = ({ components, data }) => {
         })
         .updateAvailableLayers();
 
-      state.update({ currentOverlay: null });
+      state.update({
+        currentOverlay: null,
+        currentLayers: this.getAllAvailableLayers(data),
+      });
     },
     screenSize() {
       // const {
@@ -94,6 +98,7 @@ const setStateEvents = ({ components, data }) => {
         sidebar,
       } = components;
 
+      console.log('current', currentLayers);
       atlas
         .config({
           currentLayers,
@@ -124,12 +129,14 @@ const setStateEvents = ({ components, data }) => {
           .updateResults();
       } else {
         const results = atlas.textSearch(textSearch);
+
         sidebar
           .config({
             results,
             view: 'textSearch',
           })
           .updateResults();
+
         // console.log('results', results);
       }
     },
@@ -176,13 +183,14 @@ const setStateEvents = ({ components, data }) => {
         areaSearch,
       } = this.props();
       const {
-        layout,
+        // layout,
         sidebar,
       } = components;
-      // console.log('area', areaSearch);
+      console.log('area', areaSearch);
       // console.log('formatted', utils.formatResults(areaSearch));
 
-      layout.config({ });
+      // layout.config({ });
+
 
       sidebar
         .config({
@@ -220,7 +228,14 @@ const setStateEvents = ({ components, data }) => {
       console.log('current overlay', currentOverlay);
       const {
         atlas,
+        layout,
       } = components;
+
+      layout
+        .config({
+          overlayOn: currentOverlay !== null,
+        })
+        .updateOverlay();
 
       atlas
         .config({
@@ -240,6 +255,7 @@ const setStateEvents = ({ components, data }) => {
       } = this.props();
       const {
         footer,
+        atlas,
       } = components;
 
       footer
@@ -248,7 +264,11 @@ const setStateEvents = ({ components, data }) => {
           rasterData: this.getAvailableRasters(data),
         })
         .updateRasterData();
-      // .updateFooterView();
+
+      atlas
+        .config({
+          rasterData: this.getAvailableRasters(data),
+        });
     },
     allRasterOpen() {
       const {

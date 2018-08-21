@@ -1,58 +1,52 @@
-const searchMethods = ({ privateProps }) => ({
-  listenForText() {
-    const {
-      searchInput,
-      onTextInput,
-    } = privateProps.get(this);
-
+const searchMethods = {
+  listenForText({
+    searchInput,
+    onTextInput,
+  }) {
     searchInput.on('input', function getValue() {
       const val = d3.select(this).node().value;
 
       onTextInput(val);
     });
   },
-  clearResults() {
-    const {
-      resultRowContainer,
-    } = privateProps.get(this);
-
+  clearResults(resultRowContainer) {
     if (resultRowContainer === undefined) return;
     resultRowContainer.remove();
   },
-  drawResultRowContainer() {
-    const props = privateProps.get(this);
-    const {
-      resultsContainer,
-
-    } = props;
-    const resultRowContainer = resultsContainer.append('div')
+  drawResultRowContainer({ resultsContainer }) {
+    return resultsContainer.append('div')
       .attr('class', 'sidebar__results-rows');
-    props.resultRowContainer = resultRowContainer;
   },
-  drawTextSearchResults() {
-    const props = privateProps.get(this);
-    const {
-      resultRowContainer,
-      results,
-      onFeatureClick,
-    } = props;
+  drawTextSearchResults({
+    resultRowContainer,
+    results,
+    onFeatureClick,
+  }) {
+    console.log('results', results);
+    // raster results
+    resultRowContainer
+      .selectAll('.sidebar__raster-results-row')
+      .data(results.raster, d => d.SS_ID)
+      .enter()
+      .append('div')
+      .attr('class', 'sidebar__raster-results-row')
+      .text(d => d.Title);
 
+    // non-raster results
     resultRowContainer
       .selectAll('.sidebar__results-row')
-      .data(results)
+      .data(results.nonRaster, d => d.id)
       .enter()
       .append('div')
       .attr('class', 'sidebar__results-row')
       .on('click', onFeatureClick)
       .text(d => d.properties.Name);
   },
-  drawClickSearchResults() {
-    const props = privateProps.get(this);
-    const {
-      resultRowContainer,
-      results,
-      onFeatureClick,
-    } = props;
+  drawClickSearchResults({
+    resultRowContainer,
+    results,
+    onFeatureClick,
+  }) {
     // console.log('results', results);
     const groups = resultRowContainer.selectAll('.sidebar__results-group')
       .data(results)
@@ -78,6 +72,16 @@ const searchMethods = ({ privateProps }) => ({
         .text(dd => (dd.properties.Name === '' ? dd.properties.SubType : dd.properties.Name));
     });
   },
-});
+  setSearchReturnListener({
+    searchReturnContainer,
+    textSearchReturnButton,
+    callback,
+  }) {
+    searchReturnContainer
+      .on('click', callback);
+    textSearchReturnButton
+      .on('click', callback);
+  },
+};
 
 export default searchMethods;

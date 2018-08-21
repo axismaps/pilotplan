@@ -1,4 +1,4 @@
-import getSearchMethods from './sidebarSearch';
+import searchMethods from './sidebarSearch';
 
 const privateProps = new WeakMap();
 
@@ -19,6 +19,20 @@ const privateMethods = {
     listenForText.call(this);
     setSearchReturnListener.call(this);
   },
+  listenForText() {
+    const {
+      searchInput,
+      onTextInput,
+    } = privateProps.get(this);
+    const {
+      listenForText,
+    } = searchMethods;
+
+    listenForText({
+      searchInput,
+      onTextInput,
+    });
+  },
   setSearchReturnListener() {
     const props = privateProps.get(this);
     const {
@@ -27,18 +41,18 @@ const privateMethods = {
       searchInput,
     } = props;
 
-    searchReturnContainer
-      .on('click', () => {
+    const { setSearchReturnListener } = searchMethods;
+
+    setSearchReturnListener({
+      searchReturnContainer,
+      textSearchReturnButton,
+      searchInput,
+      callback: () => {
         props.view = 'legend';
         searchInput.node().value = '';
         this.updateResults();
-      });
-    textSearchReturnButton
-      .on('click', () => {
-        props.view = 'legend';
-        searchInput.node().value = '';
-        this.updateResults();
-      });
+      },
+    });
   },
   drawLayerGroups() {
     const props = privateProps.get(this);
@@ -159,11 +173,6 @@ const privateMethods = {
 
 };
 
-Object.assign(
-  privateMethods,
-  getSearchMethods({ privateMethods, privateProps }),
-);
-
 class Sidebar {
   constructor(config) {
     const {
@@ -244,28 +253,46 @@ class Sidebar {
     const {
       view,
       previousView,
+      resultsContainer,
+      results,
+      onFeatureClick,
+      // resultRowContainer,
     } = props;
     const {
       setView,
+    } = privateMethods;
+
+    const {
       clearResults,
       drawTextSearchResults,
       drawClickSearchResults,
       drawResultRowContainer,
-    } = privateMethods;
+    } = searchMethods;
 
     // console.log('update?', checkNeedsUpdate.call(this));
     if (previousView === 'legend' && view === 'legend') return;
 
     setView.call(this);
     // use enter/exit instead of this
-    clearResults.call(this);
-    drawResultRowContainer.call(this);
+    clearResults(props.resultRowContainer);
+
+    const resultRowContainer = drawResultRowContainer({ resultsContainer });
+
     if (view === 'textSearch') {
-      drawTextSearchResults.call(this);
+      drawTextSearchResults({
+        resultRowContainer,
+        results,
+        onFeatureClick,
+      });
     } else if (view === 'clickSearch' || view === 'areaSearch') {
-      drawClickSearchResults.call(this);
+      drawClickSearchResults({
+        resultRowContainer,
+        results,
+        onFeatureClick,
+      });
     }
     props.previousView = view;
+    props.resultRowContainer = resultRowContainer;
   }
 }
 

@@ -1,3 +1,5 @@
+import { selections } from './config';
+
 const privateProps = new WeakMap();
 const privateMethods = {
   initAreaButton() {
@@ -8,22 +10,29 @@ const privateMethods = {
 
     areaSearchButton.on('click', onAreaButtonClick);
   },
-  updateFooter({ container, footerOpen }) {
-    container.classed('footer-open', footerOpen);
+  updateFooter({ outerContainer, footerOpen }) {
+    outerContainer.classed('footer-open', footerOpen);
   },
 };
 
 class Layout {
   constructor(config) {
+    const {
+      outerContainer,
+      areaSearchButton,
+      probeButtonsContainer,
+    } = selections;
+
     privateProps.set(this, {
       sidebarOpen: false,
       footerOpen: true,
       areaSearching: false,
-      container: d3.select('.outer-container'),
-      areaSearchButton: d3.select('.area-button'),
-      probeButtonsContainer: d3.select('.probe-buttons-container'),
+      overlay: false,
       onAreaButtonClick: null,
       areaSearchActive: null,
+      outerContainer,
+      areaSearchButton,
+      probeButtonsContainer,
     });
     const {
       initAreaButton,
@@ -34,27 +43,36 @@ class Layout {
     this.updateSidebar();
     this.updateFooter();
     this.updateAllRaster();
+    this.updateOverlay();
   }
   config(config) {
     Object.assign(privateProps.get(this), config);
     return this;
   }
+  updateOverlay() {
+    const {
+      outerContainer,
+      overlayOn,
+    } = privateProps.get(this);
+
+    outerContainer.classed('overlay-on', overlayOn);
+  }
   updateSidebar() {
     const {
-      container,
+      outerContainer,
       sidebarOpen,
     } = privateProps.get(this);
 
-    container.classed('sidebar-open', sidebarOpen);
+    outerContainer.classed('sidebar-open', sidebarOpen);
   }
   updateFooter() {
     const {
-      container,
+      outerContainer,
       footerOpen,
     } = privateProps.get(this);
     const { updateFooter } = privateMethods;
 
-    updateFooter({ container, footerOpen });
+    updateFooter({ outerContainer, footerOpen });
   }
   updateAreaSearch() {
     console.log('layout area', privateProps.get(this).areaSearchActive);
@@ -67,10 +85,10 @@ class Layout {
   updateAllRaster() {
     const {
       allRasterOpen,
-      container,
+      outerContainer,
     } = privateProps.get(this);
 
-    container.classed('allraster-open', allRasterOpen);
+    outerContainer.classed('allraster-open', allRasterOpen);
   }
 }
 

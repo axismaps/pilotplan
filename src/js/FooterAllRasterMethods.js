@@ -1,10 +1,10 @@
-import footerMethods from './footerMethods';
+import rasterMethods from './rasterMethods';
 import { footerCategoryIcons } from './config';
 
 const {
   setEachRasterBackground,
   getRasterDataByCategory,
-} = footerMethods;
+} = rasterMethods;
 
 const allRasterMethods = {
   setAllRasterBackgroundClick({

@@ -1,7 +1,8 @@
 
 import getSearchMethods from './atlasSearch';
 import getHighlightMethods from './atlasHighlight';
-
+import { selections } from './config';
+import rasterMethods from './rasterMethods';
 
 const privateProps = new WeakMap();
 
@@ -150,12 +151,16 @@ Object.assign(
 class Atlas {
   constructor(config) {
     const {
+      mapContainer,
+    } = selections;
+    const {
       createMBMap,
     } = privateMethods;
 
     privateProps.set(this, {
+      mapContainer,
       areaSearchActive: null,
-      mapContainer: d3.select('#map'),
+
       highlightedFeature: null,
       currentLayers: null,
       currentOverlay: null,
@@ -230,13 +235,17 @@ class Atlas {
       }
     });
   }
-  textSearch(val) {
+  textSearch(value) {
     const {
       mbMap,
+      rasterData,
       // sourceLayers,
+      // cachedMetadata,
       year,
     } = privateProps.get(this);
+    const { getFlattenedRasterData } = rasterMethods;
 
+    const flattenedRasterData = getFlattenedRasterData({ rasterData });
     // const results = sourceLayers.reduce((accumulator, sourceLayer) => {
     //   const result = mbMap.querySourceFeatures('composite', {
     //     sourceLayer,
@@ -249,17 +258,31 @@ class Atlas {
     //   });
     //   return [...accumulator, ...result];
     // }, []);
-    const results = mbMap.queryRenderedFeatures({
+    const renderedFeatures = mbMap.queryRenderedFeatures({
       filter: [
         'all',
         ['<=', 'FirstYear', year],
         ['>=', 'LastYear', year],
       ],
     });
+    console.log('renderedFeatures', renderedFeatures);
+    // console.log('rasters', flattenedRasterData);
 
-    const filtered = results
-      .filter(d => d.properties.Name.toLowerCase().includes(val.toLowerCase()));
-    return filtered;
+    const rasterResults = flattenedRasterData
+      .filter(d => d.Title.toLowerCase().includes(value.toLowerCase()));
+
+    // console.log('raster results', rasterResults);
+
+    const nonRasterResults = renderedFeatures
+      .filter(d => !Object.prototype.hasOwnProperty.call(d.properties, 'SS_ID'))
+
+      .filter(d => d.properties.Name.toLowerCase().includes(value.toLowerCase()));
+    console.log('nonrasterresults', nonRasterResults);
+    return {
+      raster: rasterResults,
+      nonRaster: nonRasterResults,
+    };
+    // return [...rasterResults, ...nonRasterResults];
   }
   updateAreaSearch() {
     const {

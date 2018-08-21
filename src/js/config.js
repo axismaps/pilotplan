@@ -40,3 +40,23 @@ export const footerCategoryIcons = {
   plans: 'icon-tsquare',
 };
 
+export const selections = {
+  outerContainer: d3.select('.outer-container'),
+  areaSearchButton: d3.select('.area-button'),
+  probeButtonsContainer: d3.select('.probe-buttons-container'),
+
+  categoriesContainer: d3.select('.footer__categories'),
+  imagesContainer: d3.select('.footer__images'),
+  showAllContainer: d3.select('.footer__show-all'),
+  allRasterOuterContainer: d3.select('.allraster__outer'),
+  allRasterInnerContainer: d3.select('.allraster__inner'),
+  allRasterContentContainer: d3.select('.allraster__content'),
+
+  mapContainer: d3.select('#map'),
+
+  timelineContainer: d3.select('.timeline-container'),
+  sliderContainer: d3.select('.timeline-slider-container'),
+  stepperTextContainer: d3.select('.timeline-stepper__year'),
+  stepperLeftButton: d3.select('.timeline-stepper__left'),
+  stepperRightButton: d3.select('.timeline-stepper__right'),
+};
