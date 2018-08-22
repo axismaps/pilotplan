@@ -47,7 +47,6 @@ const privateMethods = {
 
     const {
       drawRasters,
-      getRasterDataByCategory,
     } = methods;
 
 

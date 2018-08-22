@@ -44,6 +44,7 @@ export const selections = {
   outerContainer: d3.select('.outer-container'),
   areaSearchButton: d3.select('.area-button'),
   probeButtonsContainer: d3.select('.probe-buttons-container'),
+  overlayButtonContainer: d3.select('.overlay-button'),
 
   categoriesContainer: d3.select('.footer__categories'),
   imagesContainer: d3.select('.footer__images'),
@@ -59,4 +60,10 @@ export const selections = {
   stepperTextContainer: d3.select('.timeline-stepper__year'),
   stepperLeftButton: d3.select('.timeline-stepper__left'),
   stepperRightButton: d3.select('.timeline-stepper__right'),
+
+  rasterProbeContainer: d3.select('.raster-probee'),
+  rasterProbeTitleContainer: d3.select('.raster-probe__title-text'),
+  rasterProbeImageContainer: d3.select('.raster-probe__image'),
+  rasterProbeOverlayControlContainer: d3.select('.raster-probe__overlay-controls'),
+  rasterProbeCloseButton: d3.select('.raster-probe__close-button'),
 };

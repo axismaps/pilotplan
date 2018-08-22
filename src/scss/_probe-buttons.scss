@@ -17,6 +17,28 @@
   margin-left: 15px;
 }
 
+.raster-probe {
+  border-radius: 5px;
+  box-shadow: $button-shadow;
+  background: $main-background;
+  color: white;
+}
+
+.raster-probe__inner {
+  padding: 15px;
+}
+
+.raster-probe__title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.raster-probe__close-button {
+  cursor: pointer;
+}
+
 .area-button {
   display: flex;
 }

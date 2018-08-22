@@ -10,6 +10,15 @@ const privateMethods = {
 
     areaSearchButton.on('click', onAreaButtonClick);
   },
+  initOverlayButton() {
+    const {
+      overlayButtonContainer,
+      onOverlayButtonClick,
+    } = privateProps.get(this);
+
+    overlayButtonContainer
+      .on('click', onOverlayButtonClick);
+  },
   updateFooter({ outerContainer, footerOpen }) {
     outerContainer.classed('footer-open', footerOpen);
   },
@@ -21,6 +30,7 @@ class Layout {
       outerContainer,
       areaSearchButton,
       probeButtonsContainer,
+      overlayButtonContainer,
     } = selections;
 
     privateProps.set(this, {
@@ -30,31 +40,53 @@ class Layout {
       overlay: false,
       onAreaButtonClick: null,
       areaSearchActive: null,
+      onOverlayButtonClick: null,
       outerContainer,
       areaSearchButton,
       probeButtonsContainer,
+      overlayButtonContainer,
     });
     const {
       initAreaButton,
+      initOverlayButton,
     } = privateMethods;
+
     this.config(config);
 
     initAreaButton.call(this);
+    initOverlayButton.call(this);
+
     this.updateSidebar();
     this.updateFooter();
     this.updateAllRaster();
     this.updateOverlay();
+    // this.updateView();
+    this.updateRasterProbe();
   }
   config(config) {
     Object.assign(privateProps.get(this), config);
     return this;
   }
+  updateRasterProbe() {
+    const {
+      outerContainer,
+      rasterProbeOpen,
+    } = privateProps.get(this);
+
+    outerContainer.classed('raster-probe-on', rasterProbeOpen);
+  }
+  // updateView() {
+  //   const {
+  //     outerContainer,
+  //     viewOn,
+  //   } = privateProps.get(this);
+  // }
   updateOverlay() {
     const {
       outerContainer,
       overlayOn,
     } = privateProps.get(this);
-
+    console.log('update overlay', overlayOn);
     outerContainer.classed('overlay-on', overlayOn);
   }
   updateSidebar() {

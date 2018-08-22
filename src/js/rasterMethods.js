@@ -11,6 +11,12 @@ const rasterMethods = {
       width: maxDim,
     };
   },
+  getWidthLimitedDim({ width, height, maxWidth }) {
+    return {
+      width: maxWidth,
+      height: height * (maxWidth / width),
+    };
+  },
   getImageUrl({ scaledDim, metadata }) {
     const { width, height } = scaledDim;
     const { imageServer, imageUrl } = metadata;
@@ -32,20 +38,29 @@ const rasterMethods = {
         'background-size': 'cover',
       });
   },
-  setBackgroundFromAPI({ metadata, maxDim, selection }) {
+  setBackgroundFromMetadata({
+    metadata, maxDim, maxWidth, selection,
+  }) {
     const {
       getScaledCircleDim,
       getImageUrl,
       setRasterBackground,
+      getWidthLimitedDim,
     } = rasterMethods;
 
     const { width, height } = metadata;
 
-    const scaledDim = getScaledCircleDim({
-      width,
-      height,
-      maxDim,
-    });
+    const scaledDim = maxDim !== undefined ?
+      getScaledCircleDim({
+        width,
+        height,
+        maxDim,
+      }) :
+      getWidthLimitedDim({
+        width,
+        height,
+        maxWidth,
+      });
 
     const url = getImageUrl({
       scaledDim,
@@ -63,7 +78,7 @@ const rasterMethods = {
   }) {
     const {
       getMetadata,
-      setBackgroundFromAPI,
+      setBackgroundFromMetadata,
     } = rasterMethods;
     let maxDim;
     images.each(function addData(d, i) {
@@ -73,7 +88,7 @@ const rasterMethods = {
       const selection = d3.select(this);
       if (cachedMetadata.has(d.SS_ID)) {
         const metadata = cachedMetadata.get(d.SS_ID);
-        setBackgroundFromAPI({
+        setBackgroundFromMetadata({
           metadata,
           maxDim,
           selection,
@@ -81,7 +96,7 @@ const rasterMethods = {
       } else {
         getMetadata(d, (metadata) => {
           cachedMetadata.set(d.SS_ID, metadata);
-          setBackgroundFromAPI({
+          setBackgroundFromMetadata({
             metadata,
             maxDim,
             selection,

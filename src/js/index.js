@@ -73,13 +73,17 @@ const app = {
 
     this.components.layout = new Layout({
       overlayOn: state.get('currentOverlay') !== null,
+      rasterProbeOpen: state.get('currentRasterProbe' !== null),
       sidebarOpen: state.get('sidebarOpen'),
       footerOpen: state.get('footerOpen'),
       allRasterOpen: state.get('allRasterOpen'),
       areaSearchActive: state.get('areaSearchActive'),
-      onAreaButtonClick: () => {
+      onAreaButtonClick() {
         const areaSearchActive = !state.get('areaSearchActive');
         state.update({ areaSearchActive });
+      },
+      onOverlayButtonClick() {
+        state.update({ currentRasterProbe: state.get('currentOverlay') });
       },
     });
 
@@ -88,16 +92,28 @@ const app = {
       if (rasterData.type === 'overlay') {
         const currentOverlay = state.get('currentOverlay');
         if (getId(currentOverlay) === getId(rasterData)) {
-          state.update({ currentOverlay: null });
+          state.update({
+            currentOverlay: null,
+            currentRasterProbe: null,
+          });
         } else {
-          state.update({ currentOverlay: rasterData });
+          state.update({
+            currentOverlay: rasterData,
+            currentRasterProbe: rasterData,
+          });
         }
       } else if (rasterData.type === 'view') {
         const currentView = state.get('currentView');
         if (getId(currentView) === getId(rasterData)) {
-          state.update({ currentView: null });
+          state.update({
+            currentView: null,
+            currentRasterProbe: null,
+          });
         } else {
-          state.update({ currentView: rasterData });
+          state.update({
+            currentView: rasterData,
+            currentRasterProbe: rasterData,
+          });
         }
       }
     };
@@ -107,6 +123,23 @@ const app = {
       cachedMetadata: this.cachedMetadata,
       currentView: state.get('currentView'),
       currentOverlay: state.get('currentOverlay'),
+      onCloseClick() {
+        // console.log('close click');
+        const currentRasterProbe = state.get('currentRasterProbe');
+        const { type } = currentRasterProbe;
+
+        if (type === 'view') {
+          state.update({
+            currentView: null,
+            currentRasterProbe: null,
+          });
+        } else if (type === 'overlay') {
+          state.update({
+            currentRasterProbe: null,
+          });
+        }
+        // console.log('rasterprobe', currentRasterProbe);
+      },
     });
 
 

@@ -27,11 +27,20 @@ body {
   width: 100%;
 }
 
+.raster-probe,
 .probe-buttons-container {
   position: absolute;
   right: $probe-buttons-right;
   top: $probe-buttons-top;
+}
+
+.probe-buttons-container {
   height: $probe-buttons-height;
+}
+
+.raster-probe {
+  display: none;
+  width: $raster-probe-width;
 }
 
 .overlay-button {
@@ -164,5 +173,15 @@ body {
 .outer-container.overlay-on {
   .overlay-button {
     display: flex;
+  }
+
+  .raster-probe__overlay-controls {
+    display: block;
+  }
+}
+
+.outer-container.raster-probe-on {
+  .raster-probe {
+    display: block;
   }
 }

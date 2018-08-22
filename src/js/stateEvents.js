@@ -244,10 +244,44 @@ const setStateEvents = ({ components, data }) => {
         .updateOverlay();
     },
     currentView() {
+      // update atlas here
+
+      // const {
+      //   currentView,
+      // } = this.props();
+
+      // const {
+      //   rasterProbe,
+      // } = components;
+
+      // rasterProbe
+      //   .config({
+      //     currentView,
+      //   })
+      //   .updateView();
+      // console.log('current view', currentView);
+    },
+    currentRasterProbe() {
       const {
-        currentView,
+        currentRasterProbe,
       } = this.props();
-      console.log('current view', currentView);
+
+      const {
+        layout,
+        rasterProbe,
+      } = components;
+
+      layout
+        .config({
+          rasterProbeOpen: currentRasterProbe !== null,
+        })
+        .updateRasterProbe();
+
+      rasterProbe
+        .config({
+          currentRasterProbe,
+        })
+        .update();
     },
     footerView() {
       const {

@@ -15,6 +15,7 @@ const getState = function getState() {
     currentLayers: null,
     currentOverlay: null,
     currentView: null,
+    currentRasterProbe: null,
     highlightedLayer: null,
     highlightedFeature: null,
     language: 'en',
