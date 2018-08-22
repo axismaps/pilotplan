@@ -39,7 +39,6 @@ const footerMethods = {
     categoriesContainer,
     onCategoryClick,
   }) {
-    console.log('categories', rasterCategories);
     return categoriesContainer
       .selectAll('.footer__category')
       .data(rasterCategories)

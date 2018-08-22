@@ -1,11 +1,12 @@
 .probe-buttons-container {
-  
+  display: flex;
+  align-items: center;
 }
 
+.overlay-button,
 .area-button {
   background: $main-background;
   color: white;
-  display: flex;
   align-items: center;
   border-radius: 5px;
   cursor: pointer;
@@ -13,6 +14,11 @@
   height: 100%;
   padding-left: 15px;
   padding-right: 15px;
+  margin-left: 15px;
+}
+
+.area-button {
+  display: flex;
 }
 
 .probe-buttons-container--area-search {

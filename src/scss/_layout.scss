@@ -34,6 +34,10 @@ body {
   height: $probe-buttons-height;
 }
 
+.overlay-button {
+  display: none;
+}
+
 
 #map {
   position: absolute;
@@ -158,5 +162,7 @@ body {
 }
 
 .outer-container.overlay-on {
-  
+  .overlay-button {
+    display: flex;
+  }
 }
