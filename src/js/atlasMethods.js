@@ -92,6 +92,24 @@ const atlasMethods = {
     styleCopy.layers = styleCopy.layers.map(layer => getLayerStyle({ layer, year }));
     mbMap.setStyle(styleCopy);
   },
+  getMapLayers(mbMap) {
+    return mbMap
+      .getStyle()
+      .layers
+      .map(d => mbMap.getLayer(d.id));
+  },
+  getSourceLayers(mbMap) {
+    const sources = mbMap
+      .getStyle()
+      .layers
+      .map(d => d['source-layer'])
+      .filter(d => d !== undefined);
+
+    return [...new Set(sources)];
+  },
+  getAllFeatures() {
+
+  },
 };
 
 export default atlasMethods;

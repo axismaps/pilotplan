@@ -26,21 +26,21 @@ const searchMethods = {
     // raster results
     resultRowContainer
       .selectAll('.sidebar__raster-results-row')
-      .data(results.raster, d => d.SS_ID)
+      .data(results, d => d.SS_ID)
       .enter()
       .append('div')
       .attr('class', 'sidebar__raster-results-row')
       .text(d => d.Title);
 
     // non-raster results
-    resultRowContainer
-      .selectAll('.sidebar__results-row')
-      .data(results.nonRaster, d => d.id)
-      .enter()
-      .append('div')
-      .attr('class', 'sidebar__results-row')
-      .on('click', onFeatureClick)
-      .text(d => d.properties.Name);
+    // resultRowContainer
+    //   .selectAll('.sidebar__results-row')
+    //   .data(results, d => d.id)
+    //   .enter()
+    //   .append('div')
+    //   .attr('class', 'sidebar__results-row')
+    //   .on('click', onFeatureClick)
+    //   .text(d => d.properties.Name);
   },
   drawClickSearchResults({
     resultRowContainer,

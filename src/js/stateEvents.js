@@ -127,16 +127,20 @@ const setStateEvents = ({ components, data }) => {
           })
           .updateResults();
       } else {
-        const results = atlas.textSearch(textSearch);
+        const searchResults = atlas.textSearch(textSearch);
+        const { raster, nonRaster } = searchResults;
+        const formattedResults = {
+          raster,
+          nonRaster: utils.formatResults(nonRaster),
+        };
+        // console.log('format text', utils.formatResults(results.nonRaster));
 
         sidebar
           .config({
-            results,
+            results: formattedResults,
             view: 'textSearch',
           })
           .updateResults();
-
-        // console.log('results', results);
       }
     },
     clickSearch() {
@@ -186,10 +190,6 @@ const setStateEvents = ({ components, data }) => {
         sidebar,
       } = components;
       console.log('area', areaSearch);
-      // console.log('formatted', utils.formatResults(areaSearch));
-
-      // layout.config({ });
-
 
       sidebar
         .config({
@@ -224,7 +224,6 @@ const setStateEvents = ({ components, data }) => {
         currentOverlay,
       } = this.props();
 
-      console.log('current overlay', currentOverlay);
       const {
         atlas,
         layout,

@@ -86,7 +86,7 @@ class Layout {
       outerContainer,
       overlayOn,
     } = privateProps.get(this);
-    console.log('update overlay', overlayOn);
+
     outerContainer.classed('overlay-on', overlayOn);
   }
   updateSidebar() {

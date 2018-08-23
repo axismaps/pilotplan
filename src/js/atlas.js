@@ -175,7 +175,6 @@ class Atlas {
     const { layers } = mbMap.getStyle();
 
     layers.forEach((layer) => {
-      // console.log(allCurrentFeatureIds);
       const visible = mbMap.getLayoutProperty(layer.id, 'visibility') === 'visible';
       const currentLayer = currentLayers
         .find(d => d.id === layer['source-layer']);
@@ -193,50 +192,55 @@ class Atlas {
     const {
       mbMap,
       rasterData,
-      // sourceLayers,
-      // cachedMetadata,
       year,
     } = privateProps.get(this);
+
+    const { getSourceLayers } = generalMethods;
+
     const { getFlattenedRasterData } = rasterMethods;
 
     const flattenedRasterData = getFlattenedRasterData({ rasterData });
-    // const results = sourceLayers.reduce((accumulator, sourceLayer) => {
-    //   const result = mbMap.querySourceFeatures('composite', {
-    //     sourceLayer,
-    //     filter: [
-    //       'all',
-    //       ['<=', 'FirstYear', year],
-    //       ['>=', 'LastYear', year],
-    //       // ['match', 'Name', val],
-    //     ],
-    //   });
-    //   return [...accumulator, ...result];
-    // }, []);
-    const renderedFeatures = mbMap.queryRenderedFeatures({
-      filter: [
-        'all',
-        ['<=', 'FirstYear', year],
-        ['>=', 'LastYear', year],
-      ],
-    });
-    console.log('renderedFeatures', renderedFeatures);
-    // console.log('rasters', flattenedRasterData);
+
+    const sourceLayers = getSourceLayers(mbMap);
+
+    const queriedFeatures = sourceLayers.reduce((accumulator, sourceLayer) => {
+      const results = mbMap.querySourceFeatures('composite', {
+        sourceLayer,
+        filter: [
+          'all',
+          ['<=', 'FirstYear', year],
+          ['>=', 'LastYear', year],
+          // ['match', 'Name', val],
+        ],
+      });
+
+      const resultsWithSource = results.map((d) => {
+        const record = Object.assign({}, d, { sourceLayer });
+        return record;
+      });
+      return [...accumulator, ...resultsWithSource];
+    }, []);
+
+    // const renderedFeatures = mbMap.queryRenderedFeatures({
+    //   filter: [
+    //     'all',
+    //     ['<=', 'FirstYear', year],
+    //     ['>=', 'LastYear', year],
+    //   ],
+    // });
 
     const rasterResults = flattenedRasterData
       .filter(d => d.Title.toLowerCase().includes(value.toLowerCase()));
 
-    // console.log('raster results', rasterResults);
-
-    const nonRasterResults = renderedFeatures
+    const nonRasterResults = queriedFeatures
       .filter(d => !Object.prototype.hasOwnProperty.call(d.properties, 'SS_ID') &&
       Object.prototype.hasOwnProperty.call(d.properties, 'Name'))
       .filter(d => d.properties.Name.toLowerCase().includes(value.toLowerCase()));
-    console.log('nonrasterresults', nonRasterResults);
+
     return {
       raster: rasterResults,
       nonRaster: nonRasterResults,
     };
-    // return [...rasterResults, ...nonRasterResults];
   }
   updateAreaSearch() {
     const {

@@ -277,11 +277,17 @@ class Sidebar {
     clearResults(props.resultRowContainer);
 
     const resultRowContainer = drawResultRowContainer({ resultsContainer });
-
+    console.log('result', results);
     if (view === 'textSearch') {
       drawTextSearchResults({
         resultRowContainer,
-        results,
+        results: results.raster,
+        onFeatureClick,
+      });
+
+      drawClickSearchResults({
+        resultRowContainer,
+        results: results.nonRaster,
         onFeatureClick,
       });
     } else if (view === 'clickSearch' || view === 'areaSearch') {
