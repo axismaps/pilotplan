@@ -1,93 +1,40 @@
 
-import getSearchMethods from './atlasSearch';
-import getHighlightMethods from './atlasHighlight';
+// import getSearchMethods from './atlasSearch';
 import { selections } from './config';
 import rasterMethods from './rasterMethods';
+import clickSearchMethods from './atlasClickSearchMethods';
+import getAreaSearchMethods from './atlasAreaSearchMethods';
+import highlightMethods from './atlasHighlightMethods';
+import generalMethods from './atlasMethods';
 
 const privateProps = new WeakMap();
 
-const utils = {
-  getLayerStyle({ layer, year }) {
-    if (!('filter' in layer)) return layer;
-    layer.filter = layer.filter.map((f) => {
-      if (f[0] === 'all') {
-        return f.map((dd, i) => {
-          if (i === 0) return dd;
-          const copyFilter = [...dd];
-          if (copyFilter[1] === 'FirstYear' || copyFilter[1] === 'LastYear') {
-            copyFilter[2] = year;
-          }
-          return copyFilter;
-        });
-      }
-      return f;
-    });
-    return layer;
-  },
-
-};
 
 const privateMethods = {
-  createMBMap(init) {
+  createMBMap(initApp) {
     const props = privateProps.get(this);
 
     const {
-      onLoad,
       year,
       viewshedsGeo,
     } = props;
 
-    const { getLayerStyle } = utils;
-
-    mapboxgl.accessToken = 'pk.eyJ1IjoiYXhpc21hcHMiLCJhIjoieUlmVFRmRSJ9.CpIxovz1TUWe_ecNLFuHNg';
+    const {
+      getCurrentStyle,
+      getMap,
+    } = generalMethods;
 
     d3.json('./data/style.json')
       .then((style) => {
-        const styleCopy = JSON.parse(JSON.stringify(style));
-        styleCopy.layers = styleCopy.layers.map(layer => getLayerStyle({ layer, year }));
+        const mbMap = getMap({
+          initApp,
+          viewshedsGeo,
+          style: getCurrentStyle({ style, year }),
+        });
 
-        props.mbMap = new mapboxgl.Map({
-          container: 'map',
-          style: styleCopy,
-        })
-          .on('load', () => {
-            init();
-            onLoad();
-          })
-          .on('mouseover', 'viewconespoint', (d) => {
-            console.log('point', d);
+        const canvas = mbMap.getCanvasContainer();
 
-            const coneFeature = viewshedsGeo.features.find(cone =>
-              cone.properties.SS_ID === d.features[0].properties.SS_ID);
-            console.log('cone', coneFeature);
-            const existingSource = props.mbMap.getSource('viewshed');
-            if (existingSource === undefined) {
-              props.mbMap.addSource('viewshed', {
-                type: 'geojson',
-                data: coneFeature,
-              });
-            } else {
-              existingSource.setData(coneFeature);
-            }
-            props.mbMap.addLayer({
-              id: 'viewshed-feature',
-              type: 'fill',
-              source: 'viewshed',
-              layout: {},
-              paint: {
-                'fill-color': 'black',
-                'fill-opacity': 0.5,
-              },
-            });
-            // get geojson
-            // add to map as source
-            // add to map as layer
-          })
-          .on('mouseout', 'viewconespoint', () => {
-            props.mbMap.removeLayer('viewshed-feature');
-          });
-
-        props.canvas = props.mbMap.getCanvasContainer();
+        Object.assign(props, { mbMap, canvas });
       });
   },
   updateYear() {
@@ -95,29 +42,18 @@ const privateMethods = {
       year,
       mbMap,
     } = privateProps.get(this);
-    const {
-      getLayerStyle,
-    } = utils;
 
-    const styleCopy = JSON.parse(JSON.stringify(mbMap.getStyle()));
-    styleCopy.layers = styleCopy.layers.map(layer => getLayerStyle({ layer, year }));
+    const {
+      getCurrentStyleFromMap,
+    } = generalMethods;
+
+    const styleCopy = getCurrentStyleFromMap({
+      year,
+      mbMap,
+    });
+
     mbMap.setStyle(styleCopy);
   },
-  setLayers() {
-    const props = privateProps.get(this);
-    const { mbMap } = props;
-
-    const layers = mbMap
-      .getStyle().layers
-      .map(d => mbMap.getLayer(d.id));
-
-    const sourceLayers = new Set(layers
-      .filter(d => d.sourceLayer !== undefined).map(d => d.sourceLayer));
-
-    props.layers = layers;
-    props.sourceLayers = [...sourceLayers];
-  },
-
   addRaster() {
     const {
       mbMap,
@@ -130,23 +66,44 @@ const privateMethods = {
         url: 'mapbox://axismaps.pilot15584775',
       },
     );
+  },
+  setClickSearch() {
+    const props = privateProps.get(this);
+    const {
+      onClickSearch,
+      mbMap,
+    } = props;
+    const { getClickSearch } = clickSearchMethods;
 
-    // mbMap.addLayer({
-    //   id: 'overlay-layer',
-    //   type: 'raster',
-    //   source: 'overlaytest',
-    // });
+    props.clickSearch = getClickSearch({
+      onClickSearch,
+      getYear: () => props.year,
+      mbMap,
+    });
+  },
+  setAreaSearch() {
+    const props = privateProps.get(this);
+    const {
+      canvas,
+      mbMap,
+      onAreaSearch,
+    } = props;
 
-    // console.log('raster', mbMap.getLayer('overlay-layer'));
+    const areaSearchMethods = getAreaSearchMethods({
+      getAreaSearchActive: () => props.areaSearchActive,
+      canvas,
+      mbMap,
+      onAreaSearch,
+      getYear: () => props.year,
+    });
+
+    const {
+      onMouseDown,
+    } = areaSearchMethods;
+
+    canvas.addEventListener('mousedown', onMouseDown, true);
   },
 };
-
-Object.assign(
-  privateMethods,
-  getSearchMethods({ privateMethods, privateProps }),
-  getHighlightMethods({ privateMethods, privateProps }),
-);
-
 
 class Atlas {
   constructor(config) {
@@ -173,16 +130,17 @@ class Atlas {
   }
   init() {
     const {
-      setLayers,
       setClickSearch,
-      initAreaMethods,
-      initAreaSearchListener,
+      setAreaSearch,
       addRaster,
     } = privateMethods;
-    setLayers.call(this);
+    const {
+      onLoad,
+    } = privateProps.get(this);
+
+    onLoad();
     setClickSearch.call(this);
-    initAreaMethods.call(this);
-    initAreaSearchListener.call(this);
+    setAreaSearch.call(this);
     addRaster.call(this);
 
     this.updateCurrentLayers();
@@ -202,10 +160,6 @@ class Atlas {
   getMap() {
     const { mbMap } = privateProps.get(this);
     return mbMap;
-  }
-  getLayers() {
-    const { layers } = privateProps.get(this);
-    return layers;
   }
   getRenderedLayers() {
     const { mbMap } = privateProps.get(this);
@@ -274,8 +228,8 @@ class Atlas {
     // console.log('raster results', rasterResults);
 
     const nonRasterResults = renderedFeatures
-      .filter(d => !Object.prototype.hasOwnProperty.call(d.properties, 'SS_ID'))
-
+      .filter(d => !Object.prototype.hasOwnProperty.call(d.properties, 'SS_ID') &&
+      Object.prototype.hasOwnProperty.call(d.properties, 'Name'))
       .filter(d => d.properties.Name.toLowerCase().includes(value.toLowerCase()));
     console.log('nonrasterresults', nonRasterResults);
     return {
@@ -289,17 +243,30 @@ class Atlas {
       areaSearchActive,
       mbMap,
       mapContainer,
+      clickSearch,
     } = privateProps.get(this);
     const {
       initClickSearchListener,
       disableClickSearchListener,
-    } = privateMethods;
-    mapContainer.classed('map--area-search', areaSearchActive);
+      toggleMapAreaSearchMode,
+    } = clickSearchMethods;
+
+    toggleMapAreaSearchMode({
+      mapContainer,
+      areaSearchActive,
+    });
+
     if (areaSearchActive) {
-      disableClickSearchListener.call(this);
+      disableClickSearchListener({
+        mbMap,
+        clickSearch,
+      });
       mbMap.dragPan.disable();
     } else {
-      initClickSearchListener.call(this);
+      initClickSearchListener({
+        mbMap,
+        clickSearch,
+      });
       mbMap.dragPan.enable();
     }
   }
@@ -308,10 +275,20 @@ class Atlas {
     const {
       clearHighlightedFeature,
       drawHighlightedFeature,
-    } = privateMethods;
+    } = highlightMethods;
 
-    clearHighlightedFeature.call(this);
-    drawHighlightedFeature.call(this);
+    const {
+      mbMap,
+      highlightedFeature,
+      year,
+    } = privateProps.get(this);
+
+    clearHighlightedFeature(mbMap);
+    drawHighlightedFeature({
+      highlightedFeature,
+      mbMap,
+      year,
+    });
   }
   updateOverlay() {
     const props = privateProps.get(this);

@@ -11,6 +11,8 @@ import loadData from './dataLoad';
 
 require('../scss/index.scss');
 
+mapboxgl.accessToken = 'pk.eyJ1IjoiYXhpc21hcHMiLCJhIjoieUlmVFRmRSJ9.CpIxovz1TUWe_ecNLFuHNg';
+
 // const components = {};
 // const cachedMetadata = new Map();
 // let data;
@@ -48,6 +50,7 @@ const app = {
         state.update({ clickSearch: features });
       },
       onAreaSearch(features) {
+        console.log('on area search');
         state.update({ areaSearchActive: false, areaSearch: features });
       },
     });

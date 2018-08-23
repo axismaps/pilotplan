@@ -20,6 +20,10 @@
   height: calc(100% - #{$search-input-height});
 }
 
+.sidebar__layer-group-block {
+  margin-bottom: 15px;
+}
+
 .sidebar__layer-group,
 .sidebar__results-group {
   margin-bottom: 15px;

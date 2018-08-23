@@ -1,12 +1,8 @@
 import getBBox from '@turf/bbox';
 import { colors } from './config';
 
-const atlasHighlightMethods = ({ privateProps }) => ({
-  clearHighlightedFeature() {
-    const {
-      mbMap,
-    } = privateProps.get(this);
-
+const atlasHighlightMethods = {
+  clearHighlightedFeature(mbMap) {
     const polyLayers = [
       'highlighted-feature-fill',
       'highlighted-feature-outline-top',
@@ -35,14 +31,11 @@ const atlasHighlightMethods = ({ privateProps }) => ({
       }
     }
   },
-  drawHighlightedFeature() {
-    const {
-      highlightedFeature,
-      mbMap,
-      year,
-    } = privateProps.get(this);
-
-    // console.log('highlighted', highlightedFeature);
+  drawHighlightedFeature({
+    highlightedFeature,
+    mbMap,
+    year,
+  }) {
     const existingHighlighted = mbMap.getSource('highlighted');
 
     if (highlightedFeature === null) return;
@@ -128,6 +121,6 @@ const atlasHighlightMethods = ({ privateProps }) => ({
 
     mbMap.fitBounds(bbox, { padding: 100 });
   },
-});
+};
 
 export default atlasHighlightMethods;

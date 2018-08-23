@@ -29,6 +29,7 @@
     "d3": "^5.5.0",
     "d3-dispatch": "1.0.3",
     "d3-selection-multi": "^1.0.1",
+    "dotenv": "^6.0.0",
     "ejs": "^2.5.7",
     "express": "^4.14.0",
     "express-sslify": "^1.2.0",
