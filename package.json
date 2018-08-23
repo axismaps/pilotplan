@@ -15,7 +15,7 @@
     "raster": "node bin/raster.js",
     "static": "node bin/static.js",
     "style": "node bin/styles.js",
-    "tiles": "for f in data/geojson/geography/*; do tippecanoe -x osm_id -x Shape_Leng -x Shape_Area -x layer -x Date -x Address -x SHAPE_Le1 -x SHAPE_Area -aD -aG -ab -ai -f -o data/tiles/`basename $f .json`.mbtiles $f; mapbox upload axismaps.pilot-`basename $f .json` data/tiles/`basename $f .json`.mbtiles; done",
+    "tiles": "tippecanoe -x osm_id -x Shape_Leng -x Shape_Area -x layer -x Date -x Address -x SHAPE_Le1 -x SHAPE_Area -aD -aG -ab -ai -f -o data/tiles/pilot.mbtiles data/geojson/geography/* && source .env && mapbox upload axismaps.dd66zwg7 data/tiles/pilot.mbtiles",
     "views": "node bin/views.js"
   },
   "author": "",
