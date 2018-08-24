@@ -52,7 +52,6 @@
 }
 
 .sidebar__results-row,
-.sidebar__raster-results-row,
 .sidebar__feature-row {
   padding-left: 15px;
   cursor: pointer;
@@ -64,6 +63,9 @@
   margin-bottom: 5px;
 }
 
+.sidebar__results-row {
+  height: auto;
+}
 
 .sidebar__feature-button {
   background: $main-medium-dark-gray;

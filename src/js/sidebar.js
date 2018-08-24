@@ -1,4 +1,5 @@
 import searchMethods from './sidebarSearch';
+import { selections } from './config';
 
 const privateProps = new WeakMap();
 
@@ -58,10 +59,10 @@ const privateMethods = {
     const props = privateProps.get(this);
     const {
       availableLayers,
-      contentContainer,
+      sidebarContentContainer,
     } = props;
 
-    const groups = contentContainer
+    const groups = sidebarContentContainer
       .selectAll('.sidebar__layer-group-block')
       .data(availableLayers, d => d.group);
 
@@ -84,7 +85,7 @@ const privateMethods = {
   drawLayers() {
     const props = privateProps.get(this);
     const {
-      contentContainer,
+      sidebarContentContainer,
       layerGroups,
       language,
       onLayerClick,
@@ -114,15 +115,15 @@ const privateMethods = {
 
       layers.exit().remove();
     });
-    props.layers = contentContainer.selectAll('.sidebar__layer-row');
-    props.checkBoxes = contentContainer.selectAll('.sidebar__layer-checkbox');
+    props.layers = sidebarContentContainer.selectAll('.sidebar__layer-row');
+    props.checkBoxes = sidebarContentContainer.selectAll('.sidebar__layer-checkbox');
   },
   drawFeatures() {
     const props = privateProps.get(this);
     const {
       layers,
       language,
-      contentContainer,
+      sidebarContentContainer,
       onFeatureClick,
     } = props;
 
@@ -153,12 +154,12 @@ const privateMethods = {
 
       features.exit().remove();
     });
-    props.features = contentContainer.selectAll('.sidebar__feature-row');
+    props.features = sidebarContentContainer.selectAll('.sidebar__feature-row');
   },
   setView() {
     const {
       view,
-      container,
+      sidebarContainer,
     } = privateProps.get(this);
     // console.log('view', view);
     const classesForViews = new Map([
@@ -167,7 +168,7 @@ const privateMethods = {
       ['clickSearch', 'sidebar--click-search'],
     ]);
     classesForViews.forEach((val, key) => {
-      container.classed(val, key === view);
+      sidebarContainer.classed(val, key === view);
     });
   },
 
@@ -176,17 +177,29 @@ const privateMethods = {
 class Sidebar {
   constructor(config) {
     const {
+      sidebarContainer,
+      sidebarContentContainer,
+      searchReturnContainer,
+      textSearchReturnButton,
+      searchInput,
+      resultsContainer,
+      rasterResultsContainer,
+      nonRasterResultsContainer,
+    } = selections;
+    const {
       init,
       // listenForText,
     } = privateMethods;
 
     privateProps.set(this, {
-      container: d3.select('.sidebar'),
-      contentContainer: d3.select('.sidebar__content'),
-      resultsContainer: d3.select('.sidebar__results'),
-      searchReturnContainer: d3.select('.sidebar__search-return'),
-      textSearchReturnButton: d3.select('.sidebar__text-search-return-icon'),
-      searchInput: d3.select('.sidebar__input'),
+      sidebarContainer,
+      sidebarContentContainer,
+      searchReturnContainer,
+      textSearchReturnButton,
+      searchInput,
+      resultsContainer,
+      rasterResultsContainer,
+      nonRasterResultsContainer,
       view: null,
       previousView: null,
       results: null,
@@ -233,13 +246,13 @@ class Sidebar {
   }
   updateHighlightedFeature() {
     const {
-      contentContainer,
+      sidebarContentContainer,
       highlightedFeature,
     } = privateProps.get(this);
 
     console.log('update highlighted feature');
 
-    contentContainer
+    sidebarContentContainer
       .selectAll('.sidebar__feature-button')
       .classed('sidebar__feature-button--highlighted', (d) => {
         if (highlightedFeature === null) {
@@ -253,7 +266,8 @@ class Sidebar {
     const {
       view,
       previousView,
-      resultsContainer,
+      nonRasterResultsContainer,
+      rasterResultsContainer,
       results,
       onFeatureClick,
       onRasterClick,
@@ -264,43 +278,38 @@ class Sidebar {
     } = privateMethods;
 
     const {
-      clearResults,
-      drawTextSearchResults,
-      drawClickSearchResults,
-      drawResultRowContainer,
+      drawRasterSearchResults,
+      drawNonRasterSearchResults,
     } = searchMethods;
 
     // console.log('update?', checkNeedsUpdate.call(this));
     if (previousView === 'legend' && view === 'legend') return;
 
     setView.call(this);
-    // use enter/exit instead of this
-    clearResults(props.resultRowContainer);
 
-    const resultRowContainer = drawResultRowContainer({ resultsContainer });
-    console.log('result', results);
     if (view === 'textSearch') {
-      drawTextSearchResults({
+      drawRasterSearchResults({
         onRasterClick,
-        resultRowContainer,
+        container: rasterResultsContainer,
         results: results.raster,
         onFeatureClick,
       });
 
-      drawClickSearchResults({
-        resultRowContainer,
+      drawNonRasterSearchResults({
+        container: nonRasterResultsContainer,
         results: results.nonRaster,
         onFeatureClick,
       });
     } else if (view === 'clickSearch' || view === 'areaSearch') {
-      drawClickSearchResults({
-        resultRowContainer,
+      drawNonRasterSearchResults({
+        container: nonRasterResultsContainer,
         results,
         onFeatureClick,
       });
     }
     props.previousView = view;
-    props.resultRowContainer = resultRowContainer;
+    // props.rasterResultsContainer = rasterResultsContainer;
+    // props.nonRasterResultsContainer = nonRasterResultsContainer;
   }
 }
 

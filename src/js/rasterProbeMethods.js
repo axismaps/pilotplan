@@ -2,16 +2,13 @@ import rasterMethods from './rasterMethods';
 
 const helperMethods = {
   updateImageFromMetadata({
-    currentRasterProbe,
-    cachedMetadata,
+    metadata,
     rasterProbeImageContainer,
   }) {
     const {
       getWidthLimitedDim,
       setBackgroundFromMetadata,
     } = rasterMethods;
-
-    const metadata = cachedMetadata.get(currentRasterProbe.SS_ID);
 
     const maxWidth = rasterProbeImageContainer
       .node()
@@ -41,8 +38,11 @@ const helperMethods = {
         height: `${scaledDim.height}px`,
       });
   },
-  updateImageFromAPI() {
-
+  clearImage({
+    rasterProbeImageContainer,
+  }) {
+    rasterProbeImageContainer
+      .style('background-image', 'none');
   },
 };
 
@@ -61,19 +61,27 @@ const rasterProbeMethods = {
   }) {
     const {
       updateImageFromMetadata,
-      updateImageFromAPI,
+      clearImage,
     } = helperMethods;
 
+    const {
+      getMetadata,
+    } = rasterMethods;
+
+    clearImage({ rasterProbeImageContainer });
+
     if (cachedMetadata.has(currentRasterProbe.SS_ID)) {
+      const metadata = cachedMetadata.get(currentRasterProbe.SS_ID);
       updateImageFromMetadata({
-        currentRasterProbe,
-        cachedMetadata,
+        metadata,
         rasterProbeImageContainer,
       });
     } else {
-      updateImageFromAPI({
-        currentRasterProbe,
-        rasterProbeImageContainer,
+      getMetadata(currentRasterProbe, (metadata) => {
+        updateImageFromMetadata({
+          metadata,
+          rasterProbeImageContainer,
+        });
       });
     }
   },

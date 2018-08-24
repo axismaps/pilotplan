@@ -66,4 +66,13 @@ export const selections = {
   rasterProbeImageContainer: d3.select('.raster-probe__image'),
   rasterProbeOverlayControlContainer: d3.select('.raster-probe__overlay-controls'),
   rasterProbeCloseButton: d3.select('.raster-probe__close-button'),
+
+  sidebarContainer: d3.select('.sidebar'),
+  sidebarContentContainer: d3.select('.sidebar__content'),
+  searchReturnContainer: d3.select('.sidebar__search-return'),
+  textSearchReturnButton: d3.select('.sidebar__text-search-return-icon'),
+  searchInput: d3.select('.sidebar__input'),
+  resultsContainer: d3.select('.sidebar__results'),
+  rasterResultsContainer: d3.select('.sidebar__raster-results'),
+  nonRasterResultsContainer: d3.select('.sidebar__nonraster-results'),
 };
