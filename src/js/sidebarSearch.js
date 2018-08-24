@@ -20,7 +20,7 @@ const searchMethods = {
   drawTextSearchResults({
     resultRowContainer,
     results,
-    onFeatureClick,
+    onRasterClick,
   }) {
     console.log('results', results);
     // raster results
@@ -30,6 +30,7 @@ const searchMethods = {
       .enter()
       .append('div')
       .attr('class', 'sidebar__raster-results-row')
+      .on('click', onRasterClick)
       .text(d => d.Title);
 
     // non-raster results
@@ -47,9 +48,9 @@ const searchMethods = {
     results,
     onFeatureClick,
   }) {
-    // console.log('results', results);
+    console.log('results', results);
     const groups = resultRowContainer.selectAll('.sidebar__results-group')
-      .data(results)
+      .data(results, d => d.id)
       .enter()
       .append('div')
       .attr('class', 'sidebar__results-group');
@@ -61,10 +62,11 @@ const searchMethods = {
     groups.append('div')
       .attr('class', 'sidebar__result-layers');
     groups.each(function addResultsLayers(d) {
+      console.log('d', d);
       d3.select(this)
         .select('.sidebar__result-layers')
         .selectAll('.sidebar__results-row')
-        .data(d.features)
+        .data(d.features, dd => dd.id)
         .enter()
         .append('div')
         .attr('class', 'sidebar__results-row')

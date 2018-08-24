@@ -256,6 +256,7 @@ class Sidebar {
       resultsContainer,
       results,
       onFeatureClick,
+      onRasterClick,
       // resultRowContainer,
     } = props;
     const {
@@ -280,6 +281,7 @@ class Sidebar {
     console.log('result', results);
     if (view === 'textSearch') {
       drawTextSearchResults({
+        onRasterClick,
         resultRowContainer,
         results: results.raster,
         onFeatureClick,

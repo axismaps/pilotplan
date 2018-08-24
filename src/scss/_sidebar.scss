@@ -29,10 +29,6 @@
   margin-bottom: 15px;
 }
 
-.sidebar__results-row {
-  cursor: pointer;
-}
-
 .sidebar__layer-group-title {
   // font-size: 18px;
   // font-weight: bold;
@@ -55,6 +51,8 @@
   pointer-events: none;
 }
 
+.sidebar__results-row,
+.sidebar__raster-results-row,
 .sidebar__feature-row {
   padding-left: 15px;
   cursor: pointer;

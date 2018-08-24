@@ -92,21 +92,23 @@ const app = {
 
     const onRasterClick = (rasterData) => {
       const getId = d => (d === null ? null : d.SS_ID);
+      const currentView = state.get('currentView');
+      const currentOverlay = state.get('currentOverlay');
+      console.log('current view', currentView);
       if (rasterData.type === 'overlay') {
-        const currentOverlay = state.get('currentOverlay');
         if (getId(currentOverlay) === getId(rasterData)) {
+          console.log('make overlay null');
           state.update({
             currentOverlay: null,
-            currentRasterProbe: null,
+            currentRasterProbe: currentView === null ? null : currentView,
           });
         } else {
           state.update({
             currentOverlay: rasterData,
-            currentRasterProbe: rasterData,
+            currentRasterProbe: currentView === null ? rasterData : currentView,
           });
         }
       } else if (rasterData.type === 'view') {
-        const currentView = state.get('currentView');
         if (getId(currentView) === getId(rasterData)) {
           state.update({
             currentView: null,
@@ -183,6 +185,7 @@ const app = {
         ];
         state.update({ currentLayers: newLayers });
       },
+      onRasterClick,
       onTextInput(val) {
         state.update({ textSearch: val });
       },
