@@ -215,6 +215,7 @@ const setStateEvents = ({ components, data }) => {
         atlas,
         sidebar,
       } = components;
+      console.log('highlight feature', highlightedFeature);
       atlas
         .config({
           highlightedFeature,

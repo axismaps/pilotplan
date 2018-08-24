@@ -301,6 +301,11 @@ class Sidebar {
         onFeatureClick,
       });
     } else if (view === 'clickSearch' || view === 'areaSearch') {
+      drawRasterSearchResults({
+        container: rasterResultsContainer,
+        results: [],
+      });
+
       drawNonRasterSearchResults({
         container: nonRasterResultsContainer,
         results,

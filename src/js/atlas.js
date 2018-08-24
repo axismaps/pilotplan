@@ -214,8 +214,9 @@ class Atlas {
         ],
       });
 
+
       const resultsWithSource = results.map((d) => {
-        const record = Object.assign({}, d, { sourceLayer });
+        const record = Object.assign({}, d.toJSON(), { sourceLayer });
         return record;
       });
       return [...accumulator, ...resultsWithSource];
@@ -228,6 +229,7 @@ class Atlas {
     //     ['>=', 'LastYear', year],
     //   ],
     // });
+
 
     const rasterResults = flattenedRasterData
       .filter(d => d.Title.toLowerCase().includes(value.toLowerCase()));
@@ -287,6 +289,8 @@ class Atlas {
       year,
     } = privateProps.get(this);
 
+    // console.log('highlighted feature (atlas)', highlightedFeature);
+
     clearHighlightedFeature(mbMap);
     drawHighlightedFeature({
       highlightedFeature,
@@ -325,8 +329,6 @@ class Atlas {
       type: 'raster',
       source: 'overlay',
     });
-
-    console.log('raster', mbMap.getSource('overlay'));
   }
 }
 

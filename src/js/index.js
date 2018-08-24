@@ -94,10 +94,8 @@ const app = {
       const getId = d => (d === null ? null : d.SS_ID);
       const currentView = state.get('currentView');
       const currentOverlay = state.get('currentOverlay');
-      console.log('current view', currentView);
       if (rasterData.type === 'overlay') {
         if (getId(currentOverlay) === getId(rasterData)) {
-          console.log('make overlay null');
           state.update({
             currentOverlay: null,
             currentRasterProbe: currentView === null ? null : currentView,
@@ -176,8 +174,6 @@ const app = {
         const currentLayers = state.get('currentLayers');
         const layerIndex = currentLayers.map(d => d.id)
           .indexOf(layer.id);
-        console.log('currentlayers', currentLayers);
-        console.log('layer', layer, layerIndex);
         const newLayers = [
           ...currentLayers.slice(0, layerIndex),
           { id: layer.id, status: !currentLayers[layerIndex].status },
