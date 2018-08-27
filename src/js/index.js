@@ -168,6 +168,8 @@ const app = {
       highlightedFeature: state.get('highlightedFeature'),
       sidebarOpen: state.get('sidebarOpen'),
       availableLayers: state.getAvailableLayers(this.data),
+      rasterData: state.getAvailableRasters(this.data),
+      cachedMetadata: this.cachedMetadata,
       language: state.get('language'),
       view: state.get('sidebarView'),
       onLayerClick(layer) {

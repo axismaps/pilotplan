@@ -1,3 +1,5 @@
+import rasterMethods from './rasterMethods';
+
 const searchMethods = {
   listenForText({
     searchInput,
@@ -17,10 +19,11 @@ const searchMethods = {
     container,
     results,
     onRasterClick,
+    cachedMetadata,
   }) {
     const {
       drawSearchResultGroups,
-      drawResultsRows,
+      drawRasterResultRows,
     } = searchMethods;
 
     const groups = drawSearchResultGroups({
@@ -28,14 +31,20 @@ const searchMethods = {
       results,
     });
 
-    const rows = drawResultsRows({
-      container,
+    drawRasterResultRows({
+      onRasterClick,
       groups,
+      cachedMetadata,
     });
 
-    rows
-      .text(d => d.Title)
-      .on('click', onRasterClick);
+    // const rows = drawResultsRows({
+    //   container,
+    //   groups,
+    // });
+
+    // rows
+    //   .text(d => d.Title)
+    //   .on('click', onRasterClick);
   },
   drawNonRasterSearchResults({
     container,
@@ -44,7 +53,8 @@ const searchMethods = {
   }) {
     const {
       drawSearchResultGroups,
-      drawResultsRows,
+      // drawResultsRows,
+      drawNonRasterResultsRows,
     } = searchMethods;
 
     const groups = drawSearchResultGroups({
@@ -52,15 +62,10 @@ const searchMethods = {
       results,
     });
 
-    const rows = drawResultsRows({
-      container,
+    drawNonRasterResultsRows({
       groups,
-      onClick: onFeatureClick,
+      onFeatureClick,
     });
-
-    rows
-      .text(d => d.properties.Name)
-      .on('click', onFeatureClick);
   },
   drawSearchResultGroups({
     container,
@@ -82,26 +87,72 @@ const searchMethods = {
 
     newGroups.append('div')
       .attr('class', 'sidebar__result-rows');
-
+    // return newGroups;
     return newGroups.merge(groups);
   },
-  drawResultsRows({
+  drawRasterResultRows({
     groups,
-    container,
+    onRasterClick,
+    cachedMetadata,
   }) {
-    groups.each(function drawLayers(d, i) {
-      const layers = d3.select(this)
+    const { setEachRasterBackground } = rasterMethods;
+
+    groups.each(function drawLayers(d) {
+      const rows = d3.select(this)
         .select('.sidebar__result-rows')
         .selectAll('.sidebar__results-row')
         .data(d.features, dd => dd.id);
 
-      layers.exit().remove();
+      rows.exit().remove();
 
-      layers.enter()
+      const newRows = rows.enter()
+        .append('div')
+        .attr('class', 'sidebar__results-row')
+        .on('click', onRasterClick);
+
+      const newImages = newRows
+        .append('div')
+        .attr('class', 'sidebar__raster-image footer__image');
+
+      setEachRasterBackground({
+        images: newImages,
+        cachedMetadata,
+      });
+
+
+      newRows
+        .append('div')
+        .attr('class', 'sidebar__raster-title')
+        .text(dd => dd.Title);
+    });
+  },
+  drawNonRasterResultsRows({
+    groups,
+    onFeatureClick,
+  }) {
+    // draw title/data/rows here, in enter() selection
+    groups.each(function drawLayers(d) {
+      const rows = d3.select(this)
+        .select('.sidebar__result-rows')
+        .selectAll('.sidebar__results-row')
+        .data(d.features, dd => dd.id);
+
+      rows.exit().remove();
+
+      const newRows = rows.enter()
         .append('div')
         .attr('class', 'sidebar__results-row');
+
+      const buttonRows = newRows
+        .append('div')
+        .attr('class', 'sidebar__results-button-row');
+
+      buttonRows
+        .append('div')
+        .attr('class', 'sidebar__results-button')
+        .text(dd => dd.properties.Name)
+        .on('click', onFeatureClick);
     });
-    return container.selectAll('.sidebar__results-row');
   },
   setSearchReturnListener({
     searchReturnContainer,

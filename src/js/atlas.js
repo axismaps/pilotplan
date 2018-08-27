@@ -1,6 +1,7 @@
 
 // import getSearchMethods from './atlasSearch';
 import { selections } from './config';
+import dataMethods from './atlasDataMethods';
 import rasterMethods from './rasterMethods';
 import clickSearchMethods from './atlasClickSearchMethods';
 import getAreaSearchMethods from './atlasAreaSearchMethods';
@@ -72,12 +73,16 @@ const privateMethods = {
     const {
       onClickSearch,
       mbMap,
+      rasterData,
     } = props;
     const { getClickSearch } = clickSearchMethods;
+
+    const { getFlattenedRasterData } = rasterMethods;
 
     props.clickSearch = getClickSearch({
       onClickSearch,
       getYear: () => props.year,
+      getFlattenedRasterData: () => getFlattenedRasterData({ rasterData }),
       mbMap,
     });
   },
@@ -199,6 +204,8 @@ class Atlas {
 
     const { getFlattenedRasterData } = rasterMethods;
 
+    const { getNonRasterResults } = dataMethods;
+
     const flattenedRasterData = getFlattenedRasterData({ rasterData });
 
     const sourceLayers = getSourceLayers(mbMap);
@@ -213,7 +220,6 @@ class Atlas {
           // ['match', 'Name', val],
         ],
       });
-
 
       const resultsWithSource = results.map((d) => {
         const record = Object.assign({}, d.toJSON(), { sourceLayer });
@@ -234,9 +240,7 @@ class Atlas {
     const rasterResults = flattenedRasterData
       .filter(d => d.Title.toLowerCase().includes(value.toLowerCase()));
 
-    const nonRasterResults = queriedFeatures
-      .filter(d => !Object.prototype.hasOwnProperty.call(d.properties, 'SS_ID') &&
-      Object.prototype.hasOwnProperty.call(d.properties, 'Name'))
+    const nonRasterResults = getNonRasterResults(queriedFeatures)
       .filter(d => d.properties.Name.toLowerCase().includes(value.toLowerCase()));
 
     return {

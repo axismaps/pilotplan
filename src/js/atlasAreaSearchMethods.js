@@ -91,7 +91,7 @@ const getAreaSearchMethods = ({
           // ['match', 'Name', val],
         ],
       });
-      // console.log('features', features);
+      console.log('features', features);
       onAreaSearch(features);
     },
   };

@@ -51,7 +51,7 @@
   pointer-events: none;
 }
 
-.sidebar__results-row,
+.sidebar__results-button-row,
 .sidebar__feature-row {
   padding-left: 15px;
   cursor: pointer;
@@ -65,8 +65,15 @@
 
 .sidebar__results-row {
   height: auto;
+  display: flex;
+  align-items: center;
 }
 
+.sidebar__results-button-row {
+  height: 30px;
+}
+
+.sidebar__results-button,
 .sidebar__feature-button {
   background: $main-medium-dark-gray;
   transition: background 250ms;
@@ -80,6 +87,8 @@
   border-radius: 5px;
 }
 
+.sidebar__results-button:hover,
+.sidebar__results-button--highlighted,
 .sidebar__feature-button:hover,
 .sidebar__feature-button--highlighted {
   background: $main-light-gray;

@@ -271,6 +271,7 @@ class Sidebar {
       results,
       onFeatureClick,
       onRasterClick,
+      cachedMetadata,
       // resultRowContainer,
     } = props;
     const {
@@ -287,31 +288,32 @@ class Sidebar {
 
     setView.call(this);
 
-    if (view === 'textSearch') {
-      drawRasterSearchResults({
-        onRasterClick,
-        container: rasterResultsContainer,
-        results: results.raster,
-        onFeatureClick,
-      });
+    // if (view === 'textSearch') {
+    drawRasterSearchResults({
+      onRasterClick,
+      container: rasterResultsContainer,
+      results: results.raster,
+      onFeatureClick,
+      cachedMetadata,
+    });
 
-      drawNonRasterSearchResults({
-        container: nonRasterResultsContainer,
-        results: results.nonRaster,
-        onFeatureClick,
-      });
-    } else if (view === 'clickSearch' || view === 'areaSearch') {
-      drawRasterSearchResults({
-        container: rasterResultsContainer,
-        results: [],
-      });
+    drawNonRasterSearchResults({
+      container: nonRasterResultsContainer,
+      results: results.nonRaster,
+      onFeatureClick,
+    });
+    // } else if (view === 'clickSearch' || view === 'areaSearch') {
+    //   drawRasterSearchResults({
+    //     container: rasterResultsContainer,
+    //     results: [],
+    //   });
 
-      drawNonRasterSearchResults({
-        container: nonRasterResultsContainer,
-        results,
-        onFeatureClick,
-      });
-    }
+    //   drawNonRasterSearchResults({
+    //     container: nonRasterResultsContainer,
+    //     results,
+    //     onFeatureClick,
+    //   });
+    // }
     props.previousView = view;
     // props.rasterResultsContainer = rasterResultsContainer;
     // props.nonRasterResultsContainer = nonRasterResultsContainer;

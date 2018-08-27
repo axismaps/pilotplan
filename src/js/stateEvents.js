@@ -3,6 +3,7 @@ const setStateEvents = ({ components, data }) => {
 
   const utils = {
     formatNonRasterResults(features) {
+      console.log('format nonrasters', features);
       return [...new Set(features.map(d => d.sourceLayer))]
         .map(groupName => ({
           id: groupName,
@@ -13,6 +14,7 @@ const setStateEvents = ({ components, data }) => {
         .filter(d => d.features.length > 0);
     },
     formatRasterResults(rasters) {
+      console.log('format rasters', rasters);
       return [...new Set(rasters.map(d => d.category))]
         .map(categoryName => ({
           id: categoryName,
@@ -38,6 +40,8 @@ const setStateEvents = ({ components, data }) => {
       } = this.props();
       // console.log('year', year);
 
+      const rasterData = this.getAvailableRasters(data);
+
       timeline
         .config({
           year,
@@ -47,22 +51,23 @@ const setStateEvents = ({ components, data }) => {
       atlas
         .config({
           year,
-          rasterData: this.getAvailableRasters(data),
+          rasterData,
         })
         .updateYear();
 
       footer
         .config({
-          rasterData: this.getAvailableRasters(data),
+          rasterData,
         })
         // .updateFooterView();
         .updateRasterData();
 
-      // const rasters = this.getAvailableRasters(data);
+      // const rasters ;
       // console.log('available rasters', rasters);
 
       sidebar
         .config({
+          rasterData,
           availableLayers: this.getAvailableLayers(data),
         })
         .updateAvailableLayers();
@@ -126,7 +131,7 @@ const setStateEvents = ({ components, data }) => {
         sidebar,
         atlas,
       } = components;
-      // console.log('SEARCH: ', textSearch);
+
       if (textSearch.length < 3) {
         sidebar
           .config({
@@ -137,6 +142,7 @@ const setStateEvents = ({ components, data }) => {
       } else {
         const searchResults = atlas.textSearch(textSearch);
         const { raster, nonRaster } = searchResults;
+
         const formattedResults = {
           raster: utils.formatRasterResults(raster),
           nonRaster: utils.formatNonRasterResults(nonRaster),
@@ -159,8 +165,14 @@ const setStateEvents = ({ components, data }) => {
         sidebar,
       } = components;
 
-      const results = utils.formatNonRasterResults(clickSearch);
+      // const results = utils.formatNonRasterResults(clickSearch);
+      const { raster, nonRaster } = clickSearch;
 
+      const results = {
+        raster: utils.formatRasterResults(raster),
+        nonRaster: utils.formatNonRasterResults(nonRaster),
+      };
+      console.log('results', results);
       sidebar
         .config({
           results,
