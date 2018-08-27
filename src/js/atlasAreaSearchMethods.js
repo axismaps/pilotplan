@@ -1,9 +1,12 @@
+import dataMethods from './atlasDataMethods';
+
 const getAreaSearchMethods = ({
   getAreaSearchActive,
   canvas,
   mbMap,
   getYear,
   onAreaSearch,
+  getFlattenedRasterData,
 }) => {
   const localState = {
     start: null,
@@ -77,6 +80,13 @@ const getAreaSearchMethods = ({
         start,
       } = localState;
 
+      const {
+        getRasterResults,
+        getNonRasterResults,
+      } = dataMethods;
+
+      const flattenedRasterData = getFlattenedRasterData();
+
       document.removeEventListener('mousemove', onMouseMove);
       document.removeEventListener('mouseup', onMouseUp);
       box.classed('search-box--hidden', true);
@@ -92,7 +102,15 @@ const getAreaSearchMethods = ({
         ],
       });
       console.log('features', features);
-      onAreaSearch(features);
+      const rasterFeatures = getRasterResults(features)
+        .map(d => flattenedRasterData.find(dd => dd.SS_ID === d.properties.SS_ID));
+
+
+      const nonRasterFeatures = getNonRasterResults(features);
+      onAreaSearch({
+        raster: rasterFeatures,
+        nonRaster: nonRasterFeatures,
+      });
     },
   };
   return areaMouseMethods;

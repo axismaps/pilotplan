@@ -71,6 +71,7 @@
 
 .sidebar__results-button-row {
   height: 30px;
+  display: flex;
 }
 
 .sidebar__results-button,
@@ -84,6 +85,7 @@
   height: 100%;
   max-width: 195px;
   padding-left: 10px;
+  padding-right: 10px;
   border-radius: 5px;
 }
 

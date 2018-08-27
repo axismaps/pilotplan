@@ -209,11 +209,17 @@ const setStateEvents = ({ components, data }) => {
         // layout,
         sidebar,
       } = components;
-      console.log('area', areaSearch);
+
+      const { raster, nonRaster } = areaSearch;
+
+      const results = {
+        raster: utils.formatRasterResults(raster),
+        nonRaster: utils.formatNonRasterResults(nonRaster),
+      };
 
       sidebar
         .config({
-          results: utils.formatNonRasterResults(areaSearch),
+          results,
           view: 'clickSearch',
         })
         .updateResults();

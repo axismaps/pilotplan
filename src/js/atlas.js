@@ -94,12 +94,15 @@ const privateMethods = {
       onAreaSearch,
     } = props;
 
+    const { getFlattenedRasterData } = rasterMethods;
+
     const areaSearchMethods = getAreaSearchMethods({
       getAreaSearchActive: () => props.areaSearchActive,
       canvas,
       mbMap,
       onAreaSearch,
       getYear: () => props.year,
+      getFlattenedRasterData: () => getFlattenedRasterData({ rasterData: props.rasterData }),
     });
 
     const {
@@ -254,7 +257,9 @@ class Atlas {
       mbMap,
       mapContainer,
       clickSearch,
+      rasterData,
     } = privateProps.get(this);
+    console.log('update area');
     const {
       initClickSearchListener,
       disableClickSearchListener,

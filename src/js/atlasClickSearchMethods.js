@@ -14,7 +14,7 @@ const atlasClickSearchMethods = {
     return (e) => {
       const year = getYear();
       const flattenedRasterData = getFlattenedRasterData();
-      console.log('raster', flattenedRasterData);
+
       const bbox = [[e.point.x - 5, e.point.y - 5], [e.point.x + 5, e.point.y + 5]];
       const features = mbMap.queryRenderedFeatures(bbox, {
         filter: [
@@ -24,15 +24,11 @@ const atlasClickSearchMethods = {
         ],
       });
 
-      console.log('duplicate', getRasterResults(features));
       const rasterFeatures = getRasterResults(features)
         .map(d => flattenedRasterData.find(dd => dd.SS_ID === d.properties.SS_ID));
 
 
       const nonRasterFeatures = getNonRasterResults(features);
-
-      console.log('raster features', rasterFeatures);
-      console.log('nonraster features', nonRasterFeatures);
 
       onClickSearch({
         raster: rasterFeatures,
