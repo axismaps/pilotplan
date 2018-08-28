@@ -3,7 +3,6 @@ const setStateEvents = ({ components, data }) => {
 
   const utils = {
     formatNonRasterResults(features) {
-      console.log('format nonrasters', features);
       return [...new Set(features.map(d => d.sourceLayer))]
         .map(groupName => ({
           id: groupName,
@@ -14,7 +13,6 @@ const setStateEvents = ({ components, data }) => {
         .filter(d => d.features.length > 0);
     },
     formatRasterResults(rasters) {
-      console.log('format rasters', rasters);
       return [...new Set(rasters.map(d => d.category))]
         .map(categoryName => ({
           id: categoryName,

@@ -73,7 +73,6 @@ const privateMethods = {
     const {
       onClickSearch,
       mbMap,
-      rasterData,
     } = props;
     const { getClickSearch } = clickSearchMethods;
 
@@ -82,8 +81,8 @@ const privateMethods = {
     props.clickSearch = getClickSearch({
       onClickSearch,
       getYear: () => props.year,
-      getFlattenedRasterData: () => getFlattenedRasterData({ rasterData }),
       mbMap,
+      getFlattenedRasterData: () => getFlattenedRasterData({ rasterData: props.rasterData }),
     });
   },
   setAreaSearch() {
@@ -257,7 +256,6 @@ class Atlas {
       mbMap,
       mapContainer,
       clickSearch,
-      rasterData,
     } = privateProps.get(this);
     console.log('update area');
     const {
