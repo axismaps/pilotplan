@@ -60,9 +60,6 @@ const setStateEvents = ({ components, data }) => {
         // .updateFooterView();
         .updateRasterData();
 
-      // const rasters ;
-      // console.log('available rasters', rasters);
-
       sidebar
         .config({
           rasterData,
@@ -70,6 +67,19 @@ const setStateEvents = ({ components, data }) => {
         })
         .updateAvailableLayers();
 
+      const sidebarView = sidebar.getView();
+      if (sidebarView === 'textSearch') {
+        state.update({ textSearch: sidebar.getSearchText() });
+      } else if (sidebarView === 'clickSearch') {
+        sidebar
+          .config({
+            view: 'legend',
+          })
+          .updateResults();
+      }
+
+      // check if sidebar is in click search mode
+      // if so, return to layers screen
       state.update({
         currentOverlay: null,
         currentLayers: this.getAllAvailableLayers(data),

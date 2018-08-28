@@ -318,6 +318,16 @@ class Sidebar {
     // props.rasterResultsContainer = rasterResultsContainer;
     // props.nonRasterResultsContainer = nonRasterResultsContainer;
   }
+  getView() {
+    return privateProps.get(this).view;
+  }
+  getSearchText() {
+    const {
+      searchInput,
+    } = privateProps.get(this);
+
+    return searchInput.node().value;
+  }
 }
 
 export default Sidebar;
