@@ -69,6 +69,19 @@
   align-items: center;
 }
 
+.sidebar__raster-results-row {
+  cursor: pointer;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.sidebar__results-image-row {
+  display: flex;
+  align-items: center;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
 .sidebar__results-button-row {
   // height: 30px;
   display: flex;
@@ -155,6 +168,15 @@
 .sidebar__search-return-text {
   font-size: 15px;
   font-style: italic;
+}
+
+.sidebar__raster-image {
+  height: $sidebar-image-height;
+  width: $sidebar-image-height;
+  border-radius: $sidebar-image-height / 2;
+  flex-shrink: 0;
+  background: $main-light-gray;
+  margin-right: 15px;
 }
 
 .sidebar--legend {

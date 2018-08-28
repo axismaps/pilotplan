@@ -100,19 +100,23 @@ const searchMethods = {
     groups.each(function drawLayers(d) {
       const rows = d3.select(this)
         .select('.sidebar__result-rows')
-        .selectAll('.sidebar__results-row')
+        .selectAll('.sidebar__raster-results-row')
         .data(d.features, dd => dd.id);
 
       rows.exit().remove();
 
       const newRows = rows.enter()
         .append('div')
-        .attr('class', 'sidebar__results-row')
+        .attr('class', 'sidebar__raster-results-row')
         .on('click', onRasterClick);
 
-      const newImages = newRows
+      const imageRows = newRows
         .append('div')
-        .attr('class', 'sidebar__raster-image footer__image');
+        .attr('class', 'sidebar__results-image-row');
+
+      const newImages = imageRows
+        .append('div')
+        .attr('class', 'sidebar__raster-image');
 
       setEachRasterBackground({
         images: newImages,
@@ -120,7 +124,7 @@ const searchMethods = {
       });
 
 
-      newRows
+      imageRows
         .append('div')
         .attr('class', 'sidebar__raster-title')
         .text(dd => dd.Title);
