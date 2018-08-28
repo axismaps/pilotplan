@@ -24,11 +24,18 @@ const rasterMethods = {
   },
   getMetadata(data, callback) {
     const { SSC_ID } = data;
-
+    // console.log('data', data);
+    // console.log('SSC_ID', SSC_ID);
     d3.json(`https://www.sscommons.org/openlibrary/secure/imagefpx/${SSC_ID}/7731141/5`)
       .then((metadata) => {
         // console.log('metadata', metadata[0]);
         callback(metadata[0]);
+      })
+      // .catch((err) => {
+      //   throw new Error(`Error: ${err.message}`);
+      // })
+      .catch((err) => {
+        console.log('err', err, SSC_ID);
       });
   },
   setRasterBackground({ selection, url }) {
@@ -81,6 +88,8 @@ const rasterMethods = {
       setBackgroundFromMetadata,
     } = rasterMethods;
     let maxDim;
+
+    // console.log('imagedata', images.data().filter(d => d.SSC_ID === ''));
     images.each(function addData(d, i) {
       if (i === 0) {
         maxDim = this.getBoundingClientRect().width;

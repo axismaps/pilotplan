@@ -288,35 +288,21 @@ class Sidebar {
 
     setView.call(this);
 
-    // if (view === 'textSearch') {
     drawRasterSearchResults({
       onRasterClick,
       container: rasterResultsContainer,
-      results: results.raster,
+      results: results === null ? [] : results.raster,
       onFeatureClick,
       cachedMetadata,
     });
 
     drawNonRasterSearchResults({
       container: nonRasterResultsContainer,
-      results: results.nonRaster,
+      results: results === null ? [] : results.nonRaster,
       onFeatureClick,
     });
-    // } else if (view === 'clickSearch' || view === 'areaSearch') {
-    //   drawRasterSearchResults({
-    //     container: rasterResultsContainer,
-    //     results: [],
-    //   });
 
-    //   drawNonRasterSearchResults({
-    //     container: nonRasterResultsContainer,
-    //     results,
-    //     onFeatureClick,
-    //   });
-    // }
     props.previousView = view;
-    // props.rasterResultsContainer = rasterResultsContainer;
-    // props.nonRasterResultsContainer = nonRasterResultsContainer;
   }
   getView() {
     return privateProps.get(this).view;

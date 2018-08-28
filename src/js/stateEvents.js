@@ -1,3 +1,5 @@
+import rasterMethods from './rasterMethods';
+
 const setStateEvents = ({ components, data }) => {
   const { state } = components;
 
@@ -35,10 +37,16 @@ const setStateEvents = ({ components, data }) => {
 
       const {
         year,
+        footerView,
       } = this.props();
       // console.log('year', year);
+      const {
+        getRasterDataByCategory,
+      } = rasterMethods;
 
       const rasterData = this.getAvailableRasters(data);
+
+      const rasterDataByCategory = getRasterDataByCategory({ rasterData });
 
       timeline
         .config({
@@ -67,9 +75,13 @@ const setStateEvents = ({ components, data }) => {
         })
         .updateAvailableLayers();
 
+      const stateToUpdate = {
+        currentLayers: this.getAllAvailableLayers(data),
+      };
+
       const sidebarView = sidebar.getView();
       if (sidebarView === 'textSearch') {
-        state.update({ textSearch: sidebar.getSearchText() });
+        Object.assign(stateToUpdate, { textSearch: sidebar.getSearchText() });
       } else if (sidebarView === 'clickSearch') {
         sidebar
           .config({
@@ -78,12 +90,32 @@ const setStateEvents = ({ components, data }) => {
           .updateResults();
       }
 
-      // check if sidebar is in click search mode
-      // if so, return to layers screen
-      state.update({
-        currentOverlay: null,
-        currentLayers: this.getAllAvailableLayers(data),
-      });
+      if (rasterDataByCategory.length === 0) {
+        // need to close footer if no results
+        Object.assign(stateToUpdate, { footerView: 'views' });
+      } else if (rasterData.get(footerView).length === 0) {
+        Object.assign(stateToUpdate, { footerView: rasterDataByCategory[0].key });
+      }
+
+      const layersToClear = this.getLayersToClear([
+        'currentOverlay',
+        'highlightedFeature',
+        'currentRasterProbe',
+        'currentView',
+      ]);
+
+      Object.assign(stateToUpdate, layersToClear);
+      // if (state.get('currentOverlay') !== null) {
+      //   Object.assign(stateToUpdate, { currentOverlay: null });
+      // }
+      // if (state.get('highlightedFeature') !== null) {
+      //   Object.assign(stateToUpdate, { highlightedFeature: null });
+      // }
+      // if (state.get('currentRasterProbe') !== null) {
+      //   Object.assign(stateToUpdate, { currentRasterProbe: null });
+      // }
+
+      state.update(stateToUpdate);
     },
     screenSize() {
       // const {
@@ -241,7 +273,7 @@ const setStateEvents = ({ components, data }) => {
         atlas,
         sidebar,
       } = components;
-      console.log('highlight feature', highlightedFeature);
+      // console.log('highlight feature', highlightedFeature);
       atlas
         .config({
           highlightedFeature,

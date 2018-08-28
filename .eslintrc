@@ -18,10 +18,6 @@
   "rules": {
     "max-lines": "warn",
     "no-console":"off",
-    "no-unused-vars": "warn",
-    "no-param-reassign": "off",
-    "no-use-before-define": "off",
-    "no-underscore-dangle": "off",
-    "prefer-template": "warn"
+    "no-unused-vars": "warn"
   }
 }

@@ -4,7 +4,9 @@ const atlasMethods = {
     year,
   }) {
     if (!('filter' in layer)) return layer;
-    layer.filter = layer.filter.map((f) => {
+
+    const newLayer = Object.assign({}, layer);
+    newLayer.filter = layer.filter.map((f) => {
       if (f[0] === 'all') {
         return f.map((dd, i) => {
           if (i === 0) return dd;
@@ -17,7 +19,7 @@ const atlasMethods = {
       }
       return f;
     });
-    return layer;
+    return newLayer;
   },
   getCurrentStyle({
     style,

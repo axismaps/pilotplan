@@ -61,10 +61,6 @@ const getState = function getState() {
     return availableRasters;
   };
 
-  state.getRasterCategories = () => {
-
-  };
-
   state.getAllAvailableLayers = function getAllAvailableLayers(data) {
     return this.getAvailableLayers(data)
       .reduce((accumulator, group) => [...accumulator, ...group.layers], [])
@@ -72,6 +68,17 @@ const getState = function getState() {
         id: layer.id,
         status: true,
       }));
+  };
+
+  state.getLayersToClear = function getLayersToClear(fields) {
+    return fields.reduce((accumulator, field) => {
+      if (state.get(field) !== null) {
+        /* eslint-disable no-param-reassign */
+        accumulator[field] = null;
+        /* eslint-enable no-param-reassign */
+      }
+      return accumulator;
+    }, {});
   };
 
   return state;

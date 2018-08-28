@@ -168,29 +168,29 @@ class Footer {
     return this;
   }
   updateRasterData() {
-    const props = privateProps.get(this);
+    // const props = privateProps.get(this);
 
-    const {
-      rasterData,
-      footerView,
-    } = props;
+    // const {
+    // rasterData,
+    // footerView,
+    // } = props;
 
     const {
       drawRasters,
       updateFooterView,
     } = privateMethods;
 
-    const {
-      getRasterDataByCategory,
-    } = rasterMethods;
+    // const {
+    //   getRasterDataByCategory,
+    // } = rasterMethods;
 
-    const dataByCategory = getRasterDataByCategory({ rasterData });
-    if (dataByCategory.length === 0) {
-      console.log('NO RESULTS, CLOSE FOOTER');
-      props.footerView = 'views';
-    } else if (rasterData.get(footerView).length === 0) {
-      props.footerView = dataByCategory[0].key;
-    }
+    // const dataByCategory = getRasterDataByCategory({ rasterData });
+    // if (dataByCategory.length === 0) {
+    //   // no results, close footer
+    //   props.footerView = 'views';
+    // } else if (rasterData.get(footerView).length === 0) {
+    //   props.footerView = dataByCategory[0].key;
+    // }
 
 
     updateFooterView.call(this);
