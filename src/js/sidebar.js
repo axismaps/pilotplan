@@ -248,18 +248,24 @@ class Sidebar {
     const {
       sidebarContentContainer,
       highlightedFeature,
+      nonRasterResultsContainer,
     } = privateProps.get(this);
 
-    console.log('update highlighted feature');
+    // console.log('update highlighted feature', highlightedFeature);
+    const isHighlightedFeature = (d) => {
+      if (highlightedFeature === null) {
+        return false;
+      }
+      return d.id === highlightedFeature.id;
+    };
 
     sidebarContentContainer
       .selectAll('.sidebar__feature-button')
-      .classed('sidebar__feature-button--highlighted', (d) => {
-        if (highlightedFeature === null) {
-          return false;
-        }
-        return d.id === highlightedFeature.id;
-      });
+      .classed('sidebar__feature-button--highlighted', isHighlightedFeature);
+
+    nonRasterResultsContainer
+      .selectAll('.sidebar__results-button')
+      .classed('sidebar__results-button--highlighted', isHighlightedFeature);
   }
   updateResults() {
     const props = privateProps.get(this);
