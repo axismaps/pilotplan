@@ -1,5 +1,6 @@
 
 // import getSearchMethods from './atlasSearch';
+import getBBox from '@turf/bbox';
 import { selections } from './config';
 import dataMethods from './atlasDataMethods';
 import rasterMethods from './rasterMethods';
@@ -30,6 +31,7 @@ const privateMethods = {
         const mbMap = getMap({
           initApp,
           viewshedsGeo,
+          getCurrentView: () => props.currentView,
           style: getCurrentStyle({ style, year }),
         });
 
@@ -124,7 +126,7 @@ class Atlas {
     privateProps.set(this, {
       mapContainer,
       areaSearchActive: null,
-
+      currentView: null,
       highlightedFeature: null,
       currentLayers: null,
       currentOverlay: null,
@@ -230,15 +232,6 @@ class Atlas {
       return [...accumulator, ...resultsWithSource];
     }, []);
 
-    // const renderedFeatures = mbMap.queryRenderedFeatures({
-    //   filter: [
-    //     'all',
-    //     ['<=', 'FirstYear', year],
-    //     ['>=', 'LastYear', year],
-    //   ],
-    // });
-
-
     const rasterResults = flattenedRasterData
       .filter(d => d.Title.toLowerCase().includes(value.toLowerCase()));
 
@@ -336,6 +329,31 @@ class Atlas {
       type: 'raster',
       source: 'overlay',
     });
+  }
+  updateView() {
+    const props = privateProps.get(this);
+    const {
+      currentView,
+      mbMap,
+      viewshedsGeo,
+    } = props;
+    const {
+      addConeToMap,
+      removeCone,
+    } = generalMethods;
+    console.log('currentview', currentView);
+
+    if (currentView === null) {
+      removeCone({ mbMap });
+    } else {
+      const coneFeature = viewshedsGeo.features.find(d => d.properties.SS_ID === currentView.SS_ID);
+      addConeToMap({
+        coneFeature,
+        mbMap,
+      });
+      const bbox = getBBox(coneFeature);
+      mbMap.fitBounds(bbox, { padding: 100 });
+    }
   }
 }
 

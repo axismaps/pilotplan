@@ -327,19 +327,19 @@ const setStateEvents = ({ components, data }) => {
     currentView() {
       // update atlas here
 
-      // const {
-      //   currentView,
-      // } = this.props();
+      const {
+        currentView,
+      } = this.props();
 
-      // const {
-      //   rasterProbe,
-      // } = components;
+      const {
+        atlas,
+      } = components;
 
-      // rasterProbe
-      //   .config({
-      //     currentView,
-      //   })
-      //   .updateView();
+      atlas
+        .config({
+          currentView,
+        })
+        .updateView();
       // console.log('current view', currentView);
     },
     currentRasterProbe() {

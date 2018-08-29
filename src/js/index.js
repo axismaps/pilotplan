@@ -34,14 +34,13 @@ const app = {
   },
   initAtlas() {
     const { state } = this.components;
-    // console.log('test state', state.get('currentLayers'));
-    // console.log('state', state.props());
 
     this.components.atlas = new Atlas({
       viewshedsGeo: this.data.viewshedsGeo,
       highlightedFeature: state.get('highlightedFeature'),
       currentLayers: state.get('currentLayers'),
       currentOverlay: state.get('currentOverlay'),
+      currentView: state.get('currentView'),
       rasterData: state.getAvailableRasters(this.data),
       year: state.get('year'),
       layerNames: this.data.layerNames,

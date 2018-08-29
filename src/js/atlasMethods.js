@@ -45,7 +45,13 @@ const atlasMethods = {
     viewshedsGeo,
     initApp,
     style,
+    getCurrentView,
   }) {
+    const {
+      addConeToMap,
+      removeCone,
+    } = atlasMethods;
+    let coneFeature;
     const mbMap = new mapboxgl.Map({
       container: 'map',
       style,
@@ -54,33 +60,53 @@ const atlasMethods = {
         initApp();
       })
       .on('mouseover', 'viewconespoint', (d) => {
-        const coneFeature = viewshedsGeo.features.find(cone =>
+        console.log('on', d);
+        coneFeature = viewshedsGeo.features.find(cone =>
           cone.properties.SS_ID === d.features[0].properties.SS_ID);
-
-        const existingSource = mbMap.getSource('viewshed');
-        if (existingSource === undefined) {
-          mbMap.addSource('viewshed', {
-            type: 'geojson',
-            data: coneFeature,
-          });
-        } else {
-          existingSource.setData(coneFeature);
-        }
-        mbMap.addLayer({
-          id: 'viewshed-feature',
-          type: 'fill',
-          source: 'viewshed',
-          layout: {},
-          paint: {
-            'fill-color': 'black',
-            'fill-opacity': 0.5,
-          },
+        const currentView = getCurrentView();
+        if (currentView !== null && currentView.SS_ID === coneFeature.properties.SS_ID) return;
+        addConeToMap({
+          coneFeature,
+          mbMap,
         });
       })
       .on('mouseout', 'viewconespoint', () => {
-        mbMap.removeLayer('viewshed-feature');
+        const currentView = getCurrentView();
+        if (currentView !== null &&
+          coneFeature !== null &&
+          currentView.SS_ID === coneFeature.properties.SS_ID) return;
+        removeCone({ mbMap });
       });
     return mbMap;
+  },
+  addConeToMap({
+    coneFeature,
+    mbMap,
+  }) {
+    const existingSource = mbMap.getSource('viewshed');
+    if (existingSource === undefined) {
+      mbMap.addSource('viewshed', {
+        type: 'geojson',
+        data: coneFeature,
+      });
+    } else {
+      existingSource.setData(coneFeature);
+    }
+    mbMap.addLayer({
+      id: 'viewshed-feature',
+      type: 'fill',
+      source: 'viewshed',
+      layout: {},
+      paint: {
+        'fill-color': 'black',
+        'fill-opacity': 0.5,
+      },
+    });
+  },
+  removeCone({
+    mbMap,
+  }) {
+    mbMap.removeLayer('viewshed-feature');
   },
   updateYear({
     year,
