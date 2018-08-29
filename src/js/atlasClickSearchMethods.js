@@ -5,6 +5,8 @@ const atlasClickSearchMethods = {
     onClickSearch,
     getYear,
     getFlattenedRasterData,
+    getCancelClickSearch,
+    removeCancelClickSearch,
     mbMap,
   }) {
     const {
@@ -12,6 +14,10 @@ const atlasClickSearchMethods = {
       getNonRasterResults,
     } = dataMethods;
     return (e) => {
+      if (getCancelClickSearch()) {
+        removeCancelClickSearch();
+        return;
+      }
       const year = getYear();
       const flattenedRasterData = getFlattenedRasterData();
 

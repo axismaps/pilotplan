@@ -52,6 +52,12 @@ const app = {
         console.log('on area search');
         state.update({ areaSearchActive: false, areaSearch: features });
       },
+      onViewClick(newView) {
+        state.update({
+          currentView: newView,
+          currentRasterProbe: newView,
+        });
+      },
     });
   },
   onAtlasLoad() {

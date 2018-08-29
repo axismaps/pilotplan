@@ -46,6 +46,9 @@ const atlasMethods = {
     initApp,
     style,
     getCurrentView,
+    setCancelClickSearch,
+    getRasterData,
+    onViewClick,
   }) {
     const {
       addConeToMap,
@@ -60,22 +63,48 @@ const atlasMethods = {
         initApp();
       })
       .on('mouseover', 'viewconespoint', (d) => {
-        console.log('on', d);
         coneFeature = viewshedsGeo.features.find(cone =>
           cone.properties.SS_ID === d.features[0].properties.SS_ID);
         const currentView = getCurrentView();
-        if (currentView !== null && currentView.SS_ID === coneFeature.properties.SS_ID) return;
-        addConeToMap({
-          coneFeature,
-          mbMap,
-        });
+
+        if (currentView !== null &&
+          currentView.SS_ID !== coneFeature.properties.SS_ID) {
+          const viewCone = viewshedsGeo.features.find(cone =>
+            cone.properties.SS_ID === currentView.SS_ID);
+          addConeToMap({
+            coneFeature: {
+              type: 'FeatureCollection',
+              features: [coneFeature, viewCone],
+            },
+            mbMap,
+          });
+        } else {
+          addConeToMap({
+            coneFeature,
+            mbMap,
+          });
+        }
       })
       .on('mouseout', 'viewconespoint', () => {
         const currentView = getCurrentView();
-        if (currentView !== null &&
-          coneFeature !== null &&
-          currentView.SS_ID === coneFeature.properties.SS_ID) return;
+
         removeCone({ mbMap });
+
+        if (currentView !== null) {
+          const viewCone = viewshedsGeo.features.find(cone =>
+            cone.properties.SS_ID === currentView.SS_ID);
+          addConeToMap({
+            mbMap,
+            coneFeature: viewCone,
+          });
+        }
+      })
+      .on('click', 'viewconespoint', () => {
+        const views = getRasterData().get('views');
+        const newView = views.find(d => d.SS_ID === coneFeature.properties.SS_ID);
+
+        onViewClick(newView);
+        setCancelClickSearch();
       });
     return mbMap;
   },
@@ -83,7 +112,11 @@ const atlasMethods = {
     coneFeature,
     mbMap,
   }) {
+    if (mbMap.getLayer('viewshed-feature') !== undefined) {
+      mbMap.removeLayer('viewshed-feature');
+    }
     const existingSource = mbMap.getSource('viewshed');
+
     if (existingSource === undefined) {
       mbMap.addSource('viewshed', {
         type: 'geojson',
@@ -92,6 +125,7 @@ const atlasMethods = {
     } else {
       existingSource.setData(coneFeature);
     }
+
     mbMap.addLayer({
       id: 'viewshed-feature',
       type: 'fill',
@@ -106,6 +140,9 @@ const atlasMethods = {
   removeCone({
     mbMap,
   }) {
+    console.log('remove cone');
+    const existingLayer = mbMap.getLayer('viewshed-feature');
+    if (existingLayer === undefined) return;
     mbMap.removeLayer('viewshed-feature');
   },
   updateYear({

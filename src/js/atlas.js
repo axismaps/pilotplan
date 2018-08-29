@@ -19,6 +19,7 @@ const privateMethods = {
     const {
       year,
       viewshedsGeo,
+      onViewClick,
     } = props;
 
     const {
@@ -31,6 +32,11 @@ const privateMethods = {
         const mbMap = getMap({
           initApp,
           viewshedsGeo,
+          setCancelClickSearch: () => {
+            props.cancelClickSearch = true;
+          },
+          onViewClick,
+          getRasterData: () => props.rasterData,
           getCurrentView: () => props.currentView,
           style: getCurrentStyle({ style, year }),
         });
@@ -82,6 +88,10 @@ const privateMethods = {
 
     props.clickSearch = getClickSearch({
       onClickSearch,
+      getCancelClickSearch: () => props.cancelClickSearch,
+      removeCancelClickSearch: () => {
+        props.cancelClickSearch = false;
+      },
       getYear: () => props.year,
       mbMap,
       getFlattenedRasterData: () => getFlattenedRasterData({ rasterData: props.rasterData }),
@@ -131,6 +141,7 @@ class Atlas {
       currentLayers: null,
       currentOverlay: null,
       viewshedsGeo: null,
+      cancelClickSearch: false,
     });
 
     this.config(config);
