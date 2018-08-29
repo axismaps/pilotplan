@@ -195,6 +195,11 @@ const setStateEvents = ({ components, data }) => {
             view: 'textSearch',
           })
           .updateResults();
+
+        const layersToClear = this.getLayersToClear([
+          'highlightedFeature',
+        ]);
+        state.update(layersToClear);
       }
     },
     clickSearch() {
@@ -212,34 +217,19 @@ const setStateEvents = ({ components, data }) => {
         raster: utils.formatRasterResults(raster),
         nonRaster: utils.formatNonRasterResults(nonRaster),
       };
-      console.log('results', results);
+
       sidebar
         .config({
           results,
           view: 'clickSearch',
         })
         .updateResults();
-    },
-    areaSearchActive() {
-      const {
-        areaSearchActive,
-      } = this.props();
-      const {
-        layout,
-        atlas,
-      } = components;
-
-      layout
-        .config({
-          areaSearchActive,
-        })
-        .updateAreaSearch();
-
-      atlas
-        .config({
-          areaSearchActive,
-        })
-        .updateAreaSearch();
+      // instead of this, check first if only one result
+      // if only one result, make this highlightedFeature
+      const layersToClear = this.getLayersToClear([
+        'highlightedFeature',
+      ]);
+      state.update(layersToClear);
     },
     areaSearch() {
       const {
@@ -263,6 +253,32 @@ const setStateEvents = ({ components, data }) => {
           view: 'clickSearch',
         })
         .updateResults();
+
+      const layersToClear = this.getLayersToClear([
+        'highlightedFeature',
+      ]);
+      state.update(layersToClear);
+    },
+    areaSearchActive() {
+      const {
+        areaSearchActive,
+      } = this.props();
+      const {
+        layout,
+        atlas,
+      } = components;
+
+      layout
+        .config({
+          areaSearchActive,
+        })
+        .updateAreaSearch();
+
+      atlas
+        .config({
+          areaSearchActive,
+        })
+        .updateAreaSearch();
     },
     highlightedFeature() {
       const {
