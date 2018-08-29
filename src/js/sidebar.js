@@ -40,7 +40,12 @@ const privateMethods = {
       searchReturnContainer,
       textSearchReturnButton,
       searchInput,
+      onSearchReturn,
     } = props;
+
+    const {
+      setView,
+    } = privateMethods;
 
     const { setSearchReturnListener } = searchMethods;
 
@@ -51,7 +56,9 @@ const privateMethods = {
       callback: () => {
         props.view = 'legend';
         searchInput.node().value = '';
-        this.updateResults();
+        setView.call(this);
+        onSearchReturn();
+        // this.updateResults();
       },
     });
   },
@@ -289,7 +296,7 @@ class Sidebar {
       drawNonRasterSearchResults,
     } = searchMethods;
 
-    // console.log('update?', checkNeedsUpdate.call(this));
+    console.log('view', view);
     if (previousView === 'legend' && view === 'legend') return;
 
     setView.call(this);
@@ -312,6 +319,10 @@ class Sidebar {
   }
   getView() {
     return privateProps.get(this).view;
+  }
+  updateView() {
+    const { setView } = privateMethods;
+    setView.call(this);
   }
   getSearchText() {
     const {

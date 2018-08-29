@@ -35,7 +35,7 @@ const rasterMethods = {
       //   throw new Error(`Error: ${err.message}`);
       // })
       .catch((err) => {
-        console.log('err', err, SSC_ID);
+        console.log(err.message);
       });
   },
   setRasterBackground({ selection, url }) {

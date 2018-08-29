@@ -87,7 +87,7 @@ const setStateEvents = ({ components, data }) => {
           .config({
             view: 'legend',
           })
-          .updateResults();
+          .updateView();
       }
 
       if (rasterDataByCategory.length === 0) {

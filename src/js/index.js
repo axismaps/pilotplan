@@ -172,6 +172,9 @@ const app = {
       cachedMetadata: this.cachedMetadata,
       language: state.get('language'),
       view: state.get('sidebarView'),
+      onSearchReturn() {
+        state.update({ highlightedFeature: null });
+      },
       onLayerClick(layer) {
         const currentLayers = state.get('currentLayers');
         const layerIndex = currentLayers.map(d => d.id)
