@@ -25,6 +25,8 @@ const privateMethods = {
       rasterProbeTitleContainer,
       cachedMetadata,
       rasterProbeImageContainer,
+      rasterProbeControlsContainer,
+      rasterProbeCloseOverlayButton,
     } = privateProps.get(this);
 
     if (currentRasterProbe === null) return;
@@ -32,7 +34,7 @@ const privateMethods = {
     const {
       updateTitle,
       updateImage,
-
+      updateOverlayControls,
     } = rasterProbeMethods;
 
     updateTitle({
@@ -45,6 +47,11 @@ const privateMethods = {
       cachedMetadata,
       rasterProbeImageContainer,
     });
+    updateOverlayControls({
+      rasterProbeCloseOverlayButton,
+      rasterProbeControlsContainer,
+      currentRasterProbe,
+    });
   },
 };
 
@@ -56,6 +63,8 @@ class RasterProbe {
       rasterProbeImageContainer,
       rasterProbeOverlayControlContainer,
       rasterProbeCloseButton,
+      rasterProbeControlsContainer,
+      rasterProbeCloseOverlayButton,
     } = selections;
 
     privateProps.set(this, {
@@ -64,6 +73,8 @@ class RasterProbe {
       rasterProbeImageContainer,
       rasterProbeOverlayControlContainer,
       rasterProbeCloseButton,
+      rasterProbeControlsContainer,
+      rasterProbeCloseOverlayButton,
       currentRasterProbe: null,
       onCloseClick: null,
       cachedMetadata: null,

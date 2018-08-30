@@ -41,6 +41,7 @@ class Layout {
       onAreaButtonClick: null,
       areaSearchActive: null,
       onOverlayButtonClick: null,
+      rasterProbeOpen: false,
       outerContainer,
       areaSearchButton,
       probeButtonsContainer,

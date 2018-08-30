@@ -328,7 +328,6 @@ class Atlas {
     if (currentOverlay === null) return;
 
     const sourceUrl = `mapbox://axismaps.pilot${currentOverlay.SS_ID}`;
-    console.log('currentOverlay', currentOverlay);
 
     mbMap.addSource(
       'overlay',
@@ -348,7 +347,7 @@ class Atlas {
       currentOverlay.bounds.slice(0, 2),
       currentOverlay.bounds.slice(2, 4),
     ]);
-    mbMap.fitBounds(bounds, { padding: 100 });
+    mbMap.fitBounds(bounds);
   }
   updateView() {
     const props = privateProps.get(this);

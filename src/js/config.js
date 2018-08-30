@@ -66,6 +66,8 @@ export const selections = {
   rasterProbeImageContainer: d3.select('.raster-probe__image'),
   rasterProbeOverlayControlContainer: d3.select('.raster-probe__overlay-controls'),
   rasterProbeCloseButton: d3.select('.raster-probe__close-button'),
+  rasterProbeControlsContainer: d3.select('.raster-probe__overlay-controls'),
+  rasterProbeCloseOverlayButton: d3.select('.raster-probe__remove-overlay'),
 
   sidebarContainer: d3.select('.sidebar'),
   sidebarContentContainer: d3.select('.sidebar__content'),

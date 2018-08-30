@@ -352,6 +352,7 @@ const setStateEvents = ({ components, data }) => {
         rasterProbe,
       } = components;
 
+      console.log('currentraster', currentRasterProbe);
       layout
         .config({
           rasterProbeOpen: currentRasterProbe !== null,

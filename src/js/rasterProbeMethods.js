@@ -1,6 +1,6 @@
 import rasterMethods from './rasterMethods';
 
-const helperMethods = {
+const localMethods = {
   updateImageFromMetadata({
     metadata,
     rasterProbeImageContainer,
@@ -44,6 +44,15 @@ const helperMethods = {
     rasterProbeImageContainer
       .style('background-image', 'none');
   },
+  toggleOverlayControls({
+    rasterProbeControlsContainer,
+    currentRasterProbe,
+  }) {
+    if (currentRasterProbe === null) return;
+
+    rasterProbeControlsContainer
+      .classed('raster-probe__overlay-controls--hidden', currentRasterProbe.type === 'view');
+  },
 };
 
 const rasterProbeMethods = {
@@ -62,7 +71,7 @@ const rasterProbeMethods = {
     const {
       updateImageFromMetadata,
       clearImage,
-    } = helperMethods;
+    } = localMethods;
 
     const {
       getMetadata,
@@ -91,6 +100,20 @@ const rasterProbeMethods = {
   }) {
     rasterProbeCloseButton
       .on('click', onCloseClick);
+  },
+  updateOverlayControls({
+    rasterProbeCloseOverlayButton,
+    rasterProbeControlsContainer,
+    currentRasterProbe,
+  }) {
+    const {
+      toggleOverlayControls,
+    } = localMethods;
+
+    toggleOverlayControls({
+      rasterProbeControlsContainer,
+      currentRasterProbe,
+    });
   },
 };
 
