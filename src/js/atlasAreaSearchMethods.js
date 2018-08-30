@@ -68,7 +68,6 @@ const getAreaSearchMethods = ({
         .classed('search-box--hidden', false);
     },
     onMouseUp(e) {
-      console.log('up');
       const {
         onMouseMove,
         onMouseUp,
@@ -92,16 +91,15 @@ const getAreaSearchMethods = ({
       box.classed('search-box--hidden', true);
 
       const bbox = [start, getMousePos(e)];
-      console.log(bbox);
+
       const features = mbMap.queryRenderedFeatures(bbox, {
         filter: [
           'all',
           ['<=', 'FirstYear', getYear()],
           ['>=', 'LastYear', getYear()],
-          // ['match', 'Name', val],
         ],
       });
-      console.log('features', features);
+
       const rasterFeatures = getRasterResults(features)
         .map(d => flattenedRasterData.find(dd => dd.SS_ID === d.properties.SS_ID));
 

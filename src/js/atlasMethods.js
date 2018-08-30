@@ -140,7 +140,6 @@ const atlasMethods = {
   removeCone({
     mbMap,
   }) {
-    console.log('remove cone');
     const existingLayer = mbMap.getLayer('viewshed-feature');
     if (existingLayer === undefined) return;
     mbMap.removeLayer('viewshed-feature');

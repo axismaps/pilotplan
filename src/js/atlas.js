@@ -82,11 +82,10 @@ const privateMethods = {
       onClickSearch,
       mbMap,
     } = props;
-    const { getClickSearch } = clickSearchMethods;
-
+    const { setClickSearch } = clickSearchMethods;
     const { getFlattenedRasterData } = rasterMethods;
 
-    props.clickSearch = getClickSearch({
+    setClickSearch({
       onClickSearch,
       getCancelClickSearch: () => props.cancelClickSearch,
       removeCancelClickSearch: () => {
@@ -95,6 +94,9 @@ const privateMethods = {
       getYear: () => props.year,
       mbMap,
       getFlattenedRasterData: () => getFlattenedRasterData({ rasterData: props.rasterData }),
+      setClickSearchProp: (clickSearch) => {
+        props.clickSearch = clickSearch;
+      },
     });
   },
   setAreaSearch() {
@@ -261,7 +263,7 @@ class Atlas {
       mapContainer,
       clickSearch,
     } = privateProps.get(this);
-    console.log('update area');
+
     const {
       initClickSearchListener,
       disableClickSearchListener,
@@ -326,6 +328,7 @@ class Atlas {
     if (currentOverlay === null) return;
 
     const sourceUrl = `mapbox://axismaps.pilot${currentOverlay.SS_ID}`;
+    console.log('currentOverlay', currentOverlay);
 
     mbMap.addSource(
       'overlay',
@@ -340,6 +343,12 @@ class Atlas {
       type: 'raster',
       source: 'overlay',
     });
+
+    const bounds = new mapboxgl.LngLatBounds([
+      currentOverlay.bounds.slice(0, 2),
+      currentOverlay.bounds.slice(2, 4),
+    ]);
+    mbMap.fitBounds(bounds, { padding: 100 });
   }
   updateView() {
     const props = privateProps.get(this);
@@ -352,7 +361,6 @@ class Atlas {
       addConeToMap,
       removeCone,
     } = generalMethods;
-    console.log('currentview', currentView);
 
     if (currentView === null) {
       removeCone({ mbMap });

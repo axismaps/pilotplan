@@ -1,6 +1,29 @@
 import dataMethods from './atlasDataMethods';
 
 const atlasClickSearchMethods = {
+  setClickSearch({
+    onClickSearch,
+    mbMap,
+    setClickSearchProp,
+    getCancelClickSearch,
+    removeCancelClickSearch,
+    getYear,
+    getFlattenedRasterData,
+  }) {
+    const { getClickSearch } = atlasClickSearchMethods;
+
+
+    const clickSearch = getClickSearch({
+      onClickSearch,
+      getCancelClickSearch,
+      removeCancelClickSearch,
+      getYear,
+      getFlattenedRasterData,
+      mbMap,
+    });
+
+    setClickSearchProp(clickSearch);
+  },
   getClickSearch({
     onClickSearch,
     getYear,
