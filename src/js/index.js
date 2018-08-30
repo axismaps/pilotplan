@@ -132,7 +132,6 @@ const app = {
       currentView: state.get('currentView'),
       currentOverlay: state.get('currentOverlay'),
       onCloseClick() {
-        // console.log('close click');
         const currentRasterProbe = state.get('currentRasterProbe');
         const { type } = currentRasterProbe;
 
@@ -146,7 +145,12 @@ const app = {
             currentRasterProbe: null,
           });
         }
-        // console.log('rasterprobe', currentRasterProbe);
+      },
+      onOverlayCloseClick() {
+        state.update({
+          currentOverlay: null,
+          currentRasterProbe: null,
+        });
       },
     });
 

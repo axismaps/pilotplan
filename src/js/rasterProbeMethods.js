@@ -53,6 +53,13 @@ const localMethods = {
     rasterProbeControlsContainer
       .classed('raster-probe__overlay-controls--hidden', currentRasterProbe.type === 'view');
   },
+  setOverlayCloseButtonListener({
+    onOverlayCloseClick,
+    rasterProbeCloseOverlayButton,
+  }) {
+    rasterProbeCloseOverlayButton
+      .on('click', onOverlayCloseClick);
+  },
 };
 
 const rasterProbeMethods = {
@@ -103,16 +110,23 @@ const rasterProbeMethods = {
   },
   updateOverlayControls({
     rasterProbeCloseOverlayButton,
+    onOverlayCloseClick,
     rasterProbeControlsContainer,
     currentRasterProbe,
   }) {
     const {
       toggleOverlayControls,
+      setOverlayCloseButtonListener,
     } = localMethods;
 
     toggleOverlayControls({
       rasterProbeControlsContainer,
       currentRasterProbe,
+    });
+
+    setOverlayCloseButtonListener({
+      onOverlayCloseClick,
+      rasterProbeCloseOverlayButton,
     });
   },
 };

@@ -27,6 +27,7 @@ const privateMethods = {
       rasterProbeImageContainer,
       rasterProbeControlsContainer,
       rasterProbeCloseOverlayButton,
+      onOverlayCloseClick,
     } = privateProps.get(this);
 
     if (currentRasterProbe === null) return;
@@ -51,6 +52,7 @@ const privateMethods = {
       rasterProbeCloseOverlayButton,
       rasterProbeControlsContainer,
       currentRasterProbe,
+      onOverlayCloseClick,
     });
   },
 };
@@ -77,6 +79,7 @@ class RasterProbe {
       rasterProbeCloseOverlayButton,
       currentRasterProbe: null,
       onCloseClick: null,
+      onOverlayCloseClick: null,
       cachedMetadata: null,
     });
 
