@@ -126,6 +126,7 @@ body {
   height: 100%;
 }
 
+.lightbox__outer,
 .allraster__outer {
   position: absolute;
   width: 100%;
@@ -135,6 +136,11 @@ body {
 
 .allraster__inner {
   width: 796px;
+  max-height: 85%;
+}
+
+.lightbox__inner {
+  width: $lightbox-width;
   max-height: 85%;
 }
 

@@ -68,6 +68,10 @@ export const selections = {
   rasterProbeCloseButton: d3.select('.raster-probe__close-button'),
   rasterProbeControlsContainer: d3.select('.raster-probe__overlay-controls'),
   rasterProbeCloseOverlayButton: d3.select('.raster-probe__remove-overlay'),
+  lightboxOuterContainer: d3.select('.lightbox__outer'),
+  lightboxContentContainer: d3.select('.lightbox__content'),
+  lightboxImageContainer: d3.select('.lightbox__image'),
+  lightboxMetadataContainer: d3.select('.lightbox__metadata'),
 
   sidebarContainer: d3.select('.sidebar'),
   sidebarContentContainer: d3.select('.sidebar__content'),

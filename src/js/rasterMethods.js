@@ -11,11 +11,28 @@ const rasterMethods = {
       width: maxDim,
     };
   },
+  getScaledCircleDimFromMetadata({
+    metadata,
+    maxDim,
+  }) {
+    const { getScaledCircleDim } = rasterMethods;
+    const { width, height } = metadata;
+    return getScaledCircleDim({ width, height, maxDim });
+  },
   getWidthLimitedDim({ width, height, maxWidth }) {
     return {
       width: maxWidth,
       height: height * (maxWidth / width),
     };
+  },
+  getWidthLImitedDimFromMetadata({ metadata, maxWidth }) {
+    const { getWidthLimitedDim } = rasterMethods;
+    const { width, height } = metadata;
+    return getWidthLimitedDim({
+      width,
+      height,
+      maxWidth,
+    });
   },
   getImageUrl({ scaledDim, metadata }) {
     const { width, height } = scaledDim;
@@ -24,11 +41,8 @@ const rasterMethods = {
   },
   getMetadata(data, callback) {
     const { SSC_ID } = data;
-    // console.log('data', data);
-    // console.log('SSC_ID', SSC_ID);
     d3.json(`https://www.sscommons.org/openlibrary/secure/imagefpx/${SSC_ID}/7731141/5`)
       .then((metadata) => {
-        // console.log('metadata', metadata[0]);
         callback(metadata[0]);
       })
       .catch((err) => {
@@ -43,28 +57,15 @@ const rasterMethods = {
       });
   },
   setBackgroundFromMetadata({
-    metadata, maxDim, maxWidth, selection,
+    metadata,
+    scaledDim,
+    selection,
+    resizeContainer = false,
   }) {
     const {
-      getScaledCircleDim,
       getImageUrl,
       setRasterBackground,
-      getWidthLimitedDim,
     } = rasterMethods;
-
-    const { width, height } = metadata;
-
-    const scaledDim = maxDim !== undefined ?
-      getScaledCircleDim({
-        width,
-        height,
-        maxDim,
-      }) :
-      getWidthLimitedDim({
-        width,
-        height,
-        maxWidth,
-      });
 
     const url = getImageUrl({
       scaledDim,
@@ -75,6 +76,57 @@ const rasterMethods = {
       url,
       selection,
     });
+
+    if (resizeContainer) {
+      selection
+        .styles({
+          width: `${scaledDim.width}px`,
+          height: `${scaledDim.height}px`,
+        });
+    }
+  },
+  setBackgroundToContainerWidth({
+    cachedMetadata,
+    selection,
+    currentRasterProbe,
+    resizeContainer,
+  }) {
+    const {
+      setBackgroundFromMetadata,
+      getWidthLImitedDimFromMetadata,
+    } = rasterMethods;
+    const maxWidth = selection
+      .node()
+      .getBoundingClientRect()
+      .width;
+
+    const { getMetadata } = rasterMethods;
+    if (cachedMetadata.has(currentRasterProbe.SS_ID)) {
+      const metadata = cachedMetadata.get(currentRasterProbe.SS_ID);
+      const scaledDim = getWidthLImitedDimFromMetadata({
+        maxWidth,
+        metadata,
+      });
+      setBackgroundFromMetadata({
+        metadata,
+        scaledDim,
+        selection,
+        resizeContainer,
+      });
+    } else {
+      getMetadata(currentRasterProbe, (metadata) => {
+        const scaledDim = getWidthLImitedDimFromMetadata({
+          maxWidth,
+          metadata,
+        });
+        setBackgroundFromMetadata({
+          metadata,
+          scaledDim,
+          selection,
+          resizeContainer,
+        });
+      });
+    }
   },
   setEachRasterBackground({
     images,
@@ -83,6 +135,7 @@ const rasterMethods = {
     const {
       getMetadata,
       setBackgroundFromMetadata,
+      getScaledCircleDimFromMetadata,
     } = rasterMethods;
     let maxDim;
 
@@ -91,20 +144,32 @@ const rasterMethods = {
       if (i === 0) {
         maxDim = this.getBoundingClientRect().width;
       }
+
       const selection = d3.select(this);
       if (cachedMetadata.has(d.SS_ID)) {
         const metadata = cachedMetadata.get(d.SS_ID);
-        setBackgroundFromMetadata({
+
+        const scaledDim = getScaledCircleDimFromMetadata({
           metadata,
           maxDim,
+        });
+
+        setBackgroundFromMetadata({
+          metadata,
+          scaledDim,
           selection,
         });
       } else {
         getMetadata(d, (metadata) => {
+          const scaledDim = getScaledCircleDimFromMetadata({
+            metadata,
+            maxDim,
+          });
+
           cachedMetadata.set(d.SS_ID, metadata);
           setBackgroundFromMetadata({
             metadata,
-            maxDim,
+            scaledDim,
             selection,
           });
         });

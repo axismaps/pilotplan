@@ -29,6 +29,10 @@ const privateMethods = {
       rasterProbeControlsContainer,
       rasterProbeCloseOverlayButton,
       onOverlayCloseClick,
+      lightboxOuterContainer,
+      lightboxContentContainer,
+      lightboxImageContainer,
+      lightboxMetadataContainer,
     } = privateProps.get(this);
 
 
@@ -38,6 +42,7 @@ const privateMethods = {
       updateTitle,
       updateImage,
       updateOverlayControls,
+
     } = rasterProbeMethods;
 
     const {
@@ -56,6 +61,11 @@ const privateMethods = {
       onImageClick: () => {
         initLightbox({
           currentRasterProbe,
+          lightboxOuterContainer,
+          lightboxContentContainer,
+          lightboxImageContainer,
+          lightboxMetadataContainer,
+          cachedMetadata,
         });
       },
     });
@@ -78,6 +88,10 @@ class RasterProbe {
       rasterProbeCloseButton,
       rasterProbeControlsContainer,
       rasterProbeCloseOverlayButton,
+      lightboxOuterContainer,
+      lightboxContentContainer,
+      lightboxImageContainer,
+      lightboxMetadataContainer,
     } = selections;
 
     privateProps.set(this, {
@@ -88,6 +102,10 @@ class RasterProbe {
       rasterProbeCloseButton,
       rasterProbeControlsContainer,
       rasterProbeCloseOverlayButton,
+      lightboxOuterContainer,
+      lightboxContentContainer,
+      lightboxImageContainer,
+      lightboxMetadataContainer,
       currentRasterProbe: null,
       onCloseClick: null,
       onOverlayCloseClick: null,

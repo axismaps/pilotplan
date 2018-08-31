@@ -1,5 +1,5 @@
+.lightbox__outer,
 .allraster__outer {
-  
   background: $lightbox-background;
   // display: flex;
   align-items: center;
@@ -8,11 +8,20 @@
   color: white;
 }
 
+.lightbox__outer--on {
+  display: flex;
+}
+
+.lightbox__inner,
 .allraster__inner {
   background: $main-background;
   box-shadow: $lightbox-shadow;
   border-radius: 5px;
   overflow-y: auto;
+}
+
+.lightbox__content {
+  padding: 20px;
 }
 
 .allraster__title {
