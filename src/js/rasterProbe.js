@@ -1,5 +1,6 @@
 import { selections } from './config';
 import rasterProbeMethods from './rasterProbeMethods';
+import lightboxMethods from './rasterProbeLightboxMethods';
 
 const privateProps = new WeakMap();
 
@@ -30,6 +31,7 @@ const privateMethods = {
       onOverlayCloseClick,
     } = privateProps.get(this);
 
+
     if (currentRasterProbe === null) return;
 
     const {
@@ -37,6 +39,10 @@ const privateMethods = {
       updateImage,
       updateOverlayControls,
     } = rasterProbeMethods;
+
+    const {
+      initLightbox,
+    } = lightboxMethods;
 
     updateTitle({
       rasterProbeTitleContainer,
@@ -47,6 +53,11 @@ const privateMethods = {
       currentRasterProbe,
       cachedMetadata,
       rasterProbeImageContainer,
+      onImageClick: () => {
+        initLightbox({
+          currentRasterProbe,
+        });
+      },
     });
     updateOverlayControls({
       rasterProbeCloseOverlayButton,

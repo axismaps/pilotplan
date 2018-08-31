@@ -154,7 +154,7 @@ const privateMethods = {
           <span class="sidebar__feature-name">${feature[language]}</span>
         `)
         .on('click', (feature) => {
-          // console.log(feature, d.id);
+          //
 
           onFeatureClick(Object.assign({}, feature, { sourceLayer: d.id }));
         });
@@ -168,7 +168,7 @@ const privateMethods = {
       view,
       sidebarContainer,
     } = privateProps.get(this);
-    // console.log('view', view);
+    //
     const classesForViews = new Map([
       ['legend', 'sidebar--legend'],
       ['textSearch', 'sidebar--text-search'],
@@ -228,7 +228,7 @@ class Sidebar {
     return this;
   }
   updateAvailableLayers() {
-    // console.log('update available layers');
+    //
     const {
       drawLayerGroups,
       drawLayers,
@@ -258,7 +258,7 @@ class Sidebar {
       nonRasterResultsContainer,
     } = privateProps.get(this);
 
-    // console.log('update highlighted feature', highlightedFeature);
+    //
     const isHighlightedFeature = (d) => {
       if (highlightedFeature === null) {
         return false;
@@ -296,7 +296,7 @@ class Sidebar {
       drawNonRasterSearchResults,
     } = searchMethods;
 
-    console.log('view', view);
+
     if (previousView === 'legend' && view === 'legend') return;
 
     setView.call(this);

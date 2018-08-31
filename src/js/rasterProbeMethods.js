@@ -44,6 +44,13 @@ const localMethods = {
     rasterProbeImageContainer
       .style('background-image', 'none');
   },
+  setImageClickListener({
+    rasterProbeImageContainer,
+    onImageClick,
+  }) {
+    rasterProbeImageContainer
+      .on('click', onImageClick);
+  },
   toggleOverlayControls({
     rasterProbeControlsContainer,
     currentRasterProbe,
@@ -74,10 +81,12 @@ const rasterProbeMethods = {
     currentRasterProbe,
     cachedMetadata,
     rasterProbeImageContainer,
+    onImageClick,
   }) {
     const {
       updateImageFromMetadata,
       clearImage,
+      setImageClickListener,
     } = localMethods;
 
     const {
@@ -85,6 +94,10 @@ const rasterProbeMethods = {
     } = rasterMethods;
 
     clearImage({ rasterProbeImageContainer });
+    setImageClickListener({
+      rasterProbeImageContainer,
+      onImageClick,
+    });
 
     if (cachedMetadata.has(currentRasterProbe.SS_ID)) {
       const metadata = cachedMetadata.get(currentRasterProbe.SS_ID);

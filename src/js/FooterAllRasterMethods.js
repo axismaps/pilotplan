@@ -84,8 +84,6 @@ const allRasterMethods = {
       });
 
       images.exit().remove();
-
-      console.log(d);
     });
   },
 };

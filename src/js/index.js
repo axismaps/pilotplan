@@ -49,7 +49,6 @@ const app = {
         state.update({ clickSearch: features });
       },
       onAreaSearch(features) {
-        console.log('on area search');
         state.update({ areaSearchActive: false, areaSearch: features });
       },
       onViewClick(newView) {

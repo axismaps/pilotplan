@@ -31,11 +31,8 @@ const rasterMethods = {
         // console.log('metadata', metadata[0]);
         callback(metadata[0]);
       })
-      // .catch((err) => {
-      //   throw new Error(`Error: ${err.message}`);
-      // })
       .catch((err) => {
-        console.log(err.message);
+        console.log(`Error: ${err.message}`);
       });
   },
   setRasterBackground({ selection, url }) {

@@ -1,4 +1,4 @@
-import rasterMethods from './rasterMethods';
+import getUpdateYear from './stateUpdateYear';
 
 const setStateEvents = ({ components, data }) => {
   const { state } = components;
@@ -27,104 +27,12 @@ const setStateEvents = ({ components, data }) => {
   };
 
   state.registerCallbacks({
-    year() {
-      const {
-        timeline,
-        atlas,
-        sidebar,
-        footer,
-      } = components;
-
-      const {
-        year,
-        footerView,
-      } = this.props();
-      // console.log('year', year);
-      const {
-        getRasterDataByCategory,
-      } = rasterMethods;
-
-      const rasterData = this.getAvailableRasters(data);
-
-      const rasterDataByCategory = getRasterDataByCategory({ rasterData });
-
-      timeline
-        .config({
-          year,
-        })
-        .updateYear();
-
-      atlas
-        .config({
-          year,
-          rasterData,
-        })
-        .updateYear();
-
-      footer
-        .config({
-          rasterData,
-        })
-        // .updateFooterView();
-        .updateRasterData();
-
-      sidebar
-        .config({
-          rasterData,
-          availableLayers: this.getAvailableLayers(data),
-        })
-        .updateAvailableLayers();
-
-      const stateToUpdate = {
-        currentLayers: this.getAllAvailableLayers(data),
-      };
-
-      const sidebarView = sidebar.getView();
-      if (sidebarView === 'textSearch') {
-        Object.assign(stateToUpdate, { textSearch: sidebar.getSearchText() });
-      } else if (sidebarView === 'clickSearch') {
-        sidebar
-          .config({
-            view: 'legend',
-          })
-          .updateView();
-      }
-
-      if (rasterDataByCategory.length === 0) {
-        // need to close footer if no results
-        Object.assign(stateToUpdate, { footerView: 'views' });
-      } else if (rasterData.get(footerView).length === 0) {
-        Object.assign(stateToUpdate, { footerView: rasterDataByCategory[0].key });
-      }
-
-      const layersToClear = this.getLayersToClear([
-        'currentOverlay',
-        'highlightedFeature',
-        'currentRasterProbe',
-        'currentView',
-      ]);
-
-      Object.assign(stateToUpdate, layersToClear);
-      // if (state.get('currentOverlay') !== null) {
-      //   Object.assign(stateToUpdate, { currentOverlay: null });
-      // }
-      // if (state.get('highlightedFeature') !== null) {
-      //   Object.assign(stateToUpdate, { highlightedFeature: null });
-      // }
-      // if (state.get('currentRasterProbe') !== null) {
-      //   Object.assign(stateToUpdate, { currentRasterProbe: null });
-      // }
-
-      state.update(stateToUpdate);
-    },
+    year: getUpdateYear({ data, components }),
     screenSize() {
-      // const {
-      //   screenSize,
-      // } = this.props();
       const {
         timeline,
       } = components;
-      // console.log(screenSize);
+
       timeline
         .updateScreenSize();
     },
@@ -187,7 +95,7 @@ const setStateEvents = ({ components, data }) => {
           raster: utils.formatRasterResults(raster),
           nonRaster: utils.formatNonRasterResults(nonRaster),
         };
-        // console.log('format text', utils.formatNonRasterResults(results.nonRaster));
+        //
 
         sidebar
           .config({
@@ -289,7 +197,7 @@ const setStateEvents = ({ components, data }) => {
         atlas,
         sidebar,
       } = components;
-      // console.log('highlight feature', highlightedFeature);
+      //
       atlas
         .config({
           highlightedFeature,
@@ -340,7 +248,7 @@ const setStateEvents = ({ components, data }) => {
           currentView,
         })
         .updateView();
-      // console.log('current view', currentView);
+      //
     },
     currentRasterProbe() {
       const {
@@ -352,7 +260,7 @@ const setStateEvents = ({ components, data }) => {
         rasterProbe,
       } = components;
 
-      console.log('currentraster', currentRasterProbe);
+
       layout
         .config({
           rasterProbeOpen: currentRasterProbe !== null,

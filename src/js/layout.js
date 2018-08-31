@@ -108,7 +108,6 @@ class Layout {
     updateFooter({ outerContainer, footerOpen });
   }
   updateAreaSearch() {
-    console.log('layout area', privateProps.get(this).areaSearchActive);
     const {
       probeButtonsContainer,
       areaSearchActive,

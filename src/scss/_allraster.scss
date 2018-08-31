@@ -10,7 +10,7 @@
 
 .allraster__inner {
   background: $main-background;
-  box-shadow: 0 0 8px rgba(255,255,255,0.25);
+  box-shadow: $lightbox-shadow;
   border-radius: 5px;
   overflow-y: auto;
 }

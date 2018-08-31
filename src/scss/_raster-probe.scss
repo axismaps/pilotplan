@@ -62,6 +62,10 @@
   cursor: pointer;
 }
 
+.raster-probe__image {
+  cursor: pointer;
+}
+
 .raster-probe__remove-overlay:hover {
   background: $main-light-gray;
 }

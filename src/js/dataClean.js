@@ -1,5 +1,5 @@
 const cleanData = (rawData) => {
-  // console.log('raw data', rawData);
+  //
   const [
     rawLayers,
     rawViewsheds,
@@ -14,11 +14,11 @@ const cleanData = (rawData) => {
     'Urbanism',
   ];
 
-  // console.log('rawLayers', rawLayers);
-  // console.log('rawview', rawViewsheds);
-  // console.log('rawAerials', rawAerials);
-  // console.log('rawMaps', rawMaps);
-  // console.log('rawPlans', rawPlans);
+  //
+  //
+  //
+  //
+  //
 
   const layers = layerGroups
     .map((group) => {
@@ -54,7 +54,6 @@ const cleanData = (rawData) => {
     return record;
   });
 
-  console.log('layers', layers);
 
   const rasters = new Map();
 
