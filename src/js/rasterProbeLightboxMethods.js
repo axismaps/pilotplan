@@ -1,3 +1,5 @@
+import rasterMethods from './rasterMethods';
+
 const localMethods = {
   openLightbox({
     lightboxOuterContainer,
@@ -28,11 +30,20 @@ const localMethods = {
       });
   },
   drawLightboxImage({
-    lightboxContentContainer,
+    lightboxImageContainer,
     currentRasterProbe,
     cachedMetadata,
   }) {
+    const {
+      setBackgroundToContainerWidth,
+    } = rasterMethods;
 
+    setBackgroundToContainerWidth({
+      selection: lightboxImageContainer,
+      currentRasterProbe,
+      cachedMetadata,
+      resizeContainer: true,
+    });
   },
 };
 
