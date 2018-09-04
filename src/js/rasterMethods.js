@@ -19,19 +19,27 @@ const rasterMethods = {
     const { width, height } = metadata;
     return getScaledCircleDim({ width, height, maxDim });
   },
-  getWidthLimitedDim({ width, height, maxWidth }) {
+  getScaledDim({
+    width,
+    height,
+    maxWidth,
+    maxHeight,
+  }) {
+    const scaledHeight = height * (maxWidth / width);
+    const heightLimited = maxHeight !== undefined && scaledHeight > maxHeight;
     return {
-      width: maxWidth,
-      height: height * (maxWidth / width),
+      width: heightLimited ? maxWidth * (maxHeight / scaledHeight) : maxWidth,
+      height: heightLimited ? maxHeight : scaledHeight,
     };
   },
-  getWidthLImitedDimFromMetadata({ metadata, maxWidth }) {
-    const { getWidthLimitedDim } = rasterMethods;
+  getScaledDimFromMetadata({ metadata, maxWidth, maxHeight }) {
+    const { getScaledDim } = rasterMethods;
     const { width, height } = metadata;
-    return getWidthLimitedDim({
+    return getScaledDim({
       width,
       height,
       maxWidth,
+      maxHeight,
     });
   },
   getImageUrl({ scaledDim, metadata }) {
@@ -84,16 +92,26 @@ const rasterMethods = {
           height: `${scaledDim.height}px`,
         });
     }
+
+    // if (resizeProbe) {
+    //   const formatPadding = padding => parseInt(padding.replace('px', ''), 10);
+    //   const newWidth =
+    //     scaledDim.width +
+    //     formatPadding(rasterProbeInnerContainer.style('padding-left')) +
+    //     formatPadding(rasterProbeInnerContainer.style('padding-right'));
+
+    // }
   },
   setBackgroundToContainerWidth({
     cachedMetadata,
     selection,
     currentRasterProbe,
     resizeContainer,
+    maxHeight,
   }) {
     const {
       setBackgroundFromMetadata,
-      getWidthLImitedDimFromMetadata,
+      getScaledDimFromMetadata,
     } = rasterMethods;
     const maxWidth = selection
       .node()
@@ -103,9 +121,10 @@ const rasterMethods = {
     const { getMetadata } = rasterMethods;
     if (cachedMetadata.has(currentRasterProbe.SS_ID)) {
       const metadata = cachedMetadata.get(currentRasterProbe.SS_ID);
-      const scaledDim = getWidthLImitedDimFromMetadata({
+      const scaledDim = getScaledDimFromMetadata({
         maxWidth,
         metadata,
+        maxHeight,
       });
       setBackgroundFromMetadata({
         metadata,
@@ -115,9 +134,10 @@ const rasterMethods = {
       });
     } else {
       getMetadata(currentRasterProbe, (metadata) => {
-        const scaledDim = getWidthLImitedDimFromMetadata({
+        const scaledDim = getScaledDimFromMetadata({
           maxWidth,
           metadata,
+          maxHeight,
         });
         setBackgroundFromMetadata({
           metadata,

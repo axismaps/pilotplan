@@ -61,11 +61,14 @@ const rasterProbeMethods = {
       onImageClick,
     });
 
+
     setBackgroundToContainerWidth({
       selection: rasterProbeImageContainer,
       cachedMetadata,
       currentRasterProbe,
       resizeContainer: true,
+      resizeProbe: true,
+      maxHeight: 300,
     });
   },
   setCloseButtonListener({
@@ -79,7 +82,6 @@ const rasterProbeMethods = {
     rasterProbeCreditsContainer,
     currentRasterProbe,
   }) {
-    console.log('update credits', currentRasterProbe);
     let creditsHTML = '';
     const hasValue = value => value !== '' && value !== undefined && value !== null;
     if (hasValue(currentRasterProbe.Creator)) {
@@ -96,6 +98,20 @@ const rasterProbeMethods = {
     }
     rasterProbeCreditsContainer
       .html(creditsHTML);
+  },
+  resizeProbe({
+    rasterProbeContainer,
+    rasterProbeInnerContainer,
+    rasterProbeImageContainer,
+  }) {
+    const formatPadding = padding => parseInt(padding.replace('px', ''), 10);
+    const imageWidth = rasterProbeImageContainer.node().getBoundingClientRect().width;
+    const newWidth =
+      imageWidth +
+      formatPadding(rasterProbeInnerContainer.style('padding-left')) +
+      formatPadding(rasterProbeInnerContainer.style('padding-right'));
+    rasterProbeContainer
+      .style('width', `${newWidth}px`);
   },
   updateOverlayControls({
     rasterProbeCloseOverlayButton,

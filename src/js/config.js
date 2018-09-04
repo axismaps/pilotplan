@@ -61,7 +61,8 @@ export const selections = {
   stepperLeftButton: d3.select('.timeline-stepper__left'),
   stepperRightButton: d3.select('.timeline-stepper__right'),
 
-  rasterProbeContainer: d3.select('.raster-probee'),
+  rasterProbeContainer: d3.select('.raster-probe'),
+  rasterProbeInnerContainer: d3.select('.raster-probe__inner'),
   rasterProbeTitleContainer: d3.select('.raster-probe__title-text'),
   rasterProbeImageContainer: d3.select('.raster-probe__image'),
   rasterProbeOverlayControlContainer: d3.select('.raster-probe__overlay-controls'),

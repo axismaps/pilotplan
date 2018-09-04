@@ -29,6 +29,8 @@ const privateMethods = {
       rasterProbeControlsContainer,
       rasterProbeCloseOverlayButton,
       rasterProbeCreditsContainer,
+      rasterProbeContainer,
+      rasterProbeInnerContainer,
       onOverlayCloseClick,
       lightboxOuterContainer,
       lightboxContentContainer,
@@ -44,6 +46,7 @@ const privateMethods = {
       updateImage,
       updateCredits,
       updateOverlayControls,
+      resizeProbe,
     } = rasterProbeMethods;
 
     const {
@@ -54,6 +57,7 @@ const privateMethods = {
       rasterProbeTitleContainer,
       currentRasterProbe,
     });
+
 
     updateImage({
       currentRasterProbe,
@@ -69,6 +73,12 @@ const privateMethods = {
           cachedMetadata,
         });
       },
+    });
+
+    resizeProbe({
+      rasterProbeContainer,
+      rasterProbeInnerContainer,
+      rasterProbeImageContainer,
     });
 
     updateCredits({
@@ -88,7 +98,6 @@ const privateMethods = {
 class RasterProbe {
   constructor(config) {
     const {
-      rasterProbeContainer,
       rasterProbeTitleContainer,
       rasterProbeImageContainer,
       rasterProbeOverlayControlContainer,
@@ -96,6 +105,8 @@ class RasterProbe {
       rasterProbeControlsContainer,
       rasterProbeCloseOverlayButton,
       rasterProbeCreditsContainer,
+      rasterProbeContainer,
+      rasterProbeInnerContainer,
       lightboxOuterContainer,
       lightboxContentContainer,
       lightboxImageContainer,
@@ -103,7 +114,6 @@ class RasterProbe {
     } = selections;
 
     privateProps.set(this, {
-      rasterProbeContainer,
       rasterProbeTitleContainer,
       rasterProbeImageContainer,
       rasterProbeOverlayControlContainer,
@@ -111,6 +121,8 @@ class RasterProbe {
       rasterProbeControlsContainer,
       rasterProbeCloseOverlayButton,
       rasterProbeCreditsContainer,
+      rasterProbeContainer,
+      rasterProbeInnerContainer,
       lightboxOuterContainer,
       lightboxContentContainer,
       lightboxImageContainer,
