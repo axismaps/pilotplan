@@ -17,12 +17,19 @@
   background: $main-background;
   box-shadow: $lightbox-shadow;
   border-radius: 5px;
+}
+
+.lightbox__inner {
+  overflow-y: scroll;
+}
+
+.allraster__inner {
   overflow-y: auto;
 }
 
 .lightbox__content {
   padding: 20px;
-  padding-right: 35px;
+  // padding-right: 35px;
 }
 
 .allraster__title {

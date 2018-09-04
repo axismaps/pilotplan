@@ -36,6 +36,8 @@ const privateMethods = {
       lightboxContentContainer,
       lightboxImageContainer,
       lightboxMetadataContainer,
+      lightboxCreditsContainer,
+      lightboxSharedShelfButton,
     } = privateProps.get(this);
 
 
@@ -70,6 +72,8 @@ const privateMethods = {
           lightboxContentContainer,
           lightboxImageContainer,
           lightboxMetadataContainer,
+          lightboxCreditsContainer,
+          lightboxSharedShelfButton,
           cachedMetadata,
         });
       },
@@ -82,7 +86,7 @@ const privateMethods = {
     });
 
     updateCredits({
-      rasterProbeCreditsContainer,
+      selection: rasterProbeCreditsContainer,
       currentRasterProbe,
     });
 
@@ -111,6 +115,8 @@ class RasterProbe {
       lightboxContentContainer,
       lightboxImageContainer,
       lightboxMetadataContainer,
+      lightboxCreditsContainer,
+      lightboxSharedShelfButton,
     } = selections;
 
     privateProps.set(this, {
@@ -127,6 +133,8 @@ class RasterProbe {
       lightboxContentContainer,
       lightboxImageContainer,
       lightboxMetadataContainer,
+      lightboxCreditsContainer,
+      lightboxSharedShelfButton,
       currentRasterProbe: null,
       onCloseClick: null,
       onOverlayCloseClick: null,

@@ -1,4 +1,5 @@
 import rasterMethods from './rasterMethods';
+import rasterProbeMethods from './rasterProbeMethods';
 
 const localMethods = {
   openLightbox({
@@ -45,6 +46,12 @@ const localMethods = {
       resizeContainer: true,
     });
   },
+  initSharedShelfButton({
+    lightboxSharedShelfButton,
+    currentRasterProbe,
+  }) {
+    console.log('currentraster', currentRasterProbe);
+  },
 };
 
 const lightboxMethods = {
@@ -53,14 +60,21 @@ const lightboxMethods = {
     lightboxOuterContainer,
     lightboxImageContainer,
     lightboxMetadataContainer,
+    lightboxCreditsContainer,
     currentRasterProbe,
     cachedMetadata,
+    lightboxSharedShelfButton,
   }) {
     const {
       openLightbox,
       setCloseListener,
       drawLightboxImage,
+      initSharedShelfButton,
     } = localMethods;
+
+    const {
+      updateCredits,
+    } = rasterProbeMethods;
 
     openLightbox({ lightboxOuterContainer });
 
@@ -74,6 +88,16 @@ const lightboxMethods = {
       lightboxMetadataContainer,
       currentRasterProbe,
       cachedMetadata,
+    });
+
+    updateCredits({
+      selection: lightboxCreditsContainer,
+      currentRasterProbe,
+    });
+
+    initSharedShelfButton({
+      lightboxSharedShelfButton,
+      currentRasterProbe,
     });
   },
 };

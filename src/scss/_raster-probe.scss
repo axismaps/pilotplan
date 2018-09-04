@@ -35,10 +35,37 @@
   margin-bottom: 15px;
 }
 
+.lightbox__credits-block,
 .raster-probe__credits {
   margin-top: 10px;
   font-size: 13px;
   // color: rgb(200, 200, 200);
+}
+
+.lightbox__credits-block {
+  display: flex;
+  justify-content: space-between;
+}
+
+.lightbox__view-button {
+  background: $main-medium-dark-gray;
+  transition: background 250ms;
+  border: 1px solid $main-medium-gray;
+  width: 160px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.lightbox__view-button:hover {
+  background: $main-light-gray;
+}
+
+.lightbox__view-button-text {
+  text-align: center;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .raster-probe__close-button {

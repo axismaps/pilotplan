@@ -68,7 +68,7 @@ const rasterProbeMethods = {
       currentRasterProbe,
       resizeContainer: true,
       resizeProbe: true,
-      maxHeight: 300,
+      maxHeight: 400,
     });
   },
   setCloseButtonListener({
@@ -79,7 +79,7 @@ const rasterProbeMethods = {
       .on('click', onCloseClick);
   },
   updateCredits({
-    rasterProbeCreditsContainer,
+    selection,
     currentRasterProbe,
   }) {
     let creditsHTML = '';
@@ -96,7 +96,7 @@ const rasterProbeMethods = {
         ${hasValue(currentRasterProbe.CreditLine) ? `[${currentRasterProbe.CreditLine}]` : ''}</div>
       `;
     }
-    rasterProbeCreditsContainer
+    selection
       .html(creditsHTML);
   },
   resizeProbe({
