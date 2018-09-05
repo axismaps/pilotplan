@@ -25,6 +25,7 @@ const privateMethods = {
       currentRasterProbe,
       rasterProbeTitleContainer,
       cachedMetadata,
+      cachedSharedShelfURLs,
       rasterProbeImageContainer,
       rasterProbeControlsContainer,
       rasterProbeCloseOverlayButton,
@@ -75,6 +76,7 @@ const privateMethods = {
           lightboxCreditsContainer,
           lightboxSharedShelfButton,
           cachedMetadata,
+          cachedSharedShelfURLs,
         });
       },
     });
@@ -139,6 +141,7 @@ class RasterProbe {
       onCloseClick: null,
       onOverlayCloseClick: null,
       cachedMetadata: null,
+      cachedSharedShelfURLs: new Map(),
     });
 
     const {

@@ -47,7 +47,7 @@ const rasterMethods = {
     const { imageServer, imageUrl } = metadata;
     return `${imageServer.replace('http', 'https')}${imageUrl}&&wid=${width}&hei=${height}&rgnn=0,0,1,1&cvt=JPEG`;
   },
-  getMetadata(data, callback) {
+  getMetadata({ data }, callback) {
     const { SSC_ID } = data;
     d3.json(`https://www.sscommons.org/openlibrary/secure/imagefpx/${SSC_ID}/7731141/5`)
       .then((metadata) => {
@@ -56,6 +56,48 @@ const rasterMethods = {
       .catch((err) => {
         console.log(`Error: ${err.message}`);
       });
+  },
+  getSharedShelfURL({ currentRasterProbe }, callback) {
+    d3.html(`https://www.sscommons.org/openlibrary/secure/metadata/${currentRasterProbe.SSC_ID}?_method=FpHtml`)
+      .then((data) => {
+        let url;
+        const nodes = d3.select(data).selectAll('.data');
+        const length = nodes.size();
+
+        nodes.each(function test(d, i) {
+          if (i === length - 1) {
+            // url = `https://www.sscommons.org/openlibrary/${d3.select(this).node().innerText.replace(/\s/gm, '')}`;
+            const inner = d3.select(this).node().innerHTML;
+            const t = '<wbr>';
+            const slice1 = inner.slice(inner.indexOf(t) + t.length);
+            const slice2 = slice1.slice(0, slice1.indexOf(t));
+            url = `https://www.sscommons.org/openlibrary/ExternalIV.jsp?objectId=${slice2}`;
+          }
+        });
+        callback(url);
+      });
+  },
+  addSharedShelfLinkToSelection({
+    currentRasterProbe,
+    cachedSharedShelfURLs,
+    selection,
+  }) {
+    const {
+      getSharedShelfURL,
+    } = rasterMethods;
+    if (cachedSharedShelfURLs.has(currentRasterProbe.SS_ID)) {
+      const url = cachedSharedShelfURLs.get(currentRasterProbe.SS_ID);
+      selection.on('click', () => {
+        window.open(url, '_blank');
+      });
+    } else {
+      getSharedShelfURL({ currentRasterProbe }, (url) => {
+        cachedSharedShelfURLs.set(currentRasterProbe.SS_ID, url);
+        selection.on('click', () => {
+          window.open(url, '_blank');
+        });
+      });
+    }
   },
   setRasterBackground({ selection, url }) {
     selection
@@ -133,7 +175,7 @@ const rasterMethods = {
         resizeContainer,
       });
     } else {
-      getMetadata(currentRasterProbe, (metadata) => {
+      getMetadata({ data: currentRasterProbe }, (metadata) => {
         const scaledDim = getScaledDimFromMetadata({
           maxWidth,
           metadata,
@@ -180,7 +222,7 @@ const rasterMethods = {
           selection,
         });
       } else {
-        getMetadata(d, (metadata) => {
+        getMetadata({ data: d }, (metadata) => {
           const scaledDim = getScaledCircleDimFromMetadata({
             metadata,
             maxDim,

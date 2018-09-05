@@ -13,10 +13,6 @@ require('../scss/index.scss');
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiYXhpc21hcHMiLCJhIjoieUlmVFRmRSJ9.CpIxovz1TUWe_ecNLFuHNg';
 
-// const components = {};
-// const cachedMetadata = new Map();
-// let data;
-
 const app = {
   components: {},
   data: null,
