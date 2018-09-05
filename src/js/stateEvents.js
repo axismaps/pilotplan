@@ -28,11 +28,25 @@ const setStateEvents = ({ components, data }) => {
 
   state.registerCallbacks({
     year: getUpdateYear({ data, components }),
+    view() {
+      const {
+        view,
+      } = this.props();
+      const {
+        views,
+      } = components;
+
+      console.log('view', view);
+      views
+        .config({ view })
+        .updateView();
+    },
     screenSize() {
       const {
         timeline,
+        screenSize,
       } = components;
-
+      console.log('screen', screenSize);
       timeline
         .updateScreenSize();
     },

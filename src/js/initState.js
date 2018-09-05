@@ -8,6 +8,7 @@ const getState = function getState() {
     allRasterOpen: false,
     sidebarView: 'legend', // searching, results
     footerView: 'views',
+    view: 'eras',
     textSearch: null,
     clickSearch: null,
     areaSearchActive: false,

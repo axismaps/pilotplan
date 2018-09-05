@@ -8,6 +8,7 @@ import RasterProbe from './rasterProbe';
 import getState from './initState';
 import { yearRange } from './config';
 import loadData from './dataLoad';
+import Views from './views';
 
 require('../scss/index.scss');
 
@@ -21,12 +22,30 @@ const app = {
     loadData((cleanedData) => {
       this.data = cleanedData;
       this.initState();
-      this.initAtlas();
+      this.initViews();
+      this.setStateEvents();
+      if (d3.select('.outer-container').classed('outer-container--map')) {
+        this.initAtlas();
+      }
+      // setTimeout(() => {
+      //   const { state } = this.components;
+
+      //   state.update({ view: 'map' });
+      // }, 2000);
     });
   },
   initState() {
     this.components.state = getState();
     this.components.state.set('currentLayers', this.components.state.getAllAvailableLayers(this.data));
+  },
+  initViews() {
+    this.components.views = new Views({
+      initialize: {
+        map: () => {
+          this.initAtlas();
+        },
+      },
+    });
   },
   initAtlas() {
     const { state } = this.components;
@@ -57,7 +76,7 @@ const app = {
   },
   onAtlasLoad() {
     this.initComponents();
-    this.setStateEvents();
+    // this.setStateEvents();
     this.listenForResize();
   },
   initComponents() {

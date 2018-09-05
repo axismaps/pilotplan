@@ -63,6 +63,10 @@ class Layout {
     this.updateOverlay();
     // this.updateView();
     this.updateRasterProbe();
+
+    // outerContainer
+    //   .classed('outer-container--map', false)
+    //   .classed('outer-container--eras', true);
   }
   config(config) {
     Object.assign(privateProps.get(this), config);
@@ -76,12 +80,6 @@ class Layout {
 
     outerContainer.classed('raster-probe-on', rasterProbeOpen);
   }
-  // updateView() {
-  //   const {
-  //     outerContainer,
-  //     viewOn,
-  //   } = privateProps.get(this);
-  // }
   updateOverlay() {
     const {
       outerContainer,

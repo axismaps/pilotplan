@@ -23,7 +23,7 @@
   <meta property="og:image" content="img/cover.png" />
 </head>
 <body>
-  <div class="outer-container outer-container--desktop footer-open sidebar-open">
+  <div class="outer-container outer-container--map outer-container--desktop footer-open sidebar-open">
     <div class="outer-map-view">
       <%= require('html-loader!./header.html') %>
       <%= require('html-loader!./map.html') %>
@@ -33,6 +33,9 @@
       <%= require('html-loader!./allraster.html') %>
       <%= require('html-loader!./rasterProbe.html') %>
       <%= require('html-loader!./lightbox.html') %>
+    </div>
+    <div class="outer-eras-view">
+        <%= require('html-loader!./eras.html') %>
     </div>
   </div>
 

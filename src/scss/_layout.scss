@@ -10,6 +10,7 @@ body {
   background: $main-background;
 }
 
+.outer-eras-view,
 .outer-container,
 .outer-map-view {
   position: absolute;
@@ -185,5 +186,26 @@ body {
 .outer-container.raster-probe-on {
   .raster-probe {
     display: block;
+  }
+}
+
+.outer-container--map,
+.outer-container--intro {
+  .outer-eras-view {
+    display: none;
+  }
+}
+
+.outer-container--intro,
+.outer-container--eras {
+  .outer-map-view {
+    display: none;
+  }
+}
+
+.outer-container--eras,
+.outer-container--map {
+  .outer-intro-view {
+    display: none;
   }
 }
