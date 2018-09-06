@@ -41,9 +41,6 @@ const privateMethods = {
       lightboxSharedShelfButton,
     } = privateProps.get(this);
 
-
-    if (currentRasterProbe === null) return;
-
     const {
       updateTitle,
       updateImage,
@@ -54,7 +51,13 @@ const privateMethods = {
 
     const {
       initLightbox,
+      closeLightbox,
     } = lightboxMethods;
+
+    if (currentRasterProbe === null) {
+      closeLightbox({ lightboxOuterContainer });
+      return;
+    }
 
     updateTitle({
       rasterProbeTitleContainer,

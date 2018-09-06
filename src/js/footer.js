@@ -197,16 +197,7 @@ class Footer {
     drawRasters.call(this);
     return this;
   }
-  // updateFooterView() {
-  //   const {
-  //     updateFooterView,
-  //     drawRasters,
-  //   } = privateMethods;
 
-  //   updateFooterView.call(this);
-  //   drawRasters.call(this);
-  //   return this;
-  // }
   updateAllRaster() {
     const {
       allRasterOpen,

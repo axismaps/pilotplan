@@ -115,6 +115,10 @@ const lightboxMethods = {
       cachedSharedShelfURLs,
     });
   },
+  closeLightbox({ lightboxOuterContainer }) {
+    const { closeLightbox } = localMethods;
+    closeLightbox({ lightboxOuterContainer });
+  },
 };
 
 export default lightboxMethods;

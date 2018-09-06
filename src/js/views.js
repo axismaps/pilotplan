@@ -52,10 +52,11 @@ class Views {
       views,
       outerContainer,
     } = props;
+
     const {
       updateClass,
     } = privateMethods;
-    console.log('update', view);
+
     updateClass({
       outerContainer,
       view,

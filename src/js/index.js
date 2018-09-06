@@ -48,6 +48,7 @@ const app = {
       view: state.get('view'),
       initialize: {
         map: () => {
+          console.log('initialize map');
           this.initComponents();
           this.listenForResize();
         },
@@ -62,9 +63,6 @@ const app = {
     this.components.intro = new Intro({
       onBeginButtonClick: () => {
         state.update({ view: 'map' });
-        // setTimeout(() => {
-        //   state.update({ view: 'intro' });
-        // }, 4000);
       },
     });
   },
@@ -74,9 +72,6 @@ const app = {
     this.components.eras = new Eras({
       onMapButtonClick: () => {
         state.update({ view: 'map' });
-        // setTimeout(() => {
-        //   state.update({ view: 'eras' });
-        // }, 4000);
       },
     });
   },
@@ -94,10 +89,10 @@ const app = {
       layerNames: this.data.layerNames,
       // onLoad: this.onAtlasLoad.bind(this),
       onLoad: () => {
-        if (state.get('view') === 'map') {
-          this.initComponents();
-          this.listenForResize();
-        }
+        // if (state.get('view') === 'map') {
+        //   this.initComponents();
+        //   this.listenForResize();
+        // }
         state.update({ mapLoaded: true });
       },
       onClickSearch(features) {
@@ -128,6 +123,8 @@ const app = {
       atlas,
     } = this.components;
 
+    console.log('init components');
+
     this.components.timeline = new Timeline({
       year: state.get('year'),
       updateYear(newYear) {
@@ -149,6 +146,9 @@ const app = {
       },
       onOverlayButtonClick() {
         state.update({ currentRasterProbe: state.get('currentOverlay') });
+      },
+      onErasButtonClick() {
+        state.update({ view: 'eras' });
       },
     });
 

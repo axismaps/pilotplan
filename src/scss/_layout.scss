@@ -76,6 +76,22 @@ body {
   height: $timeline-height + $header-height;
 }
 
+.header {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: $timeline-height;
+  display: flex;
+  align-items: center;
+  color: white;
+}
+
+.header__eras-button {
+  margin-left: 25px;
+  cursor: pointer;
+}
+
 .timeline-container {
   position: absolute;
   top: $header-height;

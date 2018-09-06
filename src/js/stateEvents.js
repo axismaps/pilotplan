@@ -48,6 +48,7 @@ const setStateEvents = ({ components, data }) => {
         currentOverlay: null,
         footerOpen: view === 'map',
         sidebarOpen: view === 'map',
+        allRasterOpen: false,
       });
     },
     screenSize() {

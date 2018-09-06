@@ -19,6 +19,14 @@ const privateMethods = {
     overlayButtonContainer
       .on('click', onOverlayButtonClick);
   },
+  initErasButton() {
+    const {
+      erasButtonContainer,
+      onErasButtonClick,
+    } = privateProps.get(this);
+    erasButtonContainer
+      .on('click', onErasButtonClick);
+  },
   updateFooter({ outerContainer, footerOpen }) {
     outerContainer.classed('footer-open', footerOpen);
   },
@@ -31,6 +39,7 @@ class Layout {
       areaSearchButton,
       probeButtonsContainer,
       overlayButtonContainer,
+      erasButtonContainer,
     } = selections;
 
     privateProps.set(this, {
@@ -41,21 +50,25 @@ class Layout {
       onAreaButtonClick: null,
       areaSearchActive: null,
       onOverlayButtonClick: null,
+      onErasButtonClick: null,
       rasterProbeOpen: false,
       outerContainer,
       areaSearchButton,
       probeButtonsContainer,
       overlayButtonContainer,
+      erasButtonContainer,
     });
     const {
       initAreaButton,
       initOverlayButton,
+      initErasButton,
     } = privateMethods;
 
     this.config(config);
 
     initAreaButton.call(this);
     initOverlayButton.call(this);
+    initErasButton.call(this);
 
     this.updateSidebar();
     this.updateFooter();
