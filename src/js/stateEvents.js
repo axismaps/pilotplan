@@ -34,12 +34,15 @@ const setStateEvents = ({ components, data }) => {
       } = this.props();
       const {
         views,
+        atlas,
       } = components;
 
       console.log('view', view);
       views
         .config({ view })
         .updateView();
+
+      atlas.resizeMap();
     },
     screenSize() {
       const {

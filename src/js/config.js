@@ -84,4 +84,7 @@ export const selections = {
   resultsContainer: d3.select('.sidebar__results'),
   rasterResultsContainer: d3.select('.sidebar__raster-results'),
   nonRasterResultsContainer: d3.select('.sidebar__nonraster-results'),
+
+  beginButtonContainer: d3.select('.intro__begin-button'),
+  jumpButtonContainer: d3.select('.intro__jump-button'),
 };

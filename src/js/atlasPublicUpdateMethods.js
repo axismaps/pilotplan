@@ -141,8 +141,18 @@ const getAtlasUpdateMethods = ({
           mbMap,
         });
         const bbox = getBBox(coneFeature);
+        // const mapBBox = mbMap.getBounds();
+        // console.log('bounds1', bbox);
+        // console.log('bounds2', mapBBox);
         mbMap.fitBounds(bbox, { padding: 100 });
+        // const bearing = mbMap.getBearing();
+        // console.log('bearing', bearing);
+        // console.log('get zoom', mbMap.getZoom());
       }
+    },
+    resizeMap() {
+      const { mbMap } = privateProps.get(this);
+      mbMap.resize();
     },
   };
   return updateMethods;

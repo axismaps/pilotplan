@@ -28,6 +28,10 @@ class Views {
           className: 'outer-container--map',
           initialized: false,
         },
+        intro: {
+          className: 'outer-container--intro',
+          initialized: false,
+        },
         eras: {
           className: 'outer-container--eras',
           initialized: false,

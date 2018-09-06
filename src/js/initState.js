@@ -9,6 +9,7 @@ const getState = function getState() {
     sidebarView: 'legend', // searching, results
     footerView: 'views',
     view: 'eras',
+    mapLoaded: false,
     textSearch: null,
     clickSearch: null,
     areaSearchActive: false,

@@ -1,4 +1,5 @@
 import setStateEvents from './stateEvents';
+import Intro from './intro';
 import Atlas from './atlas';
 import Timeline from './timeline';
 import Layout from './layout';
@@ -24,9 +25,11 @@ const app = {
       this.initState();
       this.initViews();
       this.setStateEvents();
-      if (d3.select('.outer-container').classed('outer-container--map')) {
-        this.initAtlas();
-      }
+      // if (d3.select('.outer-container').classed('outer-container--map')) {
+      //   this.initAtlas();
+      // }
+      this.initAtlas();
+      this.initIntro();
       // setTimeout(() => {
       //   const { state } = this.components;
 
@@ -42,8 +45,19 @@ const app = {
     this.components.views = new Views({
       initialize: {
         map: () => {
-          this.initAtlas();
+          this.initComponents();
+          this.listenForResize();
         },
+      },
+    });
+  },
+  initIntro() {
+    const { state } = this.components;
+
+    this.components.intro = new Intro({
+      onBeginButtonClick: () => {
+        console.log('click');
+        state.update({ view: 'map' });
       },
     });
   },
@@ -59,7 +73,14 @@ const app = {
       rasterData: state.getAvailableRasters(this.data),
       year: state.get('year'),
       layerNames: this.data.layerNames,
-      onLoad: this.onAtlasLoad.bind(this),
+      // onLoad: this.onAtlasLoad.bind(this),
+      onLoad: () => {
+        if (state.get('view') === 'map') {
+          this.initComponents();
+          this.listenForResize();
+        }
+        state.update({ mapLoaded: true });
+      },
       onClickSearch(features) {
         state.update({ clickSearch: features });
       },
@@ -74,15 +95,18 @@ const app = {
       },
     });
   },
-  onAtlasLoad() {
-    this.initComponents();
-    // this.setStateEvents();
-    this.listenForResize();
-  },
+  // onAtlasLoad() {
+  //   const { state } = this.components;
+  //   if (state.get('view') === 'map') {
+
+  //   }
+  //   this.initComponents();
+  //   this.listenForResize();
+  // },
   initComponents() {
     const {
       state,
-      // atlas,
+      atlas,
     } = this.components;
 
     this.components.timeline = new Timeline({

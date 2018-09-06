@@ -63,10 +63,6 @@ class Layout {
     this.updateOverlay();
     // this.updateView();
     this.updateRasterProbe();
-
-    // outerContainer
-    //   .classed('outer-container--map', false)
-    //   .classed('outer-container--eras', true);
   }
   config(config) {
     Object.assign(privateProps.get(this), config);

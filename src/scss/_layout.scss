@@ -10,7 +10,7 @@ body {
   background: $main-background;
 }
 
-.outer-eras-view,
+.outer-intro-view,
 .outer-container,
 .outer-map-view {
   position: absolute;
@@ -19,6 +19,11 @@ body {
   width: 100%;
   height: 100vh;
 }
+
+// .outer-map-view,
+// .outer-eras-view {
+//   display: none;
+// }
 
 .map-outer {
   position: absolute;
@@ -189,16 +194,42 @@ body {
   }
 }
 
-.outer-container--map,
-.outer-container--intro {
-  .outer-eras-view {
-    display: none;
-  }
+// .outer-container--map {
+//   .map-view {
+//     display: block;
+//   }
+// }
+
+// .outer-container--intro {
+//   .outer-intro-view {
+//     display: block;
+//   }
+// }
+
+.intro__pattern {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: $intro-pattern-height;
 }
+
+.intro__content-outer {
+  position: absolute;
+  top: $intro-pattern-height + 25;
+  left: 0px;
+}
+
+// .outer-container--map,
+// .outer-container--intro {
+//   .outer-eras-view {
+//     display: none;
+//   }
+// }
 
 .outer-container--intro,
 .outer-container--eras {
-  .outer-map-view {
+  .map-view {
     display: none;
   }
 }

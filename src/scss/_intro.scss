@@ -1,0 +1,58 @@
+.outer-intro-view {
+  // linear-gradient(180deg,#fff 0,hsla(0,0%,100%,.9) 60%,hsla(0,0%,100%,0));
+  background: linear-gradient(180deg, $main-background, rgba(51, 51, 51, 0));
+}
+
+.intro__pattern {
+  background-image: url('img/pattern-dark-01.png');
+  background-size: cover;
+  z-index: 100;
+}
+
+.intro__content-outer {
+  display: flex;
+  justify-content: center;
+  color: white;
+}
+
+.intro__content-inner {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 75%;
+}
+
+.intro__summary {
+  text-align: center;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.intro__buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.intro__button {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.intro__begin-button {
+  margin-right: 20px;
+  background: $main-background;
+  transition: background 250ms;
+  border: 1px solid $main-background;
+}
+
+.intro__begin-button:hover {
+  background: $main-medium-dark-gray;
+}
