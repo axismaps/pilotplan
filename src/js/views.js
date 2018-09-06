@@ -55,7 +55,7 @@ class Views {
     const {
       updateClass,
     } = privateMethods;
-
+    console.log('update', view);
     updateClass({
       outerContainer,
       view,
@@ -66,6 +66,7 @@ class Views {
       Object.prototype.hasOwnProperty.call(initialize, view)) {
       initialize[view]();
     }
+    views[view].initialized = true;
   }
 }
 

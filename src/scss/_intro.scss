@@ -1,20 +1,24 @@
+
 .outer-intro-view {
   // linear-gradient(180deg,#fff 0,hsla(0,0%,100%,.9) 60%,hsla(0,0%,100%,0));
-  background: linear-gradient(180deg, $main-background, rgba(51, 51, 51, 0));
+  background: $intro-gradient;
 }
 
+.eras__pattern,
 .intro__pattern {
   background-image: url('/img/pattern-dark-01.png');
   background-size: cover;
   z-index: 100;
 }
 
+.eras__content-outer,
 .intro__content-outer {
   display: flex;
   justify-content: center;
   color: white;
 }
 
+.eras__content-inner,
 .intro__content-inner {
   display: flex;
   align-items: center;
@@ -46,13 +50,43 @@
   font-size: 20px;
 }
 
+.intro__jump-button {
+  margin-left: 20px;
+}
+
+.eras__map-button,
 .intro__begin-button {
-  margin-right: 20px;
   background: $main-background;
   transition: background 250ms;
   border: 1px solid $main-background;
 }
 
+.eras__map-button:hover,
 .intro__begin-button:hover {
   background: $main-medium-dark-gray;
+}
+
+.eras__stepper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 34px;
+  width: 60%;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.eras__stepper-icon:before {
+  color: $stepper-color;
+  border-radius: 26px;
+  border: 1px solid $stepper-color;
+  width: 52px;
+  line-height: 52px;
+  margin: 0 5px;
+  // font-size: 18px;
+}
+
+.eras__stepper-icon:hover:before {
+  color: $stepper-color-hover;
+  border-color: $stepper-color-hover;
 }

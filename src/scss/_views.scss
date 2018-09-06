@@ -1,0 +1,20 @@
+.outer-container--intro,
+.outer-container--eras {
+  .map-view {
+    display: none;
+  }
+}
+
+.outer-container--eras,
+.outer-container--map {
+  .outer-intro-view {
+    display: none;
+  }
+}
+
+.outer-container--intro,
+.outer-container--map {
+  .outer-eras-view {
+    display: none;
+  }
+}

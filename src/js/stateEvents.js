@@ -34,22 +34,27 @@ const setStateEvents = ({ components, data }) => {
       } = this.props();
       const {
         views,
-        atlas,
       } = components;
 
-      console.log('view', view);
       views
         .config({ view })
         .updateView();
 
-      atlas.resizeMap();
+      // atlas.resizeMap();
+
+      state.update({
+        currentView: null,
+        currentRasterProbe: null,
+        currentOverlay: null,
+        footerOpen: view === 'map',
+        sidebarOpen: view === 'map',
+      });
     },
     screenSize() {
       const {
         timeline,
-        screenSize,
       } = components;
-      console.log('screen', screenSize);
+
       timeline
         .updateScreenSize();
     },
@@ -59,6 +64,7 @@ const setStateEvents = ({ components, data }) => {
       } = this.props();
       const {
         layout,
+        atlas,
       } = components;
 
       layout
@@ -66,6 +72,23 @@ const setStateEvents = ({ components, data }) => {
           sidebarOpen,
         })
         .updateSidebar();
+      atlas.resizeMap();
+    },
+    footerOpen() {
+      const {
+        footerOpen,
+      } = this.props();
+      const {
+        layout,
+        atlas,
+      } = components;
+
+      layout
+        .config({
+          footerOpen,
+        })
+        .updateFooter();
+      atlas.resizeMap();
     },
     currentLayers() {
       const {

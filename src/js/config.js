@@ -85,6 +85,10 @@ export const selections = {
   rasterResultsContainer: d3.select('.sidebar__raster-results'),
   nonRasterResultsContainer: d3.select('.sidebar__nonraster-results'),
 
-  beginButtonContainer: d3.select('.intro__begin-button'),
-  jumpButtonContainer: d3.select('.intro__jump-button'),
+  introBeginButtonContainer: d3.select('.intro__begin-button'),
+  introJumpButtonContainer: d3.select('.intro__jump-button'),
+
+  erasMapButtonContainer: d3.select('.eras__map-button'),
+  erasStepperLeftButton: d3.select('.eras__stepper-icon-left'),
+  erasStepperRightButton: d3.select('.eras__stepper-icon-right'),
 };

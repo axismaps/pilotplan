@@ -6,36 +6,36 @@ const privateMethods = {
   setBeginButtonListener() {
     const props = privateProps.get(this);
     const {
-      beginButtonContainer,
+      introBeginButtonContainer,
       onBeginButtonClick,
     } = props;
 
     console.log('set listener');
-    beginButtonContainer
+    introBeginButtonContainer
       .on('click', onBeginButtonClick);
   },
   setJumpButtonListener() {
     const props = privateProps.get(this);
     const {
-      jumpButtonContainer,
+      introJumpButtonContainer,
       onJumpButtonClick,
     } = props;
 
-    jumpButtonContainer
+    introJumpButtonContainer
       .on('click', onJumpButtonClick);
   },
 };
 
-const {
-  jumpButtonContainer,
-  beginButtonContainer,
-} = selections;
-
 class Intro {
   constructor(config) {
+    const {
+      introJumpButtonContainer,
+      introBeginButtonContainer,
+    } = selections;
+
     privateProps.set(this, {
-      jumpButtonContainer,
-      beginButtonContainer,
+      introJumpButtonContainer,
+      introBeginButtonContainer,
       onJumpButtonClick: null,
       onBeginButtonClick: null,
     });

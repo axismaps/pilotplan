@@ -4,12 +4,17 @@ html, body {
   // color: #666;
 }
 
+h1 {
+  font-size: 65px;
+}
+
 body {
   padding: 0px;
   margin: 0px;
   background: $main-background;
 }
 
+.outer-eras-view,
 .outer-intro-view,
 .outer-container,
 .outer-map-view {
@@ -206,6 +211,7 @@ body {
 //   }
 // }
 
+.eras__pattern,
 .intro__pattern {
   position: absolute;
   top: 0px;
@@ -214,10 +220,12 @@ body {
   height: $intro-pattern-height;
 }
 
+.eras__content-outer,
 .intro__content-outer {
   position: absolute;
   top: $intro-pattern-height + 25;
   left: 0px;
+  width: 100%;
 }
 
 // .outer-container--map,
@@ -227,16 +235,3 @@ body {
 //   }
 // }
 
-.outer-container--intro,
-.outer-container--eras {
-  .map-view {
-    display: none;
-  }
-}
-
-.outer-container--eras,
-.outer-container--map {
-  .outer-intro-view {
-    display: none;
-  }
-}

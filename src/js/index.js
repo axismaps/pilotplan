@@ -10,6 +10,7 @@ import getState from './initState';
 import { yearRange } from './config';
 import loadData from './dataLoad';
 import Views from './views';
+import Eras from './eras';
 
 require('../scss/index.scss');
 
@@ -25,11 +26,11 @@ const app = {
       this.initState();
       this.initViews();
       this.setStateEvents();
-      // if (d3.select('.outer-container').classed('outer-container--map')) {
-      //   this.initAtlas();
-      // }
+
       this.initAtlas();
       this.initIntro();
+      this.initEras();
+
       // setTimeout(() => {
       //   const { state } = this.components;
 
@@ -42,7 +43,9 @@ const app = {
     this.components.state.set('currentLayers', this.components.state.getAllAvailableLayers(this.data));
   },
   initViews() {
+    const { state } = this.components;
     this.components.views = new Views({
+      view: state.get('view'),
       initialize: {
         map: () => {
           this.initComponents();
@@ -50,14 +53,30 @@ const app = {
         },
       },
     });
+
+    this.components.views.updateView();
   },
   initIntro() {
     const { state } = this.components;
 
     this.components.intro = new Intro({
       onBeginButtonClick: () => {
-        console.log('click');
         state.update({ view: 'map' });
+        // setTimeout(() => {
+        //   state.update({ view: 'intro' });
+        // }, 4000);
+      },
+    });
+  },
+  initEras() {
+    const { state } = this.components;
+
+    this.components.eras = new Eras({
+      onMapButtonClick: () => {
+        state.update({ view: 'map' });
+        // setTimeout(() => {
+        //   state.update({ view: 'eras' });
+        // }, 4000);
       },
     });
   },
