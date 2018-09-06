@@ -42,14 +42,18 @@ const setStateEvents = ({ components, data }) => {
 
       // atlas.resizeMap();
 
-      state.update({
-        currentView: null,
-        currentRasterProbe: null,
-        currentOverlay: null,
+      const layersToClear = this.getLayersToClear([
+        'currentOverlay',
+        'currentRasterProbe',
+        'currentView',
+        'highlightedFeature',
+        'allRasterOpen',
+      ]);
+
+      state.update(Object.assign({
         footerOpen: view === 'map',
         sidebarOpen: view === 'map',
-        allRasterOpen: false,
-      });
+      }, layersToClear));
     },
     screenSize() {
       const {
