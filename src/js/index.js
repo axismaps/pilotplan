@@ -32,6 +32,12 @@ const app = {
       this.initEras();
 
       // setTimeout(() => {
+      //   this.components.state.update({
+      //     year: 2000,
+      //   });
+      // }, 3000);
+
+      // setTimeout(() => {
       //   const { state } = this.components;
 
       //   state.update({ view: 'map' });
@@ -120,7 +126,6 @@ const app = {
   initComponents() {
     const {
       state,
-      atlas,
     } = this.components;
 
     console.log('init components');
@@ -268,6 +273,7 @@ const app = {
         state.update({ highlightedFeature: newFeature });
       },
     });
+    state.update({ componentsInitialized: true });
   },
   setStateEvents() {
     setStateEvents({ components: this.components, data: this.data });

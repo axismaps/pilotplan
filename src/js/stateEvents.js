@@ -51,7 +51,7 @@ const setStateEvents = ({ components, data }) => {
         'allRasterOpen',
       ]);
 
-      if (sidebar.getView() !== 'legend') {
+      if (sidebar !== undefined && sidebar.getView() !== 'legend') {
         sidebar.clearSearch();
       }
 

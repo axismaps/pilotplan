@@ -15,6 +15,7 @@ const getUpdateYear = ({
     const {
       year,
       footerView,
+      componentsInitialized,
     } = this.props();
     //
     const {
@@ -25,12 +26,6 @@ const getUpdateYear = ({
 
     const rasterDataByCategory = getRasterDataByCategory({ rasterData });
 
-    timeline
-      .config({
-        year,
-      })
-      .updateYear();
-
     atlas
       .config({
         year,
@@ -38,11 +33,18 @@ const getUpdateYear = ({
       })
       .updateYear();
 
+    if (!componentsInitialized) return;
+
+    timeline
+      .config({
+        year,
+      })
+      .updateYear();
+
     footer
       .config({
         rasterData,
       })
-      // .updateFooterView();
       .updateRasterData();
 
     sidebar
@@ -58,15 +60,10 @@ const getUpdateYear = ({
 
     const sidebarView = sidebar.getView();
     if (sidebarView === 'textSearch') {
-      // search for current text input for new year
       Object.assign(stateToUpdate, { textSearch: sidebar.getSearchText() });
     } else if (sidebarView === 'clickSearch') {
       sidebar
         .clearSearch();
-      // .config({
-      //   view: 'legend',
-      // })
-      // .updateView();
     }
 
     if (rasterDataByCategory.length === 0) {

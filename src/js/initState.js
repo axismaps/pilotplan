@@ -12,6 +12,7 @@ const getState = function getState() {
     // view: 'eras',
     // view: 'map',
     mapLoaded: false,
+    componentsInitialized: false,
     textSearch: null,
     clickSearch: null,
     areaSearchActive: false,
