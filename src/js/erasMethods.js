@@ -42,7 +42,6 @@ const erasMethods = {
       });
   },
   getCurrentEra({ year, eras }) {
-    console.log('eras', eras);
     return eras.find(era =>
       year >= era.dates[0] &&
       year <= era.dates[1]);
@@ -81,6 +80,47 @@ const erasMethods = {
     const newTitle = newTitleContainer.append('div')
       .attr('class', 'eras__title')
       .text(currentEra.name);
+    const newOffset = getOffset(newTitle);
+    newTitleContainer
+      .style('left', `${-newOffset}px`)
+      .style('opacity', 1);
+    newTitleContainer
+      .transition()
+      .duration(750)
+      .style('left', '0px');
+  },
+  updateDates({
+    currentEra,
+    animationDirection,
+    titleOuterContainer,
+    titleTextContainer,
+    titleInnerContainer,
+  }) {
+    const getOffset = (selection) => {
+      const titleWidth = selection.node().getBoundingClientRect().width;
+      const containerWidth = titleOuterContainer.node().getBoundingClientRect().width;
+      return ((titleWidth + containerWidth) / 2) * (animationDirection === 'right' ? 1 : -1);
+    };
+    titleInnerContainer
+      .style('left', '0px')
+      .transition()
+      .duration(750)
+      .style('left', `${getOffset(titleTextContainer)}px`)
+      .on('end', () => {
+        titleInnerContainer.remove();
+      });
+
+    const newTitleContainer = titleOuterContainer
+      .append('div')
+      .attr('class', 'eras__stepper-years-inner')
+      .styles({
+        left: '0px',
+        opacity: 0,
+      });
+
+    const newTitle = newTitleContainer.append('div')
+      .attr('class', 'eras__stepper-years')
+      .text(`${currentEra.datesDisplay[0]} - ${currentEra.datesDisplay[1]}`);
     const newOffset = getOffset(newTitle);
     newTitleContainer
       .style('left', `${-newOffset}px`)

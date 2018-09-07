@@ -21,7 +21,7 @@ const privateMethods = {
       erasStepperLeftButton,
       erasStepperRightButton,
       updateYear,
-      year,
+      // year,
     } = props;
 
     const {
@@ -41,7 +41,11 @@ const privateMethods = {
     });
   },
   getCurrentEra({ year }) {
-    console.log('eras', eras);
+    const { getCurrentEra } = erasMethods;
+    return getCurrentEra({
+      eras,
+      year,
+    });
   },
   setInitialEra() {
     const {
@@ -54,6 +58,9 @@ const privateMethods = {
     });
     d3.select('.eras__title')
       .text(currentEra.name);
+
+    d3.select('.eras__stepper-years')
+      .text(`${currentEra.datesDisplay[0]} - ${currentEra.datesDisplay[1]}`);
   },
 
 };
@@ -107,7 +114,7 @@ class Eras {
     const {
       getCurrentEra,
       updateEra,
-      getTitleContainer,
+      updateDates,
     } = erasMethods;
 
     const currentEra = getCurrentEra({ year, eras });
@@ -116,6 +123,14 @@ class Eras {
       currentEra,
       animationDirection,
       erasTitleContainer: d3.select('.eras__title-container'),
+    });
+
+    updateDates({
+      currentEra,
+      animationDirection,
+      titleOuterContainer: d3.select('.eras__stepper-years-outer'),
+      titleTextContainer: d3.select('.eras__stepper-years'),
+      titleInnerContainer: d3.select('.eras__stepper-years-inner'),
     });
   }
 }
