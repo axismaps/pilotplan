@@ -10,6 +10,7 @@ const getUpdateYear = ({
       atlas,
       sidebar,
       footer,
+      eras,
     } = components;
 
     const {
@@ -32,6 +33,12 @@ const getUpdateYear = ({
         rasterData,
       })
       .updateYear();
+
+    eras
+      .config({
+        year,
+      })
+      .updateEra();
 
     if (!componentsInitialized) return;
 

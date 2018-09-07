@@ -2,7 +2,10 @@
 .outer-intro-view {
   // linear-gradient(180deg,#fff 0,hsla(0,0%,100%,.9) 60%,hsla(0,0%,100%,0));
   background: $intro-gradient;
+  overflow: hidden;
 }
+
+
 
 .eras__pattern,
 .intro__pattern {
@@ -11,10 +14,23 @@
   z-index: 100;
 }
 
+.eras__title-container {
+  width: 100%;
+  // text-align: center;
+  display: flex;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+// .eras__title {
+  // margin-left: 100%;
+// }
+
 .eras__content-outer,
 .intro__content-outer {
   display: flex;
-  justify-content: center;
+  flex-flow: column;
+  align-items: center;
   color: white;
 }
 

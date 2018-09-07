@@ -1,25 +1,29 @@
 export const eras = [
   {
     center: [-15.793936, -47.882797],
-    dates: [1892, 1955],
+    dates: [1892, 1954],
+    datesDisplay: [1892, 1955],
     name: 'Future Federal District',
     zoom: null,
   },
   {
     center: [-15.793936, -47.882797],
-    dates: [1955, 1965],
+    dates: [1955, 1963],
+    datesDisplay: [1955, 1965],
     name: 'Design, Construction, and Inauguration',
     zoom: null,
   },
   {
     center: [-15.793936, -47.882797],
-    dates: [1964, 1985],
+    dates: [1964, 1984],
+    datesDisplay: [1964, 1985],
     name: 'Military Dictatorship',
     zoom: null,
   },
   {
     center: [-15.793936, -47.882797],
     dates: [1985, new Date().getFullYear()],
+    datesDisplay: [1985, new Date().getFullYear()],
     name: 'New Republic',
     zoom: null,
   },

@@ -79,6 +79,10 @@ const app = {
       onMapButtonClick: () => {
         state.update({ view: 'map' });
       },
+      updateYear: (newYear) => {
+        state.update({ year: newYear });
+      },
+      year: state.get('year'),
     });
   },
   initAtlas() {
