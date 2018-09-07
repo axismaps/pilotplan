@@ -96,4 +96,5 @@ export const selections = {
   erasMapButtonContainer: d3.select('.eras__map-button'),
   erasStepperLeftButton: d3.select('.eras__stepper-icon-left'),
   erasStepperRightButton: d3.select('.eras__stepper-icon-right'),
+  erasTitleContainer: d3.select('.eras__title'),
 };

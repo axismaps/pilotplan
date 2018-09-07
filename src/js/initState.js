@@ -8,8 +8,8 @@ const getState = function getState() {
     allRasterOpen: false,
     sidebarView: 'legend', // searching, results
     footerView: 'views',
-    view: 'intro',
-    // view: 'eras',
+    // view: 'intro',
+    view: 'eras',
     // view: 'map',
     mapLoaded: false,
     componentsInitialized: false,

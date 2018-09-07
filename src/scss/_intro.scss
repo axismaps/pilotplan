@@ -14,7 +14,17 @@
   z-index: 100;
 }
 
+.eras__title-outer {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+}
+
 .eras__title-container {
+  position: absolute;
+  left: 0px;
+  top: 0px;
   width: 100%;
   // text-align: center;
   display: flex;
@@ -22,9 +32,15 @@
   white-space: nowrap;
 }
 
-// .eras__title {
-  // margin-left: 100%;
-// }
+.eras__title {
+  // width: 1399px;
+  // display: flex;
+  // justify-content: center;
+  // white-space: nowrap;
+  // margin-left: 30%;
+  // margin-right: 300000%;
+  font-size: 65px;
+}
 
 .eras__content-outer,
 .intro__content-outer {
@@ -39,6 +55,7 @@
   display: flex;
   align-items: center;
   flex-direction: column;
+  margin-top: 50px;
   width: 75%;
 }
 
