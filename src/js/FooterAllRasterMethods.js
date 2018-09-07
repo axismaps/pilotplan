@@ -34,12 +34,15 @@ const allRasterMethods = {
 
     allRasterSections.exit().remove();
 
-    return newSections;
+    return {
+      newAllRasterSections: newSections,
+      allRasterSections: newSections.merge(allRasterSections),
+    };
   },
   drawAllRasterTitles({
-    allRasterSections,
+    newAllRasterSections,
   }) {
-    const titles = allRasterSections
+    const titles = newAllRasterSections
       .append('div')
       .attr('class', 'allraster__title');
 
@@ -52,22 +55,24 @@ const allRasterMethods = {
       .text(d => d.key);
   },
   drawAllRasterImageBlocks({
-    allRasterSections,
+    newAllRasterSections,
   }) {
-    return allRasterSections
+    return newAllRasterSections
       .append('div')
       .attr('class', 'allraster__image-block');
   },
   drawAllRasterImages({
-    allRasterImageBlocks,
+    allRasterSections,
     onRasterClick,
     cachedMetadata,
     onAllRasterCloseClick,
   }) {
-    allRasterImageBlocks.each(function drawRasters(d) {
-      const block = d3.select(this);
+    allRasterSections.each(function drawRasters(d) {
+      // console.log('category: ', d.key);
+      // console.log('images: ', d.values);
+      const block = d3.select(this).select('.allraster__image-block');
       const images = block.selectAll('.footer__image')
-        .data(d.values);
+        .data(d.values, dd => dd.SS_ID);
 
       const newImages = images
         .enter()

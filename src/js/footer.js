@@ -48,7 +48,7 @@ const privateMethods = {
     const {
       drawRasters,
     } = methods;
-
+    // console.log('draw rasters', rasterData);
 
     props.rasters = drawRasters({
       rasterData,
@@ -99,21 +99,22 @@ const privateMethods = {
       });
     }
 
-    const allRasterSections = drawAllRasterCategories({
+    const { allRasterSections, newAllRasterSections } = drawAllRasterCategories({
       rasterData,
       allRasterContentContainer,
     });
 
+
     drawAllRasterTitles({
-      allRasterSections,
+      newAllRasterSections,
     });
 
-    const allRasterImageBlocks = drawAllRasterImageBlocks({
-      allRasterSections,
+    drawAllRasterImageBlocks({
+      newAllRasterSections,
     });
 
     drawAllRasterImages({
-      allRasterImageBlocks,
+      allRasterSections,
       onRasterClick,
       cachedMetadata,
       onAllRasterCloseClick,
@@ -205,7 +206,7 @@ class Footer {
     const {
       drawAllRaster,
     } = privateMethods;
-
+    // console.log('all raster open?', allRasterOpen);
     if (allRasterOpen) {
       drawAllRaster.call(this);
     }
