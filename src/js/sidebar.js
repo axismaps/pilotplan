@@ -40,12 +40,12 @@ const privateMethods = {
       searchReturnContainer,
       textSearchReturnButton,
       searchInput,
-      onSearchReturn,
+      // onSearchReturn,
     } = props;
 
-    const {
-      setView,
-    } = privateMethods;
+    // const {
+    //   setSidebarClass,
+    // } = privateMethods;
 
     const { setSearchReturnListener } = searchMethods;
 
@@ -53,12 +53,13 @@ const privateMethods = {
       searchReturnContainer,
       textSearchReturnButton,
       searchInput,
-      callback: () => {
-        props.view = 'legend';
-        searchInput.node().value = '';
-        setView.call(this);
-        onSearchReturn();
-        // this.updateResults();
+      clearSearch: () => {
+        console.log('SEARCH RETURN');
+        this.clearSearch();
+        // props.view = 'legend';
+        // searchInput.node().value = '';
+        // setSidebarClass.call(this);
+        // onSearchReturn();
       },
     });
   },
@@ -163,7 +164,7 @@ const privateMethods = {
     });
     props.features = sidebarContentContainer.selectAll('.sidebar__feature-row');
   },
-  setView() {
+  setSidebarClass() {
     const {
       view,
       sidebarContainer,
@@ -178,7 +179,14 @@ const privateMethods = {
       sidebarContainer.classed(val, key === view);
     });
   },
-
+  setSidebarToLegend() {
+    const props = privateProps.get(this);
+    props.view = 'legend';
+  },
+  clearTextInput() {
+    const { searchInput } = privateProps.get(this);
+    searchInput.node().value = '';
+  },
 };
 
 class Sidebar {
@@ -288,7 +296,7 @@ class Sidebar {
       // resultRowContainer,
     } = props;
     const {
-      setView,
+      setSidebarClass,
     } = privateMethods;
 
     const {
@@ -299,7 +307,7 @@ class Sidebar {
 
     if (previousView === 'legend' && view === 'legend') return;
 
-    setView.call(this);
+    setSidebarClass.call(this);
 
     drawRasterSearchResults({
       onRasterClick,
@@ -321,8 +329,8 @@ class Sidebar {
     return privateProps.get(this).view;
   }
   updateView() {
-    const { setView } = privateMethods;
-    setView.call(this);
+    const { setSidebarClass } = privateMethods;
+    setSidebarClass.call(this);
   }
   getSearchText() {
     const {
@@ -330,6 +338,24 @@ class Sidebar {
     } = privateProps.get(this);
 
     return searchInput.node().value;
+  }
+  clearSearch() {
+    const props = privateProps.get(this);
+
+    const {
+      onSearchReturn,
+    } = props;
+
+    const {
+      setSidebarClass,
+      setSidebarToLegend,
+      clearTextInput,
+    } = privateMethods;
+
+    setSidebarToLegend.call(this);
+    clearTextInput.call(this);
+    setSidebarClass.call(this);
+    onSearchReturn();
   }
 }
 

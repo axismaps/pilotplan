@@ -161,12 +161,12 @@ const searchMethods = {
   setSearchReturnListener({
     searchReturnContainer,
     textSearchReturnButton,
-    callback,
+    clearSearch,
   }) {
     searchReturnContainer
-      .on('click', callback);
+      .on('click', clearSearch);
     textSearchReturnButton
-      .on('click', callback);
+      .on('click', clearSearch);
   },
 };
 

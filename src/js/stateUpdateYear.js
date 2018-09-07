@@ -58,13 +58,15 @@ const getUpdateYear = ({
 
     const sidebarView = sidebar.getView();
     if (sidebarView === 'textSearch') {
+      // search for current text input for new year
       Object.assign(stateToUpdate, { textSearch: sidebar.getSearchText() });
     } else if (sidebarView === 'clickSearch') {
       sidebar
-        .config({
-          view: 'legend',
-        })
-        .updateView();
+        .clearSearch();
+      // .config({
+      //   view: 'legend',
+      // })
+      // .updateView();
     }
 
     if (rasterDataByCategory.length === 0) {

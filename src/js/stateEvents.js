@@ -34,6 +34,7 @@ const setStateEvents = ({ components, data }) => {
       } = this.props();
       const {
         views,
+        sidebar,
       } = components;
 
       views
@@ -49,6 +50,10 @@ const setStateEvents = ({ components, data }) => {
         'highlightedFeature',
         'allRasterOpen',
       ]);
+
+      if (sidebar.getView() !== 'legend') {
+        sidebar.clearSearch();
+      }
 
       state.update(Object.assign({
         footerOpen: view === 'map',
