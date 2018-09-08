@@ -193,19 +193,20 @@ const rasterMethods = {
   setEachRasterBackground({
     images,
     cachedMetadata,
+    maxDim,
   }) {
     const {
       getMetadata,
       setBackgroundFromMetadata,
       getScaledCircleDimFromMetadata,
     } = rasterMethods;
-    let maxDim;
+    // let maxDim;
 
     // console.log('imagedata', images.data().filter(d => d.SSC_ID === ''));
     images.each(function addData(d, i) {
-      if (i === 0) {
-        maxDim = this.getBoundingClientRect().width;
-      }
+      // if (i === 0) {
+      //   maxDim = this.getBoundingClientRect().width;
+      // }
 
       const selection = d3.select(this);
       if (cachedMetadata.has(d.SS_ID)) {

@@ -86,6 +86,7 @@ const allRasterMethods = {
       setEachRasterBackground({
         images: newImages,
         cachedMetadata,
+        maxDim: 130,
       });
 
       images.exit().remove();

@@ -121,6 +121,7 @@ const searchMethods = {
       setEachRasterBackground({
         images: newImages,
         cachedMetadata,
+        maxDim: 130,
       });
 
 

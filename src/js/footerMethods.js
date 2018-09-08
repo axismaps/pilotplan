@@ -27,6 +27,7 @@ const footerMethods = {
 
     setEachRasterBackground({
       images: newImages,
+      maxDim: 130,
       cachedMetadata,
     });
 
