@@ -6,6 +6,7 @@ const erasMethods = {
     getYear,
     eras,
     setAnimationDirection,
+    mouseEventsDisabled,
   }) {
     const { getCurrentEra } = erasMethods;
 
@@ -17,6 +18,7 @@ const erasMethods = {
 
     erasStepperLeftButton
       .on('click', () => {
+        mouseEventsDisabled(true);
         const eraIndex = getEraIndex();
         let newEra;
         if (eraIndex === 0) {
@@ -30,6 +32,7 @@ const erasMethods = {
 
     erasStepperRightButton
       .on('click', () => {
+        mouseEventsDisabled(true);
         const eraIndex = getEraIndex();
         let newEra;
         if (eraIndex === eras.length - 1) {
@@ -50,6 +53,7 @@ const erasMethods = {
     currentEra,
     animationDirection,
     erasTitleContainer,
+    mouseEventsDisabled,
   }) {
     const getOffset = (selection) => {
       const titleWidth = selection.node().getBoundingClientRect().width;
@@ -64,6 +68,7 @@ const erasMethods = {
       .duration(750)
       .style('left', `${getOffset(d3.select('.eras__title'))}px`)
       .on('end', () => {
+        mouseEventsDisabled(false);
         erasTitleContainer.remove();
       });
 

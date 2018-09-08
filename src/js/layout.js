@@ -43,15 +43,15 @@ class Layout {
     } = selections;
 
     privateProps.set(this, {
-      sidebarOpen: false,
-      footerOpen: true,
-      areaSearching: false,
-      overlay: false,
+      sidebarOpen: null,
+      footerOpen: null,
+      areaSearching: null,
       onAreaButtonClick: null,
       areaSearchActive: null,
       onOverlayButtonClick: null,
       onErasButtonClick: null,
-      rasterProbeOpen: false,
+      rasterProbeOpen: null,
+      overlayOn: null,
       outerContainer,
       areaSearchButton,
       probeButtonsContainer,
@@ -128,6 +128,10 @@ class Layout {
     } = privateProps.get(this);
 
     outerContainer.classed('allraster-open', allRasterOpen);
+  }
+  toggleMouseEvents() {
+    const { outerContainer, mouseEventsDisabled } = privateProps.get(this);
+    outerContainer.classed('mouse-disabled', mouseEventsDisabled);
   }
 }
 

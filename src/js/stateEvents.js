@@ -365,6 +365,13 @@ const setStateEvents = ({ components, data }) => {
         })
         .updateAllRaster();
     },
+    mouseEventsDisabled() {
+      const { mouseEventsDisabled } = this.props();
+      const { layout } = components;
+      layout
+        .config({ mouseEventsDisabled })
+        .toggleMouseEvents();
+    },
   });
 };
 

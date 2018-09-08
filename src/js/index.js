@@ -29,6 +29,7 @@ const app = {
 
       this.initAtlas();
       this.initIntro();
+      this.initLayout();
       this.initEras();
 
       // setTimeout(() => {
@@ -82,6 +83,9 @@ const app = {
       updateYear: (newYear) => {
         state.update({ year: newYear });
       },
+      mouseEventsDisabled: (disabled) => {
+        state.update({ mouseEventsDisabled: disabled });
+      },
       year: state.get('year'),
     });
   },
@@ -127,21 +131,8 @@ const app = {
   //   this.initComponents();
   //   this.listenForResize();
   // },
-  initComponents() {
-    const {
-      state,
-    } = this.components;
-
-    console.log('init components');
-
-    this.components.timeline = new Timeline({
-      year: state.get('year'),
-      updateYear(newYear) {
-        state.update({ year: Math.round(newYear) });
-      },
-      yearRange,
-    });
-
+  initLayout() {
+    const { state } = this.components;
     this.components.layout = new Layout({
       overlayOn: state.get('currentOverlay') !== null,
       rasterProbeOpen: state.get('currentRasterProbe' !== null),
@@ -160,6 +151,22 @@ const app = {
         state.update({ view: 'eras' });
       },
     });
+  },
+  initComponents() {
+    const {
+      state,
+    } = this.components;
+
+    console.log('init components');
+
+    this.components.timeline = new Timeline({
+      year: state.get('year'),
+      updateYear(newYear) {
+        state.update({ year: Math.round(newYear) });
+      },
+      yearRange,
+    });
+
 
     const onRasterClick = (rasterData) => {
       const getId = d => (d === null ? null : d.SS_ID);

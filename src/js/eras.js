@@ -21,6 +21,7 @@ const privateMethods = {
       erasStepperLeftButton,
       erasStepperRightButton,
       updateYear,
+      mouseEventsDisabled,
       // year,
     } = props;
 
@@ -33,6 +34,7 @@ const privateMethods = {
       erasStepperRightButton,
       updateYear,
       eras,
+      mouseEventsDisabled,
       // currentEra,
       getYear: () => props.year,
       setAnimationDirection: (direction) => {
@@ -80,6 +82,7 @@ class Eras {
       onMapButtonClick: null,
       year: null,
       previousYear: null,
+      mouseEventsDisabled: null,
     });
     this.config(config);
     const {
@@ -110,6 +113,7 @@ class Eras {
     const {
       year,
       animationDirection,
+      mouseEventsDisabled,
     } = privateProps.get(this);
     const {
       getCurrentEra,
@@ -120,6 +124,7 @@ class Eras {
     const currentEra = getCurrentEra({ year, eras });
 
     updateEra({
+      mouseEventsDisabled,
       currentEra,
       animationDirection,
       erasTitleContainer: d3.select('.eras__title-container'),

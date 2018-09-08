@@ -21,8 +21,8 @@ const getState = function getState() {
     currentOverlay: null,
     currentView: null,
     currentRasterProbe: null,
-    highlightedLayer: null,
     highlightedFeature: null,
+    mouseEventsDisabled: false,
     language: 'en',
     screenSize: [window.innerWidth, window.innerHeight],
   });
