@@ -87,9 +87,25 @@ body {
   color: white;
 }
 
-.header__eras-button {
-  margin-left: 25px;
+.top-button-outer {
+  // margin-left: 25px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  background: $main-background;
+  color: white;
+  display: flex;
+  align-items: center;
+  height: $header-height;
   cursor: pointer;
+  z-index: 2000;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.top-button-inner {
+  padding-left: 25px;
+  padding-right: 25px;
 }
 
 .timeline-container {
