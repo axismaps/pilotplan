@@ -44,6 +44,7 @@ const localMethods = {
       currentRasterProbe,
       cachedMetadata,
       resizeContainer: true,
+      maxWidth: 1054,
     });
   },
   initSharedShelfButton({

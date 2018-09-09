@@ -150,15 +150,17 @@ const rasterMethods = {
     currentRasterProbe,
     resizeContainer,
     maxHeight,
+    maxWidth,
   }) {
     const {
       setBackgroundFromMetadata,
       getScaledDimFromMetadata,
     } = rasterMethods;
-    const maxWidth = selection
-      .node()
-      .getBoundingClientRect()
-      .width;
+    // const maxWidth = selection
+    //   .node()
+    //   .getBoundingClientRect()
+    //   .width;
+
 
     const { getMetadata } = rasterMethods;
     if (cachedMetadata.has(currentRasterProbe.SS_ID)) {

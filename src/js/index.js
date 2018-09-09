@@ -29,8 +29,9 @@ const app = {
 
       this.initAtlas();
       this.initIntro();
-      this.initLayout();
       this.initEras();
+      this.initLayout();
+
 
       // setTimeout(() => {
       //   this.components.state.update({
@@ -71,6 +72,9 @@ const app = {
       onBeginButtonClick: () => {
         state.update({ view: 'map' });
       },
+      onJumpButtonClick: () => {
+        state.update({ view: 'eras' });
+      },
     });
   },
   initEras() {
@@ -80,6 +84,7 @@ const app = {
       onMapButtonClick: () => {
         state.update({ view: 'map' });
       },
+
       updateYear: (newYear) => {
         state.update({ year: newYear });
       },
@@ -133,8 +138,9 @@ const app = {
   //   this.listenForResize();
   // },
   initLayout() {
-    const { state } = this.components;
+    const { state, eras } = this.components;
     this.components.layout = new Layout({
+      currentEra: eras.getCurrentEra(),
       overlayOn: state.get('currentOverlay') !== null,
       rasterProbeOpen: state.get('currentRasterProbe' !== null),
       sidebarOpen: state.get('sidebarOpen'),
@@ -150,6 +156,10 @@ const app = {
       },
       onErasButtonClick() {
         state.update({ view: 'eras' });
+      },
+      onBackButtonClick: () => {
+        console.log('click');
+        state.update({ view: 'intro' });
       },
     });
   },
@@ -285,6 +295,7 @@ const app = {
         state.update({ highlightedFeature: newFeature });
       },
     });
+    console.log('INITIALIZED');
     state.update({ componentsInitialized: true });
   },
   setStateEvents() {

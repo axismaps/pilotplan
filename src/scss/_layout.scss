@@ -204,7 +204,8 @@ body {
 }
 
 .outer-container.footer-open {
-  .footer {
+  .footer,
+  .footer__show-all {
     height: $footer-height;
   }
 

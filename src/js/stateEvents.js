@@ -28,10 +28,12 @@ const setStateEvents = ({ components, data }) => {
 
   state.registerCallbacks({
     year: getUpdateYear({ data, components }),
+    // componentsInitialized() {
+    //   console.log('yes', this.get('componentsInitialized'));
+    // },
     view() {
       const {
         view,
-        year,
       } = this.props();
       const {
         views,
@@ -43,7 +45,12 @@ const setStateEvents = ({ components, data }) => {
         .config({ view })
         .updateView();
 
-      // atlas.resizeMap();
+
+      eras
+        .config({ view });
+
+
+      if (!this.get('componentsInitialized')) return;
 
       const layersToClear = this.getLayersToClear([
         'currentOverlay',
@@ -57,8 +64,6 @@ const setStateEvents = ({ components, data }) => {
         sidebar.clearSearch();
       }
 
-      eras
-        .config({ view });
 
       state.update(Object.assign({
         footerOpen: view === 'map',

@@ -27,8 +27,25 @@ const privateMethods = {
     erasButtonContainer
       .on('click', onErasButtonClick);
   },
+  initBackToIntroButton() {
+    const {
+      erasBackButton,
+      onBackButtonClick,
+    } = privateProps.get(this);
+
+    erasBackButton
+      .on('click', onBackButtonClick);
+  },
   updateFooter({ outerContainer, footerOpen }) {
     outerContainer.classed('footer-open', footerOpen);
+  },
+  setErasButtonText() {
+    const {
+      currentEra,
+      erasButtonText,
+    } = privateProps.get(this);
+    erasButtonText
+      .text(currentEra.name);
   },
 };
 
@@ -40,6 +57,8 @@ class Layout {
       probeButtonsContainer,
       overlayButtonContainer,
       erasButtonContainer,
+      erasButtonText,
+      erasBackButton,
     } = selections;
 
     privateProps.set(this, {
@@ -50,18 +69,25 @@ class Layout {
       areaSearchActive: null,
       onOverlayButtonClick: null,
       onErasButtonClick: null,
+      onBackButtonClick: null,
       rasterProbeOpen: null,
+      currentEra: null,
+      previousEra: null,
       overlayOn: null,
       outerContainer,
       areaSearchButton,
       probeButtonsContainer,
       overlayButtonContainer,
       erasButtonContainer,
+      erasButtonText,
+      erasBackButton,
     });
     const {
       initAreaButton,
       initOverlayButton,
       initErasButton,
+      initBackToIntroButton,
+      setErasButtonText,
     } = privateMethods;
 
     this.config(config);
@@ -69,6 +95,8 @@ class Layout {
     initAreaButton.call(this);
     initOverlayButton.call(this);
     initErasButton.call(this);
+    initBackToIntroButton.call(this);
+    setErasButtonText.call(this);
 
     this.updateSidebar();
     this.updateFooter();
@@ -78,6 +106,8 @@ class Layout {
     this.updateRasterProbe();
   }
   config(config) {
+    const props = privateProps.get(this);
+    props.previousEra = props.currentEra;
     Object.assign(privateProps.get(this), config);
     return this;
   }
@@ -128,6 +158,18 @@ class Layout {
     } = privateProps.get(this);
 
     outerContainer.classed('allraster-open', allRasterOpen);
+  }
+  updateEra() {
+    const {
+      currentEra,
+      previousEra,
+    } = privateProps.get(this);
+
+    const { setErasButtonText } = privateMethods;
+
+    if (previousEra.name === currentEra.name) return;
+
+    setErasButtonText.call(this);
   }
   toggleMouseEvents() {
     const { outerContainer, mouseEventsDisabled } = privateProps.get(this);

@@ -69,6 +69,7 @@ const rasterProbeMethods = {
       resizeContainer: true,
       resizeProbe: true,
       maxHeight: 400,
+      maxWidth: 410,
     });
   },
   setCloseButtonListener({

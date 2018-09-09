@@ -11,6 +11,7 @@ const getUpdateYear = ({
       sidebar,
       footer,
       eras,
+      layout,
     } = components;
 
     const {
@@ -43,7 +44,21 @@ const getUpdateYear = ({
       .updateEra();
     // }
 
-    if (!componentsInitialized) return;
+    if (!componentsInitialized) {
+      if (rasterDataByCategory.length === 0) {
+        this.set('footerView', 'views');
+      } else if (rasterData.get(footerView).length === 0) {
+        this.set('footerView', rasterDataByCategory[0].key);
+      }
+      return;
+    }
+
+
+    layout
+      .config({
+        currentEra: eras.getCurrentEra(),
+      })
+      .updateEra();
 
     timeline
       .config({

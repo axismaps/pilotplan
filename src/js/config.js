@@ -50,6 +50,7 @@ export const selections = {
   probeButtonsContainer: d3.select('.probe-buttons-container'),
   overlayButtonContainer: d3.select('.overlay-button'),
   erasButtonContainer: d3.select('.header__eras-button'),
+  erasButtonText: d3.select('.header__eras-button-text'),
 
   categoriesContainer: d3.select('.footer__categories'),
   imagesContainer: d3.select('.footer__images'),
@@ -97,4 +98,5 @@ export const selections = {
   erasStepperLeftButton: d3.select('.eras__stepper-icon-left'),
   erasStepperRightButton: d3.select('.eras__stepper-icon-right'),
   erasTitleContainer: d3.select('.eras__title'),
+  erasBackButton: d3.select('.eras__back-button-outer'),
 };

@@ -1,16 +1,15 @@
 import State from './state/state';
 
 const getState = function getState() {
+  const startView = 'eras';
   const state = new State({
     year: 1957,
-    sidebarOpen: true,
-    footerOpen: true,
+    sidebarOpen: startView === 'map',
+    footerOpen: startView === 'map',
     allRasterOpen: false,
     sidebarView: 'legend', // searching, results
     footerView: 'views',
-    // view: 'intro',
-    view: 'eras',
-    // view: 'map',
+    view: startView,
     mapLoaded: false,
     componentsInitialized: false,
     textSearch: null,
