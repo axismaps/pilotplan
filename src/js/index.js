@@ -87,6 +87,7 @@ const app = {
         state.update({ mouseEventsDisabled: disabled });
       },
       year: state.get('year'),
+      view: state.get('view'),
     });
   },
   initAtlas() {

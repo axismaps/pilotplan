@@ -15,7 +15,7 @@ const getUpdateYear = ({
 
     const {
       year,
-      view,
+      // view,
       footerView,
       componentsInitialized,
     } = this.props();
@@ -35,13 +35,13 @@ const getUpdateYear = ({
       })
       .updateYear();
 
-    if (view === 'eras') {
-      eras
-        .config({
-          year,
-        })
-        .updateEra();
-    }
+    // if (view === 'eras') {
+    eras
+      .config({
+        year,
+      })
+      .updateEra();
+    // }
 
     if (!componentsInitialized) return;
 

@@ -54,7 +54,13 @@ const erasMethods = {
     animationDirection,
     erasTitleContainer,
     mouseEventsDisabled,
+    view,
   }) {
+    if (view !== 'eras') {
+      d3.select('.eras__title')
+        .text(currentEra.name);
+      return;
+    }
     const getOffset = (selection) => {
       const titleWidth = selection.node().getBoundingClientRect().width;
       const pageWidth = window.innerWidth;
@@ -100,7 +106,13 @@ const erasMethods = {
     titleOuterContainer,
     titleTextContainer,
     titleInnerContainer,
+    view,
   }) {
+    if (view !== 'eras') {
+      d3.select('.eras__stepper-years')
+        .text(`${currentEra.datesDisplay[0]} - ${currentEra.datesDisplay[1]}`);
+      return;
+    }
     const getOffset = (selection) => {
       const titleWidth = selection.node().getBoundingClientRect().width;
       const containerWidth = titleOuterContainer.node().getBoundingClientRect().width;

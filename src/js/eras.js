@@ -110,11 +110,13 @@ class Eras {
     return getCurrentEra({ year });
   }
   updateEra() {
+    const props = privateProps.get(this);
     const {
       year,
       animationDirection,
       mouseEventsDisabled,
-    } = privateProps.get(this);
+      view,
+    } = props;
     const {
       getCurrentEra,
       updateEra,
@@ -124,6 +126,7 @@ class Eras {
     const currentEra = getCurrentEra({ year, eras });
 
     updateEra({
+      view,
       mouseEventsDisabled,
       currentEra,
       animationDirection,
@@ -131,6 +134,7 @@ class Eras {
     });
 
     updateDates({
+      view,
       currentEra,
       animationDirection,
       titleOuterContainer: d3.select('.eras__stepper-years-outer'),
