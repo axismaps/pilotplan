@@ -31,6 +31,7 @@ const setStateEvents = ({ components, data }) => {
     view() {
       const {
         view,
+        year,
       } = this.props();
       const {
         views,
@@ -59,6 +60,9 @@ const setStateEvents = ({ components, data }) => {
         footerOpen: view === 'map',
         sidebarOpen: view === 'map',
       }, layersToClear));
+      if (view === 'eras') {
+        state.update({ year });
+      }
     },
     screenSize() {
       const {
