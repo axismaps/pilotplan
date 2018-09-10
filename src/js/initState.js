@@ -1,7 +1,8 @@
 import State from './state/state';
 
 const getState = function getState() {
-  const startView = 'eras';
+  // const startView = 'eras';
+  const startView = 'map';
   const state = new State({
     year: 1957,
     sidebarOpen: startView === 'map',
