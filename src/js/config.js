@@ -52,6 +52,7 @@ export const selections = {
   erasButtonContainer: d3.select('.header__eras-button'),
   erasButtonText: d3.select('.header__eras-button-text'),
 
+  footerContainer: d3.select('.footer'),
   categoriesContainer: d3.select('.footer__categories'),
   imagesContainer: d3.select('.footer__images'),
   showAllContainer: d3.select('.footer__show-all'),
