@@ -101,7 +101,7 @@ function writeStatic(f) {
         layer.features[sub].startYear = layer.features[sub].startYear ?
           Math.min(layer.features[sub].startYear, p.FirstYear) : p.FirstYear;
         layer.features[sub].endYear = layer.features[sub].endYear ?
-          Math.max(layer.features[sub].startYear, p.LastYear) : p.LastYear;
+          Math.max(layer.features[sub].endYear, p.LastYear) : p.LastYear;
       }
     });
 
