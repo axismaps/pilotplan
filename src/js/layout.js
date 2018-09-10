@@ -54,11 +54,20 @@ const privateMethods = {
       transitionSpeed,
     } = privateProps.get(this);
 
-    // sidebarContainer
-    //   .style('transition', `width ${transitionSpeed}ms`);
+    sidebarContainer
+      .style('transition', `width ${transitionSpeed}ms`);
 
-    // footerContainer
-    //   .style('transition', `height ${transitionSpeed}ms width ${transitionSpeed}ms`);
+    footerContainer
+      .style('transition', `height ${transitionSpeed}ms width ${transitionSpeed}ms`);
+  },
+  initSidebarToggleButton() {
+    const {
+      sidebarToggleButton,
+      onSidebarToggleClick,
+    } = privateProps.get(this);
+
+    sidebarToggleButton
+      .on('click', onSidebarToggleClick);
   },
 };
 
@@ -74,6 +83,7 @@ class Layout {
       erasBackButton,
       sidebarContainer,
       footerContainer,
+      sidebarToggleButton,
     } = selections;
 
     privateProps.set(this, {
@@ -85,6 +95,7 @@ class Layout {
       onOverlayButtonClick: null,
       onErasButtonClick: null,
       onBackButtonClick: null,
+      onSidebarToggleClick: null,
       rasterProbeOpen: null,
       currentEra: null,
       previousEra: null,
@@ -98,7 +109,10 @@ class Layout {
       erasBackButton,
       sidebarContainer,
       footerContainer,
+      sidebarToggleButton,
       transitionSpeed: 500,
+      mouseEventsDisabled: false,
+      transitionsDisabled: false,
     });
     const {
       initAreaButton,
@@ -106,7 +120,8 @@ class Layout {
       initErasButton,
       initBackToIntroButton,
       setErasButtonText,
-      initMenuTransitions,
+      // initMenuTransitions,
+      initSidebarToggleButton,
     } = privateMethods;
 
     this.config(config);
@@ -115,6 +130,7 @@ class Layout {
     initOverlayButton.call(this);
     initErasButton.call(this);
     initBackToIntroButton.call(this);
+    initSidebarToggleButton.call(this);
     setErasButtonText.call(this);
 
     this.updateSidebar();
@@ -124,7 +140,7 @@ class Layout {
     // this.updateView();
     this.updateRasterProbe();
 
-    initMenuTransitions.call(this);
+    // initMenuTransitions.call(this);
   }
   config(config) {
     const props = privateProps.get(this);
@@ -195,6 +211,10 @@ class Layout {
   toggleMouseEvents() {
     const { outerContainer, mouseEventsDisabled } = privateProps.get(this);
     outerContainer.classed('mouse-disabled', mouseEventsDisabled);
+  }
+  toggleTransitions() {
+    const { outerContainer, transitionsDisabled } = privateProps.get(this);
+    outerContainer.classed('transitions-disabled', transitionsDisabled);
   }
 }
 

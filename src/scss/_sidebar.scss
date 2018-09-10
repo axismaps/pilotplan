@@ -1,8 +1,22 @@
 .sidebar {
+  background: $main-background;
   overflow-x: hidden;
   overflow-y: auto;
   color: white;
   box-shadow: $sidebar-shadow;
+}
+
+.sidebar__toggle-button {
+  background: $main-background;
+  box-shadow: $sidebar-button-shadow;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  color: white;
+  cursor: pointer;
 }
 
 .sidebar__top {

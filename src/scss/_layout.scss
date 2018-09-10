@@ -4,6 +4,10 @@ html, body {
   // color: #666;
 }
 
+body {
+  overflow: hidden;
+}
+
 h1 {
   font-size: 65px;
 }
@@ -149,13 +153,26 @@ body {
 
 .sidebar {
   position: absolute;
-  background: $main-background;
+  
   top: $header-height + $timeline-height;
   left: 0px;
   width: 0px;
   z-index: 200;
   height: calc(100% - #{$header-height + $timeline-height});
   // transition: width 500ms;
+}
+
+.sidebar__toggle-button {
+  position: absolute;
+  // $probe-buttons-top
+  
+  top: $probe-buttons-top;
+  left: 0px;
+
+  z-index: 250;
+  
+  height: 40px;
+  
 }
 
 .footer {
@@ -197,6 +214,10 @@ body {
   .map-outer {
     left: $legend-width;
     width: $map-width-with-sidebar;
+  }
+
+  .sidebar__toggle-button {
+    left: $legend-width;
   }
 
   .sidebar {

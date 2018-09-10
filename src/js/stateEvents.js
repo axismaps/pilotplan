@@ -39,7 +39,9 @@ const setStateEvents = ({ components, data }) => {
         views,
         sidebar,
         eras,
+        layout,
       } = components;
+
 
       views
         .config({ view })
@@ -64,6 +66,11 @@ const setStateEvents = ({ components, data }) => {
         sidebar.clearSearch();
       }
 
+      layout
+        .config({
+          transitionsDisabled: true,
+        })
+        .toggleTransitions();
 
       state.update(Object.assign({
         // footerOpen: view === 'map',
@@ -74,6 +81,11 @@ const setStateEvents = ({ components, data }) => {
       // if (view === 'eras') {
       //   state.update({ year });
       // }
+      layout
+        .config({
+          transitionsDisabled: false,
+        })
+        .toggleTransitions();
     },
     screenSize() {
       const {

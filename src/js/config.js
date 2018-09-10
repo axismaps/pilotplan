@@ -85,6 +85,7 @@ export const selections = {
 
   sidebarContainer: d3.select('.sidebar'),
   sidebarContentContainer: d3.select('.sidebar__content'),
+  sidebarToggleButton: d3.select('.sidebar__toggle-button'),
   searchReturnContainer: d3.select('.sidebar__search-return'),
   textSearchReturnButton: d3.select('.sidebar__text-search-return-icon'),
   searchInput: d3.select('.sidebar__input'),

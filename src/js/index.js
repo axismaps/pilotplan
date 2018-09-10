@@ -157,6 +157,9 @@ const app = {
       onErasButtonClick() {
         state.update({ view: 'eras' });
       },
+      onSidebarToggleClick() {
+        state.update({ sidebarOpen: !state.get('sidebarOpen') });
+      },
       onBackButtonClick: () => {
         console.log('click');
         state.update({ view: 'intro' });
