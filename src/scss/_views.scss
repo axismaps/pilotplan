@@ -3,6 +3,17 @@
   .map-view {
     display: none;
   }
+
+  .sidebar,
+  .footer {
+    display: none;
+  }
+
+  .map-outer {
+    height: $map-height-without-footer !important;
+    width: $map-width-without-sidebar !important;
+    left: 0px !important;
+  }
 }
 
 .outer-container--eras,
@@ -16,6 +27,12 @@
 .outer-container--map {
   .outer-eras-view {
     display: none;
+  }
+}
+
+.outer-container--map {
+  .sidebar {
+    transition: width 500ms;
   }
 }
 

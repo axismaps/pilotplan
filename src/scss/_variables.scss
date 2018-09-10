@@ -52,6 +52,13 @@ $stepper-color: $main-lighter-gray;
 $legend-button-background: $main-light-gray;
 $probe-buttons-top: $header-height + $timeline-height + 20px;
 
+$map-height-with-footer: calc(100% - #{$header-height + $timeline-height + $footer-height});
+
+$map-height-without-footer: calc(100% - #{$header-height + $timeline-height});
+
+$map-width-with-sidebar: calc(100% - #{$legend-width});
+$map-width-without-sidebar: 100%;
+
 // $mobile-width: 700px;
 // $mobile-landscape-min-width: 415px;
 // $mobile-portrait-max-width: 414px;

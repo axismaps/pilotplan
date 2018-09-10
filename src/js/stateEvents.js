@@ -66,8 +66,10 @@ const setStateEvents = ({ components, data }) => {
 
 
       state.update(Object.assign({
-        footerOpen: view === 'map',
-        sidebarOpen: view === 'map',
+        // footerOpen: view === 'map',
+        // sidebarOpen: view === 'map',
+        footerOpen: true,
+        sidebarOpen: true,
       }, layersToClear));
       // if (view === 'eras') {
       //   state.update({ year });

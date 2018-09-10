@@ -47,6 +47,19 @@ const privateMethods = {
     erasButtonText
       .text(currentEra.name);
   },
+  initMenuTransitions() {
+    const {
+      sidebarContainer,
+      footerContainer,
+      transitionSpeed,
+    } = privateProps.get(this);
+
+    // sidebarContainer
+    //   .style('transition', `width ${transitionSpeed}ms`);
+
+    // footerContainer
+    //   .style('transition', `height ${transitionSpeed}ms width ${transitionSpeed}ms`);
+  },
 };
 
 class Layout {
@@ -59,6 +72,8 @@ class Layout {
       erasButtonContainer,
       erasButtonText,
       erasBackButton,
+      sidebarContainer,
+      footerContainer,
     } = selections;
 
     privateProps.set(this, {
@@ -81,6 +96,9 @@ class Layout {
       erasButtonContainer,
       erasButtonText,
       erasBackButton,
+      sidebarContainer,
+      footerContainer,
+      transitionSpeed: 500,
     });
     const {
       initAreaButton,
@@ -88,6 +106,7 @@ class Layout {
       initErasButton,
       initBackToIntroButton,
       setErasButtonText,
+      initMenuTransitions,
     } = privateMethods;
 
     this.config(config);
@@ -104,6 +123,8 @@ class Layout {
     this.updateOverlay();
     // this.updateView();
     this.updateRasterProbe();
+
+    initMenuTransitions.call(this);
   }
   config(config) {
     const props = privateProps.get(this);
