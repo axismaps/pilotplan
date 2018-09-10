@@ -46,6 +46,15 @@ const privateMethods = {
         Object.assign(props, { mbMap, canvas });
       });
   },
+  addControlsToMap() {
+    const {
+      mbMap,
+    } = privateProps.get(this);
+    const nav = new mapboxgl.NavigationControl({
+      showCompass: false,
+    });
+    mbMap.addControl(nav, 'bottom-left');
+  },
   updateYear() {
     const {
       year,
@@ -152,6 +161,7 @@ class Atlas {
   }
   init() {
     const {
+      addControlsToMap,
       setClickSearch,
       setAreaSearch,
       addRaster,
@@ -161,6 +171,7 @@ class Atlas {
     } = privateProps.get(this);
 
     onLoad();
+    addControlsToMap.call(this);
     setClickSearch.call(this);
     setAreaSearch.call(this);
     addRaster.call(this);

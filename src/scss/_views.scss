@@ -43,7 +43,7 @@ $transition-speed: 500ms;
   }
 
   .map-outer {
-    transition: left $transition-speed;
+    transition: left $transition-speed width $transition-speed;
   }
 
   .footer {

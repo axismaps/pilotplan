@@ -60,8 +60,10 @@ const atlasMethods = {
     } = atlasMethods;
     let coneFeature;
     const mbMap = new mapboxgl.Map({
+      logoPosition: 'bottom-right',
       container: 'map',
       style,
+
     })
       .on('load', () => {
         initApp();
