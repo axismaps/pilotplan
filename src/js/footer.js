@@ -35,6 +35,14 @@ const privateMethods = {
     } = props;
     showAllContainer.on('click', onAllRasterClick);
   },
+  initToggleButton() {
+    const {
+      footerToggleButton,
+      onToggleClick,
+    } = privateProps.get(this);
+    footerToggleButton
+      .on('click', onToggleClick);
+  },
   drawRasters() {
     const props = privateProps.get(this);
     const {
@@ -133,6 +141,7 @@ class Footer {
       allRasterOuterContainer,
       allRasterInnerContainer,
       allRasterContentContainer,
+      footerToggleButton,
     } = selections;
 
     privateProps.set(this, {
@@ -142,8 +151,10 @@ class Footer {
       allRasterOuterContainer,
       allRasterInnerContainer,
       allRasterContentContainer,
+      footerToggleButton,
       allRasterOpen: false,
       onAllRasterCloseClick: null,
+      onToggleClick: null,
       rasterData: null,
       footerView: null,
       cachedMetadata: null,
@@ -153,15 +164,15 @@ class Footer {
     const {
       initCategoryButtons,
       initAllRasterButton,
-      // setAllRasterBackgroundClick,
+      initToggleButton,
     } = privateMethods;
 
     this.config(config);
 
     initCategoryButtons.call(this);
     initAllRasterButton.call(this);
-    // setAllRasterBackgroundClick.call(this);
-    // this.updateFooterView();
+    initToggleButton.call(this);
+
     this.updateRasterData();
   }
   config(config) {
@@ -169,30 +180,10 @@ class Footer {
     return this;
   }
   updateRasterData() {
-    // const props = privateProps.get(this);
-
-    // const {
-    // rasterData,
-    // footerView,
-    // } = props;
-
     const {
       drawRasters,
       updateFooterView,
     } = privateMethods;
-
-    // const {
-    //   getRasterDataByCategory,
-    // } = rasterMethods;
-
-    // const dataByCategory = getRasterDataByCategory({ rasterData });
-    // if (dataByCategory.length === 0) {
-    //   // no results, close footer
-    //   props.footerView = 'views';
-    // } else if (rasterData.get(footerView).length === 0) {
-    //   props.footerView = dataByCategory[0].key;
-    // }
-
 
     updateFooterView.call(this);
     drawRasters.call(this);

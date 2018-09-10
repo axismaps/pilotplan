@@ -187,6 +187,16 @@ body {
   // transition: height 500ms;
 }
 
+.footer__toggle-button {
+  position: absolute;
+  width: 250px;
+  height: 40px;
+  
+  left: 0px;
+  bottom: 0px;
+  z-index: 350;
+}
+
 .footer__categories {
   width: $footer-button-width;
   height: 100%;
@@ -228,6 +238,18 @@ body {
     left: $legend-width;
     width: $map-width-with-sidebar;
   }
+
+  .footer__toggle-button {
+    left: $legend-width;
+  }
+}
+
+.footer__close-icon {
+  display: none;
+}
+
+.footer__open-icon {
+  display: block;
 }
 
 .outer-container.footer-open {
@@ -236,8 +258,20 @@ body {
     height: $footer-height;
   }
 
+  .footer__toggle-button {
+    bottom: $footer-height;
+  }
+
   .map-outer {
     height: $map-height-with-footer;
+  }
+
+  .footer__close-icon {
+    display: block;
+  }
+
+  .footer__open-icon {
+    display: none;
   }
 }
 

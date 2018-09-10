@@ -258,6 +258,9 @@ const app = {
       onAllRasterClick() {
         state.update({ allRasterOpen: true });
       },
+      onToggleClick() {
+        state.update({ footerOpen: !state.get('footerOpen') });
+      },
     });
 
     this.components.sidebar = new Sidebar({

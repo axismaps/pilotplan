@@ -66,11 +66,7 @@ const setStateEvents = ({ components, data }) => {
         sidebar.clearSearch();
       }
 
-      layout
-        .config({
-          transitionsDisabled: true,
-        })
-        .toggleTransitions();
+      state.update({ transitionsDisabled: true });
 
       state.update(Object.assign({
         // footerOpen: view === 'map',
@@ -81,9 +77,16 @@ const setStateEvents = ({ components, data }) => {
       // if (view === 'eras') {
       //   state.update({ year });
       // }
+
+      state.update({ transitionsDisabled: false });
+    },
+    transitionsDisabled() {
+      const { transitionsDisabled } = this.props();
+      const { layout } = components;
+
       layout
         .config({
-          transitionsDisabled: false,
+          transitionsDisabled,
         })
         .toggleTransitions();
     },
@@ -98,6 +101,7 @@ const setStateEvents = ({ components, data }) => {
     sidebarOpen() {
       const {
         sidebarOpen,
+        transitionsDisabled,
       } = this.props();
       const {
         layout,
@@ -109,11 +113,18 @@ const setStateEvents = ({ components, data }) => {
           sidebarOpen,
         })
         .updateSidebar();
-      atlas.resizeMap();
+      if (transitionsDisabled) {
+        atlas.resizeMap();
+      } else {
+        setTimeout(() => {
+          atlas.resizeMap();
+        }, 500);
+      }
     },
     footerOpen() {
       const {
         footerOpen,
+        transitionsDisabled,
       } = this.props();
       const {
         layout,
@@ -125,7 +136,14 @@ const setStateEvents = ({ components, data }) => {
           footerOpen,
         })
         .updateFooter();
-      atlas.resizeMap();
+
+      if (transitionsDisabled) {
+        atlas.resizeMap();
+      } else {
+        setTimeout(() => {
+          atlas.resizeMap();
+        }, 500);
+      }
     },
     currentLayers() {
       const {

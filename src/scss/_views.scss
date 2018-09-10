@@ -1,15 +1,10 @@
 .outer-container--intro,
 .outer-container--eras {
-  .map-view {
-    display: none;
-  }
-
-  .mapboxgl-ctrl {
-    display: none;
-  }
-
   .sidebar,
   .sidebar__toggle-button,
+  .footer__toggle-button,
+  .mapboxgl-ctrl,
+  .map-view,
   .footer {
     display: none;
   }
@@ -47,11 +42,19 @@ $transition-speed: 500ms;
   }
 
   .map-outer {
-    transition: left $transition-speed width $transition-speed;
+    transition: left $transition-speed, width $transition-speed, height $transition-speed;
   }
 
   .footer {
-    transition: left $transition-speed, width $transition-speed;
+    transition: left $transition-speed, width $transition-speed, height $transition-speed;
+  }
+
+  .footer__toggle-button {
+    transition: left $transition-speed, bottom $transition-speed;
+  }
+
+  .footer__show-all {
+    transition: height $transition-speed;
   }
 }
 
@@ -73,6 +76,10 @@ $transition-speed: 500ms;
   }
 
   .footer {
+    transition: none;
+  }
+
+  .footer__toggle-button {
     transition: none;
   }
 }

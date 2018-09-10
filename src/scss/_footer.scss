@@ -2,6 +2,21 @@
   box-shadow: $footer-shadow;
 }
 
+.footer__toggle-button {
+  background: $main-background;
+  box-shadow: $footer-button-shadow;
+  border-top-right-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  color: white;
+  font-size: 15px;
+}
+
+.footer__toggle-icon {
+  margin-left: 15px;
+}
+
 .footer__images {
   display: flex;
   align-items: center;

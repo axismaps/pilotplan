@@ -23,6 +23,7 @@ const getState = function getState() {
     currentRasterProbe: null,
     highlightedFeature: null,
     mouseEventsDisabled: false,
+    transitionsDisabled: false,
     language: 'en',
     screenSize: [window.innerWidth, window.innerHeight],
   });
