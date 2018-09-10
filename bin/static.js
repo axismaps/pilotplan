@@ -8,10 +8,68 @@ const csv = [];
 let loaded = 0;
 let total = 0;
 
-fs.readdir(path.join(__dirname, '../data/geojson/geography'), (err, files) => {
-  total = files.length;
-  files.forEach(writeStatic);
-});
+function getProps(json) {
+  return json.features.map(f => f.properties);
+}
+
+function getBounds(coordinates) {
+  const coords = [];
+  const raw = _.flatten(coordinates);
+  for (let i = 0; i < raw.length; i += 2) {
+    coords.push([raw[i], raw[i + 1]]);
+  }
+  return {
+    xmin: parseFloat(_.reduce(coords, (m, c) => Math.min(m, c[0]), Infinity).toFixed(4)),
+    xmax: parseFloat(_.reduce(coords, (m, c) => Math.max(m, c[0]), -Infinity).toFixed(4)),
+    ymin: parseFloat(_.reduce(coords, (m, c) => Math.min(m, c[1]), Infinity).toFixed(4)),
+    ymax: parseFloat(_.reduce(coords, (m, c) => Math.max(m, c[1]), -Infinity).toFixed(4)),
+  };
+}
+
+function parseCSV(json) {
+  json.features.forEach((f) => {
+    if (f.properties.Name && f.geometry) {
+      const row = _.extend(getBounds(f.geometry.coordinates), _.pick(f.properties, ['Name', 'FirstYear', 'LastYear', 'SubType']));
+      csv.push(row);
+    }
+  });
+}
+
+function getStyleInfo() {
+  fs.readFile(path.join(__dirname, '../src/data/style.json'), (err, data) => {
+    const json = JSON.parse(data);
+    _.each(config, (l, name) => {
+      const layer = l;
+      let unmatch = true;
+      const styles = _.filter(json.layers, lay => lay['source-layer'] === name);
+      _.each(layer.features, (f, fname) => {
+        const feature = f;
+        const id = _.find(styles, (s) => {
+          const filter = _.flatten(s.filter);
+          return _.some(filter, f1 => f1 === fname);
+        });
+        if (id) {
+          feature.style = id.id;
+          unmatch = false;
+        }
+      });
+      if (unmatch && styles.length === 1) {
+        layer.style = styles[0].id;
+      }
+    });
+    fs.writeFile(path.join(__dirname, '../src/data/config.json'), JSON.stringify(config, null, 2), () => {
+      console.log('FILE WRITTEN');
+    });
+  });
+}
+
+function writeCSV() {
+  stringify(csv, (err, output) => {
+    fs.writeFile(path.join(__dirname, '../src/data/features.csv'), output, () => {
+      console.log('FEATURES WRITTEN');
+    });
+  });
+}
 
 function writeStatic(f) {
   fs.readFile(path.join(__dirname, '../data/geojson/geography', f), (err2, data) => {
@@ -57,63 +115,7 @@ function writeStatic(f) {
   });
 }
 
-function parseCSV(json) {
-  json.features.forEach((f) => {
-    if (f.properties.Name && f.geometry) {
-      const row = _.extend(getBounds(f.geometry.coordinates), _.pick(f.properties, ['Name', 'FirstYear', 'LastYear', 'SubType']));
-      csv.push(row);
-    }
-  });
-}
-
-function writeCSV() {
-  stringify(csv, (err, output) => {
-    fs.writeFile(path.join(__dirname, '../src/data/features.csv'), output, () => {
-      console.log('FEATURES WRITTEN');
-    });
-  });
-}
-
-function getBounds(coordinates) {
-  const coords = [];
-  const raw = _.flatten(coordinates);
-  for (let i = 0; i < raw.length; i += 2) {
-    coords.push([raw[i], raw[i + 1]]);
-  }
-  return {
-    xmin: parseFloat(_.reduce(coords, (m, c) => Math.min(m, c[0]), Infinity).toFixed(4)),
-    xmax: parseFloat(_.reduce(coords, (m, c) => Math.max(m, c[0]), -Infinity).toFixed(4)),
-    ymin: parseFloat(_.reduce(coords, (m, c) => Math.min(m, c[1]), Infinity).toFixed(4)),
-    ymax: parseFloat(_.reduce(coords, (m, c) => Math.max(m, c[1]), -Infinity).toFixed(4)),
-  };
-}
-
-function getProps(json) {
-  return json.features.map(f => f.properties);
-}
-
-function getStyleInfo() {
-  fs.readFile(path.join(__dirname, '../src/data/style.json'), (err, data) => {
-    const json = JSON.parse(data);
-    _.each(config, (layer, name) => {
-      let unmatch = true;
-      const styles = _.filter(json.layers, l => l['source-layer'] === name);
-      _.each(layer.features, (f, fname) => {
-        const id = _.find(styles, (s) => {
-          const filter = _.flatten(s.filter);
-          return _.some(filter, f1 => f1 === fname);
-        });
-        if (id) {
-          f.style = id.id;
-          unmatch = false;
-        }
-      });
-      if (unmatch && styles.length === 1) {
-        layer.style = styles[0].id;
-      }
-    });
-    fs.writeFile(path.join(__dirname, '../src/data/config.json'), JSON.stringify(config, null, 2), () => {
-      console.log('FILE WRITTEN');
-    });
-  });
-}
+fs.readdir(path.join(__dirname, '../data/geojson/geography'), (err, files) => {
+  total = files.length;
+  files.forEach(writeStatic);
+});
