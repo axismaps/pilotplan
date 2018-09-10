@@ -8,17 +8,22 @@ const atlasMethods = {
     const newLayer = Object.assign({}, layer);
     newLayer.filter = layer.filter.map((f) => {
       if (f[0] === 'all') {
-        return f.map((dd, i) => {
-          if (i === 0) return dd;
-          const copyFilter = [...dd];
+        return f.map((d, i) => {
+          if (i === 0) return d;
+          const copyFilter = [...d];
           if (copyFilter[1] === 'FirstYear' || copyFilter[1] === 'LastYear') {
             copyFilter[2] = year;
           }
           return copyFilter;
         });
+      } else if (f[1] === 'FirstYear' || f[1] === 'LastYear') {
+        const copyFilter = [...f];
+        copyFilter[2] = year;
+        return copyFilter;
       }
       return f;
     });
+
     return newLayer;
   },
   getCurrentStyle({
@@ -28,7 +33,6 @@ const atlasMethods = {
     const { getLayerStyle } = atlasMethods;
     const styleCopy = JSON.parse(JSON.stringify(style));
     styleCopy.layers = styleCopy.layers.map(layer => getLayerStyle({ layer, year }));
-
     return styleCopy;
   },
   getCurrentStyleFromMap({

@@ -61,6 +61,8 @@ const atlasHighlightMethods = {
       };
     }
 
+    console.log('feature', featureJSON);
+
     const bbox = getBBox(featureJSON);
     // console.log('bbox', bbox);
 
