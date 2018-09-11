@@ -10,6 +10,8 @@ const footerMethods = {
     onRasterClick,
     footerView,
     cachedMetadata,
+    dataProbe,
+    footerContainer,
   }) {
     const {
       setEachRasterBackground,
@@ -23,7 +25,32 @@ const footerMethods = {
       .enter()
       .append('div')
       .attr('class', 'footer__image')
-      .on('click', onRasterClick);
+      .on('click', onRasterClick)
+      .on('mouseover', function drawProbe(d) {
+        console.log(d3.event);
+        const image = d3.select(this);
+        const imagePos = image.node().getBoundingClientRect();
+        const footerHeight = footerContainer.node().getBoundingClientRect().height;
+        const imageLeft = imagePos.left;
+        const imageWidth = imagePos.width;
+        // const containerHeight = window.innerHeight;
+        console.log('d', d);
+        const html = `
+          ${d.Title}
+        `;
+
+        dataProbe.config({
+          pos: {
+            left: imageLeft + (imageWidth / 2),
+            bottom: footerHeight - 5,
+          },
+          html,
+        })
+          .draw();
+      })
+      .on('mouseout', () => {
+        dataProbe.remove();
+      });
 
     setEachRasterBackground({
       images: newImages,

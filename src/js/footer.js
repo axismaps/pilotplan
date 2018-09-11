@@ -1,6 +1,7 @@
 import methods from './footerMethods';
 import allRasterMethods from './footerAllRasterMethods';
 import rasterMethods from './rasterMethods';
+import DataProbe from './dataProbe';
 import { selections } from './config';
 
 const privateProps = new WeakMap();
@@ -51,6 +52,8 @@ const privateMethods = {
       onRasterClick,
       footerView,
       cachedMetadata,
+      dataProbe,
+      footerContainer,
     } = props;
 
     const {
@@ -59,11 +62,13 @@ const privateMethods = {
     // console.log('draw rasters', rasterData);
 
     props.rasters = drawRasters({
+      dataProbe,
       rasterData,
       imagesContainer,
       onRasterClick,
       footerView,
       cachedMetadata,
+      footerContainer,
     });
   },
   updateFooterView() {
@@ -142,6 +147,8 @@ class Footer {
       allRasterInnerContainer,
       allRasterContentContainer,
       footerToggleButton,
+      outerContainer,
+      footerContainer,
     } = selections;
 
     privateProps.set(this, {
@@ -152,6 +159,11 @@ class Footer {
       allRasterInnerContainer,
       allRasterContentContainer,
       footerToggleButton,
+      outerContainer,
+      footerContainer,
+      dataProbe: new DataProbe({
+        container: outerContainer,
+      }),
       allRasterOpen: false,
       onAllRasterCloseClick: null,
       onToggleClick: null,
