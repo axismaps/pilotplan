@@ -40,9 +40,7 @@ class DataProbe {
 
     const styles = Object.assign({
       position: 'absolute',
-      opacity: 0,
     }, posStyle);
-    console.log('styles', styles);
 
     props.probe = container
       .append('div')
@@ -53,16 +51,6 @@ class DataProbe {
       .append('div')
       .attr('class', 'data-probe__inner')
       .html(html);
-
-    const probeWidth = props.probe.node()
-      .getBoundingClientRect()
-      .width;
-
-    props.probe
-      .styles({
-        opacity: 1,
-        left: `${pos.left - (probeWidth / 2)}px`,
-      });
   }
   // move() {
 
