@@ -1,4 +1,5 @@
 import rasterMethods from './rasterMethods';
+import getProbeConfig from './footerDataProbeMethods';
 import { footerCategoryIcons } from './config';
 
 const {
@@ -66,10 +67,9 @@ const allRasterMethods = {
     onRasterClick,
     cachedMetadata,
     onAllRasterCloseClick,
+    dataProbe,
   }) {
     allRasterSections.each(function drawRasters(d) {
-      // console.log('category: ', d.key);
-      // console.log('images: ', d.values);
       const block = d3.select(this).select('.allraster__image-block');
       const images = block.selectAll('.footer__image')
         .data(d.values, dd => dd.SS_ID);
@@ -81,6 +81,15 @@ const allRasterMethods = {
         .on('click', (dd) => {
           onRasterClick(dd);
           onAllRasterCloseClick();
+        })
+        .on('mouseover', function drawProbe(dd) {
+          const config = getProbeConfig.call(this, dd);
+          dataProbe
+            .config(config)
+            .draw();
+        })
+        .on('mouseout', () => {
+          dataProbe.remove();
         });
 
       setEachRasterBackground({

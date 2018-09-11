@@ -1,9 +1,5 @@
 const privateProps = new WeakMap();
 
-const privateMethods = {
-
-};
-
 class DataProbe {
   constructor(config) {
     privateProps.set(this, {
@@ -28,7 +24,6 @@ class DataProbe {
       container,
       html,
     } = props;
-    console.log('pos', pos);
 
     const posStyle = Object.keys(pos)
       .reduce((accumulator, key) => {
@@ -52,9 +47,6 @@ class DataProbe {
       .attr('class', 'data-probe__inner')
       .html(html);
   }
-  // move() {
-
-  // }
   remove() {
     const {
       probe,
@@ -65,6 +57,9 @@ class DataProbe {
   }
   getPos() {
     return privateProps.get(this).pos;
+  }
+  static clearProbes() {
+    d3.selectAll('.data-probe').remove();
   }
 }
 

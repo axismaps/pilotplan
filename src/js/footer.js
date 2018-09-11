@@ -93,6 +93,7 @@ const privateMethods = {
       rasterData,
       onRasterClick,
       cachedMetadata,
+      dataProbe,
     } = props;
 
     const {
@@ -131,6 +132,7 @@ const privateMethods = {
       onRasterClick,
       cachedMetadata,
       onAllRasterCloseClick,
+      dataProbe,
     });
 
     props.firstAllRasterLoad = false;

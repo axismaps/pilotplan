@@ -1,11 +1,11 @@
 .data-probe {
-  z-index: 400;
+  z-index: 1000;
   color: white;
 }
 
 .data-probe__inner {
   padding: 15px 20px;
-  background: rgba(255, 255, 255, .65);
+  background: rgba(255, 255, 255, .75);
   color: black;
   border-radius: 5px;
 }
