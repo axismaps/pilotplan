@@ -1,4 +1,4 @@
-import setStateEvents from './stateEvents';
+import setStateEvents from './stateUpdate';
 import Intro from './intro';
 import Atlas from './atlas';
 import Timeline from './timeline';

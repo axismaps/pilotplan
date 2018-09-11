@@ -1,85 +1,17 @@
 import getUpdateYear from './stateUpdateYear';
+import getUpdateView from './stateUpdateView';
+import getUpdateTextSearch from './stateUpdateTextSearch';
+import {
+  formatNonRasterResults,
+  formatRasterResults,
+} from './formatSearchResults';
 
 const setStateEvents = ({ components, data }) => {
   const { state } = components;
 
-  const utils = {
-    formatNonRasterResults(features) {
-      return [...new Set(features.map(d => d.sourceLayer))]
-        .map(groupName => ({
-          id: groupName,
-          features: features
-            .filter(d => d.sourceLayer === groupName)
-            .filter(d => d.properties.Name !== ''),
-        }))
-        .filter(d => d.features.length > 0);
-    },
-    formatRasterResults(rasters) {
-      return [...new Set(rasters.map(d => d.category))]
-        .map(categoryName => ({
-          id: categoryName,
-          features: rasters
-            .filter(d => d.category === categoryName)
-            .map(d => Object.assign({}, d, { id: d.SS_ID })),
-        }))
-        .filter(d => d.features.length > 0);
-    },
-  };
-
   state.registerCallbacks({
     year: getUpdateYear({ data, components }),
-    // componentsInitialized() {
-    //   console.log('yes', this.get('componentsInitialized'));
-    // },
-    view() {
-      const {
-        view,
-      } = this.props();
-      const {
-        views,
-        sidebar,
-        eras,
-        layout,
-      } = components;
-
-
-      views
-        .config({ view })
-        .updateView();
-
-
-      eras
-        .config({ view });
-
-
-      if (!this.get('componentsInitialized')) return;
-
-      const layersToClear = this.getLayersToClear([
-        'currentOverlay',
-        'currentRasterProbe',
-        'currentView',
-        'highlightedFeature',
-        'allRasterOpen',
-      ]);
-
-      if (sidebar !== undefined && sidebar.getView() !== 'legend') {
-        sidebar.clearSearch();
-      }
-
-      state.update({ transitionsDisabled: true });
-
-      state.update(Object.assign({
-        // footerOpen: view === 'map',
-        // sidebarOpen: view === 'map',
-        footerOpen: true,
-        sidebarOpen: true,
-      }, layersToClear));
-      // if (view === 'eras') {
-      //   state.update({ year });
-      // }
-
-      state.update({ transitionsDisabled: false });
-    },
+    view: getUpdateView({ components }),
     transitionsDisabled() {
       const { transitionsDisabled } = this.props();
       const { layout } = components;
@@ -166,45 +98,7 @@ const setStateEvents = ({ components, data }) => {
         })
         .updateCurrentLayers();
     },
-    textSearch() {
-      const {
-        textSearch,
-      } = this.props();
-      const {
-        sidebar,
-        atlas,
-      } = components;
-
-      if (textSearch.length < 3) {
-        sidebar
-          .config({
-            results: null,
-            view: 'legend',
-          })
-          .updateResults();
-      } else {
-        const searchResults = atlas.textSearch(textSearch);
-        const { raster, nonRaster } = searchResults;
-
-        const formattedResults = {
-          raster: utils.formatRasterResults(raster),
-          nonRaster: utils.formatNonRasterResults(nonRaster),
-        };
-        //
-
-        sidebar
-          .config({
-            results: formattedResults,
-            view: 'textSearch',
-          })
-          .updateResults();
-
-        const layersToClear = this.getLayersToClear([
-          'highlightedFeature',
-        ]);
-        state.update(layersToClear);
-      }
-    },
+    textSearch: getUpdateTextSearch({ components }),
     clickSearch() {
       const {
         clickSearch,
@@ -213,12 +107,11 @@ const setStateEvents = ({ components, data }) => {
         sidebar,
       } = components;
 
-      // const results = utils.formatNonRasterResults(clickSearch);
       const { raster, nonRaster } = clickSearch;
 
       const results = {
-        raster: utils.formatRasterResults(raster),
-        nonRaster: utils.formatNonRasterResults(nonRaster),
+        raster: formatRasterResults(raster),
+        nonRaster: formatNonRasterResults(nonRaster),
       };
 
       sidebar
@@ -239,15 +132,14 @@ const setStateEvents = ({ components, data }) => {
         areaSearch,
       } = this.props();
       const {
-        // layout,
         sidebar,
       } = components;
 
       const { raster, nonRaster } = areaSearch;
 
       const results = {
-        raster: utils.formatRasterResults(raster),
-        nonRaster: utils.formatNonRasterResults(nonRaster),
+        raster: formatRasterResults(raster),
+        nonRaster: formatNonRasterResults(nonRaster),
       };
 
       sidebar
@@ -328,8 +220,6 @@ const setStateEvents = ({ components, data }) => {
         .updateOverlay();
     },
     currentView() {
-      // update atlas here
-
       const {
         currentView,
       } = this.props();
@@ -343,7 +233,6 @@ const setStateEvents = ({ components, data }) => {
           currentView,
         })
         .updateView();
-      //
     },
     currentRasterProbe() {
       const {
