@@ -61,7 +61,7 @@ const atlasHighlightMethods = {
       };
     }
 
-    console.log('feature', featureJSON);
+    // console.log('feature', featureJSON);
 
     const bbox = getBBox(featureJSON);
     // console.log('bbox', bbox);
@@ -81,7 +81,6 @@ const atlasHighlightMethods = {
       source: 'highlighted',
       layout: {},
       paint: {
-        // 'fill-outline-color': 'blue',
         'fill-color': colors.highlightColor,
         'fill-opacity': 0.2,
       },
@@ -108,12 +107,18 @@ const atlasHighlightMethods = {
         'line-opacity': 0.5,
       },
     };
+
+    const isPolygon = feature => feature.geometry.type === 'Polygon' || feature.geometry.type === 'MultiPolygon';
+
+
     if (featureJSON.type === 'FeatureCollection') {
-      mbMap.addLayer(fillLayer);
+      if (isPolygon(featureJSON.features[0])) {
+        mbMap.addLayer(fillLayer);
+      }
       mbMap.addLayer(outlineLayerBottom);
       mbMap.addLayer(outlineLayerTop);
     } else {
-      if (featureJSON.geometry.type === 'Polygon') {
+      if (isPolygon(featureJSON)) {
         mbMap.addLayer(fillLayer);
       }
       mbMap.addLayer(outlineLayerBottom);

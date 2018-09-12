@@ -30,6 +30,8 @@ const getUpdateTextSearch = ({ components }) => {
       };
       //
 
+      console.log('search results', formattedResults);
+
       sidebar
         .config({
           results: formattedResults,

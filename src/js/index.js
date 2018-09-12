@@ -275,6 +275,7 @@ const app = {
         state.update({ highlightedFeature: null });
       },
       onLayerClick(layer) {
+        console.log('layer', layer);
         const currentLayers = state.get('currentLayers');
         const layerIndex = currentLayers.map(d => d.id)
           .indexOf(layer.id);
