@@ -66,6 +66,7 @@ const atlasMethods = {
 
     })
       .on('load', () => {
+        console.log('get loaded style', mbMap.getStyle().layers.map(d => mbMap.getLayer(d.id)));
         initApp();
       })
       .on('mouseover', 'viewconespoint', (d) => {
@@ -112,6 +113,8 @@ const atlasMethods = {
         onViewClick(newView);
         setCancelClickSearch();
       });
+    // console.log('mbMap', mbMap);
+    // console.log('style', mbMap.getStyle());
     return mbMap;
   },
   addConeToMap({
@@ -163,6 +166,7 @@ const atlasMethods = {
     mbMap.setStyle(styleCopy);
   },
   getMapLayers(mbMap) {
+    // console.log('getLayers', mbMap.getStyle().layers);
     return mbMap
       .getStyle()
       .layers

@@ -28,9 +28,6 @@ const getUpdateTextSearch = ({ components }) => {
         raster: formatRasterResults(raster),
         nonRaster: formatNonRasterResults(nonRaster),
       };
-      //
-
-      console.log('search results', formattedResults);
 
       sidebar
         .config({

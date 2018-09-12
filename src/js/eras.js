@@ -1,8 +1,6 @@
 import { eras, selections } from './config';
 import erasMethods from './erasMethods';
 
-console.log('eras', eras);
-
 const privateProps = new WeakMap();
 
 const privateMethods = {

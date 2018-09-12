@@ -10,7 +10,6 @@ const privateMethods = {
       onBeginButtonClick,
     } = props;
 
-    console.log('set listener');
     introBeginButtonContainer
       .on('click', onBeginButtonClick);
   },

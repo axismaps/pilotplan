@@ -43,10 +43,6 @@ const privateMethods = {
       // onSearchReturn,
     } = props;
 
-    // const {
-    //   setSidebarClass,
-    // } = privateMethods;
-
     const { setSearchReturnListener } = searchMethods;
 
     setSearchReturnListener({
@@ -54,12 +50,7 @@ const privateMethods = {
       textSearchReturnButton,
       searchInput,
       clearSearch: () => {
-        console.log('SEARCH RETURN');
         this.clearSearch();
-        // props.view = 'legend';
-        // searchInput.node().value = '';
-        // setSidebarClass.call(this);
-        // onSearchReturn();
       },
     });
   },
@@ -69,6 +60,7 @@ const privateMethods = {
       availableLayers,
       sidebarContentContainer,
     } = props;
+    console.log('availableLayers', availableLayers);
 
     const groups = sidebarContentContainer
       .selectAll('.sidebar__layer-group-block')
@@ -100,10 +92,11 @@ const privateMethods = {
     } = props;
 
     layerGroups.each(function addLayers(d) {
+      // console.log('d.layers', d.layers);
       const layers = d3.select(this)
         .select('.sidebar__layer-block')
         .selectAll('.sidebar__layer-row')
-        .data(d.layers, layer => layer.id);
+        .data(d.layers, layer => layer.sourceLayer);
 
       const layersNew = layers.enter()
         .append('div')
@@ -135,11 +128,13 @@ const privateMethods = {
       onFeatureClick,
     } = props;
 
+
     layers.each(function addFeature(d) {
+      // console.log('layer d', d);
       const features = d3.select(this)
         .select('.sidebar__feature-block')
         .selectAll('.sidebar__feature-row')
-        .data(d.features, feature => feature.id);
+        .data(d.features, feature => feature.dataLayer);
 
       const newFeatureRows = features
         .enter()
@@ -149,7 +144,7 @@ const privateMethods = {
       newFeatureRows
         .append('div')
         .attr('class', 'sidebar__feature-button')
-        .classed('sidebar__feature-button--inactive', feature => feature.id === undefined)
+        .classed('sidebar__feature-button--inactive', feature => feature.style === undefined)
         .html(feature => `
           <i class="icon-binoculars sidebar__feature-icon"></i>
           <span class="sidebar__feature-name">${feature[language]}</span>
@@ -157,7 +152,7 @@ const privateMethods = {
         .on('click', (feature) => {
           //
 
-          onFeatureClick(Object.assign({}, feature, { sourceLayer: d.id }));
+          onFeatureClick(Object.assign({}, feature, { sourceLayer: d.sourceLayer }));
         });
 
       features.exit().remove();
@@ -256,7 +251,7 @@ class Sidebar {
     layers.each(function checkBox(d) {
       const row = d3.select(this);
       const check = row.select('.sidebar__layer-checkbox');
-      check.property('checked', currentLayers.find(dd => dd.id === d.id).status);
+      check.property('checked', currentLayers.find(dd => dd.sourceLayer === d.sourceLayer).status);
     });
   }
   updateHighlightedFeature() {
@@ -266,11 +261,17 @@ class Sidebar {
       nonRasterResultsContainer,
     } = privateProps.get(this);
 
-    //
+
     const isHighlightedFeature = (d) => {
       if (highlightedFeature === null) {
         return false;
       }
+
+      if (Object.prototype.hasOwnProperty.call(d, 'dataLayer')) {
+        // comparison for selected entire layer
+        return d.dataLayer === highlightedFeature.dataLayer;
+      }
+      // comparison for selected feature
       return d.id === highlightedFeature.id;
     };
 

@@ -1,10 +1,11 @@
 import State from './state/state';
 
 const getState = function getState() {
-  // const startView = 'eras';
-  const startView = 'map';
+  const startView = 'intro';
+  // const startView = 'map';
   const state = new State({
-    year: 1957,
+    // year: 1957,
+    year: 1985,
     sidebarOpen: startView === 'map',
     footerOpen: startView === 'map',
     allRasterOpen: false,
@@ -43,7 +44,7 @@ const getState = function getState() {
           newLayer.features = layer.features.filter(d =>
             d.startYear <= year &&
             d.endYear >= year &&
-            d.id !== undefined);
+            d.style !== undefined);
           return newLayer;
         })
         .filter(layer => layer.features.length > 0);
@@ -68,10 +69,11 @@ const getState = function getState() {
   };
 
   state.getAllAvailableLayers = function getAllAvailableLayers(data) {
+    console.log('DATA', data);
     return this.getAvailableLayers(data)
       .reduce((accumulator, group) => [...accumulator, ...group.layers], [])
       .map(layer => ({
-        id: layer.id,
+        sourceLayer: layer.sourceLayer,
         status: true,
       }));
   };

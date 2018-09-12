@@ -50,12 +50,12 @@ const atlasHighlightMethods = {
         type: 'FeatureCollection',
         features: mbMap.querySourceFeatures('composite', {
           sourceLayer: highlightedFeature.sourceLayer,
-          layers: [highlightedFeature.id],
+          layers: [highlightedFeature.style],
           filter: [
             'all',
             ['<=', 'FirstYear', year],
             ['>=', 'LastYear', year],
-            ['==', 'SubType', highlightedFeature.en],
+            ['==', 'SubType', highlightedFeature.dataLayer], // this should be the field name...
           ],
         }),
       };

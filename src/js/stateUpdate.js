@@ -85,7 +85,6 @@ const setStateEvents = ({ components, data }) => {
         atlas,
         sidebar,
       } = components;
-
       atlas
         .config({
           currentLayers,

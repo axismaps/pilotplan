@@ -28,12 +28,13 @@ const cleanData = (rawData) => {
           .filter(groupKey => rawLayers[groupKey].group === group)
           .map((groupKey) => {
             const layerRecord = Object.assign({}, rawLayers[groupKey]);
-            layerRecord.id = groupKey;
+            layerRecord.sourceLayer = groupKey;
             layerRecord.features = Object.keys(layerRecord.features)
               .map((featureKey) => {
                 const featureRecord = Object.assign({}, layerRecord.features[featureKey]);
-                featureRecord.id = featureRecord.style;
-                delete featureRecord.style;
+                featureRecord.dataLayer = featureKey;
+                // featureRecord.id = featureRecord.style;
+                // delete featureRecord.style;
                 return featureRecord;
               });
             return layerRecord;

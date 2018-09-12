@@ -16,8 +16,9 @@ const getAtlasUpdateMethods = ({
 
       layers.forEach((layer) => {
         const visible = mbMap.getLayoutProperty(layer.id, 'visibility') === 'visible';
+
         const currentLayer = currentLayers
-          .find(d => d.id === layer['source-layer']);
+          .find(d => d.sourceLayer === layer['source-layer']);
 
         const toggled = currentLayer === undefined ? true : currentLayer.status;
 

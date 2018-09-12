@@ -13,7 +13,7 @@ const privateProps = new WeakMap();
 
 
 const privateMethods = {
-  createMBMap(initApp) {
+  createMBMap({ initApp }) {
     const props = privateProps.get(this);
 
     const {
@@ -157,7 +157,7 @@ class Atlas {
 
     this.config(config);
 
-    createMBMap.call(this, this.init.bind(this));
+    createMBMap.call(this, { initApp: this.init.bind(this) });
   }
   init() {
     const {
@@ -168,6 +168,7 @@ class Atlas {
     } = privateMethods;
     const {
       onLoad,
+      mbMap,
     } = privateProps.get(this);
 
     onLoad();
@@ -179,6 +180,8 @@ class Atlas {
     this.updateCurrentLayers();
     this.updateAreaSearch();
     this.updateYear();
+
+    mbMap.resize();
   }
   config(config) {
     Object.assign(privateProps.get(this), config);
@@ -194,12 +197,13 @@ class Atlas {
     const { mbMap } = privateProps.get(this);
     return mbMap;
   }
-  getRenderedLayers() {
-    const { mbMap } = privateProps.get(this);
-    return mbMap.getStyle().layers
-      .map(d => d.id)
-      .filter(d => mbMap.queryRenderedFeatures({ layers: [d] }).length > 0);
-  }
+  // getRenderedLayers() {
+  //   const { mbMap } = privateProps.get(this);
+  //   console.log(mbMap.getStyle().layers);
+  //   return mbMap.getStyle().layers
+  //     .map(d => d.id)
+  //     .filter(d => mbMap.queryRenderedFeatures({ layers: [d] }).length > 0);
+  // }
 
   textSearch(value) {
     const {

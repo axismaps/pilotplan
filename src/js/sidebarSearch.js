@@ -29,6 +29,7 @@ const searchMethods = {
     const groups = drawSearchResultGroups({
       container,
       results,
+      isRaster: true,
     });
 
     drawRasterResultRows({
@@ -70,9 +71,10 @@ const searchMethods = {
   drawSearchResultGroups({
     container,
     results,
+    isRaster = false,
   }) {
     const groups = container.selectAll('.sidebar__results-group')
-      .data(results, d => d.id);
+      .data(results, d => (isRaster ? d.category : d.sourceLayer));
 
     groups.exit().remove();
 
@@ -83,7 +85,7 @@ const searchMethods = {
 
     newGroups.append('div')
       .attr('class', 'sidebar__layer-group-title')
-      .text(d => d.id);
+      .text(d => (isRaster ? d.category : d.sourceLayer)); // should be d[language]
 
     newGroups.append('div')
       .attr('class', 'sidebar__result-rows');
@@ -101,7 +103,7 @@ const searchMethods = {
       const rows = d3.select(this)
         .select('.sidebar__result-rows')
         .selectAll('.sidebar__raster-results-row')
-        .data(d.features, dd => dd.id);
+        .data(d.features, dd => dd.SS_ID);
 
       rows.exit().remove();
 

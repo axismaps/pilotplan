@@ -48,6 +48,7 @@ const app = {
   },
   initState() {
     this.components.state = getState();
+
     this.components.state.set('currentLayers', this.components.state.getAllAvailableLayers(this.data));
   },
   initViews() {
@@ -161,7 +162,6 @@ const app = {
         state.update({ sidebarOpen: !state.get('sidebarOpen') });
       },
       onBackButtonClick: () => {
-        console.log('click');
         state.update({ view: 'intro' });
       },
     });
@@ -171,7 +171,7 @@ const app = {
       state,
     } = this.components;
 
-    console.log('init components');
+    console.log('initialize components');
 
     this.components.timeline = new Timeline({
       year: state.get('year'),
@@ -275,13 +275,12 @@ const app = {
         state.update({ highlightedFeature: null });
       },
       onLayerClick(layer) {
-        console.log('layer', layer);
         const currentLayers = state.get('currentLayers');
-        const layerIndex = currentLayers.map(d => d.id)
-          .indexOf(layer.id);
+        const layerIndex = currentLayers.map(d => d.sourceLayer)
+          .indexOf(layer.sourceLayer);
         const newLayers = [
           ...currentLayers.slice(0, layerIndex),
-          { id: layer.id, status: !currentLayers[layerIndex].status },
+          { sourceLayer: layer.sourceLayer, status: !currentLayers[layerIndex].status },
           ...currentLayers.slice(layerIndex + 1),
         ];
         state.update({ currentLayers: newLayers });
@@ -295,14 +294,17 @@ const app = {
         let newFeature;
         if (oldFeature === null) {
           newFeature = feature;
+        } else if (Object.prototype.hasOwnProperty.call(feature, 'dataLayer')) {
+          // comparison for entire layer
+          newFeature = oldFeature.dataLayer === feature.dataLayer ? null : feature;
         } else {
+          // comparison for feature
           newFeature = oldFeature.id === feature.id ? null : feature;
         }
 
         state.update({ highlightedFeature: newFeature });
       },
     });
-    console.log('INITIALIZED');
     state.update({ componentsInitialized: true });
   },
   setStateEvents() {
