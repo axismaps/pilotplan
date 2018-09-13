@@ -81,25 +81,6 @@ const privateMethods = {
 
     props.layerGroups = newGroups.merge(groups);
   },
-  addLayerRowContent({ layer, language, row }) {
-    let html = '<input class="sidebar__layer-checkbox" type="checkbox" value="builtdomain" checked="checked">';
-    if (Object.prototype.hasOwnProperty.call(layer, 'icon')) {
-      if (!layer.icon.includes('.svg')) {
-        html += `<div class="swatch"><img src="img/legend/${layer.icon}"></div>`;
-        html += `<span class="sidebar__layer-name">${layer[language]}</span>`;
-        row.html(html);
-      }
-      d3.xml(`img/legend/${layer.icon}`)
-        .then((icon) => {
-          html += `<div class="swatch">${new XMLSerializer().serializeToString(icon)}</div>`;
-          html += `<span class="sidebar__layer-name">${layer[language]}</span>`;
-          row.html(html);
-        });
-    } else {
-      html += `<span class="sidebar__layer-name">${layer[language]}</span>`;
-      row.html(html);
-    }
-  },
   drawLayers() {
     const props = privateProps.get(this);
     const {
@@ -109,7 +90,7 @@ const privateMethods = {
       onLayerClick,
     } = props;
 
-    const { addLayerRowContent } = privateMethods;
+    // const { addLayerRowContent } = privateMethods;
 
     layerGroups.each(function addLayers(d) {
       const layers = d3.select(this)
@@ -128,13 +109,9 @@ const privateMethods = {
         .on('click', onLayerClick);
 
       titleRows.each(function addSwatch(dd) {
-        if (Object.prototype.hasOwnProperty.call(dd, 'icon')) {
-          addLayerRowContent({
-            row: d3.select(this),
-            layer: dd,
-            language,
-          });
-        }
+        let html = '<input class="sidebar__layer-checkbox" type="checkbox" value="builtdomain" checked="checked">';
+        html += `<span class="sidebar__layer-name">${dd[language]}</span>`;
+        d3.select(this).html(html);
       });
 
       layersNew
@@ -153,11 +130,10 @@ const privateMethods = {
       language,
       sidebarContentContainer,
       onFeatureClick,
+      cachedSwatches,
     } = props;
 
-
     layers.each(function addFeature(d) {
-      // console.log('layer d', d);
       const features = d3.select(this)
         .select('.sidebar__feature-block')
         .selectAll('.sidebar__feature-row')
@@ -181,6 +157,31 @@ const privateMethods = {
 
           onFeatureClick(Object.assign({}, feature, { sourceLayer: d.sourceLayer }));
         });
+      // console.log('icon', d.icon);
+      if (cachedSwatches.has(d.icon)) {
+        // console.log('loaded from cache');
+        const html = cachedSwatches.get(d.icon);
+        newFeatureRows
+          .append('div')
+          .attr('class', 'sidebar__swatch')
+          .html(html);
+      } else {
+        // console.log('load new');
+        d3.xml(`img/legend/${d.icon}`)
+          .then((icon) => {
+            const html = new XMLSerializer().serializeToString(icon);
+            if (!cachedSwatches.has(d.icon)) {
+              // console.log('save new', d.icon);
+              cachedSwatches.set(d.icon, html);
+            }
+
+            newFeatureRows
+              .append('div')
+              .attr('class', 'sidebar__swatch')
+              .html(html);
+          });
+      }
+
 
       features.exit().remove();
     });
@@ -237,6 +238,7 @@ class Sidebar {
       resultsContainer,
       rasterResultsContainer,
       nonRasterResultsContainer,
+      cachedSwatches: new Map(),
       view: null,
       previousView: null,
       results: null,

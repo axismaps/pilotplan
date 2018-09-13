@@ -69,7 +69,7 @@ const getState = function getState() {
   };
 
   state.getAllAvailableLayers = function getAllAvailableLayers(data) {
-    console.log('DATA', data);
+    // console.log('DATA', data);
     return this.getAvailableLayers(data)
       .reduce((accumulator, group) => [...accumulator, ...group.layers], [])
       .map(layer => ({
