@@ -247,7 +247,7 @@ const app = {
 
 
     this.components.footer = new Footer({
-      footerView: state.get('footerView'),
+      footerView: state.getAutoFooterView(this.data),
       rasterData: state.getAvailableRasters(this.data),
       cachedMetadata: this.cachedMetadata,
       onCategoryClick(newCategory) {
@@ -262,8 +262,8 @@ const app = {
       onAllRasterClick() {
         state.update({ allRasterOpen: true });
       },
-      onToggleClick() {
-        state.update({ footerOpen: !state.get('footerOpen') });
+      onToggleClick(toggle) {
+        state.update({ footerOpen: toggle === undefined ? !state.get('footerOpen') : toggle });
       },
     });
 

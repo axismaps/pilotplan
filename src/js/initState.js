@@ -1,4 +1,5 @@
 import State from './state/state';
+import rasterMethods from './rasterMethods';
 
 const getState = function getState() {
   const startView = 'intro';
@@ -87,6 +88,22 @@ const getState = function getState() {
       }
       return accumulator;
     }, {});
+  };
+
+  state.getAutoFooterView = function getAutoFooterView(data) {
+    const {
+      getRasterDataByCategory,
+    } = rasterMethods;
+    const rasterData = this.getAvailableRasters(data);
+    const rasterDataByCategory = getRasterDataByCategory({ rasterData });
+
+    if (rasterDataByCategory.length === 0) {
+      return 'view';
+      // close footer??
+    } else if (rasterData.get(this.get('footerView')).length === 0) {
+      return rasterDataByCategory[0].key;
+    }
+    return state.get('footerView');
   };
 
   return state;

@@ -82,6 +82,26 @@ const privateMethods = {
       .classed('footer__category--selected', d => d === footerView)
       .classed('footer__category--disabled', d => rasterData.get(d).length === 0);
   },
+  // autoSetFooterView() {
+  //   const {
+  //     rasterData,
+  //     onCategoryClick,
+  //     footerView,
+  //   } = privateProps.get(this);
+
+  //   const {
+  //     getRasterDataByCategory,
+  //   } = rasterMethods;
+
+  //   const rasterDataByCategory = getRasterDataByCategory({ rasterData });
+
+  //   if (rasterDataByCategory.length === 0) {
+  //     onCategoryClick('views');
+  //     // close footer??
+  //   } else if (rasterData.get(footerView).length === 0) {
+  //     onCategoryClick(rasterDataByCategory[0].key);
+  //   }
+  // },
   drawAllRaster() {
     const props = privateProps.get(this);
     const {
@@ -197,6 +217,7 @@ class Footer {
     const {
       drawRasters,
       updateFooterView,
+      // autoSetFooterView,
     } = privateMethods;
 
     updateFooterView.call(this);
