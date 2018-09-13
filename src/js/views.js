@@ -51,6 +51,7 @@ class Views {
       view,
       views,
       outerContainer,
+      mapLoaded,
     } = props;
 
     const {
@@ -64,7 +65,8 @@ class Views {
     });
 
     if (!views[view].initialized &&
-      Object.prototype.hasOwnProperty.call(initialize, view)) {
+      Object.prototype.hasOwnProperty.call(initialize, view) &&
+      mapLoaded) {
       initialize[view]();
     }
     views[view].initialized = true;

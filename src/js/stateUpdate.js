@@ -305,6 +305,11 @@ const setStateEvents = ({ components, data }) => {
         .config({ mouseEventsDisabled })
         .toggleMouseEvents();
     },
+    mapLoaded() {
+      const { mapLoaded } = this.props();
+      const { views } = components;
+      views.config({ mapLoaded });
+    },
   });
 };
 

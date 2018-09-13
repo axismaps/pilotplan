@@ -197,6 +197,10 @@ class Atlas {
     const { mbMap } = privateProps.get(this);
     return mbMap;
   }
+  getStyle() {
+    const { mbMap } = privateProps.get(this);
+    return mbMap.getStyle();
+  }
   // getRenderedLayers() {
   //   const { mbMap } = privateProps.get(this);
   //   console.log(mbMap.getStyle().layers);

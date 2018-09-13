@@ -24,10 +24,11 @@ const app = {
     loadData((cleanedData) => {
       this.data = cleanedData;
       this.initState();
-      this.initViews();
+
       this.setStateEvents();
 
       this.initAtlas();
+      this.initViews();
       this.initIntro();
       this.initEras();
       this.initLayout();
@@ -57,11 +58,13 @@ const app = {
       view: state.get('view'),
       initialize: {
         map: () => {
-          console.log('initialize map');
+          // this initializes components on first toggle to map view
+          // if components aren't already initialized from loading on map view
           this.initComponents();
           this.listenForResize();
         },
       },
+      mapLoaded: state.get('mapLoaded'),
     });
 
     this.components.views.updateView();
@@ -98,7 +101,6 @@ const app = {
   },
   initAtlas() {
     const { state } = this.components;
-
     this.components.atlas = new Atlas({
       viewshedsGeo: this.data.viewshedsGeo,
       highlightedFeature: state.get('highlightedFeature'),
@@ -110,10 +112,12 @@ const app = {
       layerNames: this.data.layerNames,
       // onLoad: this.onAtlasLoad.bind(this),
       onLoad: () => {
-        // if (state.get('view') === 'map') {
-        //   this.initComponents();
-        //   this.listenForResize();
-        // }
+        if (state.get('view') === 'map') {
+          // initialize components on load only if starting on map view
+          // otherwise, wait to initialize until toggling map view for first time
+          this.initComponents();
+          this.listenForResize();
+        }
         state.update({ mapLoaded: true });
       },
       onClickSearch(features) {
@@ -262,10 +266,11 @@ const app = {
         state.update({ footerOpen: !state.get('footerOpen') });
       },
     });
-    console.log('available layers', state.getAvailableLayers(this.data));
+
     this.components.sidebar = new Sidebar({
       highlightedFeature: state.get('highlightedFeature'),
       sidebarOpen: state.get('sidebarOpen'),
+      style: this.components.atlas.getStyle(),
       availableLayers: state.getAvailableLayers(this.data),
       rasterData: state.getAvailableRasters(this.data),
       cachedMetadata: this.cachedMetadata,

@@ -178,7 +178,10 @@ const privateMethods = {
             newFeatureRows
               .append('div')
               .attr('class', 'sidebar__swatch')
-              .html(html);
+              .html(html)
+              .styles({
+                // stroke: 'red',
+              });
           });
       }
 
