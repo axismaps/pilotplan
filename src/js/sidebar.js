@@ -123,6 +123,33 @@ const privateMethods = {
     props.layers = sidebarContentContainer.selectAll('.sidebar__layer-row');
     props.checkBoxes = sidebarContentContainer.selectAll('.sidebar__layer-checkbox');
   },
+  setSwatchStyles({ layerStyles, swatches }) {
+    // const featureStyle = layerStyles.find(d => d.id === feature.style);
+    // console.log(featureStyle);
+    swatches
+      .each(function setFeatureStyle(feature) {
+        const swatch = d3.select(this).select('svg');
+        const featureStyle = layerStyles.find(d => d.id === feature.style).paint;
+        // console.log('style', feature.style);
+        // console.log('feature style', featureStyle);
+        const styleKey = {
+          'line-color': 'fill',
+          'fill-color': 'fill',
+        };
+        const style = Object.keys(styleKey).reduce((accumulator, field) => {
+          if (Object.prototype.hasOwnProperty.call(featureStyle, field)) {
+            const value = featureStyle[field];
+            const color = Array.isArray(value) ? value.slice(-1)[0] : value;
+            /* eslint-disable no-param-reassign */
+            accumulator[styleKey[field]] = color;
+            /* eslint-enable no-param-reassign */
+          }
+          return accumulator;
+        }, {});
+        // console.log('style', style);
+        swatch.attrs(style);
+      });
+  },
   drawFeatures() {
     const props = privateProps.get(this);
     const {
@@ -131,9 +158,17 @@ const privateMethods = {
       sidebarContentContainer,
       onFeatureClick,
       cachedSwatches,
+      layerStyles,
     } = props;
 
+    const {
+      setSwatchStyles,
+    } = privateMethods;
+
+    // console.log('map layerStyles', layerStyles);
+
     layers.each(function addFeature(d) {
+      // console.log('layer', d);
       const features = d3.select(this)
         .select('.sidebar__feature-block')
         .selectAll('.sidebar__feature-row')
@@ -153,18 +188,18 @@ const privateMethods = {
           <span class="sidebar__feature-name">${feature[language]}</span>
         `)
         .on('click', (feature) => {
-          //
-
           onFeatureClick(Object.assign({}, feature, { sourceLayer: d.sourceLayer }));
         });
       // console.log('icon', d.icon);
       if (cachedSwatches.has(d.icon)) {
         // console.log('loaded from cache');
         const html = cachedSwatches.get(d.icon);
-        newFeatureRows
+        const swatches = newFeatureRows
           .append('div')
           .attr('class', 'sidebar__swatch')
           .html(html);
+
+        setSwatchStyles({ swatches, layerStyles });
       } else {
         // console.log('load new');
         d3.xml(`img/legend/${d.icon}`)
@@ -175,13 +210,12 @@ const privateMethods = {
               cachedSwatches.set(d.icon, html);
             }
 
-            newFeatureRows
+            const swatches = newFeatureRows
               .append('div')
               .attr('class', 'sidebar__swatch')
-              .html(html)
-              .styles({
-                // stroke: 'red',
-              });
+              .html(html);
+
+            setSwatchStyles({ swatches, layerStyles });
           });
       }
 

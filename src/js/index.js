@@ -270,7 +270,7 @@ const app = {
     this.components.sidebar = new Sidebar({
       highlightedFeature: state.get('highlightedFeature'),
       sidebarOpen: state.get('sidebarOpen'),
-      style: this.components.atlas.getStyle(),
+      layerStyles: this.components.atlas.getStyle().layers,
       availableLayers: state.getAvailableLayers(this.data),
       rasterData: state.getAvailableRasters(this.data),
       cachedMetadata: this.cachedMetadata,

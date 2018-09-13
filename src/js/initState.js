@@ -2,8 +2,8 @@ import State from './state/state';
 import rasterMethods from './rasterMethods';
 
 const getState = function getState() {
-  const startView = 'intro';
-  // const startView = 'map';
+  // const startView = 'intro';
+  const startView = 'map';
   const state = new State({
     // year: 1957,
     year: 1985,
