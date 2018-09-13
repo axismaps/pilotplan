@@ -60,7 +60,6 @@ const privateMethods = {
       availableLayers,
       sidebarContentContainer,
     } = props;
-    console.log('availableLayers', availableLayers);
 
     const groups = sidebarContentContainer
       .selectAll('.sidebar__layer-group-block')
@@ -82,6 +81,25 @@ const privateMethods = {
 
     props.layerGroups = newGroups.merge(groups);
   },
+  addLayerRowContent({ layer, language, row }) {
+    let html = '<input class="sidebar__layer-checkbox" type="checkbox" value="builtdomain" checked="checked">';
+    if (Object.prototype.hasOwnProperty.call(layer, 'icon')) {
+      if (!layer.icon.includes('.svg')) {
+        html += `<div class="swatch"><img src="img/legend/${layer.icon}"></div>`;
+        html += `<span class="sidebar__layer-name">${layer[language]}</span>`;
+        row.html(html);
+      }
+      d3.xml(`img/legend/${layer.icon}`)
+        .then((icon) => {
+          html += `<div class="swatch">${new XMLSerializer().serializeToString(icon)}</div>`;
+          html += `<span class="sidebar__layer-name">${layer[language]}</span>`;
+          row.html(html);
+        });
+    } else {
+      html += `<span class="sidebar__layer-name">${layer[language]}</span>`;
+      row.html(html);
+    }
+  },
   drawLayers() {
     const props = privateProps.get(this);
     const {
@@ -91,8 +109,9 @@ const privateMethods = {
       onLayerClick,
     } = props;
 
+    const { addLayerRowContent } = privateMethods;
+
     layerGroups.each(function addLayers(d) {
-      // console.log('d.layers', d.layers);
       const layers = d3.select(this)
         .select('.sidebar__layer-block')
         .selectAll('.sidebar__layer-row')
@@ -102,13 +121,21 @@ const privateMethods = {
         .append('div')
         .attr('class', 'sidebar__layer-row');
 
-      layersNew.append('div')
+
+      const titleRows = layersNew.append('div')
         .attr('class', 'sidebar__layer-title-row')
-        .html(layer => `
-          <input class="sidebar__layer-checkbox" type="checkbox" value="builtdomain" checked="checked">
-          <span class="sidebar__layer-name">${layer[language]}</span>
-          `)
+        // .html(layer => getLayerHTML({ language, layer }))
         .on('click', onLayerClick);
+
+      titleRows.each(function addSwatch(dd) {
+        if (Object.prototype.hasOwnProperty.call(dd, 'icon')) {
+          addLayerRowContent({
+            row: d3.select(this),
+            layer: dd,
+            language,
+          });
+        }
+      });
 
       layersNew
         .append('div')

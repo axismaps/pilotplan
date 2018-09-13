@@ -66,7 +66,7 @@ const atlasMethods = {
 
     })
       .on('load', () => {
-        console.log('get loaded style', mbMap.getStyle().layers.map(d => mbMap.getLayer(d.id)));
+        // console.log('get loaded style', mbMap.getStyle().layers.map(d => mbMap.getLayer(d.id)));
         initApp();
       })
       .on('mouseover', 'viewconespoint', (d) => {

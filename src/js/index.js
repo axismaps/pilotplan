@@ -262,7 +262,7 @@ const app = {
         state.update({ footerOpen: !state.get('footerOpen') });
       },
     });
-
+    console.log('available layers', state.getAvailableLayers(this.data));
     this.components.sidebar = new Sidebar({
       highlightedFeature: state.get('highlightedFeature'),
       sidebarOpen: state.get('sidebarOpen'),

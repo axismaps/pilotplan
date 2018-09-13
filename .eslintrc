@@ -10,7 +10,8 @@
     "_": false,
     "document": false,
     "alert": false,
-    "mapboxgl": false
+    "mapboxgl": false,
+    "XMLSerializer": false
   },
   "env": {
     "jest/globals": true

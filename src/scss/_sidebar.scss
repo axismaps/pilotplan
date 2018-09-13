@@ -61,6 +61,8 @@
 
 .sidebar__layer-title-row {
   cursor: pointer;
+  display: flex;
+  align-items: center;
 }
 .sidebar__layer-checkbox {
   pointer-events: none;
