@@ -52,6 +52,9 @@ const setStateEvents = ({ components, data }) => {
           atlas.resizeMap();
         }, 500);
       }
+      if (sidebarOpen) {
+        layout.removeSidebarToggleLabel();
+      }
     },
     footerOpen() {
       const {

@@ -176,6 +176,10 @@ body {
   
 }
 
+.sidebar__toggle-icon-open {
+  display: none;
+}
+
 .footer {
   position: absolute;
   background: $main-background;
@@ -229,6 +233,14 @@ body {
 
   .sidebar__toggle-button {
     left: $legend-width;
+  }
+
+  .sidebar__toggle-icon-closed {
+    display: none;
+  }
+
+  .sidebar__toggle-icon-open {
+    display: block;
   }
 
   .sidebar {

@@ -19,6 +19,16 @@
   cursor: pointer;
 }
 
+.sidebar__toggle-help-container {
+  display: flex;
+  align-items: center;
+}
+
+.sidebar__toggle-button-text {
+  margin-left: 15px;
+  margin-right: 20px;
+}
+
 .sidebar__top {
   height: $search-input-height;
   padding-left: 15px;

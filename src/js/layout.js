@@ -84,6 +84,7 @@ class Layout {
       sidebarContainer,
       footerContainer,
       sidebarToggleButton,
+      sidebarToggleHelpContainer,
     } = selections;
 
     privateProps.set(this, {
@@ -110,9 +111,11 @@ class Layout {
       sidebarContainer,
       footerContainer,
       sidebarToggleButton,
+      sidebarToggleHelpContainer,
       transitionSpeed: 500,
       mouseEventsDisabled: false,
       transitionsDisabled: false,
+      sidebarOpened: false,
     });
     const {
       initAreaButton,
@@ -171,6 +174,17 @@ class Layout {
     } = privateProps.get(this);
 
     outerContainer.classed('sidebar-open', sidebarOpen);
+  }
+  removeSidebarToggleLabel() {
+    const props = privateProps.get(this);
+    const {
+      sidebarToggleHelpContainer,
+      sidebarOpened,
+    } = props;
+    if (sidebarOpened) return;
+
+    props.sidebarOpen = true;
+    sidebarToggleHelpContainer.remove();
   }
   updateFooter() {
     const {
