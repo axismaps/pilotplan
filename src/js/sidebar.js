@@ -140,8 +140,11 @@ const privateMethods = {
           if (Object.prototype.hasOwnProperty.call(featureStyle, field)) {
             const value = featureStyle[field];
             const color = Array.isArray(value) ? value.slice(-1)[0] : value;
+            const colorD3 = d3.rgb(color).brighter(2).toString();
+            console.log('color', color);
+            console.log('color d3', colorD3);
             /* eslint-disable no-param-reassign */
-            accumulator[styleKey[field]] = color;
+            accumulator[styleKey[field]] = colorD3;
             /* eslint-enable no-param-reassign */
           }
           return accumulator;
