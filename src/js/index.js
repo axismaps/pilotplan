@@ -85,6 +85,8 @@ const app = {
     const { state } = this.components;
 
     this.components.eras = new Eras({
+      language: state.get('language'),
+      eras: this.data.eras,
       onMapButtonClick: () => {
         state.update({ view: 'map' });
       },
@@ -145,6 +147,7 @@ const app = {
   initLayout() {
     const { state, eras } = this.components;
     this.components.layout = new Layout({
+      language: state.get('language'),
       currentEra: eras.getCurrentEra(),
       overlayOn: state.get('currentOverlay') !== null,
       rasterProbeOpen: state.get('currentRasterProbe' !== null),

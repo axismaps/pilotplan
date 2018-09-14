@@ -28,6 +28,7 @@ const getState = function getState() {
     mouseEventsDisabled: false,
     transitionsDisabled: false,
     language: 'en',
+    // language: 'pr',
     screenSize: [window.innerWidth, window.innerHeight],
   });
 

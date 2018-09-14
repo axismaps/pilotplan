@@ -1,3 +1,5 @@
+import { eras } from './config';
+
 const cleanData = (rawData) => {
   //
   const [
@@ -61,13 +63,14 @@ const cleanData = (rawData) => {
     .reduce((accumulator, d) => {
       const { en, pr } = d;
       /* eslint-disable no-param-reassign */
-      accumulator[d.id] = { en, pr };
+      accumulator[`${d.id}`] = { en, pr };
       /* eslint-enable no-param-reassign */
       return accumulator;
     }, {});
 
   console.log('translations', translations);
-
+  const erasWithTranslations = eras.map(d => Object.assign({}, d, translations[d.id]));
+  console.log('eras', erasWithTranslations);
   const rasters = new Map();
 
   rasters.set('views', views);
@@ -80,6 +83,7 @@ const cleanData = (rawData) => {
     viewshedsGeo: rawViewsheds,
     rasters,
     translations,
+    eras: erasWithTranslations,
   };
 
   return data;

@@ -55,10 +55,11 @@ const erasMethods = {
     erasTitleContainer,
     mouseEventsDisabled,
     view,
+    language,
   }) {
     if (view !== 'eras') {
       d3.select('.eras__title')
-        .text(currentEra.name);
+        .text(currentEra[language]);
       return;
     }
     const getOffset = (selection) => {
@@ -90,7 +91,7 @@ const erasMethods = {
 
     const newTitle = newTitleContainer.append('div')
       .attr('class', 'eras__title')
-      .text(currentEra.name);
+      .text(currentEra[language]);
     const newOffset = getOffset(newTitle);
     newTitleContainer
       .style('left', `${-newOffset}px`)

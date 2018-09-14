@@ -43,9 +43,10 @@ const privateMethods = {
     const {
       currentEra,
       erasButtonText,
+      language,
     } = privateProps.get(this);
     erasButtonText
-      .text(currentEra.name);
+      .text(currentEra[language]);
   },
   initMenuTransitions() {
     const {
@@ -101,6 +102,7 @@ class Layout {
       currentEra: null,
       previousEra: null,
       overlayOn: null,
+      language: null,
       outerContainer,
       areaSearchButton,
       probeButtonsContainer,

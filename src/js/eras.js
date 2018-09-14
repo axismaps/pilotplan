@@ -1,4 +1,4 @@
-import { eras, selections } from './config';
+import { selections } from './config';
 import erasMethods from './erasMethods';
 
 const privateProps = new WeakMap();
@@ -20,6 +20,7 @@ const privateMethods = {
       erasStepperRightButton,
       updateYear,
       mouseEventsDisabled,
+      eras,
       // year,
     } = props;
 
@@ -40,7 +41,7 @@ const privateMethods = {
       },
     });
   },
-  getCurrentEra({ year }) {
+  getCurrentEra({ year, eras }) {
     const { getCurrentEra } = erasMethods;
     return getCurrentEra({
       eras,
@@ -50,6 +51,8 @@ const privateMethods = {
   setInitialEra() {
     const {
       year,
+      eras,
+      language,
     } = privateProps.get(this);
     const { getCurrentEra } = erasMethods;
     const currentEra = getCurrentEra({
@@ -57,7 +60,7 @@ const privateMethods = {
       year,
     });
     d3.select('.eras__title')
-      .text(currentEra.name);
+      .text(currentEra[language]);
 
     d3.select('.eras__stepper-years')
       .text(`${currentEra.datesDisplay[0]} - ${currentEra.datesDisplay[1]}`);
@@ -103,9 +106,9 @@ class Eras {
     return this;
   }
   getCurrentEra() {
-    const { year } = privateProps.get(this);
+    const { year, eras } = privateProps.get(this);
     const { getCurrentEra } = privateMethods;
-    return getCurrentEra({ year });
+    return getCurrentEra({ year, eras });
   }
   updateEra() {
     const props = privateProps.get(this);
@@ -114,6 +117,8 @@ class Eras {
       animationDirection,
       mouseEventsDisabled,
       view,
+      eras,
+      language,
     } = props;
     const {
       getCurrentEra,
@@ -128,6 +133,7 @@ class Eras {
       mouseEventsDisabled,
       currentEra,
       animationDirection,
+      language,
       erasTitleContainer: d3.select('.eras__title-container'),
     });
 
