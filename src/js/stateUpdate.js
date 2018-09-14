@@ -124,6 +124,10 @@ const setStateEvents = ({ components, data }) => {
       const layersToClear = this.getLayersToClear([
         'highlightedFeature',
       ]);
+      if (clickSearch !== null && !this.get('sidebarOpen')) {
+        this.update({ sidebarOpen: true });
+      }
+
       state.update(layersToClear);
     },
     areaSearch() {
@@ -152,6 +156,10 @@ const setStateEvents = ({ components, data }) => {
         'highlightedFeature',
       ]);
       state.update(layersToClear);
+
+      if (areaSearch !== null && !this.get('sidebarOpen')) {
+        this.update({ sidebarOpen: true });
+      }
     },
     areaSearchActive() {
       const {

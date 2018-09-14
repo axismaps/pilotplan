@@ -39,7 +39,7 @@ const getUpdateView = ({
 
     this.update(Object.assign({
       footerOpen: true,
-      sidebarOpen: true,
+      sidebarOpen: false,
     }, layersToClear));
 
     this.update({ transitionsDisabled: false });

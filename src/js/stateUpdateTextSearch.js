@@ -39,6 +39,8 @@ const getUpdateTextSearch = ({ components }) => {
       const layersToClear = this.getLayersToClear([
         'highlightedFeature',
       ]);
+
+
       this.update(layersToClear);
     }
   };

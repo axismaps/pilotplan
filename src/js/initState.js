@@ -7,7 +7,8 @@ const getState = function getState() {
   const state = new State({
     // year: 1957,
     year: 1985,
-    sidebarOpen: startView === 'map',
+    // sidebarOpen: startView === 'map',
+    sidebarOpen: false,
     footerOpen: startView === 'map',
     allRasterOpen: false,
     sidebarView: 'legend', // searching, results
