@@ -247,6 +247,7 @@ const app = {
 
 
     this.components.footer = new Footer({
+      year: state.get('year'),
       footerView: state.getAutoFooterView(this.data),
       rasterData: state.getAvailableRasters(this.data),
       cachedMetadata: this.cachedMetadata,

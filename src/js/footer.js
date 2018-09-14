@@ -71,6 +71,21 @@ const privateMethods = {
       footerContainer,
     });
   },
+  drawToggleRasters() {
+    const {
+      rasterData,
+      footerToggleRastersContainer,
+      cachedMetadata,
+    } = privateProps.get(this);
+
+    const { drawToggleRasters } = methods;
+
+    drawToggleRasters({
+      rasterData,
+      footerToggleRastersContainer,
+      cachedMetadata,
+    });
+  },
   updateFooterView() {
     const {
       categoryButtons,
@@ -82,26 +97,6 @@ const privateMethods = {
       .classed('footer__category--selected', d => d === footerView)
       .classed('footer__category--disabled', d => rasterData.get(d).length === 0);
   },
-  // autoSetFooterView() {
-  //   const {
-  //     rasterData,
-  //     onCategoryClick,
-  //     footerView,
-  //   } = privateProps.get(this);
-
-  //   const {
-  //     getRasterDataByCategory,
-  //   } = rasterMethods;
-
-  //   const rasterDataByCategory = getRasterDataByCategory({ rasterData });
-
-  //   if (rasterDataByCategory.length === 0) {
-  //     onCategoryClick('views');
-  //     // close footer??
-  //   } else if (rasterData.get(footerView).length === 0) {
-  //     onCategoryClick(rasterDataByCategory[0].key);
-  //   }
-  // },
   drawAllRaster() {
     const props = privateProps.get(this);
     const {
@@ -157,6 +152,14 @@ const privateMethods = {
 
     props.firstAllRasterLoad = false;
   },
+  updateToggleYear() {
+    const {
+      footerToggleYearContainer,
+      year,
+    } = privateProps.get(this);
+
+    footerToggleYearContainer.text(`(${year})`);
+  },
 };
 
 class Footer {
@@ -171,6 +174,8 @@ class Footer {
       footerToggleButton,
       outerContainer,
       footerContainer,
+      footerToggleRastersContainer,
+      footerToggleYearContainer,
     } = selections;
 
     privateProps.set(this, {
@@ -181,6 +186,8 @@ class Footer {
       allRasterInnerContainer,
       allRasterContentContainer,
       footerToggleButton,
+      footerToggleRastersContainer,
+      footerToggleYearContainer,
       outerContainer,
       footerContainer,
       dataProbe: new DataProbe({
@@ -193,6 +200,7 @@ class Footer {
       footerView: null,
       cachedMetadata: null,
       firstAllRasterLoad: true,
+      year: null,
     });
 
     const {
@@ -208,19 +216,30 @@ class Footer {
     initToggleButton.call(this);
 
     this.updateRasterData();
+    // this.updateToggleRasters();
   }
   config(config) {
     Object.assign(privateProps.get(this), config);
     return this;
   }
+  // updateToggleRasters() {
+  //   const {
+  //     drawToggleRasters,
+  //   } = privateMethods;
+  //   drawToggleRasters.call(this);
+  // }
   updateRasterData() {
     const {
       drawRasters,
       updateFooterView,
       // autoSetFooterView,
+      drawToggleRasters,
+      updateToggleYear,
     } = privateMethods;
 
     updateFooterView.call(this);
+    drawToggleRasters.call(this);
+    updateToggleYear.call(this);
     drawRasters.call(this);
     return this;
   }

@@ -46,6 +46,34 @@ const footerMethods = {
 
     return newImages.merge(images);
   },
+  drawToggleRasters({
+    rasterData,
+    footerToggleRastersContainer,
+    cachedMetadata,
+  }) {
+    const {
+      getFlattenedRasterData,
+      setEachRasterBackground,
+    } = rasterMethods;
+    const toggleRasterData = getFlattenedRasterData({ rasterData }).slice(0, 3);
+
+    const images = footerToggleRastersContainer
+      .selectAll('.footer__toggle-image')
+      .data(toggleRasterData, d => d.SS_ID);
+
+    const newImages = images
+      .enter()
+      .append('div')
+      .attr('class', 'footer__toggle-image');
+
+    images.exit().remove();
+
+    setEachRasterBackground({
+      images: newImages,
+      maxDim: 20,
+      cachedMetadata,
+    });
+  },
   drawCategoryButtons({
     rasterCategories,
     categoriesContainer,

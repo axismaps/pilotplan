@@ -68,6 +68,7 @@ const getUpdateYear = ({
 
     footer
       .config({
+        year,
         rasterData,
       })
       .updateRasterData();
