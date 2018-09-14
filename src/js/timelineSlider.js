@@ -1,5 +1,6 @@
 import getSliderBase from './timelineSliderBase';
 import getSliderAxis from './timelineSliderAxis';
+import getTooltipMethods from './timelineTooltipMethods';
 
 const privateProps = new WeakMap();
 
@@ -164,8 +165,9 @@ const privateMethods = {
 
 const baseMethods = getSliderBase({ privateProps, privateMethods });
 const axisMethods = getSliderAxis({ privateProps, privateMethods });
+const tooltipMethods = getTooltipMethods({ privateProps });
 
-Object.assign(privateMethods, baseMethods, axisMethods);
+Object.assign(privateMethods, baseMethods, axisMethods, tooltipMethods);
 
 class TimelineSlider {
   constructor(config) {

@@ -296,6 +296,7 @@ const app = {
         state.update({ textSearch: val });
       },
       onFeatureClick(feature) {
+        console.log('feature', feature);
         const oldFeature = state.get('highlightedFeature');
         let newFeature;
         if (oldFeature === null) {

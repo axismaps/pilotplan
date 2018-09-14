@@ -6,7 +6,7 @@ const getState = function getState() {
   const startView = 'map';
   const state = new State({
     // year: 1957,
-    year: 1985,
+    year: 1960,
     // sidebarOpen: startView === 'map',
     sidebarOpen: false,
     footerOpen: startView === 'map',

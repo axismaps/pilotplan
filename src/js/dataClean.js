@@ -6,6 +6,7 @@ const cleanData = (rawData) => {
     rawAerials,
     rawMaps,
     rawPlans,
+    rawTranslations,
   ] = rawData;
 
   const layerGroups = [
@@ -55,6 +56,17 @@ const cleanData = (rawData) => {
     return record;
   });
 
+  console.log('raw translations', rawTranslations);
+  const translations = rawTranslations
+    .reduce((accumulator, d) => {
+      const { en, pr } = d;
+      /* eslint-disable no-param-reassign */
+      accumulator[d.id] = { en, pr };
+      /* eslint-enable no-param-reassign */
+      return accumulator;
+    }, {});
+
+  console.log('translations', translations);
 
   const rasters = new Map();
 
@@ -67,6 +79,7 @@ const cleanData = (rawData) => {
     layers,
     viewshedsGeo: rawViewsheds,
     rasters,
+    translations,
   };
 
   return data;
