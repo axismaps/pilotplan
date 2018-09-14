@@ -56,12 +56,12 @@
 
 .sidebar__layer-group-title {
   // font-size: 18px;
-  // font-weight: bold;
+  font-weight: bold;
   height: 34px;
   display: flex;
   align-items: center;
   margin-bottom: 5px;
-  background: black;
+  background: #1a1a1a;
 }
 
 .sidebar__layer-group-title,
@@ -77,6 +77,10 @@
 .sidebar__layer-checkbox {
   pointer-events: none;
 }
+
+.sidebar__layer-name {
+  padding: 10px;
+  }
 
 .sidebar__results-button-row,
 .sidebar__feature-row {
@@ -123,7 +127,7 @@
 .sidebar__feature-button {
   background: $main-medium-dark-gray;
   transition: background 250ms;
-  border: 1px solid $main-medium-gray;
+  // border: 1px solid $main-medium-gray;
   min-height: 20px;
   display: flex;
   align-items: center;
@@ -145,7 +149,6 @@
   color: white;
 }
 
-
 // .sidebar__feature-button--off {
 //   background: $main-medium-dark-gray;
 //   color: grey;
@@ -156,6 +159,10 @@
   pointer-events: none;
   cursor: auto;
 }
+
+.sidebar__Feature-icon {
+  padding-right: 10px;
+  }
 
 .sidebar__input {
   font-size: 15px;
