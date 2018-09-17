@@ -150,7 +150,7 @@ const privateMethods = {
       .on('start drag', () => {
         const { valueRange, svgPosition } = props;
         const sliderValue = scale.invert(d3.event.x);
-        console.log('slide', d3.event.x);
+
         setTooltipPosition.call(this, { x: d3.event.x + svgPosition.left });
         let newValue;
         if (sliderValue >= valueRange[0] && sliderValue <= valueRange[1]) {

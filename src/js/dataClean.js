@@ -1,7 +1,6 @@
 import { eras } from './config';
 
 const cleanData = (rawData) => {
-  //
   const [
     rawLayers,
     rawViewsheds,
@@ -17,12 +16,6 @@ const cleanData = (rawData) => {
     'Urbanism',
   ];
 
-  //
-  //
-  //
-  //
-  //
-
   const layers = layerGroups
     .map((group) => {
       const groupRecord = {
@@ -36,8 +29,7 @@ const cleanData = (rawData) => {
               .map((featureKey) => {
                 const featureRecord = Object.assign({}, layerRecord.features[featureKey]);
                 featureRecord.dataLayer = featureKey;
-                // featureRecord.id = featureRecord.style;
-                // delete featureRecord.style;
+
                 return featureRecord;
               });
             return layerRecord;
@@ -58,7 +50,6 @@ const cleanData = (rawData) => {
     return record;
   });
 
-  console.log('raw translations', rawTranslations);
   const translations = rawTranslations
     .reduce((accumulator, d) => {
       const { en, pr } = d;
@@ -68,9 +59,9 @@ const cleanData = (rawData) => {
       return accumulator;
     }, {});
 
-  console.log('translations', translations);
+
   const erasWithTranslations = eras.map(d => Object.assign({}, d, translations[d.id]));
-  console.log('eras', erasWithTranslations);
+
   const rasters = new Map();
 
   rasters.set('views', views);

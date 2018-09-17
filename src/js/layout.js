@@ -45,6 +45,7 @@ const privateMethods = {
       erasButtonText,
       language,
     } = privateProps.get(this);
+
     erasButtonText
       .text(currentEra[language]);
   },
@@ -216,11 +217,12 @@ class Layout {
     const {
       currentEra,
       previousEra,
+      language,
     } = privateProps.get(this);
 
     const { setErasButtonText } = privateMethods;
 
-    if (previousEra.name === currentEra.name) return;
+    if (previousEra[language] === currentEra[language]) return;
 
     setErasButtonText.call(this);
   }

@@ -11,6 +11,7 @@ import { yearRange } from './config';
 import loadData from './dataLoad';
 import Views from './views';
 import Eras from './eras';
+import UrlParams from './url';
 
 require('../scss/index.scss');
 
@@ -23,6 +24,8 @@ const app = {
   init() {
     loadData((cleanedData) => {
       this.data = cleanedData;
+      this.initURL();
+
       this.initState();
 
       this.setStateEvents();
@@ -47,8 +50,11 @@ const app = {
       // }, 2000);
     });
   },
+  initURL() {
+    this.components.urlParams = new UrlParams({});
+  },
   initState() {
-    this.components.state = getState();
+    this.components.state = getState(this.components.urlParams);
 
     this.components.state.set('currentLayers', this.components.state.getAllAvailableLayers(this.data));
   },

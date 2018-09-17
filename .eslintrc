@@ -11,7 +11,9 @@
     "document": false,
     "alert": false,
     "mapboxgl": false,
-    "XMLSerializer": false
+    "XMLSerializer": false,
+    "URLSearchParams": false,
+    "encodeURIComponent": false
   },
   "env": {
     "jest/globals": true

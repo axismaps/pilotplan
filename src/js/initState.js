@@ -1,9 +1,9 @@
 import State from './state/state';
 import rasterMethods from './rasterMethods';
 
-const getState = function getState() {
-  // const startView = 'intro';
-  const startView = 'map';
+const getState = function getState(urlParams) {
+  const startView = 'intro';
+  // const startView = 'map';
   const state = new State({
     // year: 1957,
     year: 1960,
@@ -23,11 +23,12 @@ const getState = function getState() {
     currentLayers: null,
     currentOverlay: null,
     currentView: null,
+    currentExtents: null,
     currentRasterProbe: null,
     highlightedFeature: null,
     mouseEventsDisabled: false,
     transitionsDisabled: false,
-    language: 'en',
+    language: urlParams.getLanguage(),
     // language: 'pr',
     screenSize: [window.innerWidth, window.innerHeight],
   });

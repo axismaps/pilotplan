@@ -321,6 +321,11 @@ const setStateEvents = ({ components, data }) => {
       const { views } = components;
       views.config({ mapLoaded });
     },
+    language() {
+      const { language } = this.props();
+      const { urlParams } = components;
+      urlParams.config({ language }).update();
+    },
   });
 };
 
