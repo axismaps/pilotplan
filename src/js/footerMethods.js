@@ -17,7 +17,6 @@ const footerMethods = {
       setEachRasterBackground,
     } = rasterMethods;
 
-    // console.log(rasterData.get(footerView));
     const images = imagesContainer.selectAll('.footer__image')
       .data(rasterData.get(footerView), d => d.SS_ID);
 

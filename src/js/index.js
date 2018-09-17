@@ -256,7 +256,6 @@ const app = {
       },
     });
 
-
     this.components.footer = new Footer({
       year: state.get('year'),
       footerView: state.getAutoFooterView(this.data),

@@ -2,8 +2,8 @@ import State from './state/state';
 import rasterMethods from './rasterMethods';
 
 const getState = function getState(urlParams) {
-  const startView = 'intro';
-  // const startView = 'map';
+  // const startView = 'intro';
+  const startView = 'map';
   const state = new State({
     // year: 1957,
     year: urlParams.get('year'),
@@ -101,7 +101,7 @@ const getState = function getState(urlParams) {
     const rasterDataByCategory = getRasterDataByCategory({ rasterData });
 
     if (rasterDataByCategory.length === 0) {
-      return 'view';
+      return 'views';
       // close footer??
     } else if (rasterData.get(this.get('footerView')).length === 0) {
       return rasterDataByCategory[0].key;
