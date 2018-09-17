@@ -4,6 +4,7 @@ const paramFields = [
   'language',
   'overlay',
   'extents',
+  'year',
 ];
 
 const privateMethods = {
@@ -34,6 +35,7 @@ class UrlParams {
       language: 'en',
       extents: null,
       overlay: null,
+      year: 1960,
     });
 
     this.config(config);
@@ -45,17 +47,20 @@ class UrlParams {
     Object.assign(privateProps.get(this), config);
     return this;
   }
-  getLanguage() {
-    return privateProps.get(this).language;
+  get(field) {
+    const props = privateProps.get(this);
+    return props[field];
   }
-  getOverlay() {
-    // actually look up overlay
-    return privateProps.get(this).overlay;
-  }
-  getExtents() {
-    const extentsString = privateProps.get(this).extents;
-    return extentsString;
-  }
+  // getLanguage() {
+  //   return privateProps.get(this).language;
+  // }
+  // getOverlay() {
+  //   return privateProps.get(this).overlay;
+  // }
+  // getExtents() {
+  //   const extentsString = privateProps.get(this).extents;
+  //   return extentsString;
+  // }
   update() {
     const props = privateProps.get(this);
 

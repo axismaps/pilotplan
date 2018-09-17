@@ -6,7 +6,7 @@ const getState = function getState(urlParams) {
   // const startView = 'map';
   const state = new State({
     // year: 1957,
-    year: 1960,
+    year: urlParams.get('year'),
     // sidebarOpen: startView === 'map',
     sidebarOpen: false,
     footerOpen: startView === 'map',
@@ -28,7 +28,7 @@ const getState = function getState(urlParams) {
     highlightedFeature: null,
     mouseEventsDisabled: false,
     transitionsDisabled: false,
-    language: urlParams.getLanguage(),
+    language: urlParams.get('language'),
     // language: 'pr',
     screenSize: [window.innerWidth, window.innerHeight],
   });

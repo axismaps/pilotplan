@@ -12,6 +12,7 @@ const getUpdateYear = ({
       footer,
       eras,
       layout,
+      urlParams,
     } = components;
 
     const {
@@ -42,7 +43,12 @@ const getUpdateYear = ({
         year,
       })
       .updateEra();
-    // }
+
+    urlParams
+      .config({
+        year,
+      })
+      .update();
 
     if (!componentsInitialized) {
       if (rasterDataByCategory.length === 0) {
