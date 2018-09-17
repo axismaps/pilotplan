@@ -181,6 +181,8 @@ const app = {
     console.log('initialize components');
 
     this.components.timeline = new Timeline({
+      language: state.get('language'),
+      eras: this.data.eras,
       year: state.get('year'),
       updateYear(newYear) {
         state.update({ year: Math.round(newYear) });

@@ -19,9 +19,13 @@ const privateMethods = {
       activeTrackAttrs,
       yearRange,
       sliderPadding,
+      eras,
+      language,
     } = props;
 
     props.slider = new TimelineSlider({
+      language,
+      eras,
       container: sliderContainer,
       outerContainer,
       currentValue: year,

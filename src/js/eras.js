@@ -105,8 +105,10 @@ class Eras {
     }
     return this;
   }
-  getCurrentEra() {
-    const { year, eras } = privateProps.get(this);
+  getCurrentEra(inputYear) {
+    const props = privateProps.get(this);
+    const { eras } = props;
+    const year = inputYear === undefined ? props.year : inputYear;
     const { getCurrentEra } = privateMethods;
     return getCurrentEra({ year, eras });
   }

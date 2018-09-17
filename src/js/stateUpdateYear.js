@@ -52,11 +52,11 @@ const getUpdateYear = ({
       }
       return;
     }
-
+    const currentEra = eras.getCurrentEra();
 
     layout
       .config({
-        currentEra: eras.getCurrentEra(),
+        currentEra,
       })
       .updateEra();
 

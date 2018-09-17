@@ -1,3 +1,5 @@
+import erasMethods from './erasMethods';
+
 const getTooltipMethods = ({ privateProps, privateMethods }) => ({
   initTooltip() {
     const props = privateProps.get(this);
@@ -6,7 +8,7 @@ const getTooltipMethods = ({ privateProps, privateMethods }) => ({
       outerContainer,
 
       svg,
-      scale,
+      // scale,
     } = props;
 
     const { setTooltipPosition } = privateMethods;
@@ -64,16 +66,27 @@ const getTooltipMethods = ({ privateProps, privateMethods }) => ({
     const {
       tooltipContainer,
       tooltipWidth,
+      scale,
+      svgPosition,
+      tooltipYear,
+      eras,
+      language,
+      tooltipEra,
     } = privateProps.get(this);
 
+    const {
+      getCurrentEra,
+    } = erasMethods;
+
+    const year = Math.round(scale.invert(x - svgPosition.left));
+    const currentEra = getCurrentEra({ year, eras });
+
     tooltipContainer
-    // privateProps.get(this).tooltipContainer
       .styles({
         left: `${x - (tooltipWidth / 2)}px`,
       });
-  },
-  setTooltipText({ year, era }) {
-
+    tooltipYear.text(year);
+    tooltipEra.text(currentEra[language]);
   },
 });
 
