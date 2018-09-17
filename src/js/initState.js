@@ -4,7 +4,9 @@ import rasterMethods from './rasterMethods';
 const getState = function getState({ urlParams }) {
   // const startView = 'intro';
   const startOverlay = urlParams.get('overlay');
+  const startBounds = urlParams.get('bounds');
 
+  console.log('startBounds', startBounds);
   const startView = 'map';
   const state = new State({
     // year: 1960,
@@ -25,7 +27,7 @@ const getState = function getState({ urlParams }) {
     currentLayers: null,
     currentOverlay: startOverlay,
     currentView: null,
-    currentExtents: null,
+    currentBounds: startBounds,
     currentRasterProbe: null,
     highlightedFeature: null,
     mouseEventsDisabled: false,

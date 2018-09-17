@@ -20,6 +20,7 @@ const privateMethods = {
       year,
       viewshedsGeo,
       onViewClick,
+      onMove,
     } = props;
 
     const {
@@ -30,6 +31,7 @@ const privateMethods = {
     d3.json('./data/style.json')
       .then((style) => {
         const mbMap = getMap({
+          onMove,
           initApp,
           viewshedsGeo,
           setCancelClickSearch: () => {
@@ -152,7 +154,9 @@ class Atlas {
       currentLayers: null,
       currentOverlay: null,
       viewshedsGeo: null,
+      onMove: null,
       cancelClickSearch: false,
+      initialBounds: null,
     });
 
     this.config(config);
@@ -169,6 +173,7 @@ class Atlas {
     const {
       onLoad,
       mbMap,
+      initialBounds,
     } = privateProps.get(this);
 
     onLoad();
@@ -183,6 +188,9 @@ class Atlas {
     this.updateOverlay();
 
     mbMap.resize();
+    if (initialBounds !== null) {
+      mbMap.fitBounds(initialBounds);
+    }
   }
   config(config) {
     Object.assign(privateProps.get(this), config);

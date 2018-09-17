@@ -5,7 +5,7 @@ const privateProps = new WeakMap();
 const paramFields = [
   'language',
   'overlay',
-  'extents',
+  'bounds',
   'year',
 ];
 
@@ -35,7 +35,7 @@ class UrlParams {
 
     privateProps.set(this, {
       language: 'en',
-      extents: null,
+      bounds: null,
       overlay: null,
       rasterData: null,
       year: 1960,
@@ -60,19 +60,17 @@ class UrlParams {
         rasterData,
         SS_ID: props[field],
       });
+    } else if (field === 'bounds' && props[field] !== null) {
+      const boundsString = props[field]
+        .split('|')
+        .map((d) => {
+          const coords = d.split(',');
+          return new mapboxgl.LngLat(coords[1], coords[0]);
+        });
+      return new mapboxgl.LngLatBounds(boundsString[0], boundsString[1]);
     }
     return props[field];
   }
-  // getLanguage() {
-  //   return privateProps.get(this).language;
-  // }
-  // getOverlay() {
-  //   return privateProps.get(this).overlay;
-  // }
-  // getExtents() {
-  //   const extentsString = privateProps.get(this).extents;
-  //   return extentsString;
-  // }
   update() {
     const props = privateProps.get(this);
 
@@ -85,7 +83,8 @@ class UrlParams {
         urlParams.delete(param);
       }
     });
-    window.history.replaceState({}, '', `?${urlParams.toString()}`);
+    // window.history.replaceState({}, '', `?${urlParams.toString()}`);
+    window.history.replaceState({}, '', `?${decodeURIComponent(urlParams.toString())}`);
   }
 }
 
