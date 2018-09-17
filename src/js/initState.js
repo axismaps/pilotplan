@@ -1,12 +1,14 @@
 import State from './state/state';
 import rasterMethods from './rasterMethods';
 
-const getState = function getState(urlParams) {
+const getState = function getState({ urlParams }) {
   // const startView = 'intro';
+  const startOverlay = urlParams.get('overlay');
+
   const startView = 'map';
   const state = new State({
-    // year: 1957,
-    year: urlParams.get('year'),
+    // year: 1960,
+    year: parseInt(urlParams.get('year'), 10),
     // sidebarOpen: startView === 'map',
     sidebarOpen: false,
     footerOpen: startView === 'map',
@@ -21,7 +23,7 @@ const getState = function getState(urlParams) {
     areaSearchActive: false,
     areaSearch: null,
     currentLayers: null,
-    currentOverlay: null,
+    currentOverlay: startOverlay,
     currentView: null,
     currentExtents: null,
     currentRasterProbe: null,

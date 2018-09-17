@@ -180,6 +180,7 @@ class Atlas {
     this.updateCurrentLayers();
     this.updateAreaSearch();
     this.updateYear();
+    this.updateOverlay();
 
     mbMap.resize();
   }

@@ -51,10 +51,14 @@ const app = {
     });
   },
   initURL() {
-    this.components.urlParams = new UrlParams({});
+    this.components.urlParams = new UrlParams({
+      rasterData: this.data.rasters,
+    });
   },
   initState() {
-    this.components.state = getState(this.components.urlParams);
+    const { urlParams } = this.components;
+
+    this.components.state = getState({ urlParams });
 
     this.components.state.set('currentLayers', this.components.state.getAllAvailableLayers(this.data));
   },
@@ -109,6 +113,7 @@ const app = {
   },
   initAtlas() {
     const { state } = this.components;
+
     this.components.atlas = new Atlas({
       viewshedsGeo: this.data.viewshedsGeo,
       highlightedFeature: state.get('highlightedFeature'),

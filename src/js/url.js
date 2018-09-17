@@ -1,3 +1,5 @@
+import rasterMethods from './rasterMethods';
+
 const privateProps = new WeakMap();
 
 const paramFields = [
@@ -35,6 +37,7 @@ class UrlParams {
       language: 'en',
       extents: null,
       overlay: null,
+      rasterData: null,
       year: 1960,
     });
 
@@ -49,6 +52,15 @@ class UrlParams {
   }
   get(field) {
     const props = privateProps.get(this);
+    const { rasterData } = props;
+    const { getRasterFromSSID } = rasterMethods;
+
+    if (field === 'overlay' && props[field] !== null) {
+      return getRasterFromSSID({
+        rasterData,
+        SS_ID: props[field],
+      });
+    }
     return props[field];
   }
   // getLanguage() {

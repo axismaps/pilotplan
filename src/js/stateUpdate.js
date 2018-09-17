@@ -215,8 +215,10 @@ const setStateEvents = ({ components, data }) => {
       const {
         atlas,
         layout,
+        urlParams,
       } = components;
 
+      console.log('overlay', currentOverlay);
       layout
         .config({
           overlayOn: currentOverlay !== null,
@@ -228,6 +230,12 @@ const setStateEvents = ({ components, data }) => {
           currentOverlay,
         })
         .updateOverlay();
+
+      urlParams
+        .config({
+          overlay: currentOverlay !== null ? currentOverlay.SS_ID : null,
+        })
+        .update();
     },
     currentView() {
       const {

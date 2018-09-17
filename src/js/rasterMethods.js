@@ -265,6 +265,12 @@ const rasterMethods = {
     });
     return data;
   },
+  getRasterFromSSID({ rasterData, SS_ID }) {
+    const { getFlattenedRasterData } = rasterMethods;
+    const flattenedRaster = getFlattenedRasterData({ rasterData });
+
+    return flattenedRaster.find(d => d.SS_ID === SS_ID);
+  },
 };
 
 export default rasterMethods;
