@@ -21,6 +21,7 @@ const privateMethods = {
       initAxis,
       updateSliderPosition,
       setDrag,
+      initTooltip,
     } = privateMethods;
 
     setScale.call(this);
@@ -38,6 +39,8 @@ const privateMethods = {
 
     updateSliderPosition.call(this);
     setDrag.call(this);
+
+    initTooltip.call(this);
 
     return this;
   },
@@ -124,6 +127,8 @@ const privateMethods = {
       // onDrag,
     } = props;
 
+    const { setTooltipPosition } = privateMethods;
+
     // const { updateSliderPosition } = privateMethods;
 
     detectionTrack.call(d3.drag()
@@ -143,9 +148,10 @@ const privateMethods = {
         // }
       })
       .on('start drag', () => {
-        const { valueRange } = props;
+        const { valueRange, svgPosition } = props;
         const sliderValue = scale.invert(d3.event.x);
-
+        console.log('slide', d3.event.x);
+        setTooltipPosition.call(this, { x: d3.event.x + svgPosition.left });
         let newValue;
         if (sliderValue >= valueRange[0] && sliderValue <= valueRange[1]) {
           newValue = sliderValue;
@@ -165,7 +171,7 @@ const privateMethods = {
 
 const baseMethods = getSliderBase({ privateProps, privateMethods });
 const axisMethods = getSliderAxis({ privateProps, privateMethods });
-const tooltipMethods = getTooltipMethods({ privateProps });
+const tooltipMethods = getTooltipMethods({ privateProps, privateMethods });
 
 Object.assign(privateMethods, baseMethods, axisMethods, tooltipMethods);
 

@@ -9,6 +9,7 @@ const privateMethods = {
     const {
       year,
       sliderContainer,
+      outerContainer,
       updateYear,
       sliderSize,
       trackHeight,
@@ -22,6 +23,7 @@ const privateMethods = {
 
     props.slider = new TimelineSlider({
       container: sliderContainer,
+      outerContainer,
       currentValue: year,
       size: sliderSize,
       padding: sliderPadding,
@@ -103,6 +105,7 @@ class Timeline {
   constructor(config) {
     const {
       timelineContainer,
+      outerContainer,
       sliderContainer,
       stepperTextContainer,
       stepperLeftButton,
@@ -120,6 +123,7 @@ class Timeline {
       container: timelineContainer,
       sliderContainer,
       stepperTextContainer,
+      outerContainer,
       stepperLeftButton,
       stepperRightButton,
       trackHeight: 30,

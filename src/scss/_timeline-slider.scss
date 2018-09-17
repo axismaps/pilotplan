@@ -12,6 +12,7 @@
 .slider__line {
   stroke: #999999;
   stroke-width: 1;
+  pointer-events: none;
 }
 
 .slider__axis {
@@ -28,4 +29,22 @@
 
 .slider__axis .domain {
   display: none;
+}
+
+.slider__tooltip-container {
+  pointer-events: none;
+  color: white;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  align-items: center;
+  // background: red;
+  z-index: 2000;
+}
+
+.slider__tooltip-year {
+  padding: 5px 10px;
+  background: rgba(255, 255, 255, .75);
+  color: black;
+  border-radius: 5px;
 }
