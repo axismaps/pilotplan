@@ -55,13 +55,13 @@
 }
 
 .sidebar__layer-group-title {
-  // font-size: 18px;
+  text-transform: uppercase;
   font-weight: bold;
   height: 34px;
   display: flex;
   align-items: center;
   margin-bottom: 5px;
-  background: #333333;
+  background: $main-light-gray;
 }
 
 .sidebar__layer-group-title,
