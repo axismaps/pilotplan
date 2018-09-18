@@ -43,6 +43,7 @@ class UrlParams {
       overlay: null,
       rasterData: null,
       year: 1960,
+      timeout: null,
     });
 
     this.config(config);
@@ -73,7 +74,7 @@ class UrlParams {
   update() {
     const props = privateProps.get(this);
 
-    const { urlParams } = props;
+    const { urlParams, timeout } = props;
 
     paramFields.forEach((param) => {
       if (props[param] !== null) {
@@ -82,8 +83,15 @@ class UrlParams {
         urlParams.delete(param);
       }
     });
-    // window.history.replaceState({}, '', `?${urlParams.toString()}`);
-    window.history.replaceState({}, '', `?${decodeURIComponent(urlParams.toString())}`);
+
+    if (timeout !== null) {
+      clearTimeout(timeout);
+    }
+
+    props.timeout = setTimeout(() => {
+      props.timeout = null;
+      window.history.replaceState({}, '', `?${decodeURIComponent(urlParams.toString())}`);
+    }, 250);
   }
 }
 
