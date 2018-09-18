@@ -173,7 +173,7 @@ class Atlas {
     const {
       onLoad,
       mbMap,
-      initialBounds,
+      initialLocation,
     } = privateProps.get(this);
 
     onLoad();
@@ -188,8 +188,21 @@ class Atlas {
     this.updateOverlay();
 
     mbMap.resize();
-    if (initialBounds !== null) {
-      mbMap.fitBounds(initialBounds);
+    console.log('initial', initialLocation);
+    // if (initialBounds !== null) {
+    //   mbMap.fitBounds(initialBounds);
+    // }
+    if (initialLocation !== null) {
+      const config = Object.keys(initialLocation)
+        .reduce((accumulator, field) => {
+          if (initialLocation[field] !== null && initialLocation[field] !== undefined) {
+            /* eslint-disable no-param-reassign */
+            accumulator[field] = initialLocation[field];
+            /* eslint-enable no-param-reassign */
+          }
+          return accumulator;
+        }, {});
+      mbMap.jumpTo(config);
     }
   }
   config(config) {

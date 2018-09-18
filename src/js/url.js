@@ -5,7 +5,9 @@ const privateProps = new WeakMap();
 const paramFields = [
   'language',
   'overlay',
-  'bounds',
+  'center',
+  'zoom',
+  'bearing',
   'year',
 ];
 
@@ -35,7 +37,9 @@ class UrlParams {
 
     privateProps.set(this, {
       language: 'en',
-      bounds: null,
+      center: null,
+      zoom: null,
+      bearing: null,
       overlay: null,
       rasterData: null,
       year: 1960,
@@ -60,14 +64,9 @@ class UrlParams {
         rasterData,
         SS_ID: props[field],
       });
-    } else if (field === 'bounds' && props[field] !== null) {
-      const boundsString = props[field]
-        .split('|')
-        .map((d) => {
-          const coords = d.split(',');
-          return new mapboxgl.LngLat(coords[1], coords[0]);
-        });
-      return new mapboxgl.LngLatBounds(boundsString[0], boundsString[1]);
+    } else if (field === 'center' && props[field] !== null) {
+      const coords = props[field].split(',');
+      return new mapboxgl.LngLat(coords[1], coords[0]);
     }
     return props[field];
   }

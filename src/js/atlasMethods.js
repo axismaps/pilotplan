@@ -67,7 +67,11 @@ const atlasMethods = {
 
     })
       .on('moveend', () => {
-        onMove(mbMap.getBounds());
+        const center = mbMap.getCenter();
+        const zoom = mbMap.getZoom();
+        const bearing = mbMap.getBearing();
+        const pitch = mbMap.getPitch();
+        onMove({ center, zoom, bearing });
       })
       .on('load', () => {
         // console.log('get loaded style', mbMap.getStyle().layers.map(d => mbMap.getLayer(d.id)));

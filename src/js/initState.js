@@ -2,11 +2,19 @@ import State from './state/state';
 import rasterMethods from './rasterMethods';
 
 const getState = function getState({ urlParams }) {
-  // const startView = 'intro';
   const startOverlay = urlParams.get('overlay');
-  const startBounds = urlParams.get('bounds');
+  const center = urlParams.get('center');
+  const zoom = urlParams.get('zoom');
+  const bearing = urlParams.get('bearing');
+  const initialLocation = center === null && zoom === null && bearing === null ?
+    null :
+    {
+      center,
+      zoom,
+      bearing,
+    };
+  // const startBounds = urlParams.get('bounds');
 
-  console.log('startBounds', startBounds);
   const startView = 'map';
   const state = new State({
     // year: 1960,
@@ -27,7 +35,8 @@ const getState = function getState({ urlParams }) {
     currentLayers: null,
     currentOverlay: startOverlay,
     currentView: null,
-    currentBounds: startBounds,
+    // currentBounds: startBounds,
+    currentLocation: initialLocation,
     currentRasterProbe: null,
     highlightedFeature: null,
     mouseEventsDisabled: false,

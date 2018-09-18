@@ -334,14 +334,26 @@ const setStateEvents = ({ components, data }) => {
       const { urlParams } = components;
       urlParams.config({ language }).update();
     },
-    currentBounds() {
-      const { currentBounds } = this.props();
+    // currentBounds() {
+    //   const { currentBounds } = this.props();
 
+    //   const { urlParams } = components;
+    //   const sw = currentBounds.getSouthWest();
+    //   const ne = currentBounds.getNorthEast();
+    //   const boundsString = `${sw.lat},${sw.lng}|${ne.lat},${ne.lng}`;
+    //   urlParams.config({ bounds: boundsString }).update();
+    // },
+    currentLocation() {
+      const { currentLocation } = this.props();
       const { urlParams } = components;
-      const sw = currentBounds.getSouthWest();
-      const ne = currentBounds.getNorthEast();
-      const boundsString = `${sw.lat},${sw.lng}|${ne.lat},${ne.lng}`;
-      urlParams.config({ bounds: boundsString }).update();
+      const { center, bearing, zoom } = currentLocation;
+      urlParams
+        .config({
+          center: `${center.lat},${center.lng}`,
+          zoom,
+          bearing,
+        })
+        .update();
     },
   });
 };
