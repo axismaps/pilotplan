@@ -61,6 +61,7 @@ const atlasMethods = {
     } = atlasMethods;
     let coneFeature;
     const mbMap = new mapboxgl.Map({
+      minZoom: 9,
       logoPosition: 'bottom-right',
       container: 'map',
       style,
@@ -70,7 +71,7 @@ const atlasMethods = {
         const center = mbMap.getCenter();
         const zoom = mbMap.getZoom();
         const bearing = mbMap.getBearing();
-        const pitch = mbMap.getPitch();
+
         onMove({ center, zoom, bearing });
       })
       .on('load', () => {
