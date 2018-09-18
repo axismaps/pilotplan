@@ -93,19 +93,31 @@
 
 .intro__jump-button {
   margin-left: 20px;
-  border: 1px solid $main-light-gray;
+  border: 2px solid $main-light-gray;
+  background: $main-medium-dark-gray;
+  transition: border 250ms;
 }
+
+.intro__jump-button:hover {
+  border: 2px solid white;
+  }
 
 .eras__map-button,
 .intro__begin-button {
-  background: $main-background-fill;
+  background: white;
+  color: #333;
+  border: 2px solid white;
   transition: background 250ms;
-  border: 1px solid $main-light-gray;
 }
+
+.intro__begin-button .icon-binoculars{
+  padding-right: 10px;
+  }
 
 .eras__map-button:hover,
 .intro__begin-button:hover {
   background: $main-medium-dark-gray;
+  color: white;
 }
 .eras__stepper-outer-container {
   width: 100%;
