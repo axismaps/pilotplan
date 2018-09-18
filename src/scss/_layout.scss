@@ -36,9 +36,11 @@ body {
 
 .map-outer {
   position: absolute;
-  top: $header-height + $timeline-height;
+  // top: $header-height + $timeline-height;
+  top: 0px;
   left: 0px;
-  height: $map-height-without-footer;
+  // height: $map-height-without-footer;
+  height: 100%;
   width: 100%;
 }
 
@@ -98,7 +100,7 @@ body {
   position: absolute;
   left: 0px;
   top: 0px;
-  background: $main-background;
+  // background: $main-background-fill;
   color: white;
   display: flex;
   align-items: center;
@@ -182,7 +184,6 @@ body {
 
 .footer {
   position: absolute;
-  background: $main-background;
   bottom: 0px;
   height: 0px;
   width: 100%;
@@ -227,8 +228,8 @@ body {
 
 .outer-container.sidebar-open {
   .map-outer {
-    left: $legend-width;
-    width: $map-width-with-sidebar;
+    // left: $legend-width;
+    // width: $map-width-with-sidebar;
   }
 
   .sidebar__toggle-button {
@@ -276,7 +277,7 @@ body {
   }
 
   .map-outer {
-    height: $map-height-with-footer;
+    // height: $map-height-with-footer;
   }
 
   .footer__close-icon {

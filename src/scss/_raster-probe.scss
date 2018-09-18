@@ -5,7 +5,7 @@
 
 .overlay-button,
 .area-button {
-  background: $main-background;
+  background: $main-background-fill;
   color: white;
   align-items: center;
   border-radius: 5px;
@@ -20,7 +20,7 @@
 .raster-probe {
   border-radius: 5px;
   box-shadow: $button-shadow;
-  background: $main-background;
+  background: $main-background-fill;
   color: white;
 }
 

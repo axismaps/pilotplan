@@ -1,9 +1,10 @@
 .footer {
   box-shadow: $footer-shadow;
+  background: $main-background-fill;
 }
 
 .footer__toggle-button {
-  background: $main-background;
+  background: $main-background-fill;
   box-shadow: $footer-button-shadow;
   border-top-right-radius: 5px;
   cursor: pointer;
@@ -29,6 +30,7 @@
   align-items: center;
   height: 100%;
   overflow: hidden;
+  margin-right: $footer-height - 15;
 }
 
 .footer__image {
@@ -94,7 +96,7 @@
   bottom: 0px;
   width: $footer-height - 15;
   height: 0px;;
-  background: $main-background;
+  // background: $main-background-fill;
   display: flex;
   align-items: center;
   justify-content: center;

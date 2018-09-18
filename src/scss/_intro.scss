@@ -98,7 +98,7 @@
 
 .eras__map-button,
 .intro__begin-button {
-  background: $main-background;
+  background: $main-background-fill;
   transition: background 250ms;
   border: 1px solid $main-light-gray;
 }
@@ -155,3 +155,6 @@
   overflow: hidden;
 }
 
+.eras__back-button-outer {
+  background: $main-background-fill;
+}

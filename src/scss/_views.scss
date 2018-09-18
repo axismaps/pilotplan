@@ -9,11 +9,11 @@
     display: none;
   }
 
-  .map-outer {
-    height: $map-height-without-footer !important;
-    width: $map-width-without-sidebar !important;
-    left: 0px !important;
-  }
+  // .map-outer {
+  //   height: $map-height-without-footer !important;
+  //   width: $map-width-without-sidebar !important;
+  //   left: 0px !important;
+  // }
 }
 
 .outer-container--eras,
@@ -41,9 +41,9 @@ $transition-speed: 500ms;
     transition: left $transition-speed;
   }
 
-  .map-outer {
-    transition: left $transition-speed, width $transition-speed, height $transition-speed;
-  }
+  // .map-outer {
+  //   transition: left $transition-speed, width $transition-speed, height $transition-speed;
+  // }
 
   .footer {
     transition: left $transition-speed, width $transition-speed, height $transition-speed;
@@ -71,9 +71,9 @@ $transition-speed: 500ms;
     transition: none;
   }
 
-  .map-outer {
-    transition: none;
-  }
+  // .map-outer {
+  //   transition: none;
+  // }
 
   .footer {
     transition: none;
