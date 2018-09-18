@@ -36,7 +36,9 @@ const axisMethods = ({ privateProps, privateMethods }) => ({
     } = props;
 
     props.axis = d3.axisBottom(scale)
-      .tickFormat(d => d);
+      .ticks(20)
+      // .tickValues([1900, 1950, 2000])
+      .tickFormat(d => (d % 10 === 0 ? d : ''));
   },
   updateAxis() {
     const props = privateProps.get(this);
@@ -50,6 +52,16 @@ const axisMethods = ({ privateProps, privateMethods }) => ({
 
     axisGroup
       .call(axis);
+
+    axisGroup
+      .selectAll('.tick')
+      .each(function setMinorTick(d) {
+        const tick = d3.select(this).select('line');
+        if (d % 10 !== 0) {
+          tick.attr('y2', 10);
+        }
+        // console.log('d', d);
+      });
   },
 });
 
