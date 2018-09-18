@@ -13,7 +13,8 @@
     "mapboxgl": false,
     "XMLSerializer": false,
     "URLSearchParams": false,
-    "encodeURIComponent": false
+    "encodeURIComponent": false,
+    "decodeURIComponent": false
   },
   "env": {
     "jest/globals": true

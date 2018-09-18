@@ -53,6 +53,7 @@ const atlasMethods = {
     setCancelClickSearch,
     getRasterData,
     onViewClick,
+    onMove,
   }) {
     const {
       addConeToMap,
@@ -65,6 +66,9 @@ const atlasMethods = {
       style,
 
     })
+      .on('moveend', () => {
+        onMove(mbMap.getBounds());
+      })
       .on('load', () => {
         // console.log('get loaded style', mbMap.getStyle().layers.map(d => mbMap.getLayer(d.id)));
         initApp();

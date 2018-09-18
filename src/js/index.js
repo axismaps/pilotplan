@@ -115,6 +115,7 @@ const app = {
     const { state } = this.components;
 
     this.components.atlas = new Atlas({
+      initialBounds: state.get('currentBounds'),
       viewshedsGeo: this.data.viewshedsGeo,
       highlightedFeature: state.get('highlightedFeature'),
       currentLayers: state.get('currentLayers'),
@@ -143,6 +144,11 @@ const app = {
         state.update({
           currentView: newView,
           currentRasterProbe: newView,
+        });
+      },
+      onMove(newBounds) {
+        state.update({
+          currentBounds: newBounds,
         });
       },
     });
