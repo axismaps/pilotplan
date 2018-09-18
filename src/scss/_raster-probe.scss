@@ -49,15 +49,15 @@
 
 .lightbox__view-button {
   background: $main-medium-dark-gray;
-  transition: background 250ms;
-  border: 1px solid $main-medium-gray;
+  transition: border 250ms;
+  border: 2px solid $main-medium-gray;
   width: 160px;
   cursor: pointer;
   border-radius: 5px;
 }
 
 .lightbox__view-button:hover {
-  background: $main-light-gray;
+  border: 2px solid white;
 }
 
 .lightbox__view-button-text {
