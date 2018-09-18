@@ -3,12 +3,12 @@
   overflow-x: hidden;
   overflow-y: auto;
   color: white;
-  box-shadow: $sidebar-shadow;
+  // box-shadow: $sidebar-shadow;
 }
 
 .sidebar__toggle-button {
   background: $main-background-fill;
-  box-shadow: $sidebar-button-shadow;
+  // box-shadow: $sidebar-button-shadow;
   display: flex;
   align-items: center;
   padding-left: 20px;
