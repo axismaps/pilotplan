@@ -336,8 +336,9 @@ const setStateEvents = ({ components, data }) => {
     },
     currentLocation() {
       const { currentLocation } = this.props();
-      const { urlParams } = components;
+      const { urlParams, views } = components;
       const { center, bearing, zoom } = currentLocation;
+      if (!views.mapViewInitialized()) return;
       urlParams
         .config({
           center: `${center.lat},${center.lng}`,

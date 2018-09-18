@@ -71,6 +71,12 @@ class Views {
     }
     views[view].initialized = true;
   }
+  mapViewInitialized() {
+    return privateProps.get(this)
+      .views
+      .map
+      .initialized;
+  }
 }
 
 export default Views;
