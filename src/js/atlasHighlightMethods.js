@@ -92,7 +92,7 @@ const atlasHighlightMethods = {
       layout: {},
       paint: {
         'line-width': 2,
-        'line-color': '#1a1a1a',
+        'line-color': '#eee',
       },
     };
 

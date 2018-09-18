@@ -30,7 +30,7 @@ export const eras = [
 ];
 
 export const colors = {
-  highlightColor: 'rgb(1, 34, 95)',
+  highlightColor: 'rgb(204, 204, 204)',
 };
 
 
