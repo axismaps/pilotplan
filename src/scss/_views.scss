@@ -56,6 +56,15 @@ $transition-speed: 500ms;
   .footer__show-all {
     transition: height $transition-speed;
   }
+
+  .mapboxgl-ctrl-bottom-left {
+    transition: bottom $transition-speed, left $transition-speed;
+  }
+
+  .mapboxgl-ctrl-bottom-right {
+    transition: bottom $transition-speed;
+  }
+
 }
 
 .mouse-disabled {

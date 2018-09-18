@@ -33,11 +33,11 @@ const setStateEvents = ({ components, data }) => {
     sidebarOpen() {
       const {
         sidebarOpen,
-        transitionsDisabled,
+        // transitionsDisabled,
       } = this.props();
       const {
         layout,
-        atlas,
+        // atlas,
       } = components;
 
       layout
@@ -45,13 +45,13 @@ const setStateEvents = ({ components, data }) => {
           sidebarOpen,
         })
         .updateSidebar();
-      if (transitionsDisabled) {
-        atlas.resizeMap();
-      } else {
-        setTimeout(() => {
-          atlas.resizeMap();
-        }, 500);
-      }
+      // if (transitionsDisabled) {
+      //   atlas.resizeMap();
+      // } else {
+      //   setTimeout(() => {
+      //     atlas.resizeMap();
+      //   }, 500);
+      // }
       if (sidebarOpen) {
         layout.removeSidebarToggleLabel();
       }
@@ -59,11 +59,11 @@ const setStateEvents = ({ components, data }) => {
     footerOpen() {
       const {
         footerOpen,
-        transitionsDisabled,
+        // transitionsDisabled,
       } = this.props();
       const {
         layout,
-        atlas,
+        // atlas,
       } = components;
 
       layout
@@ -72,13 +72,13 @@ const setStateEvents = ({ components, data }) => {
         })
         .updateFooter();
 
-      if (transitionsDisabled) {
-        atlas.resizeMap();
-      } else {
-        setTimeout(() => {
-          atlas.resizeMap();
-        }, 500);
-      }
+      // if (transitionsDisabled) {
+      //   atlas.resizeMap();
+      // } else {
+      //   setTimeout(() => {
+      //     atlas.resizeMap();
+      //   }, 500);
+      // }
     },
     currentLayers() {
       const {

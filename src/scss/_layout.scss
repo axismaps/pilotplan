@@ -256,6 +256,10 @@ body {
   .footer__toggle-button {
     left: $legend-width;
   }
+
+  .mapboxgl-ctrl-bottom-left {
+    left: $legend-width;
+  }
 }
 
 .footer__close-icon {
@@ -286,6 +290,14 @@ body {
 
   .footer__open-icon {
     display: none;
+  }
+
+  .mapboxgl-ctrl-bottom-left {
+    bottom: $footer-height + 50;
+  }
+
+  .mapboxgl-ctrl-bottom-right {
+    bottom: $footer-height;
   }
 }
 

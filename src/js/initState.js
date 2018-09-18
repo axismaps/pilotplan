@@ -15,7 +15,8 @@ const getState = function getState({ urlParams }) {
     };
   // const startBounds = urlParams.get('bounds');
 
-  const startView = 'map';
+  // const startView = 'map';
+  const startView = initialLocation === null ? 'intro' : 'map';
   const state = new State({
     // year: 1960,
     year: parseInt(urlParams.get('year'), 10),
