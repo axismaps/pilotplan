@@ -116,7 +116,7 @@ body {
 
 .timeline-container {
   position: absolute;
-  top: $header-height;
+  top: ($header-height)-10px;
   left: 0px;
   height: $timeline-height;
   width: 100%;
