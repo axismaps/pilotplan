@@ -8,6 +8,7 @@ import clickSearchMethods from './atlasClickSearchMethods';
 import getAreaSearchMethods from './atlasAreaSearchMethods';
 import generalMethods from './atlasMethods';
 import getPublicUpdateMethods from './atlasPublicUpdateMethods';
+import initControls from './atlasControlMethods';
 
 const privateProps = new WeakMap();
 
@@ -52,10 +53,13 @@ const privateMethods = {
     const {
       mbMap,
     } = privateProps.get(this);
-    const nav = new mapboxgl.NavigationControl({
-      showCompass: false,
+    // const nav = new mapboxgl.NavigationControl({
+    //   showCompass: false,
+    // });
+    // mbMap.addControl(nav, 'bottom-left');
+    initControls({
+      mbMap,
     });
-    mbMap.addControl(nav, 'bottom-left');
   },
   updateYear() {
     const {

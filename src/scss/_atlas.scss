@@ -16,4 +16,52 @@
 
 .mapboxgl-ctrl-bottom-left {
   bottom: 50px;
+  pointer-events: auto;
+}
+
+.atlas__button-container {
+  margin-left: 10px;
+  margin-bottom: 5px;
+  color: white;
+}
+
+.atlas__zoom-break {
+  margin: 0px;
+  height: 1px;
+  background: #666666;
+  border: none;
+}
+
+.atlas__zoom-buttons,
+.atlas__center-button {
+  border-radius: 5px;
+  box-shadow: $button-shadow;
+}
+
+.atlas__zoom-in-button {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.atlas__zoom-out-button {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.atlas__zoom-in-button,
+.atlas__zoom-out-button,
+.atlas__center-button {
+  cursor: pointer !important;
+  width: 30px;
+  height: 30px;
+  background: $atlas-button-background;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // z-index: 3000;
+}
+
+.atlas__center-button {
+  
+  margin-bottom: 15px;
 }
