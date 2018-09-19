@@ -83,16 +83,20 @@ const atlasHighlightMethods = {
       paint: {
         'fill-color': colors.highlightColor,
         'fill-opacity': 0.2,
+        // 'line-join': 'round',
       },
     };
     const outlineLayerTop = {
       id: 'highlighted-feature-outline-top',
       type: 'line',
       source: 'highlighted',
-      layout: {},
+      layout: {
+        'line-join': 'round',
+      },
       paint: {
         'line-width': 2,
         'line-color': '#eee',
+
       },
     };
 
@@ -100,11 +104,14 @@ const atlasHighlightMethods = {
       id: 'highlighted-feature-outline-bottom',
       type: 'line',
       source: 'highlighted',
-      layout: {},
+      layout: {
+        'line-join': 'round',
+      },
       paint: {
         'line-width': 8,
         'line-color': colors.highlightColor,
         'line-opacity': 0.5,
+
       },
     };
 
