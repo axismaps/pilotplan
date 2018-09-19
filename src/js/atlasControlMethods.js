@@ -4,7 +4,7 @@ const controlMethods = {
       .append('div')
       .attr('class', 'atlas__button-container')
       .html(`
-        <div class="atlas__center-button"><i class="icon-direction"></i></div>
+        <div class="atlas__center-button"><i class="icon-rotate2"></i></div>
         <div class="atlas__zoom-buttons">
           <div class="atlas__zoom-in-button"><i class="icon-plus"></i></div>
           <hr class="atlas__zoom-break" />
@@ -21,7 +21,25 @@ const controlMethods = {
     controls,
     mbMap,
   }) {
-    console.log('init');
+    const {
+      zoomIn,
+      zoomOut,
+      center,
+    } = controls;
+    zoomIn.on('click', () => {
+      mbMap.zoomIn();
+    });
+
+    zoomOut.on('click', () => {
+      mbMap.zoomOut();
+    });
+
+    center.on('click', () => {
+      mbMap.easeTo({
+        bearing: -72,
+        pitch: 0,
+      });
+    });
   },
 };
 
