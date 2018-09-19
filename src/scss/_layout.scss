@@ -226,6 +226,24 @@ body {
   max-height: 85%;
 }
 
+.lightbox__content {
+  height: 100%;
+}
+
+.lightbox__credits-block {
+  height: $lightbox-credits-height;
+}
+
+.lightbox__top-row {
+  height: $lightbox-header-height;
+}
+
+.lightbox__inner-scroll {
+  height: calc(85% - #{$lightbox-credits-height} - #{$lightbox-header-height});;
+  // display: block;
+  // overflow: auto;
+}
+
 .outer-container.sidebar-open {
   .map-outer {
     // left: $legend-width;

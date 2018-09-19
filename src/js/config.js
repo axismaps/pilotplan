@@ -85,6 +85,7 @@ export const selections = {
   lightboxImageContainer: d3.select('.lightbox__image'),
   lightboxCreditsContainer: d3.select('.lightbox__credits'),
   lightboxSharedShelfButton: d3.select('.lightbox__view-button'),
+  lightboxCloseButton: d3.select('.lightbox__close-button'),
 
   sidebarContainer: d3.select('.sidebar'),
   sidebarContentContainer: d3.select('.sidebar__content'),

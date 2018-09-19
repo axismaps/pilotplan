@@ -19,8 +19,12 @@
   border-radius: 5px;
 }
 
-.lightbox__inner {
+.lightbox__inner-scroll {
   overflow-y: scroll;
+}
+
+.lightbox__inner {
+  // overflow-y: scroll;
 }
 
 .allraster__inner {
@@ -28,7 +32,8 @@
 }
 
 .lightbox__content {
-  padding: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
   // padding-right: 35px;
 }
 

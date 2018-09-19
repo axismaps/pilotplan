@@ -17,11 +17,17 @@ const localMethods = {
   setCloseListener({
     lightboxOuterContainer,
     lightboxContentContainer,
+    lightboxCloseButton,
   }) {
     const {
       closeLightbox,
     } = localMethods;
     lightboxOuterContainer
+      .on('click', () => {
+        closeLightbox({ lightboxOuterContainer });
+      });
+
+    lightboxCloseButton
       .on('click', () => {
         closeLightbox({ lightboxOuterContainer });
       });
@@ -79,6 +85,7 @@ const lightboxMethods = {
     cachedMetadata,
     cachedSharedShelfURLs,
     lightboxSharedShelfButton,
+    lightboxCloseButton,
   }) {
     const {
       openLightbox,
@@ -96,6 +103,7 @@ const lightboxMethods = {
     setCloseListener({
       lightboxOuterContainer,
       lightboxContentContainer,
+      lightboxCloseButton,
     });
 
     drawLightboxImage({

@@ -39,6 +39,7 @@ const privateMethods = {
       lightboxMetadataContainer,
       lightboxCreditsContainer,
       lightboxSharedShelfButton,
+      lightboxCloseButton,
     } = privateProps.get(this);
 
     const {
@@ -78,6 +79,7 @@ const privateMethods = {
           lightboxMetadataContainer,
           lightboxCreditsContainer,
           lightboxSharedShelfButton,
+          lightboxCloseButton,
           cachedMetadata,
           cachedSharedShelfURLs,
         });
@@ -122,6 +124,7 @@ class RasterProbe {
       lightboxMetadataContainer,
       lightboxCreditsContainer,
       lightboxSharedShelfButton,
+      lightboxCloseButton,
     } = selections;
 
     privateProps.set(this, {
@@ -140,6 +143,7 @@ class RasterProbe {
       lightboxMetadataContainer,
       lightboxCreditsContainer,
       lightboxSharedShelfButton,
+      lightboxCloseButton,
       currentRasterProbe: null,
       onCloseClick: null,
       onOverlayCloseClick: null,
