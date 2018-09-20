@@ -99,11 +99,13 @@ const privateMethods = {
     const {
       onClickSearch,
       mbMap,
+      outerContainer,
     } = props;
     const { setClickSearch } = clickSearchMethods;
     const { getFlattenedRasterData } = rasterMethods;
 
     setClickSearch({
+      outerContainer,
       onClickSearch,
       getCancelClickSearch: () => props.cancelClickSearch,
       removeCancelClickSearch: () => {
@@ -155,6 +157,7 @@ class Atlas {
     } = privateMethods;
 
     privateProps.set(this, {
+      outerContainer,
       mapContainer,
       areaSearchActive: null,
       currentView: null,

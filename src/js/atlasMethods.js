@@ -1,4 +1,5 @@
 import getProbeConfig from './footerDataProbeMethods';
+import atlasClickSearchMethods from './atlasClickSearchMethods';
 
 const atlasMethods = {
   getLayerStyle({
@@ -62,7 +63,11 @@ const atlasMethods = {
       addConeToMap,
       removeCone,
     } = atlasMethods;
+
+    const { removePulse } = atlasClickSearchMethods;
+
     let coneFeature;
+
     const mbMap = new mapboxgl.Map({
       minZoom: 9,
       logoPosition: 'bottom-right',
@@ -76,6 +81,9 @@ const atlasMethods = {
         const bearing = mbMap.getBearing();
 
         onMove({ center, zoom, bearing });
+      })
+      .on('movestart', () => {
+        removePulse();
       })
       .on('load', () => {
         // console.log('get loaded style', mbMap.getStyle().layers.map(d => mbMap.getLayer(d.id)));
