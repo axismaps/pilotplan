@@ -21,6 +21,7 @@ const privateMethods = {
     });
   },
   drawProbe() {
+    const props = privateProps.get(this);
     const {
       currentRasterProbe,
       rasterProbeTitleContainer,
@@ -41,7 +42,9 @@ const privateMethods = {
       lightboxCreditsContainer,
       lightboxSharedShelfButton,
       lightboxCloseButton,
-    } = privateProps.get(this);
+      onSliderDrag,
+      overlayOpacity,
+    } = props;
 
     const {
       updateTitle,
@@ -49,6 +52,7 @@ const privateMethods = {
       updateCredits,
       updateOverlayControls,
       resizeProbe,
+      drawSlider,
     } = rasterProbeMethods;
 
     const {
@@ -103,6 +107,13 @@ const privateMethods = {
       rasterProbeControlsContainer,
       currentRasterProbe,
       onOverlayCloseClick,
+    });
+
+    if (currentRasterProbe.type === 'view') return;
+
+    props.slider = drawSlider({
+      onSliderDrag,
+      overlayOpacity,
       rasterProbeSliderContainer,
     });
   },
@@ -172,6 +183,17 @@ class RasterProbe {
       drawProbe,
     } = privateMethods;
     drawProbe.call(this);
+  }
+  updateSlider() {
+    const props = privateProps.get(this);
+    const {
+      slider,
+      overlayOpacity,
+    } = props;
+    if (slider === undefined || slider === null) return;
+    slider
+      .config({ currentValue: overlayOpacity })
+      .update();
   }
 }
 

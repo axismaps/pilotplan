@@ -115,6 +115,7 @@ const app = {
     const { state } = this.components;
 
     this.components.atlas = new Atlas({
+      overlayOpacity: state.get('overlayOpacity'),
       initialLocation: state.get('currentLocation'),
       viewshedsGeo: this.data.viewshedsGeo,
       highlightedFeature: state.get('highlightedFeature'),
@@ -247,6 +248,7 @@ const app = {
       cachedMetadata: this.cachedMetadata,
       currentView: state.get('currentView'),
       currentOverlay: state.get('currentOverlay'),
+      overlayOpacity: state.get('overlayOpacity'),
       onCloseClick() {
         const currentRasterProbe = state.get('currentRasterProbe');
         const { type } = currentRasterProbe;
@@ -266,6 +268,11 @@ const app = {
         state.update({
           currentOverlay: null,
           currentRasterProbe: null,
+        });
+      },
+      onSliderDrag(newOpacity) {
+        state.update({
+          overlayOpacity: newOpacity,
         });
       },
     });

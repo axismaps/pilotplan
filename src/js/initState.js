@@ -45,6 +45,7 @@ const getState = function getState({ urlParams }) {
     language: urlParams.get('language'),
     // language: 'pr',
     screenSize: [window.innerWidth, window.innerHeight],
+    overlayOpacity: 1,
   });
 
   state.getAvailableLayers = function getAvailableLayers(data) {

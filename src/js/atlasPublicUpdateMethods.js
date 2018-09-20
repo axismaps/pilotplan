@@ -82,11 +82,21 @@ const getAtlasUpdateMethods = ({
         year,
       });
     },
+    updateOverlayOpacity() {
+      const props = privateProps.get(this);
+      const {
+        mbMap,
+        overlayOpacity,
+      } = props;
+      // console.log('overlay', mbMap.getLayer('overlay-layer'), overlayOpacity);
+      mbMap.setPaintProperty('overlay-layer', 'raster-opacity', overlayOpacity);
+    },
     updateOverlay() {
       const props = privateProps.get(this);
       const {
         currentOverlay,
         mbMap,
+        overlayOpacity,
       } = props;
 
 
@@ -112,6 +122,9 @@ const getAtlasUpdateMethods = ({
         id: 'overlay-layer',
         type: 'raster',
         source: 'overlay',
+        paint: {
+          'raster-opacity': overlayOpacity,
+        },
       });
 
       const bounds = new mapboxgl.LngLatBounds([

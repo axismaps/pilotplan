@@ -210,6 +210,7 @@ const setStateEvents = ({ components, data }) => {
     currentOverlay() {
       const {
         currentOverlay,
+        overlayOpacity,
       } = this.props();
 
       const {
@@ -218,7 +219,7 @@ const setStateEvents = ({ components, data }) => {
         urlParams,
       } = components;
 
-      console.log('overlay', currentOverlay);
+      // console.log('overlay', currentOverlay);
       layout
         .config({
           overlayOn: currentOverlay !== null,
@@ -236,6 +237,9 @@ const setStateEvents = ({ components, data }) => {
           overlay: currentOverlay !== null ? currentOverlay.SS_ID : null,
         })
         .update();
+      if (overlayOpacity !== 1 && currentOverlay !== null) {
+        state.update({ overlayOpacity: 1 });
+      }
     },
     currentView() {
       const {
@@ -346,6 +350,24 @@ const setStateEvents = ({ components, data }) => {
           bearing,
         })
         .update();
+    },
+    overlayOpacity() {
+      const { overlayOpacity } = this.props();
+      const {
+        rasterProbe,
+        atlas,
+      } = components;
+
+      rasterProbe
+        .config({
+          overlayOpacity,
+        })
+        .updateSlider();
+      atlas
+        .config({
+          overlayOpacity,
+        })
+        .updateOverlayOpacity();
     },
   });
 };

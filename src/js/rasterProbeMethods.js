@@ -24,48 +24,6 @@ const localMethods = {
     rasterProbeControlsContainer
       .classed('raster-probe__overlay-controls--hidden', currentRasterProbe.type === 'view');
   },
-  drawSlider({
-    rasterProbeSliderContainer,
-  }) {
-    rasterProbeSliderContainer.select('svg').remove();
-    setTimeout(() => {
-      const { width } = rasterProbeSliderContainer
-        .node()
-        .getBoundingClientRect();
-      const slider = new TimelineSlider({
-        container: rasterProbeSliderContainer,
-        currentValue: 1,
-        tooltip: false,
-        axisOn: false,
-        backgroundTrackAttrs: {
-          rx: 8,
-          ry: 8,
-        },
-        activeTrackAttrs: {
-          rx: 8,
-          ry: 8,
-        },
-        handleAttrs: {
-          rx: 7,
-          ry: 7,
-        },
-        trackHeight: 8,
-        handleHeight: 14,
-        handleWidth: 14,
-        padding: { left: 0, right: 2 },
-        valueRange: [0, 1],
-        onDragEnd: (drag) => {
-          console.log(drag);
-        },
-        size: {
-          width,
-          height: 14,
-        },
-        handleDetail: false,
-      });
-      return slider;
-    });
-  },
   setOverlayCloseButtonListener({
     onOverlayCloseClick,
     rasterProbeCloseOverlayButton,
@@ -161,18 +119,12 @@ const rasterProbeMethods = {
     rasterProbeCloseOverlayButton,
     onOverlayCloseClick,
     rasterProbeControlsContainer,
-    rasterProbeSliderContainer,
     currentRasterProbe,
   }) {
     const {
       toggleOverlayControls,
       setOverlayCloseButtonListener,
-      drawSlider,
     } = localMethods;
-
-    drawSlider({
-      rasterProbeSliderContainer,
-    });
 
     toggleOverlayControls({
       rasterProbeControlsContainer,
@@ -183,6 +135,48 @@ const rasterProbeMethods = {
       onOverlayCloseClick,
       rasterProbeCloseOverlayButton,
     });
+  },
+  drawSlider({
+    onSliderDrag,
+    overlayOpacity,
+    rasterProbeSliderContainer,
+  }) {
+    rasterProbeSliderContainer.select('svg').remove();
+    // setTimeout(() => {
+    const { width } = rasterProbeSliderContainer
+      .node()
+      .getBoundingClientRect();
+    const slider = new TimelineSlider({
+      container: rasterProbeSliderContainer,
+      currentValue: overlayOpacity,
+      tooltip: false,
+      axisOn: false,
+      backgroundTrackAttrs: {
+        rx: 8,
+        ry: 8,
+      },
+      activeTrackAttrs: {
+        rx: 8,
+        ry: 8,
+      },
+      handleAttrs: {
+        rx: 7,
+        ry: 7,
+      },
+      trackHeight: 8,
+      handleHeight: 14,
+      handleWidth: 14,
+      padding: { left: 0, right: 2 },
+      valueRange: [0, 1],
+      onDragEnd: onSliderDrag,
+      size: {
+        width,
+        height: 14,
+      },
+      handleDetail: false,
+    });
+    return slider;
+    // });
   },
 };
 
