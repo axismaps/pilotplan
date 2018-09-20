@@ -38,6 +38,7 @@ const privateMethods = {
       activeTrackAttrs,
       valueRange: yearRange,
       onDragEnd: updateYear,
+      tooltip: true,
       onDrag: d => console.log('drag', d),
     });
   },

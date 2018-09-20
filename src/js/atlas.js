@@ -192,10 +192,7 @@ class Atlas {
     this.updateOverlay();
 
     mbMap.resize();
-    console.log('initial', initialLocation);
-    // if (initialBounds !== null) {
-    //   mbMap.fitBounds(initialBounds);
-    // }
+
     if (initialLocation !== null) {
       const config = Object.keys(initialLocation)
         .reduce((accumulator, field) => {

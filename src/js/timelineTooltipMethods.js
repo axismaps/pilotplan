@@ -6,10 +6,12 @@ const getTooltipMethods = ({ privateProps, privateMethods }) => ({
     const {
       detectionTrack,
       outerContainer,
-
+      tooltip,
       svg,
       // scale,
     } = props;
+
+    if (!tooltip) return;
 
     const { setTooltipPosition } = privateMethods;
 

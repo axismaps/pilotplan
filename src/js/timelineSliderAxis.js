@@ -5,6 +5,9 @@ const axisMethods = ({ privateProps, privateMethods }) => ({
       setAxisGenerator,
       updateAxis,
     } = privateMethods;
+    const { axisOn } = privateProps.get(this);
+
+    if (!axisOn) return;
 
     drawAxisGroup.call(this);
     setAxisGenerator.call(this);
@@ -45,7 +48,9 @@ const axisMethods = ({ privateProps, privateMethods }) => ({
     const {
       axisGroup,
       axis,
+      axisOn,
     } = props;
+    if (!axisOn) return;
 
     // console.log('axisgroup', axisGroup);
     // console.log('axis', axis);

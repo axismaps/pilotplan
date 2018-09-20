@@ -31,6 +31,7 @@ const privateMethods = {
       rasterProbeCloseOverlayButton,
       rasterProbeCreditsContainer,
       rasterProbeContainer,
+      rasterProbeSliderContainer,
       rasterProbeInnerContainer,
       onOverlayCloseClick,
       lightboxOuterContainer,
@@ -102,6 +103,7 @@ const privateMethods = {
       rasterProbeControlsContainer,
       currentRasterProbe,
       onOverlayCloseClick,
+      rasterProbeSliderContainer,
     });
   },
 };
@@ -117,6 +119,7 @@ class RasterProbe {
       rasterProbeCloseOverlayButton,
       rasterProbeCreditsContainer,
       rasterProbeContainer,
+      rasterProbeSliderContainer,
       rasterProbeInnerContainer,
       lightboxOuterContainer,
       lightboxContentContainer,
@@ -137,6 +140,7 @@ class RasterProbe {
       rasterProbeCreditsContainer,
       rasterProbeContainer,
       rasterProbeInnerContainer,
+      rasterProbeSliderContainer,
       lightboxOuterContainer,
       lightboxContentContainer,
       lightboxImageContainer,

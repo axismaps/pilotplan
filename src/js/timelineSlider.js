@@ -51,6 +51,8 @@ const privateMethods = {
       handleHeight,
       // size,
       handleWidth,
+      handleAttrs,
+      handleDetail,
     } = props;
 
     props.handle = svg
@@ -58,7 +60,7 @@ const privateMethods = {
 
     props.handle
       .append('rect')
-      .attrs({
+      .attrs(Object.assign({
         class: 'slider__handle',
         width: handleWidth,
         height: handleHeight,
@@ -66,9 +68,10 @@ const privateMethods = {
         x: 0,
         rx: 3,
         ry: 3,
-      });
+      }, handleAttrs));
 
     const lineHeight = 20;
+    if (!handleDetail) return;
     props.handle
       .append('line')
       .attrs({
@@ -124,6 +127,7 @@ const privateMethods = {
       scale,
       detectionTrack,
       onDragEnd,
+      tooltip,
       // onDrag,
     } = props;
 
@@ -150,8 +154,9 @@ const privateMethods = {
       .on('start drag', () => {
         const { valueRange, svgPosition } = props;
         const sliderValue = scale.invert(d3.event.x);
-
-        setTooltipPosition.call(this, { x: d3.event.x + svgPosition.left });
+        if (tooltip) {
+          setTooltipPosition.call(this, { x: d3.event.x + svgPosition.left });
+        }
         let newValue;
         if (sliderValue >= valueRange[0] && sliderValue <= valueRange[1]) {
           newValue = sliderValue;
@@ -179,6 +184,9 @@ class TimelineSlider {
   constructor(config) {
     privateProps.set(this, {
       dragging: false,
+      tooltip: false,
+      axisOn: true,
+      handleDetail: true,
       trackHeight: 5,
       handleHeight: 20,
       highlightColor: 'black',

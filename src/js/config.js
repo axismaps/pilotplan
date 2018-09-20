@@ -80,6 +80,7 @@ export const selections = {
   rasterProbeControlsContainer: d3.select('.raster-probe__overlay-controls'),
   rasterProbeCloseOverlayButton: d3.select('.raster-probe__remove-overlay'),
   rasterProbeCreditsContainer: d3.select('.raster-probe__credits'),
+  rasterProbeSliderContainer: d3.select('.raster-probe__overlay-slider'),
   lightboxOuterContainer: d3.select('.lightbox__outer'),
   lightboxContentContainer: d3.select('.lightbox__content'),
   lightboxImageContainer: d3.select('.lightbox__image'),
