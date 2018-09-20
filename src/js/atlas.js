@@ -9,6 +9,7 @@ import getAreaSearchMethods from './atlasAreaSearchMethods';
 import generalMethods from './atlasMethods';
 import getPublicUpdateMethods from './atlasPublicUpdateMethods';
 import initControls from './atlasControlMethods';
+import DataProbe from './dataProbe';
 
 const privateProps = new WeakMap();
 
@@ -22,6 +23,7 @@ const privateMethods = {
       viewshedsGeo,
       onViewClick,
       onMove,
+      dataProbe,
     } = props;
 
     const {
@@ -32,6 +34,7 @@ const privateMethods = {
     d3.json('./data/style.json')
       .then((style) => {
         const mbMap = getMap({
+          dataProbe,
           onMove,
           initApp,
           viewshedsGeo,
@@ -145,6 +148,7 @@ class Atlas {
   constructor(config) {
     const {
       mapContainer,
+      outerContainer,
     } = selections;
     const {
       createMBMap,
@@ -161,6 +165,9 @@ class Atlas {
       onMove: null,
       cancelClickSearch: false,
       initialBounds: null,
+      dataProbe: new DataProbe({
+        container: outerContainer,
+      }),
     });
 
     this.config(config);

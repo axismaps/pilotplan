@@ -1,3 +1,5 @@
+import getProbeConfig from './footerDataProbeMethods';
+
 const atlasMethods = {
   getLayerStyle({
     layer,
@@ -54,6 +56,7 @@ const atlasMethods = {
     getRasterData,
     onViewClick,
     onMove,
+    dataProbe,
   }) {
     const {
       addConeToMap,
@@ -79,8 +82,22 @@ const atlasMethods = {
         initApp();
       })
       .on('mouseover', 'viewconespoint', (d) => {
+        console.log('d', d);
         coneFeature = viewshedsGeo.features.find(cone =>
           cone.properties.SS_ID === d.features[0].properties.SS_ID);
+        console.log('cone feature', coneFeature);
+        const probeConfig = getProbeConfig(
+          coneFeature.properties, {
+            left: d.point.x,
+            bottom: window.innerHeight - d.point.y,
+            width: 200,
+          },
+          'Click for details',
+        );
+        console.log('config', probeConfig);
+        dataProbe
+          .config(probeConfig)
+          .draw();
         const currentView = getCurrentView();
 
         if (currentView !== null &&
@@ -103,6 +120,7 @@ const atlasMethods = {
       })
       .on('mouseout', 'viewconespoint', () => {
         const currentView = getCurrentView();
+        dataProbe.remove();
 
         removeCone({ mbMap });
 
