@@ -1,6 +1,7 @@
 .data-probe {
   z-index: 1000;
   color: white;
+  pointer-events: none;
 }
 
 .data-probe__inner {

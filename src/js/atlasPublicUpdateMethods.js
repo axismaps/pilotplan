@@ -125,7 +125,7 @@ const getAtlasUpdateMethods = ({
         paint: {
           'raster-opacity': overlayOpacity,
         },
-      });
+      }, 'viewconespoint');
 
       const bounds = new mapboxgl.LngLatBounds([
         currentOverlay.bounds.slice(0, 2),
