@@ -91,6 +91,14 @@ const app = {
         state.update({ view: 'eras' });
       },
     });
+
+    this.components.languageDropdown = new LanguageDropdown({
+      language: state.get('language'),
+      onClick: () => {
+        const currentLanguage = state.get('language');
+        state.update({ language: currentLanguage === 'en' ? 'pr' : 'en' });
+      },
+    });
   },
   initEras() {
     const { state } = this.components;
@@ -342,13 +350,6 @@ const app = {
         }
 
         state.update({ highlightedFeature: newFeature });
-      },
-    });
-
-    this.components.languageDropdown = new LanguageDropdown({
-      language: state.get('language'),
-      onClick: (newLanguage) => {
-        state.update({ language: newLanguage });
       },
     });
 

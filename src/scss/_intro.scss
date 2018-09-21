@@ -182,3 +182,27 @@
 .intro__language-button-inner {
   display: flex;
 }
+
+.intro__language-dropdown-text {
+  color: white;
+  padding-left: 25px;
+  padding-right: 25px;
+  // justify-content: center;
+  
+}
+
+.intro__language-dropdown {
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 250ms; 
+  background: $main-background-fill;
+  align-items: center;
+  height: 25px;
+
+}
+
+.intro__language-dropdown--on {
+  opacity: 1;
+  pointer-events: auto;
+}

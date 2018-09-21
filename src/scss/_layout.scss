@@ -349,6 +349,12 @@ body {
 //   }
 // }
 
+.intro__language-dropdown {
+  position: absolute;
+  top: $header-height;
+  left: 0px;
+  z-index: 2000;
+}
 .eras__pattern,
 .intro__pattern {
   position: absolute;

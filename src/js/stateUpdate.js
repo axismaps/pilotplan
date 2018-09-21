@@ -335,8 +335,13 @@ const setStateEvents = ({ components, data }) => {
     },
     language() {
       const { language } = this.props();
-      const { urlParams } = components;
+      const {
+        urlParams,
+        languageDropdown,
+      } = components;
+
       urlParams.config({ language }).update();
+      languageDropdown.config({ language }).update();
     },
     currentLocation() {
       const { currentLocation } = this.props();
