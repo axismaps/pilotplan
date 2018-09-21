@@ -7,3 +7,4 @@ styles.css
 old
 .env
 scratch
+data/geotiff/converted/*

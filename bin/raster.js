@@ -54,11 +54,6 @@ async function uploadTiffs(tiffs) {
   }
 }
 
-const dirs = fs.readdirSync(path.join(__dirname, '../data/geotiff/'));
-dirs.forEach((d) => {
-  if (!d.match(/^\./)) {
-    let tiffs = fs.readdirSync(path.join(__dirname, '../data/geotiff/', d));
-    tiffs = tiffs.map(t => path.join(__dirname, '../data/geotiff/', d, t));
-    uploadTiffs(tiffs);
-  }
-});
+let tiffs = fs.readdirSync(path.join(__dirname, '../data/geotiff/converted'));
+tiffs = tiffs.map(t => path.join(__dirname, '../data/geotiff/converted/', t));
+uploadTiffs(tiffs);
