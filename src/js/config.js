@@ -101,6 +101,9 @@ export const selections = {
 
   introBeginButtonContainer: d3.select('.intro__begin-button'),
   introJumpButtonContainer: d3.select('.intro__jump-button'),
+  introLanguageButtonContainer: d3.select('.intro__language-button-outer'),
+  introLanguageButtonText: d3.select('.intro__language-button-text'),
+  introLanguageDropdownContainer: d3.select('.intro__language-dropdown'),
 
   erasMapButtonContainer: d3.select('.eras__map-button'),
   erasStepperLeftButton: d3.select('.eras__stepper-icon-left'),

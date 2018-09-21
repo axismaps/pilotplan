@@ -12,6 +12,7 @@ import loadData from './dataLoad';
 import Views from './views';
 import Eras from './eras';
 import UrlParams from './url';
+import LanguageDropdown from './languageDropdown';
 
 require('../scss/index.scss');
 
@@ -343,6 +344,15 @@ const app = {
         state.update({ highlightedFeature: newFeature });
       },
     });
+
+    this.components.languageDropdown = new LanguageDropdown({
+      language: state.get('language'),
+      onClick: (newLanguage) => {
+        state.update({ language: newLanguage });
+      },
+    });
+
+
     state.update({ componentsInitialized: true });
   },
   setStateEvents() {
