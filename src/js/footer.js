@@ -1,4 +1,5 @@
 import methods from './footerMethods';
+// import allRasterMethods from './footerAllRasterMethods';
 import allRasterMethods from './footerAllRasterMethods';
 import rasterMethods from './rasterMethods';
 import DataProbe from './dataProbe';

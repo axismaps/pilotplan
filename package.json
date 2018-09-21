@@ -9,6 +9,7 @@
     "start-dev-server": "node_modules/.bin/webpack-dev-server --hot --inline",
     "remove-css": "rm -f -- dist/styles.css",
     "build": "node_modules/.bin/webpack -p --config webpack.config.prod.js && node bin/rasterBounds",
+    "build-simple": "node_modules/.bin/webpack -p --config webpack.config.prod.js",
     "deploy": "./bin/deploy.sh",
     "document": "node_modules/.bin/documentation build ./src/js/index.js -f md -o README.md",
     "devDocument": "documentation serve --watch ./src/js/index.js",
