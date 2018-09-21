@@ -15,22 +15,6 @@ const getCredentials = file =>
       return cred;
     });
 
-const putFileOnS3 = (credentials) => {
-  const s3 = new AWS.S3({
-    accessKeyId: credentials.accessKeyId,
-    secretAccessKey: credentials.secretAccessKey,
-    sessionToken: credentials.sessionToken,
-    region: 'us-east-1',
-  });
-
-  return s3.putObject({
-    Bucket: credentials.bucket,
-    Key: credentials.key,
-    Body: fs.createReadStream(credentials.file),
-  }).promise()
-    .then(() => makeUpload(credentials));
-};
-
 const makeUpload = (credentials) => {
   const title = `pilot${credentials.file.replace(/.*\/(SSID)?/gi, '').replace(/\.tif$/gi, '').toLowerCase()}`;
   uploadsClient
@@ -46,6 +30,22 @@ const makeUpload = (credentials) => {
     .catch((err) => {
       console.log(err);
     });
+};
+
+const putFileOnS3 = (credentials) => {
+  const s3 = new AWS.S3({
+    accessKeyId: credentials.accessKeyId,
+    secretAccessKey: credentials.secretAccessKey,
+    sessionToken: credentials.sessionToken,
+    region: 'us-east-1',
+  });
+
+  return s3.putObject({
+    Bucket: credentials.bucket,
+    Key: credentials.key,
+    Body: fs.createReadStream(credentials.file),
+  }).promise()
+    .then(() => makeUpload(credentials));
 };
 
 async function uploadTiffs(tiffs) {
