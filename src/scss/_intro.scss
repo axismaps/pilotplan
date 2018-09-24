@@ -11,9 +11,11 @@ $menu-speed: 250ms;
 
 .eras__pattern,
 .intro__pattern {
-  background-image: url('/img/pattern-dark-01.png');
+  background-image: url('/img/pattern.png');
   background-size: cover;
-  z-index: 100;
+  //z-index: 100;
+  height: 200px;
+  opacity: 0.15;
 }
 
 .eras__title-outer {
@@ -225,7 +227,7 @@ $menu-speed: 250ms;
 
 .intro__language-button-outer,
 .eras__back-button-outer {
-  background: $main-background-fill;
+  // background: $main-background-fill;
 }
 
 .intro__language-button-inner {
@@ -245,7 +247,7 @@ $menu-speed: 250ms;
   opacity: 0;
   pointer-events: none;
   transition: opacity $menu-speed; 
-  background: $main-background-fill;
+  // background: $main-background-fill;
   align-items: center;
   height: 25px;
 }
