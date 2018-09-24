@@ -38,3 +38,10 @@ for subdir in os.listdir(Path):
             os.system(s.substitute(f=f, b2='2', b3='3', nodata=str(val), path=Path, tif=tif))
         else:
           print f + ' has wrong number of bands!'
+
+for tif in os.listdir(Path + 'converted/'):
+  basename = re.sub(r"\.tif$", '', tif)
+  s = Template("""gdalwarp -t_srs EPSG:3857 ${path}converted/${tif} ${path}converted/${base}_merc.tif &&
+    gdal_translate -of mbtiles ${path}converted/${base}_merc.tif ${path}converted/${base}.mbtiles &&
+    gdaladdo -r nearest ${path}converted/${base}.mbtiles 2 4 8 16 32""")
+  os.system(s.substitute(path=Path, tif=tif, base=basename))
