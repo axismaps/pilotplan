@@ -14,7 +14,7 @@
     "document": "node_modules/.bin/documentation build ./src/js/index.js -f md -o README.md",
     "devDocument": "documentation serve --watch ./src/js/index.js",
     "test": "node_modules/.bin/jest",
-    "raster": "python bin/prepRasters.py && node bin/raster.js && rm data/geotiff/converted/*",
+    "raster": "python bin/prep_rasters.py && node bin/raster.js && rm data/geotiff/converted/*",
     "static": "node bin/static.js",
     "style": "node bin/styles.js",
     "tiles": "./bin/tiles.sh",

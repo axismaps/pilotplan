@@ -10,3 +10,6 @@
 # multiple time (only on the command line, not in the configuration file where
 # it should appear only once).
 disable=W0311
+
+[TYPECHECK]
+ignored-classes=generator
