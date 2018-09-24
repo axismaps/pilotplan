@@ -16,7 +16,7 @@ const getCredentials = file =>
     });
 
 const makeUpload = (credentials) => {
-  const title = `pilot${credentials.file.replace(/.*\/(SSID)?/gi, '').replace(/\.tif$/gi, '').toLowerCase()}`;
+  const title = `pilot${credentials.file.replace(/.*\/(SSID)?/gi, '').replace(/\.mbtiles$/gi, '').toLowerCase()}`;
   uploadsClient
     .createUpload({
       mapId: `axismaps.${title}`,
@@ -50,7 +50,9 @@ const putFileOnS3 = (credentials) => {
 
 async function uploadTiffs(tiffs) {
   for (const t of tiffs) { // eslint-disable-line no-restricted-syntax
-    await getCredentials(t).then(putFileOnS3).catch((err) => { console.log(err); }); // eslint-disable-line no-await-in-loop, max-len
+    if (t.match(/\.mbtiles$/)) {
+      await getCredentials(t).then(putFileOnS3).catch((err) => { console.log(err); }); // eslint-disable-line no-await-in-loop, max-len
+    }
   }
 }
 
