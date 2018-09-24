@@ -100,7 +100,10 @@ export const selections = {
   nonRasterResultsContainer: d3.select('.sidebar__nonraster-results'),
 
   introBeginButtonContainer: d3.select('.intro__begin-button'),
+  introJumpButtonText: d3.select('.intro__jump-button-text'),
   introJumpButtonContainer: d3.select('.intro__jump-button'),
+  introJumpDropdownContainer: d3.select('.intro__jump-dropdown'),
+  introJumpDropdownContent: d3.select('.intro__jump-dropdown-content'),
   introLanguageButtonContainer: d3.select('.intro__language-button-outer'),
   introLanguageButtonText: d3.select('.intro__language-button-text'),
   introLanguageDropdownContainer: d3.select('.intro__language-dropdown'),
