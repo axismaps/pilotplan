@@ -35,7 +35,6 @@
 .atlas__zoom-buttons,
 .atlas__center-button {
   border-radius: 5px;
-  box-shadow: $button-shadow;
 }
 
 .atlas__zoom-in-button {
@@ -52,14 +51,18 @@
 .atlas__zoom-out-button,
 .atlas__center-button {
   cursor: pointer !important;
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   background: $atlas-button-background;
   display: flex;
   align-items: center;
   justify-content: center;
   // z-index: 3000;
 }
+
+.icon-rotate2 {
+  font-size: 18px;
+  }
 
 .atlas__center-button {
   font-size: 15px;
