@@ -54,7 +54,6 @@ const privateMethods = {
 
     introLanguageButtonContainer
       .on('mouseover', () => {
-        // console.log('open');
         clearOldTimer();
         introLanguageDropdownContainer
           .classed('intro__language-dropdown--on', true);
