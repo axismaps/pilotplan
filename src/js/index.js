@@ -12,6 +12,7 @@ import loadData from './dataLoad';
 import Views from './views';
 import Eras from './eras';
 import UrlParams from './url';
+import LanguageDropdown from './languageDropdown';
 
 require('../scss/index.scss');
 
@@ -88,6 +89,14 @@ const app = {
       },
       onJumpButtonClick: () => {
         state.update({ view: 'eras' });
+      },
+    });
+
+    this.components.languageDropdown = new LanguageDropdown({
+      language: state.get('language'),
+      onClick: () => {
+        const currentLanguage = state.get('language');
+        state.update({ language: currentLanguage === 'en' ? 'pr' : 'en' });
       },
     });
   },
@@ -343,6 +352,8 @@ const app = {
         state.update({ highlightedFeature: newFeature });
       },
     });
+
+
     state.update({ componentsInitialized: true });
   },
   setStateEvents() {
