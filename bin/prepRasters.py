@@ -18,7 +18,10 @@ for subdir in os.listdir(Path):
         val = min(255, ras.read(1)[0][0])
 
         if src.RasterCount == 4 or (val != 0 and val != 255):
-          copyfile(f, Path + 'converted/' + tif)
+          if ras.dtypes[0] == 'uint16':
+            os.system('gdal_translate -ot Byte ' + f + ' ' + Path + 'converted/' + tif)
+          else:
+            copyfile(f, Path + 'converted/' + tif)
         elif src.RasterCount == 1 or src.RasterCount == 3:
           s = Template("""gdal_translate -b 1 -ot Byte ${f} -a_nodata none red.tif &&
               gdal_translate -b ${b2} -ot Byte ${f} -a_nodata none green.tif &&
@@ -31,9 +34,7 @@ for subdir in os.listdir(Path):
               rm mask.tif""")
           if src.RasterCount == 1:
             os.system(s.substitute(f=f, b2='1', b3='1', nodata=str(val), path=Path, tif=tif))
-            # pass
           elif src.RasterCount == 3:
             os.system(s.substitute(f=f, b2='2', b3='3', nodata=str(val), path=Path, tif=tif))
-            # pass
         else:
           print f + ' has wrong number of bands!'
