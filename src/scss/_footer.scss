@@ -43,7 +43,12 @@
   border-radius: $footer-image-height / 2;
   flex-shrink: 0;
   cursor: pointer;
+  transition: opacity 250ms;
 }
+
+.footer__image:hover{
+  opacity: 0.6;
+  }
 
 .footer__toggle-rasters-container {
   display: flex;
@@ -116,4 +121,9 @@
   align-items: center;
   color: white;
   cursor: pointer;
+  transition: background 250ms;
+}
+
+.footer__show-all-circle:hover {
+background: $main-lighter-gray;
 }
