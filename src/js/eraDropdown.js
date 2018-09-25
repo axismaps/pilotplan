@@ -28,8 +28,6 @@ const privateMethods = {
     onClick,
     language,
   }) {
-  // intro__jump-dropdown-item
-    console.log('eras', eras);
     introJumpDropdownContent
       .selectAll('.intro__jump-dropdown-item')
       .remove();
@@ -42,6 +40,14 @@ const privateMethods = {
       .attr('class', 'intro__jump-dropdown-item')
       .text(d => d[language])
       .on('click', onClick);
+  },
+  setTitleText({
+    introJumpButtonText,
+    translations,
+    language,
+  }) {
+    introJumpButtonText
+      .text(translations['jump-to-era'][language]);
   },
 };
 
@@ -82,10 +88,20 @@ class EraDropdown {
     const {
       eras,
       introJumpDropdownContent,
+      introJumpButtonText,
       language,
       onClick,
+      translations,
     } = privateProps.get(this);
-    const { setContent } = privateMethods;
+    const {
+      setContent,
+      setTitleText,
+    } = privateMethods;
+    setTitleText({
+      introJumpButtonText,
+      translations,
+      language,
+    });
     setContent({
       eras,
       introJumpDropdownContent,

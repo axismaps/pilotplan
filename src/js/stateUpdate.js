@@ -1,6 +1,7 @@
 import getUpdateYear from './stateUpdateYear';
 import getUpdateView from './stateUpdateView';
 import getUpdateTextSearch from './stateUpdateTextSearch';
+import getUpdateLanguage from './stateUpdateLanguage';
 import {
   formatNonRasterResults,
   formatRasterResults,
@@ -12,6 +13,7 @@ const setStateEvents = ({ components, data }) => {
   state.registerCallbacks({
     year: getUpdateYear({ data, components }),
     view: getUpdateView({ components }),
+    language: getUpdateLanguage({ data, components }),
     transitionsDisabled() {
       const { transitionsDisabled } = this.props();
       const { layout } = components;
@@ -333,16 +335,7 @@ const setStateEvents = ({ components, data }) => {
       const { views } = components;
       views.config({ mapLoaded });
     },
-    language() {
-      const { language } = this.props();
-      const {
-        urlParams,
-        languageDropdown,
-      } = components;
 
-      urlParams.config({ language }).update();
-      languageDropdown.config({ language }).update();
-    },
     currentLocation() {
       const { currentLocation } = this.props();
       const { urlParams, views } = components;

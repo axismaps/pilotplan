@@ -26,6 +26,7 @@ const app = {
   init() {
     loadData((cleanedData) => {
       this.data = cleanedData;
+      console.log('translations', this.data.translations);
       this.initURL();
 
       this.initState();
@@ -91,6 +92,8 @@ const app = {
       onJumpButtonClick: () => {
         state.update({ view: 'eras' });
       },
+      translations: this.data.translations,
+      language: state.get('language'),
     });
 
     this.components.languageDropdown = new LanguageDropdown({
@@ -110,6 +113,7 @@ const app = {
         });
       },
       eras: this.data.eras,
+      translations: this.data.translations,
     });
   },
   initEras() {
