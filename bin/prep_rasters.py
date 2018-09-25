@@ -25,7 +25,7 @@ for subdir in os.listdir(PATH):
           s = Template("""gdal_translate -b 1 ${f} -a_nodata none red.tif &&
               gdal_translate -b ${b2} ${f} -a_nodata none green.tif &&
               gdal_translate -b ${b3} ${f} -a_nodata none blue.tif && 
-              gdal_calc.py -A red.tif -B green.tif -C blue.tif --outfile=mask.tif --calc="logical_and(A!=${nodata},B!=${nodata},C!=${nodata})*255" &&
+              gdal_calc.py -A red.tif -B green.tif -C blue.tif --outfile=mask.tif --calc="logical_and(A!=${nodata},B!=${nodata},C!=${nodata})*255" --NoDataValue=0 &&
               gdal_merge.py -separate -ot Byte -o ${path}converted/${tif} red.tif green.tif blue.tif mask.tif &&
               rm red.tif &&
               rm green.tif &&
