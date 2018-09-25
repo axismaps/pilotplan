@@ -1,4 +1,5 @@
 import { selections } from './config';
+import setDropdownListeners from './dropdownBase';
 
 const privateProps = new WeakMap();
 
@@ -8,68 +9,35 @@ const privateMethods = {
     const {
       introLanguageButtonContainer,
       introLanguageDropdownContainer,
+      introLanguageDropdownText,
       onClick,
-      language,
     } = props;
 
     const {
-      setHoverListener,
+      setClickListener,
     } = privateMethods;
 
-    setHoverListener({
-      introLanguageButtonContainer,
-      introLanguageDropdownContainer,
-      language,
+    setDropdownListeners({
+      buttonContainer: introLanguageButtonContainer,
+      dropdownContainer: introLanguageDropdownContainer,
       getTimer: () => props.timer,
       setTimer: (newTimer) => {
         props.timer = newTimer;
       },
+    });
+
+    setClickListener({
+      introLanguageDropdownText,
       onClick,
     });
 
     this.update();
   },
-  setHoverListener({
-    introLanguageButtonContainer,
-    introLanguageDropdownContainer,
-    getTimer,
-    setTimer,
+  setClickListener({
+    introLanguageDropdownText,
     onClick,
   }) {
-    const clearOldTimer = () => {
-      const oldTimer = getTimer();
-      if (oldTimer !== null) {
-        clearTimeout(oldTimer);
-      }
-    };
-
-    const setMenuCloseTimer = () => {
-      const timer = setTimeout(() => {
-        introLanguageDropdownContainer
-          .classed('intro__language-dropdown--on', false);
-        setTimer(null);
-      }, 250);
-      setTimer(timer);
-    };
-
-    introLanguageButtonContainer
-      .on('mouseover', () => {
-        // console.log('open');
-        clearOldTimer();
-        introLanguageDropdownContainer
-          .classed('intro__language-dropdown--on', true);
-      })
-      .on('mouseout', () => {
-        setMenuCloseTimer();
-      });
-
-    introLanguageDropdownContainer
-      .on('mouseover', () => {
-        clearOldTimer();
-      })
-      .on('mouseout', () => {
-        setMenuCloseTimer();
-      })
+    introLanguageDropdownText
       .on('click', onClick);
   },
   setText({
@@ -114,7 +82,6 @@ class LanguageDropdown {
       timer: null,
       language: null,
       onClick: null,
-      translations: null,
     });
     this.config(config);
     const { init } = privateMethods;

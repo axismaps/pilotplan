@@ -13,6 +13,7 @@ import Views from './views';
 import Eras from './eras';
 import UrlParams from './url';
 import LanguageDropdown from './languageDropdown';
+import EraDropdown from './eraDropdown';
 
 require('../scss/index.scss');
 
@@ -98,6 +99,17 @@ const app = {
         const currentLanguage = state.get('language');
         state.update({ language: currentLanguage === 'en' ? 'pr' : 'en' });
       },
+    });
+
+    this.components.eraDropdown = new EraDropdown({
+      language: state.get('language'),
+      onClick: (era) => {
+        state.update({
+          year: era.dates[0],
+          view: 'eras',
+        });
+      },
+      eras: this.data.eras,
     });
   },
   initEras() {

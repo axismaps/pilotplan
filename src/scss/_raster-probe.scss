@@ -63,16 +63,16 @@
 }
 
 .lightbox__view-button {
-  background: $main-medium-dark-gray;
+  background: $main-light-gray;
   transition: border 250ms;
-  border: 2px solid $main-medium-gray;
   width: 160px;
   cursor: pointer;
   border-radius: 5px;
+  transition: background 250ms;
 }
 
 .lightbox__view-button:hover {
-  border: 2px solid white;
+  background: $main-lighter-gray;
 }
 
 .lightbox__view-button-text {

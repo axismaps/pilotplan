@@ -1,3 +1,5 @@
+$menu-speed: 250ms;
+
 .outer-eras-view,
 .outer-intro-view {
   // linear-gradient(180deg,#fff 0,hsla(0,0%,100%,.9) 60%,hsla(0,0%,100%,0));
@@ -9,9 +11,11 @@
 
 .eras__pattern,
 .intro__pattern {
-  background-image: url('/img/pattern-dark-01.png');
+  background-image: url('/img/pattern.png');
   background-size: cover;
-  z-index: 100;
+  //z-index: 100;
+  height: 200px;
+  opacity: 0.15;
 }
 
 .eras__title-outer {
@@ -94,23 +98,70 @@
   font-size: 20px;
 }
 
-.intro__jump-button {
+.intro__jump-button-container {
   margin-left: 20px;
+  // display: flex;
+  // flex-flow: column;
+}
+
+.intro__jump-button-row {
+  display: flex;
+}
+
+.intro__jump-button {
+  flex-grow: 0;
   border: 2px solid $main-light-gray;
   background: $main-medium-dark-gray;
-  transition: border 250ms;
+  transition: border $menu-speed;
 }
 
 .intro__jump-button:hover {
   border: 2px solid white;
   }
 
+.intro__jump-dropdown {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity $menu-speed;
+  // background: $main-background-fill;
+  background: $main-medium-dark-gray;
+  border-radius: 5px;
+}
+
+.intro__jump-dropdown-content {
+  // padding: 15px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.intro__jump-dropdown-item {
+  cursor: pointer;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  // transition: background 100;
+}
+
+.intro__jump-dropdown-item:hover {
+  background: $main-light-gray;
+  // border: 2px solid $main-light-gray;
+  // padding-top: 3px;
+  // padding-bottom: 3px;
+  // padding-left: 13px;
+  // padding-right: 13px;
+}
+
+// .intro__jump-dropdown-item:not(:first-child) {
+//   margin-top: 5px;
+// }
+
 .eras__map-button,
 .intro__begin-button {
   background: white;
   color: #333;
   border: 2px solid white;
-  transition: background 250ms;
+  transition: background $menu-speed;
 }
 
 .eras__map-button .icon-right-big {
@@ -176,7 +227,7 @@
 
 .intro__language-button-outer,
 .eras__back-button-outer {
-  background: $main-background-fill;
+  // background: $main-background-fill;
 }
 
 .intro__language-button-inner {
@@ -195,14 +246,13 @@
   cursor: pointer;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 250ms; 
-  background: $main-background-fill;
+  transition: opacity $menu-speed; 
+  // background: $main-background-fill;
   align-items: center;
   height: 25px;
-
 }
 
-.intro__language-dropdown--on {
+.intro__dropdown-on {
   opacity: 1;
   pointer-events: auto;
 }
