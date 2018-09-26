@@ -128,8 +128,25 @@
 background: $main-lighter-gray;
 }
 
+.footer__no-raster-text-container {
+  position: absolute;
+  left: $footer-button-width;
+  bottom: 0px;
+  width: calc(100% - #{$footer-button-width});
+  text-align: center;
+  display: none;
+  align-items: center;
+  height: $footer-height;
+  justify-content: center;
+  color: white;
+  // width: calc(100% - #{$timeline-stepper-width});
+}
+
 .footer--no-raster {
   .footer__show-all-circle {
     display: none;
+  }
+  .footer__no-raster-text-container {
+    display: flex;
   }
 }
