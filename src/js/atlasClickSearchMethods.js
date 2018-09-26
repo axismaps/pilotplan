@@ -1,6 +1,7 @@
 import dataMethods from './atlasDataMethods';
 
 let pulsing = false;
+let pulseTimer = null;
 
 const atlasClickSearchMethods = {
   setClickSearch({
@@ -32,13 +33,17 @@ const atlasClickSearchMethods = {
     const { removePulse } = atlasClickSearchMethods;
     const { x, y } = e.point;
     const size = 60;
-    removePulse();
+    if (pulseTimer !== null) {
+      clearTimeout(pulseTimer);
+      removePulse();
+    }
+
     pulsing = true;
     outerContainer
       .append('img')
       .attrs({
         class: 'atlas__pulse',
-        src: 'img/pulse.gif',
+        src: `img/pulse.gif?a=${Math.random()}`,
       })
       .styles({
         position: 'absolute',
@@ -46,9 +51,10 @@ const atlasClickSearchMethods = {
         left: `${x - (size / 2)}px`,
         top: `${y - (size / 2)}px`,
       });
-    setTimeout(() => {
+    pulseTimer = setTimeout(() => {
+      pulseTimer = null;
       removePulse();
-    }, 1000);
+    }, 900);
   },
   removePulse() {
     if (!pulsing) return;

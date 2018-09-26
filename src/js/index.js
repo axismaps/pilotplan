@@ -180,6 +180,8 @@ const app = {
         // currentBounds: newBounds,
         // });
       },
+      translations: this.data.translations,
+      language: state.get('language'),
     });
   },
   // onAtlasLoad() {
@@ -193,6 +195,7 @@ const app = {
   initLayout() {
     const { state, eras } = this.components;
     this.components.layout = new Layout({
+      translations: this.data.translations,
       language: state.get('language'),
       currentEra: eras.getCurrentEra(),
       overlayOn: state.get('currentOverlay') !== null,
@@ -303,6 +306,8 @@ const app = {
     });
 
     this.components.footer = new Footer({
+      translations: this.data.translations,
+      language: state.get('language'),
       year: state.get('year'),
       footerView: state.getAutoFooterView(this.data),
       rasterData: state.getAvailableRasters(this.data),
@@ -331,6 +336,7 @@ const app = {
       availableLayers: state.getAvailableLayers(this.data),
       rasterData: state.getAvailableRasters(this.data),
       cachedMetadata: this.cachedMetadata,
+      translations: this.data.translations,
       language: state.get('language'),
       view: state.get('sidebarView'),
       onSearchReturn() {
