@@ -49,6 +49,7 @@ export const selections = {
   areaSearchButton: d3.select('.area-button'),
   probeButtonsContainer: d3.select('.probe-buttons-container'),
   overlayButtonContainer: d3.select('.overlay-button'),
+  hintProbeContainer: d3.select('.hint-probe'),
   erasButtonContainer: d3.select('.header__eras-button'),
   erasButtonText: d3.select('.header__eras-button-text'),
 

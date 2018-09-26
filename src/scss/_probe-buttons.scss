@@ -1,0 +1,27 @@
+.overlay-button,
+.area-button {
+  cursor: pointer;
+  background: $main-background-fill;
+}
+
+.hint-probe,
+.overlay-button,
+.area-button {
+  
+  color: white;
+  align-items: center;
+  border-radius: 5px;
+  
+  // box-shadow: $lightbox-shadow;
+  height: 100%;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-left: 15px;
+}
+
+.hint-probe {
+  background: $main-light-gray;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+}

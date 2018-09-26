@@ -24,6 +24,7 @@ const privateMethods = {
       onViewClick,
       onMove,
       dataProbe,
+      hintProbeContainer,
     } = props;
 
     const {
@@ -34,6 +35,7 @@ const privateMethods = {
     d3.json('./data/style.json')
       .then((style) => {
         const mbMap = getMap({
+          hintProbeContainer,
           dataProbe,
           onMove,
           initApp,
@@ -151,6 +153,7 @@ class Atlas {
     const {
       mapContainer,
       outerContainer,
+      hintProbeContainer,
     } = selections;
     const {
       createMBMap,
@@ -159,6 +162,7 @@ class Atlas {
     privateProps.set(this, {
       outerContainer,
       mapContainer,
+      hintProbeContainer,
       areaSearchActive: null,
       currentView: null,
       highlightedFeature: null,

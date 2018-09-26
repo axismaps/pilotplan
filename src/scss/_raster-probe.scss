@@ -3,19 +3,7 @@
   align-items: center;
 }
 
-.overlay-button,
-.area-button {
-  background: $main-background-fill;
-  color: white;
-  align-items: center;
-  border-radius: 5px;
-  cursor: pointer;
-  // box-shadow: $lightbox-shadow;
-  height: 100%;
-  padding-left: 15px;
-  padding-right: 15px;
-  margin-left: 15px;
-}
+
 
 .raster-probe {
   border-radius: 5px;
