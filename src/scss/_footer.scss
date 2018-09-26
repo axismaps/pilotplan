@@ -25,6 +25,14 @@
   // margin-left: 15px;
 }
 
+.footer__toggle-no-raster-text {
+  margin-left: 10px;
+  margin-right: 5px;
+  font-weight: bold;
+  font-style: italic;
+  display: none;
+}
+
 .footer__images {
   display: flex;
   align-items: center;
@@ -148,5 +156,16 @@ background: $main-lighter-gray;
   }
   .footer__no-raster-text-container {
     display: flex;
+  }
+  
+}
+
+.footer__toggle-button--no-raster {
+  .footer__toggle-no-raster-text {
+    display: block;
+  }
+  .footer__toggle-text,
+  .footer__toggle-rasters-container {
+    display: none;
   }
 }

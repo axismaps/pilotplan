@@ -165,13 +165,18 @@ const privateMethods = {
     const {
       rasterData,
       footerContainer,
+      footerToggleButton,
     } = props;
 
     const {
       getRasterDataByCategory,
     } = rasterMethods;
+    const noRaster = getRasterDataByCategory({ rasterData }).length === 0;
     footerContainer
-      .classed('footer--no-raster', getRasterDataByCategory({ rasterData }).length === 0);
+      .classed('footer--no-raster', noRaster);
+
+    footerToggleButton
+      .classed('footer__toggle-button--no-raster', noRaster);
   },
 };
 
