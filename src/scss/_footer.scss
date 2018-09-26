@@ -127,3 +127,9 @@
 .footer__show-all-circle:hover {
 background: $main-lighter-gray;
 }
+
+.footer--no-raster {
+  .footer__show-all-circle {
+    display: none;
+  }
+}

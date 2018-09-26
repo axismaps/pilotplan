@@ -160,6 +160,19 @@ const privateMethods = {
 
     footerToggleYearContainer.text(`(${year})`);
   },
+  updateFooterDataStatus() {
+    const props = privateProps.get(this);
+    const {
+      rasterData,
+      footerContainer,
+    } = props;
+
+    const {
+      getRasterDataByCategory,
+    } = rasterMethods;
+    footerContainer
+      .classed('footer--no-raster', getRasterDataByCategory({ rasterData }).length === 0);
+  },
 };
 
 class Footer {
@@ -231,12 +244,14 @@ class Footer {
   updateRasterData() {
     const {
       drawRasters,
+      updateFooterDataStatus,
       updateFooterView,
       // autoSetFooterView,
       drawToggleRasters,
       updateToggleYear,
     } = privateMethods;
 
+    updateFooterDataStatus.call(this);
     updateFooterView.call(this);
     drawToggleRasters.call(this);
     updateToggleYear.call(this);

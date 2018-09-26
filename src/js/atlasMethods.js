@@ -75,6 +75,14 @@ const atlasMethods = {
       style,
 
     })
+      // .on('mousedown', () => {
+      //   d3.select('.mapboxgl-canvas')
+      //     .style('cursor', 'grab');
+      // })
+      // .on('mouseup', () => {
+      //   d3.select('.mapboxgl-canvas')
+      //     .style('cursor', 'pointer');
+      // })
       .on('moveend', () => {
         const center = mbMap.getCenter();
         const zoom = mbMap.getZoom();
