@@ -54,7 +54,7 @@ const atlasClickSearchMethods = {
     pulseTimer = setTimeout(() => {
       pulseTimer = null;
       removePulse();
-    }, 900);
+    }, 450);
   },
   removePulse() {
     if (!pulsing) return;
