@@ -144,9 +144,13 @@ background: $main-lighter-gray;
   text-align: center;
   display: none;
   align-items: center;
-  height: $footer-height;
+  // height: $footer-height;
+  height: 100%;
   justify-content: center;
   color: white;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 250ms;
   // width: calc(100% - #{$timeline-stepper-width});
 }
 
@@ -154,10 +158,20 @@ background: $main-lighter-gray;
   .footer__show-all-circle {
     display: none;
   }
+  
   .footer__no-raster-text-container {
     display: flex;
   }
   
+}
+
+.outer-container.footer-open {
+  .footer--no-raster {
+    .footer__no-raster-text-container {
+      display: flex;
+      opacity: 1;
+    }
+  }
 }
 
 .footer__toggle-button--no-raster {
