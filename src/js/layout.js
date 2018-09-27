@@ -79,6 +79,7 @@ class Layout {
       outerContainer,
       areaSearchButton,
       probeButtonsContainer,
+      hintProbeContainer,
       overlayButtonContainer,
       erasButtonContainer,
       erasButtonText,
@@ -115,10 +116,12 @@ class Layout {
       footerContainer,
       sidebarToggleButton,
       sidebarToggleHelpContainer,
+      hintProbeContainer,
       transitionSpeed: 500,
       mouseEventsDisabled: false,
       transitionsDisabled: false,
       sidebarOpened: false,
+      hintProbeOn: true,
     });
     const {
       initAreaButton,
@@ -233,6 +236,13 @@ class Layout {
   toggleTransitions() {
     const { outerContainer, transitionsDisabled } = privateProps.get(this);
     outerContainer.classed('transitions-disabled', transitionsDisabled);
+  }
+  removeHintProbe() {
+    const props = privateProps.get(this);
+    const { hintProbeContainer, hintProbeOn } = props;
+    if (!hintProbeOn) return;
+    hintProbeContainer.remove();
+    props.hintProbeOn = false;
   }
 }
 

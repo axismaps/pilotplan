@@ -11,7 +11,6 @@ const getUpdateView = ({
       eras,
       languageDropdown,
     } = components;
-    console.log('update view');
 
     views
       .config({ view })

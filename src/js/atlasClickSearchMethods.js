@@ -13,7 +13,6 @@ const atlasClickSearchMethods = {
     getYear,
     getFlattenedRasterData,
     outerContainer,
-    hintProbeContainer,
   }) {
     const { getClickSearch } = atlasClickSearchMethods;
 
@@ -26,7 +25,6 @@ const atlasClickSearchMethods = {
       getYear,
       getFlattenedRasterData,
       mbMap,
-      hintProbeContainer,
     });
 
     setClickSearchProp(clickSearch);
@@ -71,7 +69,6 @@ const atlasClickSearchMethods = {
     getCancelClickSearch,
     removeCancelClickSearch,
     mbMap,
-    hintProbeContainer,
   }) {
     const {
       getRasterResults,
@@ -86,7 +83,6 @@ const atlasClickSearchMethods = {
         return;
       }
       addPulse({ e, outerContainer });
-      hintProbeContainer.remove();
       const year = getYear();
       const flattenedRasterData = getFlattenedRasterData();
 

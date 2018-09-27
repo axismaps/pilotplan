@@ -88,13 +88,25 @@ const getState = function getState({ urlParams }) {
   };
 
   state.getAllAvailableLayers = function getAllAvailableLayers(data) {
-    // console.log('DATA', data);
-    return this.getAvailableLayers(data)
+    const availableViews = this.getAvailableRasters(data)
+      .get('views');
+    const viewsLayer = {
+      sourceLayer: 'ViewConesPoint',
+      status: true,
+    };
+    const availableLayers = this.getAvailableLayers(data)
       .reduce((accumulator, group) => [...accumulator, ...group.layers], [])
       .map(layer => ({
         sourceLayer: layer.sourceLayer,
         status: true,
       }));
+    if (availableViews.length > 0) {
+      return [
+        viewsLayer,
+        ...availableLayers,
+      ];
+    }
+    return availableLayers;
   };
 
   state.getLayersToClear = function getLayersToClear(fields) {

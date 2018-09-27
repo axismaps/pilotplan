@@ -223,9 +223,6 @@ const atlasMethods = {
 
     return [...new Set(sources)];
   },
-  getAllFeatures() {
-
-  },
 };
 
 export default atlasMethods;

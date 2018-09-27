@@ -1,5 +1,5 @@
 import searchMethods from './sidebarSearch';
-import getSidebarMethods from './sidebarMethods';
+import getSidebarMethods from './sidebarGetPrivateMethods';
 import { selections } from './config';
 
 const privateProps = new WeakMap();
@@ -17,6 +17,8 @@ class Sidebar {
       resultsContainer,
       rasterResultsContainer,
       nonRasterResultsContainer,
+      sidebarViewshedLayerBlock,
+      sidebarViewshedLayerRow,
     } = selections;
     const {
       init,
@@ -32,6 +34,8 @@ class Sidebar {
       resultsContainer,
       rasterResultsContainer,
       nonRasterResultsContainer,
+      sidebarViewshedLayerBlock,
+      sidebarViewshedLayerRow,
       cachedSwatches: new Map(),
       view: null,
       previousView: null,
@@ -69,12 +73,23 @@ class Sidebar {
     const {
       currentLayers,
       layers,
+      sidebarViewshedLayerRow,
     } = privateProps.get(this);
+
+    const updateCheck = ({ check, sourceLayer }) => {
+      check.property('checked', currentLayers.find(dd => dd.sourceLayer === sourceLayer).status);
+    };
+
+    // update viewshed row
+    updateCheck({
+      check: sidebarViewshedLayerRow.select('.sidebar__layer-checkbox'),
+      sourceLayer: 'ViewConesPoint',
+    });
 
     layers.each(function checkBox(d) {
       const row = d3.select(this);
       const check = row.select('.sidebar__layer-checkbox');
-      check.property('checked', currentLayers.find(dd => dd.sourceLayer === d.sourceLayer).status);
+      updateCheck({ check, sourceLayer: d.sourceLayer });
     });
   }
   updateHighlightedFeature() {

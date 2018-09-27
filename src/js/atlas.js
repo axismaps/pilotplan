@@ -24,7 +24,6 @@ const privateMethods = {
       onViewClick,
       onMove,
       dataProbe,
-      hintProbeContainer,
     } = props;
 
     const {
@@ -35,7 +34,6 @@ const privateMethods = {
     d3.json('./data/style.json')
       .then((style) => {
         const mbMap = getMap({
-          hintProbeContainer,
           dataProbe,
           onMove,
           initApp,
@@ -102,13 +100,11 @@ const privateMethods = {
       onClickSearch,
       mbMap,
       outerContainer,
-      hintProbeContainer,
     } = props;
     const { setClickSearch } = clickSearchMethods;
     const { getFlattenedRasterData } = rasterMethods;
 
     setClickSearch({
-      hintProbeContainer,
       outerContainer,
       onClickSearch,
       getCancelClickSearch: () => props.cancelClickSearch,
@@ -155,7 +151,6 @@ class Atlas {
     const {
       mapContainer,
       outerContainer,
-      hintProbeContainer,
     } = selections;
     const {
       createMBMap,
@@ -164,7 +159,6 @@ class Atlas {
     privateProps.set(this, {
       outerContainer,
       mapContainer,
-      hintProbeContainer,
       areaSearchActive: null,
       currentView: null,
       highlightedFeature: null,

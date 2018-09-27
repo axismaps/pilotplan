@@ -4,14 +4,20 @@ const getSidebarMethods = (privateProps) => {
   const privateMethods = {
     init() {
       const {
+        clearViews,
+        drawViews,
         drawLayerGroups,
         drawLayers,
         drawFeatures, // draw features
         listenForText,
         setSearchReturnListener,
+        setViewLayerListener,
       } = privateMethods;
 
       // drawLayerCategories.call(this);
+      setViewLayerListener.call(this);
+      clearViews.call(this);
+      drawViews.call(this);
       drawLayerGroups.call(this);
       drawLayers.call(this);
       drawFeatures.call(this);
@@ -51,6 +57,22 @@ const getSidebarMethods = (privateProps) => {
           this.clearSearch();
         },
       });
+    },
+    setViewLayerListener() {
+      const {
+        sidebarViewshedLayerRow,
+        onLayerClick,
+      } = privateProps.get(this);
+      sidebarViewshedLayerRow
+        .on('click', () => {
+          onLayerClick({ sourceLayer: 'ViewConesPoint' });
+        });
+    },
+    clearViews() {
+
+    },
+    drawViews() {
+
     },
     drawLayerGroups() {
       const props = privateProps.get(this);

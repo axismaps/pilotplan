@@ -90,9 +90,11 @@ export const selections = {
   lightboxCloseButton: d3.select('.lightbox__close-button'),
 
   sidebarContainer: d3.select('.sidebar'),
-  sidebarContentContainer: d3.select('.sidebar__content'),
+  sidebarContentContainer: d3.select('.sidebar__inner-content'),
   sidebarToggleButton: d3.select('.sidebar__toggle-button'),
   sidebarToggleHelpContainer: d3.select('.sidebar__toggle-help-container'),
+  sidebarViewshedLayerBlock: d3.select('.sidebar__viewsheds'),
+  sidebarViewshedLayerRow: d3.select('.sidebar__layer-title-row'),
   searchReturnContainer: d3.select('.sidebar__search-return'),
   textSearchReturnButton: d3.select('.sidebar__text-search-return-icon'),
   searchInput: d3.select('.sidebar__input'),
