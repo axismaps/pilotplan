@@ -45,6 +45,10 @@
   height: calc(100% - #{$search-input-height});
 }
 
+.sidebar__viewsheds--hidden {
+  display: none;
+}
+
 .sidebar__layer-group-block {
   margin-bottom: 15px;
 }

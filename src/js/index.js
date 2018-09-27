@@ -334,7 +334,7 @@ const app = {
       sidebarOpen: state.get('sidebarOpen'),
       layerStyles: this.components.atlas.getStyle().layers,
       availableLayers: state.getAvailableLayers(this.data),
-      rasterData: state.getAvailableRasters(this.data),
+      viewLayersOn: state.getAvailableRasters(this.data).get('views').length > 0,
       cachedMetadata: this.cachedMetadata,
       translations: this.data.translations,
       language: state.get('language'),
@@ -358,7 +358,6 @@ const app = {
         state.update({ textSearch: val });
       },
       onFeatureClick(feature) {
-        console.log('feature', feature);
         const oldFeature = state.get('highlightedFeature');
         let newFeature;
         if (oldFeature === null) {

@@ -4,20 +4,20 @@ const getSidebarMethods = (privateProps) => {
   const privateMethods = {
     init() {
       const {
-        clearViews,
-        drawViews,
+        setViewLayerVisibility,
         drawLayerGroups,
         drawLayers,
         drawFeatures, // draw features
         listenForText,
         setSearchReturnListener,
         setViewLayerListener,
+        setViewLayerIcon,
       } = privateMethods;
 
       // drawLayerCategories.call(this);
+      setViewLayerIcon.call(this);
       setViewLayerListener.call(this);
-      clearViews.call(this);
-      drawViews.call(this);
+      setViewLayerVisibility.call(this);
       drawLayerGroups.call(this);
       drawLayers.call(this);
       drawFeatures.call(this);
@@ -58,6 +58,18 @@ const getSidebarMethods = (privateProps) => {
         },
       });
     },
+    setViewLayerIcon() {
+      const {
+        sidebarViewshedLayerIconContainer,
+      } = privateProps.get(this);
+      sidebarViewshedLayerIconContainer
+        .append('img')
+        .attr('src', 'img/legend/viewshed2.png')
+        .styles({
+          height: '40px',
+          width: '75px',
+        });
+    },
     setViewLayerListener() {
       const {
         sidebarViewshedLayerRow,
@@ -68,11 +80,14 @@ const getSidebarMethods = (privateProps) => {
           onLayerClick({ sourceLayer: 'ViewConesPoint' });
         });
     },
-    clearViews() {
+    setViewLayerVisibility() {
+      const {
+        sidebarViewshedLayerBlock,
+        viewLayersOn,
+      } = privateProps.get(this);
 
-    },
-    drawViews() {
-
+      sidebarViewshedLayerBlock
+        .classed('sidebar__viewsheds--hidden', !viewLayersOn);
     },
     drawLayerGroups() {
       const props = privateProps.get(this);

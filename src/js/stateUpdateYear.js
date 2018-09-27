@@ -81,7 +81,8 @@ const getUpdateYear = ({
 
     sidebar
       .config({
-        rasterData,
+        // rasterData,
+        viewLayersOn: this.getAvailableRasters(data).get('views').length > 0,
         availableLayers: this.getAvailableLayers(data),
       })
       .updateAvailableLayers();

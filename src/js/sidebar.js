@@ -19,6 +19,7 @@ class Sidebar {
       nonRasterResultsContainer,
       sidebarViewshedLayerBlock,
       sidebarViewshedLayerRow,
+      sidebarViewshedLayerIconContainer,
     } = selections;
     const {
       init,
@@ -36,12 +37,13 @@ class Sidebar {
       nonRasterResultsContainer,
       sidebarViewshedLayerBlock,
       sidebarViewshedLayerRow,
+      sidebarViewshedLayerIconContainer,
       cachedSwatches: new Map(),
       view: null,
       previousView: null,
       results: null,
       availableLayers: null,
-      currentLayers: null,
+      viewLayerOn: true,
     });
 
     this.config(config);
@@ -60,10 +62,12 @@ class Sidebar {
   updateAvailableLayers() {
     //
     const {
+      setViewLayerVisibility,
       drawLayerGroups,
       drawLayers,
       drawFeatures,
     } = privateMethods;
+    setViewLayerVisibility.call(this);
     drawLayerGroups.call(this);
     drawLayers.call(this);
     drawFeatures.call(this);
@@ -77,6 +81,7 @@ class Sidebar {
     } = privateProps.get(this);
 
     const updateCheck = ({ check, sourceLayer }) => {
+      if (!currentLayers.map(d => d.sourceLayer).includes(sourceLayer)) return;
       check.property('checked', currentLayers.find(dd => dd.sourceLayer === sourceLayer).status);
     };
 

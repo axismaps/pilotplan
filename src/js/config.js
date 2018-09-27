@@ -95,6 +95,7 @@ export const selections = {
   sidebarToggleHelpContainer: d3.select('.sidebar__toggle-help-container'),
   sidebarViewshedLayerBlock: d3.select('.sidebar__viewsheds'),
   sidebarViewshedLayerRow: d3.select('.sidebar__layer-title-row'),
+  sidebarViewshedLayerIconContainer: d3.select('.sidebar__viewsheds-icon'),
   searchReturnContainer: d3.select('.sidebar__search-return'),
   textSearchReturnButton: d3.select('.sidebar__text-search-return-icon'),
   searchInput: d3.select('.sidebar__input'),
