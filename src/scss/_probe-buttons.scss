@@ -1,7 +1,12 @@
+.probe-buttons-container {
+  pointer-events: none;
+}
+
 .overlay-button,
 .area-button {
   cursor: pointer;
   background: $main-background-fill;
+  pointer-events: auto;
 }
 
 .hint-probe,
