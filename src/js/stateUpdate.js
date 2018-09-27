@@ -109,6 +109,7 @@ const setStateEvents = ({ components, data }) => {
       } = this.props();
       const {
         sidebar,
+        layout,
       } = components;
 
       const { raster, nonRaster } = clickSearch;
@@ -124,6 +125,8 @@ const setStateEvents = ({ components, data }) => {
           view: 'clickSearch',
         })
         .updateResults();
+
+      layout.removeHintProbe();
       // instead of this, check first if only one result
       // if only one result, make this highlightedFeature
       const layersToClear = this.getLayersToClear([
@@ -141,6 +144,7 @@ const setStateEvents = ({ components, data }) => {
       } = this.props();
       const {
         sidebar,
+        layout,
       } = components;
 
       const { raster, nonRaster } = areaSearch;
@@ -156,6 +160,8 @@ const setStateEvents = ({ components, data }) => {
           view: 'clickSearch',
         })
         .updateResults();
+
+      layout.removeHintProbe();
 
       const layersToClear = this.getLayersToClear([
         'highlightedFeature',
@@ -180,6 +186,8 @@ const setStateEvents = ({ components, data }) => {
           areaSearchActive,
         })
         .updateAreaSearch();
+
+      layout.removeHintProbe();
 
       atlas
         .config({

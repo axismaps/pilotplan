@@ -58,7 +58,6 @@ const atlasMethods = {
     onViewClick,
     onMove,
     dataProbe,
-    hintProbeContainer,
   }) {
     const {
       addConeToMap,
@@ -84,9 +83,6 @@ const atlasMethods = {
       //   d3.select('.mapboxgl-canvas')
       //     .style('cursor', 'pointer');
       // })
-      .on('mousedown', () => {
-        hintProbeContainer.remove();
-      })
       .on('moveend', () => {
         const center = mbMap.getCenter();
         const zoom = mbMap.getZoom();

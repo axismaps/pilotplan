@@ -11,6 +11,7 @@ const getUpdateTextSearch = ({ components }) => {
     const {
       sidebar,
       atlas,
+      layout,
     } = components;
 
     if (textSearch.length < 3) {
@@ -35,6 +36,8 @@ const getUpdateTextSearch = ({ components }) => {
           view: 'textSearch',
         })
         .updateResults();
+
+      layout.removeHintProbe();
 
       const layersToClear = this.getLayersToClear([
         'highlightedFeature',

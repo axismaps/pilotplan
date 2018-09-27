@@ -102,11 +102,13 @@ const privateMethods = {
       onClickSearch,
       mbMap,
       outerContainer,
+      hintProbeContainer,
     } = props;
     const { setClickSearch } = clickSearchMethods;
     const { getFlattenedRasterData } = rasterMethods;
 
     setClickSearch({
+      hintProbeContainer,
       outerContainer,
       onClickSearch,
       getCancelClickSearch: () => props.cancelClickSearch,
