@@ -9,8 +9,9 @@ const getUpdateView = ({
       views,
       sidebar,
       eras,
+      languageDropdown,
     } = components;
-
+    console.log('update view');
 
     views
       .config({ view })
@@ -20,6 +21,9 @@ const getUpdateView = ({
     eras
       .config({ view });
 
+    if (view === 'intro') {
+      languageDropdown.update();
+    }
 
     if (!this.get('componentsInitialized')) return;
 
