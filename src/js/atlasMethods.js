@@ -183,7 +183,7 @@ const atlasMethods = {
       source: 'viewshed',
       layout: {},
       paint: {
-        'fill-color': 'black',
+        'fill-color': 'white',
         'fill-opacity': 0.5,
       },
     });
