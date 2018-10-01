@@ -337,6 +337,12 @@ body {
   }
 }
 
+.outer-container.rotated {
+  .atlas__center-button {
+    display: flex;
+  }
+}
+
 // .outer-container--map {
 //   .map-view {
 //     display: block;

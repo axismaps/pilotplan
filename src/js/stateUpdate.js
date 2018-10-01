@@ -346,9 +346,14 @@ const setStateEvents = ({ components, data }) => {
 
     currentLocation() {
       const { currentLocation } = this.props();
-      const { urlParams, views } = components;
+      const {
+        urlParams,
+        views,
+        layout,
+      } = components;
       const { center, bearing, zoom } = currentLocation;
       if (!views.mapViewInitialized()) return;
+
       urlParams
         .config({
           center: `${center.lat},${center.lng}`,
@@ -356,6 +361,12 @@ const setStateEvents = ({ components, data }) => {
           bearing,
         })
         .update();
+
+      layout
+        .config({
+          rotated: bearing !== -72,
+        })
+        .updateRotationButton();
     },
     overlayOpacity() {
       const { overlayOpacity } = this.props();
