@@ -95,6 +95,13 @@ body {
   color: white;
 }
 
+.header__social-buttons {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  height: $header-height;
+}
+
 .top-button-outer {
   // margin-left: 25px;
   position: absolute;
@@ -361,6 +368,7 @@ body {
   left: 0px;
   z-index: 2000;
 }
+
 .eras__pattern,
 .intro__pattern {
   position: absolute;

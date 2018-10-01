@@ -2,3 +2,41 @@
   background: $main-background-fill;
   // box-shadow: $header-shadow;
 }
+
+.header__social-buttons {
+  display: flex;
+  align-items: center;
+  margin-right: 25px;
+}
+
+.header__social-icon-buttons {
+  margin-left: 25px;
+  display: flex;
+}
+
+.header__register-button {
+  cursor: pointer;
+}
+
+.header__register-button:hover {
+  color: $main-lightest-gray;
+}
+
+.header__social-button {
+  color: white;
+  font-size: 12px;
+  height: 20px;
+  width: 20px;
+  line-height: 20px;
+  background-color: #999;
+  border-radius: 3px;
+  margin-left: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.header__social-button:hover {
+  color: black;
+}
