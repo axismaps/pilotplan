@@ -386,6 +386,14 @@ const setStateEvents = ({ components, data }) => {
         })
         .updateOverlayOpacity();
     },
+    registerOpen() {
+      const { registerOpen } = this.props();
+      const { layout } = components;
+
+      layout
+        .config({ registerOpen })
+        .updateRegisterScreen();
+    },
   });
 };
 

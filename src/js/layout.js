@@ -71,6 +71,31 @@ const privateMethods = {
     sidebarToggleButton
       .on('click', onSidebarToggleClick);
   },
+  initRegisterButton() {
+    const {
+      headerRegisterButton,
+      toggleRegisterScreen,
+    } = privateProps.get(this);
+    headerRegisterButton
+      .on('click', () => {
+        toggleRegisterScreen(true);
+      });
+  },
+  initRegisterScreen() {
+    const {
+      registerOuterContainer,
+      toggleRegisterScreen,
+      registerInnerContainer,
+    } = privateProps.get(this);
+    registerOuterContainer
+      .on('click', () => {
+        toggleRegisterScreen(false);
+      });
+    registerInnerContainer
+      .on('click', () => {
+        d3.event.stopPropagation();
+      });
+  },
 };
 
 class Layout {
@@ -88,6 +113,13 @@ class Layout {
       footerContainer,
       sidebarToggleButton,
       sidebarToggleHelpContainer,
+      headerRegisterButton,
+      headerFacebookButton,
+      headerTwitterButton,
+      headerDownloadButton,
+      headerInfoButton,
+      registerOuterContainer,
+      registerInnerContainer,
     } = selections;
 
     privateProps.set(this, {
@@ -105,6 +137,7 @@ class Layout {
       previousEra: null,
       overlayOn: null,
       language: null,
+      toggleRegisterScreen: null,
       outerContainer,
       areaSearchButton,
       probeButtonsContainer,
@@ -117,12 +150,20 @@ class Layout {
       sidebarToggleButton,
       sidebarToggleHelpContainer,
       hintProbeContainer,
+      headerRegisterButton,
+      headerFacebookButton,
+      headerTwitterButton,
+      headerDownloadButton,
+      headerInfoButton,
+      registerOuterContainer,
+      registerInnerContainer,
       transitionSpeed: 500,
       mouseEventsDisabled: false,
       transitionsDisabled: false,
       sidebarOpened: false,
       hintProbeOn: true,
       rotated: false,
+      registerOpen: false,
     });
     const {
       initAreaButton,
@@ -132,6 +173,8 @@ class Layout {
       setErasButtonText,
       // initMenuTransitions,
       initSidebarToggleButton,
+      initRegisterButton,
+      initRegisterScreen,
     } = privateMethods;
 
     this.config(config);
@@ -142,6 +185,8 @@ class Layout {
     initBackToIntroButton.call(this);
     initSidebarToggleButton.call(this);
     setErasButtonText.call(this);
+    initRegisterButton.call(this);
+    initRegisterScreen.call(this);
 
     this.updateSidebar();
     this.updateFooter();
@@ -150,6 +195,7 @@ class Layout {
     // this.updateView();
     this.updateRasterProbe();
     this.updateRotationButton();
+    this.updateRegisterScreen();
 
     // initMenuTransitions.call(this);
   }
@@ -252,6 +298,14 @@ class Layout {
     if (!hintProbeOn) return;
     hintProbeContainer.remove();
     props.hintProbeOn = false;
+  }
+  updateRegisterScreen() {
+    const {
+      registerOpen,
+      registerOuterContainer,
+    } = privateProps.get(this);
+    registerOuterContainer
+      .classed('register__outer--on', registerOpen);
   }
 }
 

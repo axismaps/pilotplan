@@ -24,6 +24,7 @@ const getState = function getState({ urlParams }) {
     sidebarOpen: false,
     footerOpen: startView === 'map',
     allRasterOpen: false,
+    registerOpen: false,
     sidebarView: 'legend', // searching, results
     footerView: 'views',
     view: startView,

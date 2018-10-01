@@ -52,6 +52,11 @@ export const selections = {
   hintProbeContainer: d3.select('.hint-probe'),
   erasButtonContainer: d3.select('.header__eras-button'),
   erasButtonText: d3.select('.header__eras-button-text'),
+  headerRegisterButton: d3.select('.header__register-button'),
+  headerFacebookButton: d3.select('.header__facebook'),
+  headerTwitterButton: d3.select('.header__twitter'),
+  headerDownloadButton: d3.select('.header__download'),
+  headerInfoButton: d3.select('.header__info'),
 
   footerContainer: d3.select('.footer'),
   categoriesContainer: d3.select('.footer__categories'),
@@ -82,6 +87,11 @@ export const selections = {
   rasterProbeCloseOverlayButton: d3.select('.raster-probe__remove-overlay'),
   rasterProbeCreditsContainer: d3.select('.raster-probe__credits'),
   rasterProbeSliderContainer: d3.select('.raster-probe__overlay-slider'),
+
+  registerOuterContainer: d3.select('.register__outer'),
+  registerInnerContainer: d3.select('.register__inner'),
+  registerImageContainer: d3.select('.register__image'),
+
   lightboxOuterContainer: d3.select('.lightbox__outer'),
   lightboxContentContainer: d3.select('.lightbox__content'),
   lightboxImageContainer: d3.select('.lightbox__image'),

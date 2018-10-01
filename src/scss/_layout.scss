@@ -215,12 +215,18 @@ body {
   height: 100%;
 }
 
+.register__outer,
 .lightbox__outer,
 .allraster__outer {
   position: absolute;
   width: 100%;
   height: 100vh;
   display: none;
+}
+
+.register__inner {
+  width: 505px;
+  max-height: 738px;
 }
 
 .allraster__inner {

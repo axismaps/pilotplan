@@ -204,6 +204,10 @@ const app = {
       footerOpen: state.get('footerOpen'),
       allRasterOpen: state.get('allRasterOpen'),
       areaSearchActive: state.get('areaSearchActive'),
+      registerOpen: state.get('registerOpen'),
+      toggleRegisterScreen(status) {
+        state.update({ registerOpen: status });
+      },
       onAreaButtonClick() {
         const areaSearchActive = !state.get('areaSearchActive');
         state.update({ areaSearchActive });
