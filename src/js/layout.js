@@ -96,6 +96,29 @@ const privateMethods = {
         d3.event.stopPropagation();
       });
   },
+  initSocialMediaButtons() {
+    const {
+      headerFacebookButton,
+      headerDownloadButton,
+      headerTwitterButton,
+      headerInfoButton,
+    } = privateProps.get(this);
+    // $('.twitter').attr('href', $('.twitter')
+    // .attr('data-href') + 'text=imagineRio' + '&url=' + encodeURIComponent(window.location.href));
+    // $('.fb-share-btn').attr('href', $('.fb-share-btn')
+    // .attr('data-href') + '&u=' + encodeURIComponent(window.location.href));
+    headerTwitterButton
+      .attr(
+        'href',
+        `https://twitter.com/intent/tweet?text=pilotPlan&url=${encodeURIComponent(window.location.href)}`,
+      );
+
+    headerFacebookButton
+      .attr(
+        'href',
+        `https://www.facebook.com/sharer/sharer.php?&u=${encodeURIComponent(window.location.href)}`,
+      );
+  },
 };
 
 class Layout {
@@ -175,6 +198,7 @@ class Layout {
       initSidebarToggleButton,
       initRegisterButton,
       initRegisterScreen,
+      initSocialMediaButtons,
     } = privateMethods;
 
     this.config(config);
@@ -187,6 +211,7 @@ class Layout {
     setErasButtonText.call(this);
     initRegisterButton.call(this);
     initRegisterScreen.call(this);
+    initSocialMediaButtons.call(this);
 
     this.updateSidebar();
     this.updateFooter();
