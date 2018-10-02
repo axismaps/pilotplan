@@ -369,16 +369,23 @@ const app = {
       },
       onFeatureClick(feature) {
         const oldFeature = state.get('highlightedFeature');
+        // test if 'feature' is entire layer (has 'dataLayer') or array of features
         let newFeature;
+        // if no old feature
         if (oldFeature === null) {
           newFeature = feature;
+          // if new feature is entire layer
         } else if (Object.prototype.hasOwnProperty.call(feature, 'dataLayer')) {
-          // comparison for entire layer
           newFeature = oldFeature.dataLayer === feature.dataLayer ? null : feature;
+          // if new feature is array of features (not entire layer)
+          // and old layer is also array of features
+        } else if (Array.isArray(oldFeature)) {
+          newFeature = oldFeature[0].id === feature[0].id ? null : feature;
         } else {
-          // comparison for feature
-          newFeature = oldFeature.id === feature.id ? null : feature;
+          newFeature = feature;
         }
+
+        console.log('new feature', newFeature);
 
         state.update({ highlightedFeature: newFeature });
       },

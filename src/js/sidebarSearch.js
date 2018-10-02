@@ -139,10 +139,15 @@ const searchMethods = {
   }) {
     // draw title/data/rows here, in enter() selection
     groups.each(function drawLayers(d) {
+      // get unique data;
+      // console.log('features', d);
+      const uniqueFeatures = [...new Set(d.features.map(dd => dd.id))]
+        .map(id => d.features.filter(dd => dd.id === id));
+      // console.log('ids', uniqueFeatures);
       const rows = d3.select(this)
         .select('.sidebar__result-rows')
         .selectAll('.sidebar__results-row')
-        .data(d.features, dd => dd.id);
+        .data(uniqueFeatures, dd => dd[0].id);
 
       rows.exit().remove();
 
@@ -157,7 +162,7 @@ const searchMethods = {
       buttonRows
         .append('div')
         .attr('class', 'sidebar__results-button')
-        .text(dd => dd.properties.Name)
+        .text(dd => dd[0].properties.Name)
         .on('click', onFeatureClick);
     });
   },

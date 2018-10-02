@@ -110,12 +110,14 @@ class Sidebar {
         return false;
       }
 
-      if (Object.prototype.hasOwnProperty.call(d, 'dataLayer')) {
-        // comparison for selected entire layer
+      if (Object.prototype.hasOwnProperty.call(d, 'dataLayer') &&
+        Object.prototype.hasOwnProperty.call(highlightedFeature, 'dataLayer')) {
         return d.dataLayer === highlightedFeature.dataLayer;
+      } else if (Array.isArray(highlightedFeature) && Array.isArray(d)) {
+        return d[0].id === highlightedFeature[0].id;
       }
-      // comparison for selected feature
-      return d.id === highlightedFeature.id;
+      // if types are not the same, is not highlighted feature
+      return false;
     };
 
     sidebarContentContainer

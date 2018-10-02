@@ -201,7 +201,6 @@ const getSidebarMethods = (privateProps) => {
         setSwatchStyles,
       } = privateMethods;
 
-      // console.log('map layerStyles', layerStyles);
 
       layers.each(function addFeature(d) {
         // console.log('layer', d);

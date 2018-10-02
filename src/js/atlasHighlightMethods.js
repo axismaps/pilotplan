@@ -41,11 +41,24 @@ const atlasHighlightMethods = {
     if (highlightedFeature === null) return;
     let featureJSON;
     // JUST CONVERT TO JSON EARLIER INTSEAD
-    if ('toJSON' in highlightedFeature) {
-      featureJSON = highlightedFeature.toJSON();
+    // if ('toJSON' in highlightedFeature) {
+    //   console.log('convert to JSON');
+    //   featureJSON = highlightedFeature.toJSON();
+    // }
+    if (Array.isArray(highlightedFeature)) {
+      featureJSON = highlightedFeature.reduce((accumulator, feature) => {
+        /* eslint-disable no-param-reassign */
+        accumulator.features.push(feature.toJSON());
+        /* eslint-enable no-param-reassign */
+        return accumulator;
+      }, {
+        type: 'FeatureCollection',
+        features: [],
+      });
     } else if (highlightedFeature.type === 'Feature') {
       featureJSON = highlightedFeature;
     } else {
+      // gets all features in layer
       featureJSON = {
         type: 'FeatureCollection',
         features: mbMap.querySourceFeatures('composite', {
@@ -60,8 +73,6 @@ const atlasHighlightMethods = {
         }),
       };
     }
-
-    // console.log('feature', featureJSON);
 
     const bbox = getBBox(featureJSON);
     // console.log('bbox', bbox);
