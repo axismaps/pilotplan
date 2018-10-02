@@ -91,6 +91,7 @@ export const selections = {
   registerOuterContainer: d3.select('.register__outer'),
   registerInnerContainer: d3.select('.register__inner'),
   registerImageContainer: d3.select('.register__image'),
+  registerCancelButton: d3.select('.register__cancel-button'),
 
   lightboxOuterContainer: d3.select('.lightbox__outer'),
   lightboxContentContainer: d3.select('.lightbox__content'),

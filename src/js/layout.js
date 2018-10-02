@@ -86,11 +86,18 @@ const privateMethods = {
       registerOuterContainer,
       toggleRegisterScreen,
       registerInnerContainer,
+      registerCancelButton,
     } = privateProps.get(this);
     registerOuterContainer
       .on('click', () => {
         toggleRegisterScreen(false);
       });
+
+    registerCancelButton
+      .on('click', () => {
+        toggleRegisterScreen(false);
+      });
+
     registerInnerContainer
       .on('click', () => {
         d3.event.stopPropagation();
@@ -147,6 +154,7 @@ class Layout {
       headerInfoButton,
       registerOuterContainer,
       registerInnerContainer,
+      registerCancelButton,
     } = selections;
 
     privateProps.set(this, {
@@ -184,6 +192,7 @@ class Layout {
       headerInfoButton,
       registerOuterContainer,
       registerInnerContainer,
+      registerCancelButton,
       transitionSpeed: 500,
       mouseEventsDisabled: false,
       transitionsDisabled: false,
