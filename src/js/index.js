@@ -155,6 +155,11 @@ const app = {
         if (state.get('view') === 'map') {
           // initialize components on load only if starting on map view
           // otherwise, wait to initialize until toggling map view for first time
+          // this.components.layout
+          //   .config({
+          //     exportLink: this.components.atlas.getMapExportLink(),
+          //   })
+          //   .initExportButton();
           this.initComponents();
           this.listenForResize();
         }
@@ -193,7 +198,7 @@ const app = {
   //   this.listenForResize();
   // },
   initLayout() {
-    const { state, eras } = this.components;
+    const { state, eras, atlas } = this.components;
     this.components.layout = new Layout({
       translations: this.data.translations,
       language: state.get('language'),
@@ -224,6 +229,7 @@ const app = {
       onBackButtonClick: () => {
         state.update({ view: 'intro' });
       },
+      getExportLink: () => atlas.getMapExportLink(),
     });
   },
   initComponents() {

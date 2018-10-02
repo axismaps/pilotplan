@@ -99,14 +99,18 @@ const privateMethods = {
   initSocialMediaButtons() {
     const {
       headerFacebookButton,
-      headerDownloadButton,
       headerTwitterButton,
+      headerDownloadButton,
+      getExportLink,
       headerInfoButton,
     } = privateProps.get(this);
-    // $('.twitter').attr('href', $('.twitter')
-    // .attr('data-href') + 'text=imagineRio' + '&url=' + encodeURIComponent(window.location.href));
-    // $('.fb-share-btn').attr('href', $('.fb-share-btn')
-    // .attr('data-href') + '&u=' + encodeURIComponent(window.location.href));
+
+    headerDownloadButton
+      .on('click', function exportMap() {
+        const link = getExportLink();
+        d3.select(this).attr('href', link);
+      });
+
     headerTwitterButton
       .attr(
         'href',
@@ -332,6 +336,13 @@ class Layout {
     registerOuterContainer
       .classed('register__outer--on', registerOpen);
   }
+  // initExportButton() {
+  //   const {
+  //     headerDownloadButton,
+  //     exportLink,
+  //   } = privateProps.get(this);
+
+  // }
 }
 
 export default Layout;

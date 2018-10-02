@@ -189,7 +189,7 @@ class Atlas {
       mbMap,
       initialLocation,
     } = privateProps.get(this);
-
+    console.log('loaded');
     onLoad();
     addControlsToMap.call(this);
     setClickSearch.call(this);
@@ -287,6 +287,10 @@ class Atlas {
       raster: rasterResults,
       nonRaster: nonRasterResults,
     };
+  }
+  getMapExportLink() {
+    const { mbMap } = privateProps.get(this);
+    return mbMap.getCanvas().toDataURL('image/png');
   }
 }
 

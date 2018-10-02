@@ -73,7 +73,7 @@ const atlasMethods = {
       logoPosition: 'bottom-right',
       container: 'map',
       style,
-
+      preserveDrawingBuffer: true,
     })
       // .on('mousedown', () => {
       //   d3.select('.mapboxgl-canvas')
