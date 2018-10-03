@@ -65,10 +65,12 @@ const privateMethods = {
     });
   },
   updateYear() {
+    const props = privateProps.get(this);
     const {
       year,
       mbMap,
-    } = privateProps.get(this);
+      aerialOverlayOn,
+    } = props;
 
     const {
       getCurrentStyleFromMap,
@@ -80,6 +82,15 @@ const privateMethods = {
     });
 
     mbMap.setStyle(styleCopy);
+
+    const isCurrentYear = year === new Date().getFullYear();
+
+    if (isCurrentYear && !aerialOverlayOn) {
+      props.aerialOverlayOn = true;
+      console.log('current year');
+    } else if (!isCurrentYear && aerialOverlayOn) {
+      props.aerialOverlayOn = false;
+    }
   },
   addRaster() {
     const {
@@ -171,6 +182,7 @@ class Atlas {
       dataProbe: new DataProbe({
         container: outerContainer,
       }),
+      aerialOverlayOn: false,
     });
 
     this.config(config);
