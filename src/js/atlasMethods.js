@@ -70,6 +70,7 @@ const atlasMethods = {
 
     const mbMap = new mapboxgl.Map({
       minZoom: 9,
+      maxZoom: 17,
       logoPosition: 'bottom-right',
       container: 'map',
       style,
