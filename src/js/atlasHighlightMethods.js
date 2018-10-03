@@ -128,6 +128,8 @@ const atlasHighlightMethods = {
 
     const isPolygon = feature => feature.geometry.type === 'Polygon' || feature.geometry.type === 'MultiPolygon';
 
+    // return if no features are returned
+    if (featureJSON.features.length === 0) return;
 
     if (featureJSON.type === 'FeatureCollection') {
       if (isPolygon(featureJSON.features[0])) {
