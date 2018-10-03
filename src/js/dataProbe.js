@@ -23,6 +23,7 @@ class DataProbe {
       pos,
       container,
       html,
+      leader = false,
     } = props;
 
     const posStyle = Object.keys(pos)

@@ -83,7 +83,11 @@ const allRasterMethods = {
           onAllRasterCloseClick();
         })
         .on('mouseover', function drawProbe(dd) {
-          const config = getProbeConfig.call(this, dd);
+          // const config = getProbeConfig.call(this, dd);
+          const config = getProbeConfig({
+            selection: d3.select(this),
+            data: dd,
+          });
           dataProbe
             .config(config)
             .draw();

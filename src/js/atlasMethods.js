@@ -103,14 +103,23 @@ const atlasMethods = {
         coneFeature = viewshedsGeo.features.find(cone =>
           cone.properties.SS_ID === d.features[0].properties.SS_ID);
         const offset = 15;
-        const probeConfig = getProbeConfig(
-          coneFeature.properties, {
+        // const probeConfig = getProbeConfig(
+        //   coneFeature.properties, {
+        //     left: d.point.x + offset,
+        //     bottom: (window.innerHeight - d.point.y) + offset,
+        //     width: 200,
+        //   },
+        //   'Click for details',
+        // );
+        const probeConfig = getProbeConfig({
+          data: coneFeature.properties,
+          position: {
             left: d.point.x + offset,
             bottom: (window.innerHeight - d.point.y) + offset,
             width: 200,
           },
-          'Click for details',
-        );
+          clickText: 'Click for details',
+        });
 
         dataProbe
           .config(probeConfig)

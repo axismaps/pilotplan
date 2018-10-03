@@ -1,10 +1,15 @@
-const getProbeConfig = function getProbeConfig(d, position, clicktext) {
-  const image = d3.select(this);
+const getProbeConfig = function getProbeConfig({
+  data,
+  position,
+  clickText,
+  selection,
+}) {
+  // const selection = d3.select(this);
 
 
   let html = [
-    d.Title !== '' ? d.Title : d.Creator,
-    d.FirstYear === d.LastYear ? d.FirstYear : `${d.FirstYear} - ${d.LastYear}`,
+    data.Title !== '' ? data.Title : data.Creator,
+    data.FirstYear === data.LastYear ? data.FirstYear : `${data.FirstYear} - ${data.LastYear}`,
   ].reduce((accumulator, value) => {
     if (value !== '' && value !== undefined) {
       const row = `
@@ -15,11 +20,11 @@ const getProbeConfig = function getProbeConfig(d, position, clicktext) {
     return accumulator;
   }, '');
 
-  const text = clicktext !== undefined ? clicktext : 'Click to view on map';
+  const text = clickText !== undefined ? clickText : 'Click to view on map';
 
   html += `<div class="data-probe__row data-probe__click-row">${text}</div>`;
   const getPos = () => {
-    const imagePos = image.node().getBoundingClientRect();
+    const imagePos = selection.node().getBoundingClientRect();
 
     const imageLeft = imagePos.left;
     const imageWidth = imagePos.width;
