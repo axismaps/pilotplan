@@ -16,22 +16,24 @@ const getAtlasUpdateMethods = ({
       const { layers } = mbMap.getStyle();
 
 
-      layers.forEach((layer) => {
-        const visible = mbMap.getLayoutProperty(layer.id, 'visibility') === 'visible';
-        // console.log('layer', layer);
+      layers
+        .filter(layer => layer.id !== 'mapbox-satellite')
+        .forEach((layer) => {
+          const visible = mbMap.getLayoutProperty(layer.id, 'visibility') === 'visible';
+          // console.log('layer', layer);
 
-        const currentLayer = currentLayers
-          .find(d => d.sourceLayer === layer['source-layer']);
+          const currentLayer = currentLayers
+            .find(d => d.sourceLayer === layer['source-layer']);
 
-        const toggled = currentLayer === undefined ? true : currentLayer.status;
+          const toggled = currentLayer === undefined ? true : currentLayer.status;
 
 
-        if (visible && !toggled) {
-          mbMap.setLayoutProperty(layer.id, 'visibility', 'none');
-        } else if (!visible && toggled) {
-          mbMap.setLayoutProperty(layer.id, 'visibility', 'visible');
-        }
-      });
+          if (visible && !toggled) {
+            mbMap.setLayoutProperty(layer.id, 'visibility', 'none');
+          } else if (!visible && toggled) {
+            mbMap.setLayoutProperty(layer.id, 'visibility', 'visible');
+          }
+        });
     },
     updateAreaSearch() {
       const {

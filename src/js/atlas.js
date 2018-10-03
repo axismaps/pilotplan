@@ -87,9 +87,10 @@ const privateMethods = {
 
     if (isCurrentYear && !aerialOverlayOn) {
       props.aerialOverlayOn = true;
-      console.log('current year');
+      mbMap.setLayoutProperty('mapbox-satellite', 'visibility', 'visible');
     } else if (!isCurrentYear && aerialOverlayOn) {
       props.aerialOverlayOn = false;
+      mbMap.setLayoutProperty('mapbox-satellite', 'visibility', 'none');
     }
   },
   addRaster() {
