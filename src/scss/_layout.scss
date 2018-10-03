@@ -172,6 +172,13 @@ body {
   // transition: width 500ms;
 }
 
+.sidebar__zoom {
+  position: absolute;
+  left: 0px;
+  top: $search-input-height;
+  width: $sidebar-width;
+}
+
 .sidebar__toggle-button {
   position: absolute;
   // $probe-buttons-top
@@ -259,12 +266,12 @@ body {
 
 .outer-container.sidebar-open {
   .map-outer {
-    // left: $legend-width;
+    // left: $sidebar-width;
     // width: $map-width-with-sidebar;
   }
 
   .sidebar__toggle-button {
-    left: $legend-width;
+    left: $sidebar-width;
   }
 
   .sidebar__toggle-icon-closed {
@@ -276,20 +283,20 @@ body {
   }
 
   .sidebar {
-    width: $legend-width;
+    width: $sidebar-width;
   }
 
   .footer {
-    left: $legend-width;
+    left: $sidebar-width;
     width: $map-width-with-sidebar;
   }
 
   .footer__toggle-button {
-    left: $legend-width;
+    left: $sidebar-width;
   }
 
   .mapboxgl-ctrl-bottom-left {
-    left: $legend-width;
+    left: $sidebar-width;
   }
 }
 

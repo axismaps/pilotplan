@@ -200,6 +200,7 @@ class Layout {
       hintProbeOn: true,
       rotated: false,
       registerOpen: false,
+      zoomedOut: false,
     });
     const {
       initAreaButton,
@@ -232,7 +233,7 @@ class Layout {
     this.updateOverlay();
     // this.updateView();
     this.updateRasterProbe();
-    this.updateRotationButton();
+    this.updateLocation();
     this.updateRegisterScreen();
 
     // initMenuTransitions.call(this);
@@ -267,12 +268,16 @@ class Layout {
 
     outerContainer.classed('sidebar-open', sidebarOpen);
   }
-  updateRotationButton() {
+  updateLocation() {
     const {
       outerContainer,
+      sidebarContainer,
+      zoomedOut,
       rotated,
     } = privateProps.get(this);
+
     outerContainer.classed('rotated', rotated);
+    sidebarContainer.classed('sidebar--zoom-hint', zoomedOut);
   }
   removeSidebarToggleLabel() {
     const props = privateProps.get(this);

@@ -200,6 +200,7 @@ const app = {
   initLayout() {
     const { state, eras, atlas } = this.components;
     this.components.layout = new Layout({
+      zoomedOut: state.get('currentLocation').zoom < 11,
       translations: this.data.translations,
       language: state.get('language'),
       currentEra: eras.getCurrentEra(),
@@ -384,8 +385,6 @@ const app = {
         } else {
           newFeature = feature;
         }
-
-        console.log('new feature', newFeature);
 
         state.update({ highlightedFeature: newFeature });
       },

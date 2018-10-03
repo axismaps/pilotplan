@@ -9,7 +9,7 @@ $footer-image-height: 130px;
 
 $header-height: 70px;
 
-$legend-width: 320px;
+$sidebar-width: 320px;
 
 $lightbox-background: rgba(102, 102, 102, 0.9);
 $lightbox-width: 1111px;
@@ -62,7 +62,7 @@ $map-height-with-footer: calc(100% - #{$header-height + $timeline-height + $foot
 
 $map-height-without-footer: calc(100% - #{$header-height + $timeline-height});
 
-$map-width-with-sidebar: calc(100% - #{$legend-width});
+$map-width-with-sidebar: calc(100% - #{$sidebar-width});
 $map-width-without-sidebar: 100%;
 
 // $mobile-width: 700px;
@@ -89,7 +89,7 @@ $map-width-without-sidebar: 100%;
 
 // $legend-toggle-mobile-top: 110px;
 // $legend-toggle-mobile-size: 15px;
-// $legend-width: 320px;
+// $sidebar-width: 320px;
 
 // $standard-icon-size: 16px;
 // $probe-button-height: 36px;

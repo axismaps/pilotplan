@@ -365,8 +365,9 @@ const setStateEvents = ({ components, data }) => {
       layout
         .config({
           rotated: bearing !== -72,
+          zoomedOut: zoom < 11,
         })
-        .updateRotationButton();
+        .updateLocation();
     },
     overlayOpacity() {
       const { overlayOpacity } = this.props();
