@@ -1,38 +1,13 @@
 const fs = require('fs');
 const path = require('path');
 const _ = require('underscore');
-const stringify = require('csv-stringify');
 
 const config = {};
-const csv = [];
 let loaded = 0;
 let total = 0;
 
 function getProps(json) {
   return json.features.map(f => f.properties);
-}
-
-function getBounds(coordinates) {
-  const coords = [];
-  const raw = _.flatten(coordinates);
-  for (let i = 0; i < raw.length; i += 2) {
-    coords.push([raw[i], raw[i + 1]]);
-  }
-  return {
-    xmin: parseFloat(_.reduce(coords, (m, c) => Math.min(m, c[0]), Infinity).toFixed(4)),
-    xmax: parseFloat(_.reduce(coords, (m, c) => Math.max(m, c[0]), -Infinity).toFixed(4)),
-    ymin: parseFloat(_.reduce(coords, (m, c) => Math.min(m, c[1]), Infinity).toFixed(4)),
-    ymax: parseFloat(_.reduce(coords, (m, c) => Math.max(m, c[1]), -Infinity).toFixed(4)),
-  };
-}
-
-function parseCSV(json) {
-  json.features.forEach((f) => {
-    if (f.properties.Name && f.geometry) {
-      const row = _.extend(getBounds(f.geometry.coordinates), _.pick(f.properties, ['Name', 'FirstYear', 'LastYear', 'SubType']));
-      csv.push(row);
-    }
-  });
 }
 
 function getStyleInfo() {
@@ -59,14 +34,6 @@ function getStyleInfo() {
     });
     fs.writeFile(path.join(__dirname, '../src/data/config.json'), JSON.stringify(config, null, 2), () => {
       console.log('FILE WRITTEN');
-    });
-  });
-}
-
-function writeCSV() {
-  stringify(csv, (err, output) => {
-    fs.writeFile(path.join(__dirname, '../src/data/features.csv'), output, () => {
-      console.log('FEATURES WRITTEN');
     });
   });
 }
@@ -105,13 +72,9 @@ function writeStatic(f) {
       }
     });
 
-    parseCSV(json);
     config[name] = layer;
     loaded += 1;
-    if (loaded === total) {
-      getStyleInfo();
-      writeCSV();
-    }
+    if (loaded === total) getStyleInfo();
   });
 }
 

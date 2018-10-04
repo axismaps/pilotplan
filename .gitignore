@@ -7,4 +7,5 @@ styles.css
 old
 .env
 scratch
+data/tiles/*
 data/geotiff/converted/*
