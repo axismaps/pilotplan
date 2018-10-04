@@ -39,9 +39,5 @@
 $hint-triangle-height: 8px;
 
 .hint-probe__triangle {
-  width: 0px;
-  height: 0px;
-  border-left: $hint-triangle-height solid $main-light-gray;
-  border-top: $hint-triangle-height solid transparent;
-  border-bottom: $hint-triangle-height solid transparent;
+  @include triangle('right', $hint-triangle-height, $hint-triangle-height, $main-light-gray);
 }

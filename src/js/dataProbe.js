@@ -23,7 +23,7 @@ class DataProbe {
       pos,
       container,
       html,
-      leader = false,
+      leader,
     } = props;
 
     const posStyle = Object.keys(pos)
@@ -47,6 +47,14 @@ class DataProbe {
       .append('div')
       .attr('class', 'data-probe__inner')
       .html(html);
+
+    if (leader) {
+      props.probe
+        .append('div')
+        .attr('class', 'data-probe__down-leader-container')
+        .append('div')
+        .attr('class', 'data-probe__down-leader');
+    }
   }
   remove() {
     const {

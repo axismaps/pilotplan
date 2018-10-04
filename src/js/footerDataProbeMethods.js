@@ -3,6 +3,7 @@ const getProbeConfig = function getProbeConfig({
   position,
   clickText,
   selection,
+  leader = false,
 }) {
   // const selection = d3.select(this);
 
@@ -32,7 +33,7 @@ const getProbeConfig = function getProbeConfig({
 
     return {
       left: imageLeft + ((imageWidth / 2) - (probeWidth / 2)),
-      bottom: (window.innerHeight - imagePos.top) + 15,
+      bottom: (window.innerHeight - imagePos.top) + 10,
       width: probeWidth,
     };
   };
@@ -43,6 +44,7 @@ const getProbeConfig = function getProbeConfig({
   return {
     pos,
     html,
+    leader,
   };
 };
 

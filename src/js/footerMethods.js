@@ -30,6 +30,7 @@ const footerMethods = {
         const config = getProbeConfig({
           data: d,
           selection: d3.select(this),
+          leader: true,
         });
         dataProbe
           .config(config)
