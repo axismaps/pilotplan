@@ -15,7 +15,7 @@
     "devDocument": "documentation serve --watch ./src/js/index.js",
     "test": "node_modules/.bin/jest",
     "raster": "python bin/prep_rasters.py && source .env && node bin/raster.js && rm data/geotiff/converted/*",
-    "static": "node bin/static.js",
+    "static": "node bin/static.js && node bin/extents.js",
     "style": "node bin/styles.js",
     "tiles": "./bin/tiles.sh",
     "views": "node bin/views.js"
@@ -25,6 +25,7 @@
   "dependencies": {
     "@mapbox/mapbox-sdk": "^0.4.0",
     "@turf/bbox": "^6.0.1",
+    "@turf/helpers": "^6.1.4",
     "aws-sdk": "^2.291.0",
     "compression": "^1.7.0",
     "d3": "^5.5.0",
