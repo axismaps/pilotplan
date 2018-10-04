@@ -1,10 +1,7 @@
 import setStateEvents from './stateUpdate';
 import Intro from './intro';
-import Atlas from './atlas';
 import Timeline from './timeline';
 import Layout from './layout';
-import Sidebar from './sidebar';
-import Footer from './footer';
 import RasterProbe from './rasterProbe';
 import getState from './initState';
 import { yearRange } from './config';
@@ -14,6 +11,9 @@ import Eras from './eras';
 import UrlParams from './url';
 import LanguageDropdown from './languageDropdown';
 import EraDropdown from './eraDropdown';
+import initAtlas from './initAtlas';
+import initSidebar from './initSidebar';
+import initFooter from './initFooter';
 
 require('../scss/index.scss');
 
@@ -136,67 +136,7 @@ const app = {
       view: state.get('view'),
     });
   },
-  initAtlas() {
-    const { state } = this.components;
-
-    this.components.atlas = new Atlas({
-      overlayOpacity: state.get('overlayOpacity'),
-      initialLocation: state.get('currentLocation'),
-      viewshedsGeo: this.data.viewshedsGeo,
-      highlightedFeature: state.get('highlightedFeature'),
-      currentLayers: state.get('currentLayers'),
-      currentOverlay: state.get('currentOverlay'),
-      currentView: state.get('currentView'),
-      rasterData: state.getAvailableRasters(this.data),
-      year: state.get('year'),
-      layerNames: this.data.layerNames,
-      // onLoad: this.onAtlasLoad.bind(this),
-      onLoad: () => {
-        if (state.get('view') === 'map') {
-          // initialize components on load only if starting on map view
-          // otherwise, wait to initialize until toggling map view for first time
-          // this.components.layout
-          //   .config({
-          //     exportLink: this.components.atlas.getMapExportLink(),
-          //   })
-          //   .initExportButton();
-          this.initComponents();
-          this.listenForResize();
-        }
-        state.update({ mapLoaded: true });
-      },
-      onClickSearch(features) {
-        state.update({ clickSearch: features });
-      },
-      onAreaSearch(features) {
-        state.update({ areaSearchActive: false, areaSearch: features });
-      },
-      onViewClick(newView) {
-        state.update({
-          currentView: newView,
-          currentRasterProbe: newView,
-        });
-      },
-      onMove(currentLocation) {
-        state.update({
-          currentLocation,
-        });
-        // state.update({
-        // currentBounds: newBounds,
-        // });
-      },
-      translations: this.data.translations,
-      language: state.get('language'),
-    });
-  },
-  // onAtlasLoad() {
-  //   const { state } = this.components;
-  //   if (state.get('view') === 'map') {
-
-  //   }
-  //   this.initComponents();
-  //   this.listenForResize();
-  // },
+  initAtlas,
   initLayout() {
     const { state, eras, atlas } = this.components;
     this.components.layout = new Layout({
@@ -252,38 +192,6 @@ const app = {
     });
 
 
-    const onRasterClick = (rasterData) => {
-      const getId = d => (d === null ? null : d.SS_ID);
-      const currentView = state.get('currentView');
-      const currentOverlay = state.get('currentOverlay');
-      if (rasterData.type === 'overlay') {
-        if (getId(currentOverlay) === getId(rasterData)) {
-          state.update({
-            currentOverlay: null,
-            currentRasterProbe: currentView === null ? null : currentView,
-          });
-        } else {
-          state.update({
-            currentOverlay: rasterData,
-            currentRasterProbe: currentView === null ? rasterData : currentView,
-          });
-        }
-      } else if (rasterData.type === 'view') {
-        if (getId(currentView) === getId(rasterData)) {
-          state.update({
-            currentView: null,
-            currentRasterProbe: null,
-          });
-        } else {
-          state.update({
-            currentView: rasterData,
-            currentRasterProbe: rasterData,
-          });
-        }
-      }
-    };
-
-
     this.components.rasterProbe = new RasterProbe({
       cachedMetadata: this.cachedMetadata,
       currentView: state.get('currentView'),
@@ -317,79 +225,9 @@ const app = {
       },
     });
 
-    this.components.footer = new Footer({
-      translations: this.data.translations,
-      language: state.get('language'),
-      year: state.get('year'),
-      footerView: state.getAutoFooterView(this.data),
-      rasterData: state.getAvailableRasters(this.data),
-      cachedMetadata: this.cachedMetadata,
-      onCategoryClick(newCategory) {
-        const currentView = state.get('footerView');
-        if (newCategory === currentView) return;
-        state.update({ footerView: newCategory });
-      },
-      onRasterClick,
-      onAllRasterCloseClick() {
-        state.update({ allRasterOpen: false });
-      },
-      onAllRasterClick() {
-        state.update({ allRasterOpen: true });
-      },
-      onToggleClick(toggle) {
-        state.update({ footerOpen: toggle === undefined ? !state.get('footerOpen') : toggle });
-      },
-    });
+    this.components.footer = initFooter.call(this);
 
-    this.components.sidebar = new Sidebar({
-      highlightedFeature: state.get('highlightedFeature'),
-      sidebarOpen: state.get('sidebarOpen'),
-      layerStyles: this.components.atlas.getStyle().layers,
-      availableLayers: state.getAvailableLayers(this.data),
-      viewLayersOn: state.getAvailableRasters(this.data).get('views').length > 0,
-      cachedMetadata: this.cachedMetadata,
-      translations: this.data.translations,
-      language: state.get('language'),
-      view: state.get('sidebarView'),
-      onSearchReturn() {
-        state.update({ highlightedFeature: null });
-      },
-      onLayerClick(layer) {
-        const currentLayers = state.get('currentLayers');
-        const layerIndex = currentLayers.map(d => d.sourceLayer)
-          .indexOf(layer.sourceLayer);
-        const newLayers = [
-          ...currentLayers.slice(0, layerIndex),
-          { sourceLayer: layer.sourceLayer, status: !currentLayers[layerIndex].status },
-          ...currentLayers.slice(layerIndex + 1),
-        ];
-        state.update({ currentLayers: newLayers });
-      },
-      onRasterClick,
-      onTextInput(val) {
-        state.update({ textSearch: val });
-      },
-      onFeatureClick(feature) {
-        const oldFeature = state.get('highlightedFeature');
-        // test if 'feature' is entire layer (has 'dataLayer') or array of features
-        let newFeature;
-        // if no old feature
-        if (oldFeature === null) {
-          newFeature = feature;
-          // if new feature is entire layer
-        } else if (Object.prototype.hasOwnProperty.call(feature, 'dataLayer')) {
-          newFeature = oldFeature.dataLayer === feature.dataLayer ? null : feature;
-          // if new feature is array of features (not entire layer)
-          // and old layer is also array of features
-        } else if (Array.isArray(oldFeature)) {
-          newFeature = oldFeature[0].id === feature[0].id ? null : feature;
-        } else {
-          newFeature = feature;
-        }
-
-        state.update({ highlightedFeature: newFeature });
-      },
-    });
+    this.components.sidebar = initSidebar.call(this);
 
 
     state.update({ componentsInitialized: true });

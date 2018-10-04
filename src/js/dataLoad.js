@@ -7,6 +7,7 @@ const loadData = (callback) => {
     d3.json('data/AerialExtents.json'),
     d3.json('data/MapExtents.json'),
     d3.json('data/PlanExtents.json'),
+    d3.json('data/extents.json'),
     d3.csv('data/translations.csv'),
   ]).then((rawData) => {
     const data = cleanData(rawData);

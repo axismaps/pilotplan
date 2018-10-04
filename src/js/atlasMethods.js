@@ -100,7 +100,7 @@ const atlasMethods = {
         initApp();
       })
       .on('sourcedata', () => {
-        console.log('stuff loaded');
+        // console.log('data loaded');
       })
       .on('mouseover', 'viewconespoint', (d) => {
         coneFeature = viewshedsGeo.features.find(cone =>

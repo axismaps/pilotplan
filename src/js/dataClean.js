@@ -7,6 +7,7 @@ const cleanData = (rawData) => {
     rawAerials,
     rawMaps,
     rawPlans,
+    rawExtents,
     rawTranslations,
   ] = rawData;
 
@@ -76,6 +77,8 @@ const cleanData = (rawData) => {
     translations,
     eras: erasWithTranslations,
   };
+
+  console.log('extents', rawExtents);
 
   return data;
 };

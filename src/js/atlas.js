@@ -184,6 +184,7 @@ class Atlas {
         container: outerContainer,
       }),
       aerialOverlayOn: false,
+      highlightLoading: false,
     });
 
     this.config(config);

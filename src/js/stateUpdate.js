@@ -2,10 +2,9 @@ import getUpdateYear from './stateUpdateYear';
 import getUpdateView from './stateUpdateView';
 import getUpdateTextSearch from './stateUpdateTextSearch';
 import getUpdateLanguage from './stateUpdateLanguage';
-import {
-  formatNonRasterResults,
-  formatRasterResults,
-} from './formatSearchResults';
+import getStateUpdateCurrentLocation from './stateUpdateCurrentLocation';
+import getUpdateClickSearch from './stateUpdateClickSearch';
+import getAreaSearch from './stateUpdateAreaSearch';
 
 const setStateEvents = ({ components, data }) => {
   const { state } = components;
@@ -14,6 +13,9 @@ const setStateEvents = ({ components, data }) => {
     year: getUpdateYear({ data, components }),
     view: getUpdateView({ components }),
     language: getUpdateLanguage({ data, components }),
+    currentLocation: getStateUpdateCurrentLocation({ components }),
+    textSearch: getUpdateTextSearch({ components }),
+    clickSearch: getUpdateClickSearch({ components }),
     transitionsDisabled() {
       const { transitionsDisabled } = this.props();
       const { layout } = components;
@@ -47,13 +49,7 @@ const setStateEvents = ({ components, data }) => {
           sidebarOpen,
         })
         .updateSidebar();
-      // if (transitionsDisabled) {
-      //   atlas.resizeMap();
-      // } else {
-      //   setTimeout(() => {
-      //     atlas.resizeMap();
-      //   }, 500);
-      // }
+
       if (sidebarOpen) {
         layout.removeSidebarToggleLabel();
       }
@@ -73,14 +69,6 @@ const setStateEvents = ({ components, data }) => {
           footerOpen,
         })
         .updateFooter();
-
-      // if (transitionsDisabled) {
-      //   atlas.resizeMap();
-      // } else {
-      //   setTimeout(() => {
-      //     atlas.resizeMap();
-      //   }, 500);
-      // }
     },
     currentLayers() {
       const {
@@ -102,76 +90,9 @@ const setStateEvents = ({ components, data }) => {
         })
         .updateCurrentLayers();
     },
-    textSearch: getUpdateTextSearch({ components }),
-    clickSearch() {
-      const {
-        clickSearch,
-      } = this.props();
-      const {
-        sidebar,
-        layout,
-      } = components;
 
-      const { raster, nonRaster } = clickSearch;
 
-      const results = {
-        raster: formatRasterResults(raster),
-        nonRaster: formatNonRasterResults(nonRaster),
-      };
-
-      sidebar
-        .config({
-          results,
-          view: 'clickSearch',
-        })
-        .updateResults();
-
-      layout.removeHintProbe();
-      // instead of this, check first if only one result
-      // if only one result, make this highlightedFeature
-      const layersToClear = this.getLayersToClear([
-        'highlightedFeature',
-      ]);
-      if (clickSearch !== null && !this.get('sidebarOpen')) {
-        this.update({ sidebarOpen: true });
-      }
-
-      state.update(layersToClear);
-    },
-    areaSearch() {
-      const {
-        areaSearch,
-      } = this.props();
-      const {
-        sidebar,
-        layout,
-      } = components;
-
-      const { raster, nonRaster } = areaSearch;
-
-      const results = {
-        raster: formatRasterResults(raster),
-        nonRaster: formatNonRasterResults(nonRaster),
-      };
-
-      sidebar
-        .config({
-          results,
-          view: 'clickSearch',
-        })
-        .updateResults();
-
-      layout.removeHintProbe();
-
-      const layersToClear = this.getLayersToClear([
-        'highlightedFeature',
-      ]);
-      state.update(layersToClear);
-
-      if (areaSearch !== null && !this.get('sidebarOpen')) {
-        this.update({ sidebarOpen: true });
-      }
-    },
+    areaSearch: getAreaSearch({ components }),
     areaSearchActive() {
       const {
         areaSearchActive,
@@ -342,33 +263,6 @@ const setStateEvents = ({ components, data }) => {
       const { mapLoaded } = this.props();
       const { views } = components;
       views.config({ mapLoaded });
-    },
-
-    currentLocation() {
-      const { currentLocation } = this.props();
-      const {
-        urlParams,
-        views,
-        layout,
-      } = components;
-      const { center, bearing, zoom } = currentLocation;
-      if (!views.mapViewInitialized()) return;
-      // console.log('zoom', zoom);
-
-      urlParams
-        .config({
-          center: `${center.lat},${center.lng}`,
-          zoom,
-          bearing,
-        })
-        .update();
-
-      layout
-        .config({
-          rotated: bearing !== -72,
-          zoomedOut: zoom < 11,
-        })
-        .updateLocation();
     },
     overlayOpacity() {
       const { overlayOpacity } = this.props();
