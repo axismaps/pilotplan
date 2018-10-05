@@ -2,6 +2,26 @@ import getBBox from '@turf/bbox';
 import { colors } from './config';
 
 const atlasHighlightMethods = {
+  getLayerBounds({
+    year,
+    highlightedFeature,
+    extentsData,
+  }) {
+    console.log('year', year);
+    const extentsForLayer =
+      extentsData[highlightedFeature.sourceLayer][highlightedFeature.dataLayer];
+    const years = Object.keys(extentsForLayer).map(d => parseInt(d, 10));
+    const closestYear = years.reduce((accumulator, d) => {
+      if (d <= year && d > accumulator) {
+        return d;
+      }
+      return accumulator;
+    });
+    const featureExtent = extentsForLayer[String(closestYear)];
+    const sw = new mapboxgl.LngLat(featureExtent[0], featureExtent[1]);
+    const ne = new mapboxgl.LngLat(featureExtent[2], featureExtent[3]);
+    return new mapboxgl.LngLatBounds(sw, ne);
+  },
   clearHighlightedFeature(mbMap) {
     const polyLayers = [
       'highlighted-feature-fill',
@@ -31,20 +51,20 @@ const atlasHighlightMethods = {
       }
     }
   },
+  renderHighlightedFeature() {
+
+  },
   drawHighlightedFeature({
     highlightedFeature,
     mbMap,
     year,
+    geoJSON,
   }) {
     const existingHighlighted = mbMap.getSource('highlighted');
 
     if (highlightedFeature === null) return;
     let featureJSON;
     // JUST CONVERT TO JSON EARLIER INTSEAD
-    // if ('toJSON' in highlightedFeature) {
-    //   console.log('convert to JSON');
-    //   featureJSON = highlightedFeature.toJSON();
-    // }
     if (Array.isArray(highlightedFeature)) {
       featureJSON = highlightedFeature.reduce((accumulator, feature) => {
         /* eslint-disable no-param-reassign */
@@ -55,10 +75,11 @@ const atlasHighlightMethods = {
         type: 'FeatureCollection',
         features: [],
       });
-    } else if (highlightedFeature.type === 'Feature') {
-      featureJSON = highlightedFeature;
+    } else if (geoJSON !== undefined) {
+      featureJSON = geoJSON;
     } else {
       // gets all features in layer
+      console.log('query source');
       featureJSON = {
         type: 'FeatureCollection',
         features: mbMap.querySourceFeatures('composite', {
@@ -75,7 +96,6 @@ const atlasHighlightMethods = {
     }
 
     const bbox = getBBox(featureJSON);
-    // console.log('bbox', bbox);
 
     if (existingHighlighted === undefined) {
       mbMap.addSource('highlighted', {
@@ -145,9 +165,9 @@ const atlasHighlightMethods = {
       mbMap.addLayer(outlineLayerTop);
     }
 
-    if (bbox.includes(Infinity)) return;
+    // if (bbox.includes(Infinity)) return;
 
-    mbMap.fitBounds(bbox, { padding: 100 });
+    // mbMap.fitBounds(bbox, { padding: 100 });
   },
 };
 

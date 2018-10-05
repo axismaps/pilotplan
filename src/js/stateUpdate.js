@@ -119,7 +119,10 @@ const setStateEvents = ({ components, data }) => {
     highlightedFeature() {
       const {
         highlightedFeature,
+        // year,
       } = this.props();
+      // console.log('extents', extents);
+      // console.log('highlightfeature', highlightedFeature);
 
       const {
         atlas,
@@ -131,6 +134,8 @@ const setStateEvents = ({ components, data }) => {
           highlightedFeature,
         })
         .updateHighlightedFeature();
+
+      // if we're looking at layer, zoom to that layer extent from extents.json
 
       sidebar
         .config({

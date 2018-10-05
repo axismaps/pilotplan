@@ -58,6 +58,7 @@ const atlasMethods = {
     onViewClick,
     onMove,
     dataProbe,
+    onSourceData,
   }) {
     const {
       addConeToMap,
@@ -99,9 +100,7 @@ const atlasMethods = {
         // console.log('get loaded style', mbMap.getStyle().layers.map(d => mbMap.getLayer(d.id)));
         initApp();
       })
-      .on('sourcedata', () => {
-        // console.log('data loaded');
-      })
+      .on('sourcedata', onSourceData)
       .on('mouseover', 'viewconespoint', (d) => {
         coneFeature = viewshedsGeo.features.find(cone =>
           cone.properties.SS_ID === d.features[0].properties.SS_ID);

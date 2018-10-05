@@ -76,9 +76,8 @@ const cleanData = (rawData) => {
     rasters,
     translations,
     eras: erasWithTranslations,
+    extents: rawExtents,
   };
-
-  console.log('extents', rawExtents);
 
   return data;
 };

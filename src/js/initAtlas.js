@@ -4,6 +4,7 @@ const initAtlas = function initAtlas() {
   const { state } = this.components;
 
   this.components.atlas = new Atlas({
+    extentsData: this.data.extents,
     overlayOpacity: state.get('overlayOpacity'),
     initialLocation: state.get('currentLocation'),
     viewshedsGeo: this.data.viewshedsGeo,

@@ -10,6 +10,7 @@ import generalMethods from './atlasMethods';
 import getPublicUpdateMethods from './atlasPublicUpdateMethods';
 import initControls from './atlasControlMethods';
 import DataProbe from './dataProbe';
+import highlightMethods from './atlasHighlightMethods';
 
 const privateProps = new WeakMap();
 
@@ -24,6 +25,7 @@ const privateMethods = {
       onViewClick,
       onMove,
       dataProbe,
+      onSourceData,
     } = props;
 
     const {
@@ -38,6 +40,7 @@ const privateMethods = {
           onMove,
           initApp,
           viewshedsGeo,
+          onSourceData,
           setCancelClickSearch: () => {
             props.cancelClickSearch = true;
           },
@@ -156,6 +159,35 @@ const privateMethods = {
 
     canvas.addEventListener('mousedown', onMouseDown, true);
   },
+  setHighlightLoading() {
+    const props = privateProps.get(this);
+    const {
+      drawHighlightedFeature,
+    } = highlightMethods;
+    props.onSourceData = () => {
+      const {
+        highlightLoading,
+        highlightLoadingTimer,
+        highlightedFeature,
+        mbMap,
+        year,
+      } = props;
+      if (!highlightLoading) return;
+
+      if (highlightLoadingTimer !== null) {
+        clearTimeout(highlightLoadingTimer);
+      }
+      const timer = setTimeout(() => {
+        drawHighlightedFeature({
+          highlightedFeature,
+          mbMap,
+          year,
+        });
+        props.highlightLoading = false;
+      }, 500);
+      props.highlightLoadingTimer = timer;
+    };
+  },
 };
 
 class Atlas {
@@ -165,6 +197,7 @@ class Atlas {
       outerContainer,
     } = selections;
     const {
+      setHighlightLoading,
       createMBMap,
     } = privateMethods;
 
@@ -185,10 +218,11 @@ class Atlas {
       }),
       aerialOverlayOn: false,
       highlightLoading: false,
+      highlightLoadingTimer: null,
     });
 
     this.config(config);
-
+    setHighlightLoading.call(this);
     createMBMap.call(this, { initApp: this.init.bind(this) });
   }
   init() {
@@ -197,6 +231,7 @@ class Atlas {
       setClickSearch,
       setAreaSearch,
       addRaster,
+      // setHighlightLoading,
     } = privateMethods;
     const {
       onLoad,
@@ -205,6 +240,7 @@ class Atlas {
     } = privateProps.get(this);
     console.log('loaded');
     onLoad();
+    // setHighlightLoading.call(this);
     addControlsToMap.call(this);
     setClickSearch.call(this);
     setAreaSearch.call(this);

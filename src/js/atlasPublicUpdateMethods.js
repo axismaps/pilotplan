@@ -73,20 +73,41 @@ const getAtlasUpdateMethods = ({
       const {
         clearHighlightedFeature,
         drawHighlightedFeature,
+        getLayerBounds,
       } = highlightMethods;
+
+      const props = privateProps.get(this);
 
       const {
         mbMap,
         highlightedFeature,
         year,
-      } = privateProps.get(this);
+        extentsData,
+        onSourceData,
+      } = props;
 
       clearHighlightedFeature(mbMap);
-      drawHighlightedFeature({
-        highlightedFeature,
-        mbMap,
-        year,
-      });
+
+      if (highlightedFeature !== null && Object.prototype.hasOwnProperty.call(highlightedFeature, 'sourceLayer')) {
+        // get bounds
+        // set status to highlighting or whatever
+        // zoom to, get data and highlight at end in callback
+        const newBounds = getLayerBounds({
+          year,
+          highlightedFeature,
+          extentsData,
+        });
+        props.highlightLoading = true;
+        onSourceData();
+        mbMap.fitBounds(newBounds);
+      } else {
+        drawHighlightedFeature({
+          highlightedFeature,
+          mbMap,
+          year,
+          // extentsData,
+        });
+      }
     },
     updateOverlayOpacity() {
       const props = privateProps.get(this);
