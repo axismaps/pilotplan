@@ -1,4 +1,5 @@
 import getBBox from '@turf/bbox';
+import union from '@turf/union';
 import clickSearchMethods from './atlasClickSearchMethods';
 import highlightMethods from './atlasHighlightMethods';
 import generalMethods from './atlasMethods';
@@ -110,7 +111,7 @@ const getAtlasUpdateMethods = ({
 
         props.highlightedFeatureJSON = {
           type: 'FeatureCollection',
-          features: mbMap.querySourceFeatures('composite', {
+          features: [mbMap.querySourceFeatures('composite', {
             sourceLayer: highlightedFeature.sourceLayer,
             layers: [highlightedFeature.style],
             filter: [
@@ -119,18 +120,15 @@ const getAtlasUpdateMethods = ({
               ['>=', 'LastYear', year],
               ['==', '$id', highlightedFeature.id],
             ],
-          }),
+          }).reduce((accumulator, feature) =>
+            union(accumulator, feature))],
         };
-        // console.log('featurejson', props.highlightedFeatureJSON);
+        console.log('featurejson', props.highlightedFeatureJSON);
 
         onFeatureSourceData();
+        props.counter = 0;
         const newBounds = getBBox(props.highlightedFeatureJSON);
-        mbMap.fitBounds(newBounds, { padding: 100 });
-        // drawHighlightedFeature({
-        //   highlightedFeature,
-        //   mbMap,
-        //   year,
-        // });
+        mbMap.fitBounds(newBounds, { padding: 200 });
       }
     },
     updateOverlayOpacity() {

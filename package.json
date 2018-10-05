@@ -24,8 +24,12 @@
   "license": "ISC",
   "dependencies": {
     "@mapbox/mapbox-sdk": "^0.4.0",
+    "@turf/area": "^6.0.1",
     "@turf/bbox": "^6.0.1",
+    "@turf/dissolve": "^5.1.5",
+    "@turf/flatten": "^5.1.5",
     "@turf/helpers": "^6.1.4",
+    "@turf/union": "^6.0.3",
     "aws-sdk": "^2.291.0",
     "compression": "^1.7.0",
     "d3": "^5.5.0",

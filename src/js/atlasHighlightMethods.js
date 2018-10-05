@@ -67,7 +67,7 @@ const atlasHighlightMethods = {
     let featureJSON;
     const notEntireLayer = !Object.prototype.hasOwnProperty.call(highlightedFeature, 'dataLayer');
     // JUST CONVERT TO JSON EARLIER INTSEAD
-    if (notEntireLayer) {
+    if (notEntireLayer && geoJSON === undefined) {
       // featureJSON = highlightedFeature.reduce((accumulator, feature) => {
       //   /* eslint-disable no-param-reassign */
       //   accumulator.features.push(feature.toJSON());

@@ -1,6 +1,10 @@
 
 // import getSearchMethods from './atlasSearch';
 import getBBox from '@turf/bbox';
+import union from '@turf/union';
+import area from '@turf/area';
+import flatten from '@turf/flatten';
+import dissolve from '@turf/dissolve';
 import { selections } from './config';
 import dataMethods from './atlasDataMethods';
 import rasterMethods from './rasterMethods';
@@ -208,31 +212,63 @@ const privateMethods = {
       props.highlightLoadingTimer = setTimeout(() => {
         // get JSON, get bounds, zoom to bounds and check again
         // at very end, reset count
+        const unmerged = mbMap.querySourceFeatures('composite', {
+          sourceLayer: highlightedFeature.sourceLayer,
+          layers: [highlightedFeature.style],
+          filter: [
+            'all',
+            ['<=', 'FirstYear', year],
+            ['>=', 'LastYear', year],
+            ['==', '$id', highlightedFeature.id],
+          ],
+        });
+        // const mergedFeatures = union.apply(this, unmerged);
+        // const mergedFeatures = union(...unmerged);
+        const mergedFeatures = unmerged.reduce((accumulator, feature) =>
+          union(accumulator, feature));
 
+        // const newJSON = flatten(mergedFeatures);
         const newJSON = {
           type: 'FeatureCollection',
-          features: mbMap.querySourceFeatures('composite', {
-            sourceLayer: highlightedFeature.sourceLayer,
-            layers: [highlightedFeature.style],
-            filter: [
-              'all',
-              ['<=', 'FirstYear', year],
-              ['>=', 'LastYear', year],
-              ['==', '$id', highlightedFeature.id],
-            ],
-          }),
+          features: [mergedFeatures],
         };
-        if (newJSON.features.length === highlightedFeatureJSON.features.length) {
+
+
+        // const newJSON = dissolve(flatten({
+        //   type: 'FeatureCollection',
+        //   features: mbMap.querySourceFeatures('composite', {
+        //     sourceLayer: highlightedFeature.sourceLayer,
+        //     layers: [highlightedFeature.style],
+        //     filter: [
+        //       'all',
+        //       ['<=', 'FirstYear', year],
+        //       ['>=', 'LastYear', year],
+        //       ['==', '$id', highlightedFeature.id],
+        //     ],
+        //   }),
+        // }));
+        // console.log('new area', area.apply(this, newJSON.features));
+        // console.log(Math.abs(area(newJSON.features[0]) -
+        // area(highlightedFeatureJSON.features[0])));
+        const lastIteration = Math.abs(area(newJSON.features[0]) -
+        area(highlightedFeatureJSON.features[0])) < 5 ||
+          area(newJSON.features[0]) <= area(highlightedFeatureJSON.features[0]);
+        if (lastIteration) {
+        // if (props.counter === 5) {
           // done
-          // console.log('done', newJSON.features.length, highlightedFeatureJSON.features.length);
           props.highlightedFeatureJSON = null;
           props.highlightFeatureLoading = false;
+          // props.counter = 0;
+          // console.log(JSON.stringify(newJSON))
         } else {
           props.highlightedFeatureJSON = newJSON;
           props.onFeatureSourceData();
+          props.counter += 1;
         }
+
+        if (lastIteration && props.counter !== 0) return;
         const newBounds = getBBox(newJSON);
-        mbMap.fitBounds(newBounds, { padding: 100 });
+        mbMap.fitBounds(newBounds, { padding: 200 });
         clearHighlightedFeature(mbMap);
         drawHighlightedFeature({
           highlightedFeature,
