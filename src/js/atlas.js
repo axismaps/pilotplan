@@ -1,6 +1,6 @@
 
 // import getSearchMethods from './atlasSearch';
-
+import getBBox from '@turf/bbox';
 import { selections } from './config';
 import dataMethods from './atlasDataMethods';
 import rasterMethods from './rasterMethods';
@@ -11,6 +11,7 @@ import getPublicUpdateMethods from './atlasPublicUpdateMethods';
 import initControls from './atlasControlMethods';
 import DataProbe from './dataProbe';
 import highlightMethods from './atlasHighlightMethods';
+
 
 const privateProps = new WeakMap();
 
@@ -25,7 +26,8 @@ const privateMethods = {
       onViewClick,
       onMove,
       dataProbe,
-      onSourceData,
+      onLayerSourceData,
+      onFeatureSourceData,
     } = props;
 
     const {
@@ -40,7 +42,8 @@ const privateMethods = {
           onMove,
           initApp,
           viewshedsGeo,
-          onSourceData,
+          onLayerSourceData,
+          onFeatureSourceData,
           setCancelClickSearch: () => {
             props.cancelClickSearch = true;
           },
@@ -163,29 +166,89 @@ const privateMethods = {
     const props = privateProps.get(this);
     const {
       drawHighlightedFeature,
+      clearHighlightedFeature,
     } = highlightMethods;
-    props.onSourceData = () => {
+    props.onLayerSourceData = () => {
       const {
-        highlightLoading,
+        highlightLayerLoading,
         highlightLoadingTimer,
         highlightedFeature,
         mbMap,
         year,
       } = props;
-      if (!highlightLoading) return;
+      if (!highlightLayerLoading) return;
 
       if (highlightLoadingTimer !== null) {
         clearTimeout(highlightLoadingTimer);
       }
-      const timer = setTimeout(() => {
+      props.highlightLoadingTimer = setTimeout(() => {
         drawHighlightedFeature({
           highlightedFeature,
           mbMap,
           year,
         });
-        props.highlightLoading = false;
+        props.highlightLayerLoading = false;
       }, 500);
-      props.highlightLoadingTimer = timer;
+    };
+
+    props.onFeatureSourceData = () => {
+      const {
+        highlightFeatureLoading,
+        highlightLoadingTimer,
+        highlightedFeature,
+        highlightedFeatureJSON,
+        mbMap,
+        year,
+      } = props;
+      if (!highlightFeatureLoading) return;
+      console.log('test');
+      if (highlightLoadingTimer !== null) {
+        clearTimeout(highlightLoadingTimer);
+      }
+      props.highlightLoadingTimer = setTimeout(() => {
+        // get JSON, get bounds, zoom to bounds and check again
+        // at very end, reset count
+        const newJSON = {
+          type: 'FeatureCollection',
+          features: mbMap.querySourceFeatures('composite', {
+            sourceLayer: highlightedFeature.sourceLayer,
+            layers: [highlightedFeature.style],
+            filter: [
+              'all',
+              ['<=', 'FirstYear', year],
+              ['>=', 'LastYear', year],
+              ['==', '$id', highlightedFeature.id],
+            ],
+          }),
+        };
+        console.log('old', highlightedFeatureJSON);
+        console.log('new', newJSON);
+        if (newJSON.features.length === highlightedFeatureJSON.features.length) {
+          console.log('really done');
+          props.highlightedFeatureJSON = null;
+          props.highlightFeatureLoading = false;
+          clearHighlightedFeature(mbMap);
+          drawHighlightedFeature({
+            highlightedFeature,
+            mbMap,
+            year,
+            geoJSON: newJSON,
+          });
+        } else {
+          props.highlightedFeatureJSON = newJSON;
+          const newBounds = getBBox(newJSON);
+          props.onFeatureSourceData();
+          mbMap.fitBounds(newBounds);
+          console.log('not done yet');
+          clearHighlightedFeature(mbMap);
+          drawHighlightedFeature({
+            highlightedFeature,
+            mbMap,
+            year,
+            geoJSON: newJSON,
+          });
+        }
+      }, 500);
     };
   },
 };
@@ -217,8 +280,11 @@ class Atlas {
         container: outerContainer,
       }),
       aerialOverlayOn: false,
-      highlightLoading: false,
+      highlightLayerLoading: false,
       highlightLoadingTimer: null,
+      highlightFeatureLoading: false,
+      highlightedFeatureJSON: null,
+      previousZoom: null,
     });
 
     this.config(config);

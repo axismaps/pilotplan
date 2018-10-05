@@ -142,12 +142,12 @@ const searchMethods = {
       // get unique data;
       // console.log('features', d);
       const uniqueFeatures = [...new Set(d.features.map(dd => dd.id))]
-        .map(id => d.features.filter(dd => dd.id === id));
+        .map(id => d.features.find(dd => dd.id === id));
       // console.log('ids', uniqueFeatures);
       const rows = d3.select(this)
         .select('.sidebar__result-rows')
         .selectAll('.sidebar__results-row')
-        .data(uniqueFeatures, dd => dd[0].id);
+        .data(uniqueFeatures, dd => dd.id);
 
       rows.exit().remove();
 
@@ -162,7 +162,7 @@ const searchMethods = {
       buttonRows
         .append('div')
         .attr('class', 'sidebar__results-button')
-        .text(dd => dd[0].properties.Name)
+        .text(dd => dd.properties.Name)
         .on('click', onFeatureClick);
     });
   },

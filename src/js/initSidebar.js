@@ -45,10 +45,8 @@ const initSidebar = function initSidebar() {
         newFeature = oldFeature.dataLayer === feature.dataLayer ? null : feature;
         // if new feature is array of features (not entire layer)
         // and old layer is also array of features
-      } else if (Array.isArray(oldFeature)) {
-        newFeature = oldFeature[0].id === feature[0].id ? null : feature;
       } else {
-        newFeature = feature;
+        newFeature = oldFeature.id === feature.id ? null : feature;
       }
 
       state.update({ highlightedFeature: newFeature });

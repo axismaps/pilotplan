@@ -7,7 +7,7 @@ const atlasHighlightMethods = {
     highlightedFeature,
     extentsData,
   }) {
-    console.log('year', year);
+    console.log('get layer bounds', highlightedFeature);
     const extentsForLayer =
       extentsData[highlightedFeature.sourceLayer][highlightedFeature.dataLayer];
     const years = Object.keys(extentsForLayer).map(d => parseInt(d, 10));
@@ -63,24 +63,37 @@ const atlasHighlightMethods = {
     const existingHighlighted = mbMap.getSource('highlighted');
 
     if (highlightedFeature === null) return;
+    console.log('highlighted', highlightedFeature);
     let featureJSON;
-    const notEntireLayer = Array.isArray(highlightedFeature);
+    const notEntireLayer = !Object.prototype.hasOwnProperty.call(highlightedFeature, 'dataLayer');
     // JUST CONVERT TO JSON EARLIER INTSEAD
     if (notEntireLayer) {
-      featureJSON = highlightedFeature.reduce((accumulator, feature) => {
-        /* eslint-disable no-param-reassign */
-        accumulator.features.push(feature.toJSON());
-        /* eslint-enable no-param-reassign */
-        return accumulator;
-      }, {
+      // featureJSON = highlightedFeature.reduce((accumulator, feature) => {
+      //   /* eslint-disable no-param-reassign */
+      //   accumulator.features.push(feature.toJSON());
+      //   /* eslint-enable no-param-reassign */
+      //   return accumulator;
+      // }, {
+      //   type: 'FeatureCollection',
+      //   features: [],
+      // });
+      featureJSON = {
         type: 'FeatureCollection',
-        features: [],
-      });
+        features: mbMap.querySourceFeatures('composite', {
+          sourceLayer: highlightedFeature.sourceLayer,
+          layers: [highlightedFeature.style],
+          filter: [
+            'all',
+            ['<=', 'FirstYear', year],
+            ['>=', 'LastYear', year],
+            ['==', '$id', highlightedFeature.id],
+          ],
+        }),
+      };
     } else if (geoJSON !== undefined) {
       featureJSON = geoJSON;
     } else {
       // gets all features in layer
-      console.log('query source');
       featureJSON = {
         type: 'FeatureCollection',
         features: mbMap.querySourceFeatures('composite', {
@@ -166,9 +179,9 @@ const atlasHighlightMethods = {
       mbMap.addLayer(outlineLayerTop);
     }
 
-    if (bbox.includes(Infinity) || !notEntireLayer) return;
+    // if (bbox.includes(Infinity) || !notEntireLayer) return;
 
-    mbMap.fitBounds(bbox, { padding: 100 });
+    // mbMap.fitBounds(bbox, { padding: 100 });
   },
 };
 

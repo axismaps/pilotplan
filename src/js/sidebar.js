@@ -110,11 +110,12 @@ class Sidebar {
         return false;
       }
 
-      if (Object.prototype.hasOwnProperty.call(d, 'dataLayer') &&
-        Object.prototype.hasOwnProperty.call(highlightedFeature, 'dataLayer')) {
+      const isFullLayer = feature => Object.prototype.hasOwnProperty.call(feature, 'dataLayer');
+
+      if (isFullLayer(d) && isFullLayer(highlightedFeature)) {
         return d.dataLayer === highlightedFeature.dataLayer;
-      } else if (Array.isArray(highlightedFeature) && Array.isArray(d)) {
-        return d[0].id === highlightedFeature[0].id;
+      } else if (!isFullLayer(d) && !isFullLayer(highlightedFeature)) {
+        return d.id === highlightedFeature.id;
       }
       // if types are not the same, is not highlighted feature
       return false;

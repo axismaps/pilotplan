@@ -72,7 +72,7 @@ const getAtlasUpdateMethods = ({
     updateHighlightedFeature() {
       const {
         clearHighlightedFeature,
-        drawHighlightedFeature,
+        // drawHighlightedFeature,
         getLayerBounds,
       } = highlightMethods;
 
@@ -83,12 +83,13 @@ const getAtlasUpdateMethods = ({
         highlightedFeature,
         year,
         extentsData,
-        onSourceData,
+        onLayerSourceData,
+        onFeatureSourceData,
       } = props;
 
       clearHighlightedFeature(mbMap);
 
-      if (highlightedFeature !== null && Object.prototype.hasOwnProperty.call(highlightedFeature, 'sourceLayer')) {
+      if (highlightedFeature !== null && Object.prototype.hasOwnProperty.call(highlightedFeature, 'dataLayer')) {
         // get bounds
         // set status to highlighting or whatever
         // zoom to, get data and highlight at end in callback
@@ -97,16 +98,38 @@ const getAtlasUpdateMethods = ({
           highlightedFeature,
           extentsData,
         });
-        props.highlightLoading = true;
-        onSourceData();
+        props.highlightLayerLoading = true;
+        props.highlightFeatureLoading = false;
+        onLayerSourceData();
         mbMap.fitBounds(newBounds);
       } else {
-        drawHighlightedFeature({
-          highlightedFeature,
-          mbMap,
-          year,
-          // extentsData,
-        });
+        if (highlightedFeature === null) return;
+        props.previousZoom = mbMap.getZoom();
+        props.highlightFeatureLoading = true;
+        props.highlightLayerLoading = false;
+
+        props.highlightedFeatureJSON = {
+          type: 'FeatureCollection',
+          features: mbMap.querySourceFeatures('composite', {
+            sourceLayer: highlightedFeature.sourceLayer,
+            layers: [highlightedFeature.style],
+            filter: [
+              'all',
+              ['<=', 'FirstYear', year],
+              ['>=', 'LastYear', year],
+              ['==', '$id', highlightedFeature.id],
+            ],
+          }),
+        };
+        console.log('featurejson', props.highlightedFeatureJSON);
+        const newBounds = getBBox(props.highlightedFeatureJSON);
+        onFeatureSourceData();
+        mbMap.fitBounds(newBounds);
+        // drawHighlightedFeature({
+        //   highlightedFeature,
+        //   mbMap,
+        //   year,
+        // });
       }
     },
     updateOverlayOpacity() {
