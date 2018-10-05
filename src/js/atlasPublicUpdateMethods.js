@@ -121,10 +121,11 @@ const getAtlasUpdateMethods = ({
             ],
           }),
         };
-        console.log('featurejson', props.highlightedFeatureJSON);
-        const newBounds = getBBox(props.highlightedFeatureJSON);
+        // console.log('featurejson', props.highlightedFeatureJSON);
+
         onFeatureSourceData();
-        mbMap.fitBounds(newBounds);
+        const newBounds = getBBox(props.highlightedFeatureJSON);
+        mbMap.fitBounds(newBounds, { padding: 100 });
         // drawHighlightedFeature({
         //   highlightedFeature,
         //   mbMap,

@@ -201,13 +201,14 @@ const privateMethods = {
         year,
       } = props;
       if (!highlightFeatureLoading) return;
-      console.log('test');
+
       if (highlightLoadingTimer !== null) {
         clearTimeout(highlightLoadingTimer);
       }
       props.highlightLoadingTimer = setTimeout(() => {
         // get JSON, get bounds, zoom to bounds and check again
         // at very end, reset count
+
         const newJSON = {
           type: 'FeatureCollection',
           features: mbMap.querySourceFeatures('composite', {
@@ -221,33 +222,24 @@ const privateMethods = {
             ],
           }),
         };
-        console.log('old', highlightedFeatureJSON);
-        console.log('new', newJSON);
         if (newJSON.features.length === highlightedFeatureJSON.features.length) {
-          console.log('really done');
+          // done
+          // console.log('done', newJSON.features.length, highlightedFeatureJSON.features.length);
           props.highlightedFeatureJSON = null;
           props.highlightFeatureLoading = false;
-          clearHighlightedFeature(mbMap);
-          drawHighlightedFeature({
-            highlightedFeature,
-            mbMap,
-            year,
-            geoJSON: newJSON,
-          });
         } else {
           props.highlightedFeatureJSON = newJSON;
-          const newBounds = getBBox(newJSON);
           props.onFeatureSourceData();
-          mbMap.fitBounds(newBounds);
-          console.log('not done yet');
-          clearHighlightedFeature(mbMap);
-          drawHighlightedFeature({
-            highlightedFeature,
-            mbMap,
-            year,
-            geoJSON: newJSON,
-          });
         }
+        const newBounds = getBBox(newJSON);
+        mbMap.fitBounds(newBounds, { padding: 100 });
+        clearHighlightedFeature(mbMap);
+        drawHighlightedFeature({
+          highlightedFeature,
+          mbMap,
+          year,
+          geoJSON: newJSON,
+        });
       }, 500);
     };
   },

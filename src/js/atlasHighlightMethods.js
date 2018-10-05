@@ -63,7 +63,7 @@ const atlasHighlightMethods = {
     const existingHighlighted = mbMap.getSource('highlighted');
 
     if (highlightedFeature === null) return;
-    console.log('highlighted', highlightedFeature);
+    // console.log('highlighted', highlightedFeature);
     let featureJSON;
     const notEntireLayer = !Object.prototype.hasOwnProperty.call(highlightedFeature, 'dataLayer');
     // JUST CONVERT TO JSON EARLIER INTSEAD
@@ -109,7 +109,7 @@ const atlasHighlightMethods = {
       };
     }
 
-    const bbox = getBBox(featureJSON);
+    // const bbox = getBBox(featureJSON);
 
     if (existingHighlighted === undefined) {
       mbMap.addSource('highlighted', {
