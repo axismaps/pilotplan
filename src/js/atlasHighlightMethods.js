@@ -64,8 +64,9 @@ const atlasHighlightMethods = {
 
     if (highlightedFeature === null) return;
     let featureJSON;
+    const notEntireLayer = Array.isArray(highlightedFeature);
     // JUST CONVERT TO JSON EARLIER INTSEAD
-    if (Array.isArray(highlightedFeature)) {
+    if (notEntireLayer) {
       featureJSON = highlightedFeature.reduce((accumulator, feature) => {
         /* eslint-disable no-param-reassign */
         accumulator.features.push(feature.toJSON());
@@ -165,9 +166,9 @@ const atlasHighlightMethods = {
       mbMap.addLayer(outlineLayerTop);
     }
 
-    // if (bbox.includes(Infinity)) return;
+    if (bbox.includes(Infinity) || !notEntireLayer) return;
 
-    // mbMap.fitBounds(bbox, { padding: 100 });
+    mbMap.fitBounds(bbox, { padding: 100 });
   },
 };
 
