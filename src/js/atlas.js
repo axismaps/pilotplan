@@ -3,8 +3,7 @@
 import getBBox from '@turf/bbox';
 import union from '@turf/union';
 import area from '@turf/area';
-import flatten from '@turf/flatten';
-import dissolve from '@turf/dissolve';
+import length from '@turf/length';
 import { selections } from './config';
 import dataMethods from './atlasDataMethods';
 import rasterMethods from './rasterMethods';
@@ -209,9 +208,8 @@ const privateMethods = {
       if (highlightLoadingTimer !== null) {
         clearTimeout(highlightLoadingTimer);
       }
+      console.log('highlighted', highlightedFeature);
       props.highlightLoadingTimer = setTimeout(() => {
-        // get JSON, get bounds, zoom to bounds and check again
-        // at very end, reset count
         const unmerged = mbMap.querySourceFeatures('composite', {
           sourceLayer: highlightedFeature.sourceLayer,
           layers: [highlightedFeature.style],
@@ -222,44 +220,38 @@ const privateMethods = {
             ['==', '$id', highlightedFeature.id],
           ],
         });
-        // const mergedFeatures = union.apply(this, unmerged);
-        // const mergedFeatures = union(...unmerged);
-        const mergedFeatures = unmerged.reduce((accumulator, feature) =>
-          union(accumulator, feature));
+        let geoFeatures;
+        if (highlightedFeature.layer.type === 'fill') {
+          const mergedFeatures = unmerged.reduce((accumulator, feature) =>
+            union(accumulator, feature));
 
-        // const newJSON = flatten(mergedFeatures);
+          geoFeatures = [mergedFeatures];
+        } else if (highlightedFeature.layer.type === 'line') {
+          geoFeatures = unmerged;
+        }
         const newJSON = {
           type: 'FeatureCollection',
-          features: [mergedFeatures],
+          features: geoFeatures,
         };
 
+        let lastIteration;
 
-        // const newJSON = dissolve(flatten({
-        //   type: 'FeatureCollection',
-        //   features: mbMap.querySourceFeatures('composite', {
-        //     sourceLayer: highlightedFeature.sourceLayer,
-        //     layers: [highlightedFeature.style],
-        //     filter: [
-        //       'all',
-        //       ['<=', 'FirstYear', year],
-        //       ['>=', 'LastYear', year],
-        //       ['==', '$id', highlightedFeature.id],
-        //     ],
-        //   }),
-        // }));
-        // console.log('new area', area.apply(this, newJSON.features));
-        // console.log(Math.abs(area(newJSON.features[0]) -
-        // area(highlightedFeatureJSON.features[0])));
-        const lastIteration = Math.abs(area(newJSON.features[0]) -
-        area(highlightedFeatureJSON.features[0])) < 5 ||
-          area(newJSON.features[0]) <= area(highlightedFeatureJSON.features[0]);
+        if (highlightedFeature.layer.type === 'fill') {
+          lastIteration = Math.abs(area(newJSON.features[0]) -
+          area(highlightedFeatureJSON.features[0])) < 5 ||
+            area(newJSON.features[0]) <= area(highlightedFeatureJSON.features[0]);
+        } else if (highlightedFeature.layer.type === 'line') {
+          console.log('newjson', newJSON);
+          const previousLength = d3.sum(highlightedFeatureJSON.features.map(d => length(d)));
+          const currentLength = d3.sum(newJSON.features.map(d => length(d)));
+          lastIteration = Math.abs(currentLength - previousLength) < 5 ||
+            currentLength <= previousLength;
+          console.log(previousLength, currentLength);
+        }
+
         if (lastIteration) {
-        // if (props.counter === 5) {
-          // done
           props.highlightedFeatureJSON = null;
           props.highlightFeatureLoading = false;
-          // props.counter = 0;
-          // console.log(JSON.stringify(newJSON))
         } else {
           props.highlightedFeatureJSON = newJSON;
           props.onFeatureSourceData();

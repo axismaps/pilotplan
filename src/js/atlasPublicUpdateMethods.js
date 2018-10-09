@@ -109,21 +109,36 @@ const getAtlasUpdateMethods = ({
         props.highlightFeatureLoading = true;
         props.highlightLayerLoading = false;
 
-        props.highlightedFeatureJSON = {
-          type: 'FeatureCollection',
-          features: [mbMap.querySourceFeatures('composite', {
-            sourceLayer: highlightedFeature.sourceLayer,
-            layers: [highlightedFeature.style],
-            filter: [
-              'all',
-              ['<=', 'FirstYear', year],
-              ['>=', 'LastYear', year],
-              ['==', '$id', highlightedFeature.id],
-            ],
-          }).reduce((accumulator, feature) =>
-            union(accumulator, feature))],
-        };
-        console.log('featurejson', props.highlightedFeatureJSON);
+        if (highlightedFeature.layer.type === 'fill') {
+          props.highlightedFeatureJSON = {
+            type: 'FeatureCollection',
+            features: [mbMap.querySourceFeatures('composite', {
+              sourceLayer: highlightedFeature.sourceLayer,
+              layers: [highlightedFeature.style],
+              filter: [
+                'all',
+                ['<=', 'FirstYear', year],
+                ['>=', 'LastYear', year],
+                ['==', '$id', highlightedFeature.id],
+              ],
+            }).reduce((accumulator, feature) =>
+              union(accumulator, feature))],
+          };
+        } else {
+          props.highlightedFeatureJSON = {
+            type: 'FeatureCollection',
+            features: mbMap.querySourceFeatures('composite', {
+              sourceLayer: highlightedFeature.sourceLayer,
+              layers: [highlightedFeature.style],
+              filter: [
+                'all',
+                ['<=', 'FirstYear', year],
+                ['>=', 'LastYear', year],
+                ['==', '$id', highlightedFeature.id],
+              ],
+            }),
+          };
+        }
 
         onFeatureSourceData();
         props.counter = 0;
