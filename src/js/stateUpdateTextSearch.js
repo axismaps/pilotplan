@@ -23,6 +23,9 @@ const getUpdateTextSearch = ({ components }) => {
         .updateResults();
     } else {
       const searchResults = atlas.textSearch(textSearch);
+
+      atlas.setSearchLocation();
+
       const { raster, nonRaster } = searchResults;
 
       const formattedResults = {

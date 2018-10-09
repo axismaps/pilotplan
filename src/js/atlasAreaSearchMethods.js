@@ -99,6 +99,7 @@ const getAreaSearchMethods = ({
           ['>=', 'LastYear', getYear()],
         ],
       });
+      console.log('area features', features);
 
       const rasterFeatures = getRasterResults(features)
         .map(d => flattenedRasterData.find(dd => dd.SS_ID === d.properties.SS_ID));

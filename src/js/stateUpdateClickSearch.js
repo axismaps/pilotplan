@@ -12,7 +12,10 @@ const getUpdateClickSearch = ({
   const {
     sidebar,
     layout,
+    atlas,
   } = components;
+
+  atlas.setSearchLocation();
 
   const { raster, nonRaster } = clickSearch;
 

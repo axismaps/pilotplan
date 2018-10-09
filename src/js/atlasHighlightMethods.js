@@ -19,7 +19,7 @@ const atlasHighlightMethods = {
     });
     // console.log('features', features);
 
-    if (highlightedFeature.layer.type === 'fill') {
+    if (highlightedFeature.geometry.type.includes('Polygon')) {
       return {
         type: 'FeatureCollection',
         features: [features.reduce((accumulator, feature) =>

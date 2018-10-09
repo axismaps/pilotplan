@@ -87,9 +87,12 @@ const getAtlasUpdateMethods = ({
         extentsData,
         onLayerSourceData,
         onFeatureSourceData,
+        searchLocation,
       } = props;
 
       clearHighlightedFeature(mbMap);
+      // console.log('search location', searchLocation);
+      mbMap.jumpTo(searchLocation);
 
       if (highlightedFeature !== null && Object.prototype.hasOwnProperty.call(highlightedFeature, 'dataLayer')) {
         // get bounds
@@ -106,8 +109,6 @@ const getAtlasUpdateMethods = ({
         mbMap.fitBounds(newBounds);
       } else {
         if (highlightedFeature === null) return;
-        // set zoom extents here
-        props.searchExtents = {};
         props.highlightFeatureLoading = true;
         props.highlightLayerLoading = false;
         // console.log('highlighted', highlightedFeature);

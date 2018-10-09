@@ -12,7 +12,10 @@ const getUpdateAreaSearch = ({
   const {
     sidebar,
     layout,
+    atlas,
   } = components;
+
+  atlas.setSearchLocation();
 
   const { raster, nonRaster } = areaSearch;
 

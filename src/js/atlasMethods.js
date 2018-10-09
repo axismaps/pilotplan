@@ -2,6 +2,15 @@ import getProbeConfig from './footerDataProbeMethods';
 import atlasClickSearchMethods from './atlasClickSearchMethods';
 
 const atlasMethods = {
+  getCurrentLocation({
+    mbMap,
+  }) {
+    const center = mbMap.getCenter();
+    const zoom = mbMap.getZoom();
+    const bearing = mbMap.getBearing();
+
+    return { center, zoom, bearing };
+  },
   getLayerStyle({
     layer,
     year,
@@ -64,6 +73,7 @@ const atlasMethods = {
     const {
       addConeToMap,
       removeCone,
+      getCurrentLocation,
     } = atlasMethods;
 
     const { removePulse } = atlasClickSearchMethods;
@@ -88,11 +98,8 @@ const atlasMethods = {
       //     .style('cursor', 'pointer');
       // })
       .on('moveend', () => {
-        const center = mbMap.getCenter();
-        const zoom = mbMap.getZoom();
-        const bearing = mbMap.getBearing();
-
-        onMove({ center, zoom, bearing });
+        const currentLocation = getCurrentLocation({ mbMap });
+        onMove(currentLocation);
       })
       .on('movestart', () => {
         removePulse();

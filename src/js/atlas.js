@@ -217,12 +217,12 @@ const privateMethods = {
         });
 
         let lastIteration;
-
-        if (highlightedFeature.layer.type === 'fill') {
+        // move all this to somewhere else
+        if (highlightedFeature.geometry.type.includes('Polygon')) {
           lastIteration = Math.abs(area(newJSON.features[0]) -
           area(highlightedFeatureJSON.features[0])) < 5 ||
             area(newJSON.features[0]) <= area(highlightedFeatureJSON.features[0]);
-        } else if (highlightedFeature.layer.type === 'line') {
+        } else if (highlightedFeature.geometry.type.includes('String')) {
           // console.log('newjson', newJSON);
           const previousLength = d3.sum(highlightedFeatureJSON.features.map(d => length(d)));
           const currentLength = d3.sum(newJSON.features.map(d => length(d)));
@@ -278,6 +278,7 @@ class Atlas {
       onMove: null,
       cancelClickSearch: false,
       initialBounds: null,
+      searchLocation: null,
       dataProbe: new DataProbe({
         container: outerContainer,
       }),
@@ -395,12 +396,14 @@ class Atlas {
       return [...accumulator, ...resultsWithSource];
     }, []);
 
+    console.log('text features', queriedFeatures);
     const rasterResults = flattenedRasterData
       .filter(d => d.Title.toLowerCase().includes(value.toLowerCase()));
 
     const nonRasterResults = getNonRasterResults(queriedFeatures)
       .filter(d => d.properties.Name.toLowerCase().includes(value.toLowerCase()));
 
+    console.log('nonraster', nonRasterResults);
     return {
       raster: rasterResults,
       nonRaster: nonRasterResults,
@@ -409,6 +412,14 @@ class Atlas {
   getMapExportLink() {
     const { mbMap } = privateProps.get(this);
     return mbMap.getCanvas().toDataURL('image/png');
+  }
+  setSearchLocation() {
+    const props = privateProps.get(this);
+    const { mbMap } = props;
+    const {
+      getCurrentLocation,
+    } = generalMethods;
+    props.searchLocation = getCurrentLocation({ mbMap });
   }
 }
 
