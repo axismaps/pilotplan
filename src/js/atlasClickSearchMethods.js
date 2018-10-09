@@ -100,7 +100,6 @@ const atlasClickSearchMethods = {
 
 
       const nonRasterFeatures = getNonRasterResults(features);
-      // console.log('nonraster', nonRasterFeatures);
 
       onClickSearch({
         raster: rasterFeatures,

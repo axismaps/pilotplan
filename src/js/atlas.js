@@ -1,7 +1,6 @@
 
 // import getSearchMethods from './atlasSearch';
 import getBBox from '@turf/bbox';
-import union from '@turf/union';
 import area from '@turf/area';
 import length from '@turf/length';
 import { selections } from './config';
@@ -170,6 +169,7 @@ const privateMethods = {
     const {
       drawHighlightedFeature,
       clearHighlightedFeature,
+      getHighlightedGeoJSON,
     } = highlightMethods;
     props.onLayerSourceData = () => {
       const {
@@ -208,31 +208,13 @@ const privateMethods = {
       if (highlightLoadingTimer !== null) {
         clearTimeout(highlightLoadingTimer);
       }
-      console.log('highlighted', highlightedFeature);
+      // console.log('highlighted', highlightedFeature);
       props.highlightLoadingTimer = setTimeout(() => {
-        const unmerged = mbMap.querySourceFeatures('composite', {
-          sourceLayer: highlightedFeature.sourceLayer,
-          layers: [highlightedFeature.style],
-          filter: [
-            'all',
-            ['<=', 'FirstYear', year],
-            ['>=', 'LastYear', year],
-            ['==', '$id', highlightedFeature.id],
-          ],
+        const newJSON = getHighlightedGeoJSON({
+          highlightedFeature,
+          year,
+          mbMap,
         });
-        let geoFeatures;
-        if (highlightedFeature.layer.type === 'fill') {
-          const mergedFeatures = unmerged.reduce((accumulator, feature) =>
-            union(accumulator, feature));
-
-          geoFeatures = [mergedFeatures];
-        } else if (highlightedFeature.layer.type === 'line') {
-          geoFeatures = unmerged;
-        }
-        const newJSON = {
-          type: 'FeatureCollection',
-          features: geoFeatures,
-        };
 
         let lastIteration;
 
@@ -241,12 +223,12 @@ const privateMethods = {
           area(highlightedFeatureJSON.features[0])) < 5 ||
             area(newJSON.features[0]) <= area(highlightedFeatureJSON.features[0]);
         } else if (highlightedFeature.layer.type === 'line') {
-          console.log('newjson', newJSON);
+          // console.log('newjson', newJSON);
           const previousLength = d3.sum(highlightedFeatureJSON.features.map(d => length(d)));
           const currentLength = d3.sum(newJSON.features.map(d => length(d)));
-          lastIteration = Math.abs(currentLength - previousLength) < 5 ||
+          // console.log(previousLength, currentLength);
+          lastIteration = Math.abs(currentLength - previousLength) < 1 ||
             currentLength <= previousLength;
-          console.log(previousLength, currentLength);
         }
 
         if (lastIteration) {

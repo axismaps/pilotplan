@@ -1,7 +1,36 @@
-import getBBox from '@turf/bbox';
+import union from '@turf/union';
 import { colors } from './config';
 
 const atlasHighlightMethods = {
+  getHighlightedGeoJSON({
+    highlightedFeature,
+    year,
+    mbMap,
+  }) {
+    const features = mbMap.querySourceFeatures('composite', {
+      sourceLayer: highlightedFeature.sourceLayer,
+      layers: [highlightedFeature.style],
+      filter: [
+        'all',
+        ['<=', 'FirstYear', year],
+        ['>=', 'LastYear', year],
+        ['==', 'Name', highlightedFeature.properties.Name],
+      ],
+    });
+    // console.log('features', features);
+
+    if (highlightedFeature.layer.type === 'fill') {
+      return {
+        type: 'FeatureCollection',
+        features: [features.reduce((accumulator, feature) =>
+          union(accumulator, feature))],
+      };
+    }
+    return {
+      type: 'FeatureCollection',
+      features,
+    };
+  },
   getLayerBounds({
     year,
     highlightedFeature,
@@ -50,9 +79,6 @@ const atlasHighlightMethods = {
         });
       }
     }
-  },
-  renderHighlightedFeature() {
-
   },
   drawHighlightedFeature({
     highlightedFeature,

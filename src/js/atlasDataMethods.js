@@ -4,6 +4,7 @@ const atlasDataMethods = {
     d.source !== 'viewshed'),
   getNonRasterResults: features =>
     features.filter(d =>
+      ['fill', 'line'].includes(d.layer.type) &&
       !Object.prototype.hasOwnProperty.call(d.properties, 'SS_ID') &&
       Object.prototype.hasOwnProperty.call(d.properties, 'Name') &&
       d.source !== 'highlighted'),

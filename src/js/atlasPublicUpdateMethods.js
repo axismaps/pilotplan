@@ -1,5 +1,5 @@
 import getBBox from '@turf/bbox';
-import union from '@turf/union';
+
 import clickSearchMethods from './atlasClickSearchMethods';
 import highlightMethods from './atlasHighlightMethods';
 import generalMethods from './atlasMethods';
@@ -75,6 +75,7 @@ const getAtlasUpdateMethods = ({
         clearHighlightedFeature,
         // drawHighlightedFeature,
         getLayerBounds,
+        getHighlightedGeoJSON,
       } = highlightMethods;
 
       const props = privateProps.get(this);
@@ -105,40 +106,16 @@ const getAtlasUpdateMethods = ({
         mbMap.fitBounds(newBounds);
       } else {
         if (highlightedFeature === null) return;
-        props.previousZoom = mbMap.getZoom();
+        // set zoom extents here
+        props.searchExtents = {};
         props.highlightFeatureLoading = true;
         props.highlightLayerLoading = false;
-
-        if (highlightedFeature.layer.type === 'fill') {
-          props.highlightedFeatureJSON = {
-            type: 'FeatureCollection',
-            features: [mbMap.querySourceFeatures('composite', {
-              sourceLayer: highlightedFeature.sourceLayer,
-              layers: [highlightedFeature.style],
-              filter: [
-                'all',
-                ['<=', 'FirstYear', year],
-                ['>=', 'LastYear', year],
-                ['==', '$id', highlightedFeature.id],
-              ],
-            }).reduce((accumulator, feature) =>
-              union(accumulator, feature))],
-          };
-        } else {
-          props.highlightedFeatureJSON = {
-            type: 'FeatureCollection',
-            features: mbMap.querySourceFeatures('composite', {
-              sourceLayer: highlightedFeature.sourceLayer,
-              layers: [highlightedFeature.style],
-              filter: [
-                'all',
-                ['<=', 'FirstYear', year],
-                ['>=', 'LastYear', year],
-                ['==', '$id', highlightedFeature.id],
-              ],
-            }),
-          };
-        }
+        // console.log('highlighted', highlightedFeature);
+        props.highlightedFeatureJSON = getHighlightedGeoJSON({
+          highlightedFeature,
+          year,
+          mbMap,
+        });
 
         onFeatureSourceData();
         props.counter = 0;

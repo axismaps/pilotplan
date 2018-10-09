@@ -141,13 +141,13 @@ const searchMethods = {
     groups.each(function drawLayers(d) {
       // get unique data;
       // console.log('features', d);
-      const uniqueFeatures = [...new Set(d.features.map(dd => dd.id))]
-        .map(id => d.features.find(dd => dd.id === id));
+      const uniqueFeatures = [...new Set(d.features.map(dd => dd.properties.Name))]
+        .map(id => d.features.find(dd => dd.properties.Name === id));
       // console.log('ids', uniqueFeatures);
       const rows = d3.select(this)
         .select('.sidebar__result-rows')
         .selectAll('.sidebar__results-row')
-        .data(uniqueFeatures, dd => dd.id);
+        .data(uniqueFeatures, dd => dd.properties.Name);
 
       rows.exit().remove();
 
