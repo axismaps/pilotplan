@@ -52,6 +52,10 @@
   flex-shrink: 0;
   cursor: pointer;
   transition: opacity 250ms;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
 }
 
 .footer__image:hover{
@@ -70,6 +74,7 @@
   margin-right: 8px;
   background: $main-light-gray;
 }
+
 
 .footer__toggle-text {
   margin-left: 10px;

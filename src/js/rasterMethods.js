@@ -196,6 +196,7 @@ const rasterMethods = {
     images,
     cachedMetadata,
     maxDim,
+    spinner = false,
   }) {
     const {
       getMetadata,
@@ -219,7 +220,14 @@ const rasterMethods = {
           selection,
         });
       } else {
+        if (spinner) {
+          selection
+            .append('i')
+            .attr('class', 'icon-spinner animate-spin');
+        }
+
         getMetadata({ data: d }, (metadata) => {
+          console.log('get metadata');
           const scaledDim = getScaledCircleDimFromMetadata({
             metadata,
             maxDim,
@@ -231,6 +239,9 @@ const rasterMethods = {
             scaledDim,
             selection,
           });
+          if (spinner) {
+            selection.selectAll('.icon-spinner').remove();
+          }
         });
       }
     });

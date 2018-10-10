@@ -44,6 +44,7 @@ const footerMethods = {
       images: newImages,
       maxDim: 130,
       cachedMetadata,
+      spinner: true,
     });
 
     images.exit().remove();

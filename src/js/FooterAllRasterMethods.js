@@ -100,6 +100,7 @@ const allRasterMethods = {
         images: newImages,
         cachedMetadata,
         maxDim: 130,
+        spinner: true,
       });
 
       images.exit().remove();

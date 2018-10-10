@@ -256,6 +256,10 @@ $sidebar-content-zoom-margin: $sidebar-zoom-height + $sidebar-zoom-triangle-heig
   flex-shrink: 0;
   background: $main-light-gray;
   margin-right: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
 }
 
 .sidebar--legend {

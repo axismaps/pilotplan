@@ -124,6 +124,7 @@ const searchMethods = {
         images: newImages,
         cachedMetadata,
         maxDim: 130,
+        spinner: true,
       });
 
 
