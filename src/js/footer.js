@@ -92,7 +92,7 @@ const privateMethods = {
       footerView,
       rasterData,
     } = privateProps.get(this);
-
+    // console.log('footer view', footerView);
     categoryButtons
       .classed('footer__category--selected', d => d === footerView)
       .classed('footer__category--disabled', d => rasterData.get(d).length === 0);

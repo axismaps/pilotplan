@@ -64,6 +64,10 @@ const app = {
     this.components.state = getState({ urlParams });
 
     this.components.state.set('currentLayers', this.components.state.getAllAvailableLayers(this.data));
+    this.components.state.set(
+      'footerView',
+      this.components.state.getAutoFooterView(this.data),
+    );
   },
   initViews() {
     const { state } = this.components;

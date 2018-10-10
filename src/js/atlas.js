@@ -261,13 +261,6 @@ class Atlas {
     const { mbMap } = privateProps.get(this);
     return mbMap.getStyle();
   }
-  // getRenderedLayers() {
-  //   const { mbMap } = privateProps.get(this);
-  //   console.log(mbMap.getStyle().layers);
-  //   return mbMap.getStyle().layers
-  //     .map(d => d.id)
-  //     .filter(d => mbMap.queryRenderedFeatures({ layers: [d] }).length > 0);
-  // }
 
   textSearch(value) {
     const {
@@ -293,7 +286,6 @@ class Atlas {
           'all',
           ['<=', 'FirstYear', year],
           ['>=', 'LastYear', year],
-          // ['match', 'Name', val],
         ],
       });
 
@@ -304,14 +296,12 @@ class Atlas {
       return [...accumulator, ...resultsWithSource];
     }, []);
 
-    console.log('text features', queriedFeatures);
     const rasterResults = flattenedRasterData
       .filter(d => d.Title.toLowerCase().includes(value.toLowerCase()));
 
     const nonRasterResults = getNonRasterResults(queriedFeatures)
       .filter(d => d.properties.Name.toLowerCase().includes(value.toLowerCase()));
 
-    console.log('nonraster', nonRasterResults);
     return {
       raster: rasterResults,
       nonRaster: nonRasterResults,

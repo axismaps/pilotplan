@@ -3,11 +3,12 @@ import onRasterClick from './onRasterClick';
 
 const initFooter = function initFooter() {
   const { state } = this.components;
+
   const footer = new Footer({
     translations: this.data.translations,
     language: state.get('language'),
     year: state.get('year'),
-    footerView: state.getAutoFooterView(this.data),
+    footerView: state.get('footerView'),
     rasterData: state.getAvailableRasters(this.data),
     cachedMetadata: this.cachedMetadata,
     onCategoryClick(newCategory) {

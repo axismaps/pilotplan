@@ -21,7 +21,7 @@ const getUpdateYear = ({
       footerView,
       componentsInitialized,
     } = this.props();
-    //
+
     const {
       getRasterDataByCategory,
     } = rasterMethods;
