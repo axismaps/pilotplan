@@ -111,7 +111,8 @@ const getAtlasUpdateMethods = ({
         props.searchLocationLoading = true;
         console.log('start search location timer');
         onReturnToSearch();
-        mbMap.jumpTo(searchLocation);
+        mbMap.easeTo(searchLocation);
+        // mbMap.jumpTo(searchLocation);
       }
     },
     updateOverlayOpacity() {
