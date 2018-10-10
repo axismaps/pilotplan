@@ -1,8 +1,6 @@
 
 // import getSearchMethods from './atlasSearch';
-import getBBox from '@turf/bbox';
-import area from '@turf/area';
-import length from '@turf/length';
+
 import { selections } from './config';
 import dataMethods from './atlasDataMethods';
 import rasterMethods from './rasterMethods';
@@ -12,7 +10,7 @@ import generalMethods from './atlasMethods';
 import getPublicUpdateMethods from './atlasPublicUpdateMethods';
 import initControls from './atlasControlMethods';
 import DataProbe from './dataProbe';
-import highlightMethods from './atlasHighlightMethods';
+import setLoadingCallbacks from './atlasLoadingCallbacks';
 
 
 const privateProps = new WeakMap();
@@ -166,131 +164,6 @@ const privateMethods = {
 
     canvas.addEventListener('mousedown', onMouseDown, true);
   },
-  setHighlightLoading() {
-    const props = privateProps.get(this);
-    const {
-      drawHighlightedFeature,
-      clearHighlightedFeature,
-      getHighlightedGeoJSON,
-    } = highlightMethods;
-
-    props.onReturnToSearch = () => {
-      const {
-        mbMap,
-        searchLocationLoading,
-        highlightLoadingTimer,
-        highlightedFeature,
-        year,
-        onFeatureSourceData,
-      } = props;
-
-      if (!searchLocationLoading) return;
-
-      if (highlightLoadingTimer !== null) {
-        clearTimeout(highlightLoadingTimer);
-      }
-
-      props.highlightLoadingTimer = setTimeout(() => {
-        console.log('search return complete');
-        props.highlightFeatureLoading = true;
-        props.searchLocationLoading = false;
-
-
-        props.highlightedFeatureJSON = getHighlightedGeoJSON({
-          highlightedFeature,
-          year,
-          mbMap,
-        });
-
-        onFeatureSourceData();
-        props.counter = 0;
-        const newBounds = getBBox(props.highlightedFeatureJSON);
-        mbMap.fitBounds(newBounds, { padding: 200 });
-      }, 500);
-    };
-
-    props.onLayerSourceData = () => {
-      const {
-        highlightLayerLoading,
-        highlightLoadingTimer,
-        highlightedFeature,
-        mbMap,
-        year,
-      } = props;
-      if (!highlightLayerLoading) return;
-
-      if (highlightLoadingTimer !== null) {
-        clearTimeout(highlightLoadingTimer);
-      }
-      props.highlightLoadingTimer = setTimeout(() => {
-        drawHighlightedFeature({
-          highlightedFeature,
-          mbMap,
-          year,
-        });
-        props.highlightLayerLoading = false;
-      }, 500);
-    };
-
-    props.onFeatureSourceData = () => {
-      const {
-        highlightFeatureLoading,
-        highlightLoadingTimer,
-        highlightedFeature,
-        highlightedFeatureJSON,
-        mbMap,
-        year,
-      } = props;
-      if (!highlightFeatureLoading) return;
-
-      if (highlightLoadingTimer !== null) {
-        clearTimeout(highlightLoadingTimer);
-      }
-      // console.log('highlighted', highlightedFeature);
-      props.highlightLoadingTimer = setTimeout(() => {
-        const newJSON = getHighlightedGeoJSON({
-          highlightedFeature,
-          year,
-          mbMap,
-        });
-
-        let lastIteration;
-        // move all this to somewhere else
-        if (highlightedFeature.geometry.type.includes('Polygon')) {
-          lastIteration = Math.abs(area(newJSON.features[0]) -
-          area(highlightedFeatureJSON.features[0])) < 5 ||
-            area(newJSON.features[0]) <= area(highlightedFeatureJSON.features[0]);
-        } else if (highlightedFeature.geometry.type.includes('String')) {
-          // console.log('newjson', newJSON);
-          const previousLength = d3.sum(highlightedFeatureJSON.features.map(d => length(d)));
-          const currentLength = d3.sum(newJSON.features.map(d => length(d)));
-          // console.log(previousLength, currentLength);
-          lastIteration = Math.abs(currentLength - previousLength) < 1 ||
-            currentLength <= previousLength;
-        }
-
-        if (lastIteration) {
-          props.highlightedFeatureJSON = null;
-          props.highlightFeatureLoading = false;
-        } else {
-          props.highlightedFeatureJSON = newJSON;
-          props.onFeatureSourceData();
-          props.counter += 1;
-        }
-
-        if (lastIteration && props.counter !== 0) return;
-        const newBounds = getBBox(newJSON);
-        mbMap.fitBounds(newBounds, { padding: 200 });
-        clearHighlightedFeature(mbMap);
-        drawHighlightedFeature({
-          highlightedFeature,
-          mbMap,
-          year,
-          geoJSON: newJSON,
-        });
-      }, 500);
-    };
-  },
 };
 
 class Atlas {
@@ -300,7 +173,6 @@ class Atlas {
       outerContainer,
     } = selections;
     const {
-      setHighlightLoading,
       createMBMap,
     } = privateMethods;
 
@@ -329,7 +201,7 @@ class Atlas {
     });
 
     this.config(config);
-    setHighlightLoading.call(this);
+    setLoadingCallbacks({ props: privateProps.get(this) });
     createMBMap.call(this, { initApp: this.init.bind(this) });
   }
   init() {
@@ -338,7 +210,6 @@ class Atlas {
       setClickSearch,
       setAreaSearch,
       addRaster,
-      // setHighlightLoading,
     } = privateMethods;
     const {
       onLoad,
@@ -347,7 +218,6 @@ class Atlas {
     } = privateProps.get(this);
     console.log('loaded');
     onLoad();
-    // setHighlightLoading.call(this);
     addControlsToMap.call(this);
     setClickSearch.call(this);
     setAreaSearch.call(this);

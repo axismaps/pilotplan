@@ -73,9 +73,7 @@ const getAtlasUpdateMethods = ({
     updateHighlightedFeature() {
       const {
         clearHighlightedFeature,
-        // drawHighlightedFeature,
         getLayerBounds,
-        getHighlightedGeoJSON,
       } = highlightMethods;
 
       const props = privateProps.get(this);
@@ -86,13 +84,11 @@ const getAtlasUpdateMethods = ({
         year,
         extentsData,
         onLayerSourceData,
-        onFeatureSourceData,
         onReturnToSearch,
         searchLocation,
       } = props;
 
       clearHighlightedFeature(mbMap);
-      // console.log('search location', searchLocation);
 
 
       if (highlightedFeature !== null && Object.prototype.hasOwnProperty.call(highlightedFeature, 'dataLayer')) {
@@ -109,7 +105,6 @@ const getAtlasUpdateMethods = ({
         if (highlightedFeature === null) return;
         props.highlightLayerLoading = false;
         props.searchLocationLoading = true;
-        console.log('start search location timer');
         onReturnToSearch();
         mbMap.easeTo(searchLocation);
         // mbMap.jumpTo(searchLocation);
