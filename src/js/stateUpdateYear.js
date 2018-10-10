@@ -99,11 +99,16 @@ const getUpdateYear = ({
         .clearSearch();
     }
 
-    if (rasterDataByCategory.length === 0) {
-      // need to close footer if no results
-      Object.assign(stateToUpdate, { footerView: 'views' });
-    } else if (rasterData.get(footerView).length === 0) {
-      Object.assign(stateToUpdate, { footerView: rasterDataByCategory[0].key });
+    // if (rasterDataByCategory.length === 0) {
+    //   Object.assign(stateToUpdate, { footerView: 'views' });
+    // } else if (rasterData.get(footerView).length === 0) {
+    //   Object.assign(stateToUpdate, { footerView: rasterDataByCategory[0].key });
+    // }
+    {
+      const currentFooterCategory = this.getAutoFooterView(data);
+      if (footerView !== currentFooterCategory) {
+        Object.assign(stateToUpdate, { footerView: currentFooterCategory });
+      }
     }
 
     const layersToClear = this.getLayersToClear([

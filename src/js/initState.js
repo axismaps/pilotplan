@@ -130,7 +130,6 @@ const getState = function getState({ urlParams }) {
 
     if (rasterDataByCategory.length === 0) {
       return 'views';
-      // close footer??
     } else if (rasterData.get(this.get('footerView')).length === 0) {
       return rasterDataByCategory[0].key;
     }
