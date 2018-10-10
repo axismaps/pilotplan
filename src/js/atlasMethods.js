@@ -69,6 +69,7 @@ const atlasMethods = {
     dataProbe,
     onLayerSourceData,
     onFeatureSourceData,
+    onReturnToSearch,
   }) {
     const {
       addConeToMap,
@@ -110,6 +111,7 @@ const atlasMethods = {
       })
       .on('sourcedata', () => {
         onLayerSourceData();
+        onReturnToSearch();
         onFeatureSourceData();
       })
       .on('mouseover', 'viewconespoint', (d) => {

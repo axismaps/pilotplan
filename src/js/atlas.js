@@ -30,6 +30,7 @@ const privateMethods = {
       dataProbe,
       onLayerSourceData,
       onFeatureSourceData,
+      onReturnToSearch,
     } = props;
 
     const {
@@ -46,6 +47,7 @@ const privateMethods = {
           viewshedsGeo,
           onLayerSourceData,
           onFeatureSourceData,
+          onReturnToSearch,
           setCancelClickSearch: () => {
             props.cancelClickSearch = true;
           },
@@ -171,6 +173,42 @@ const privateMethods = {
       clearHighlightedFeature,
       getHighlightedGeoJSON,
     } = highlightMethods;
+
+    props.onReturnToSearch = () => {
+      const {
+        mbMap,
+        searchLocationLoading,
+        highlightLoadingTimer,
+        highlightedFeature,
+        year,
+        onFeatureSourceData,
+      } = props;
+
+      if (!searchLocationLoading) return;
+
+      if (highlightLoadingTimer !== null) {
+        clearTimeout(highlightLoadingTimer);
+      }
+
+      props.highlightLoadingTimer = setTimeout(() => {
+        console.log('search return complete');
+        props.highlightFeatureLoading = true;
+        props.searchLocationLoading = false;
+
+
+        props.highlightedFeatureJSON = getHighlightedGeoJSON({
+          highlightedFeature,
+          year,
+          mbMap,
+        });
+
+        onFeatureSourceData();
+        props.counter = 0;
+        const newBounds = getBBox(props.highlightedFeatureJSON);
+        mbMap.fitBounds(newBounds, { padding: 200 });
+      }, 500);
+    };
+
     props.onLayerSourceData = () => {
       const {
         highlightLayerLoading,

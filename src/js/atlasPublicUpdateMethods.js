@@ -87,6 +87,7 @@ const getAtlasUpdateMethods = ({
         extentsData,
         onLayerSourceData,
         onFeatureSourceData,
+        onReturnToSearch,
         searchLocation,
       } = props;
 
@@ -106,20 +107,11 @@ const getAtlasUpdateMethods = ({
         mbMap.fitBounds(newBounds);
       } else {
         if (highlightedFeature === null) return;
-        mbMap.jumpTo(searchLocation);
-        props.highlightFeatureLoading = true;
         props.highlightLayerLoading = false;
-        // console.log('highlighted', highlightedFeature);
-        props.highlightedFeatureJSON = getHighlightedGeoJSON({
-          highlightedFeature,
-          year,
-          mbMap,
-        });
-
-        onFeatureSourceData();
-        props.counter = 0;
-        const newBounds = getBBox(props.highlightedFeatureJSON);
-        mbMap.fitBounds(newBounds, { padding: 200 });
+        props.searchLocationLoading = true;
+        console.log('start search location timer');
+        onReturnToSearch();
+        mbMap.jumpTo(searchLocation);
       }
     },
     updateOverlayOpacity() {
