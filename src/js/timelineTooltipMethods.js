@@ -83,6 +83,7 @@ const getTooltipMethods = ({ privateProps, privateMethods }) => ({
     const year = Math.round(scale.invert(x - svgPosition.left));
     const currentEra = getCurrentEra({ year, eras });
 
+    if (currentEra === undefined) return;
     tooltipContainer
       .styles({
         left: `${x - (tooltipWidth / 2)}px`,
