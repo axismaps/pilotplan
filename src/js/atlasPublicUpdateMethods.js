@@ -92,12 +92,9 @@ const getAtlasUpdateMethods = ({
 
       clearHighlightedFeature(mbMap);
       // console.log('search location', searchLocation);
-      mbMap.jumpTo(searchLocation);
+
 
       if (highlightedFeature !== null && Object.prototype.hasOwnProperty.call(highlightedFeature, 'dataLayer')) {
-        // get bounds
-        // set status to highlighting or whatever
-        // zoom to, get data and highlight at end in callback
         const newBounds = getLayerBounds({
           year,
           highlightedFeature,
@@ -109,6 +106,7 @@ const getAtlasUpdateMethods = ({
         mbMap.fitBounds(newBounds);
       } else {
         if (highlightedFeature === null) return;
+        mbMap.jumpTo(searchLocation);
         props.highlightFeatureLoading = true;
         props.highlightLayerLoading = false;
         // console.log('highlighted', highlightedFeature);
