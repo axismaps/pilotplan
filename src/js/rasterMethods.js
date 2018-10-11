@@ -227,7 +227,7 @@ const rasterMethods = {
         }
 
         getMetadata({ data: d }, (metadata) => {
-          console.log('get metadata');
+          // console.log('get metadata');
           const scaledDim = getScaledCircleDimFromMetadata({
             metadata,
             maxDim,

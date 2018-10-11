@@ -2,6 +2,9 @@ import union from '@turf/union';
 import { colors } from './config';
 
 const atlasHighlightMethods = {
+  initiateFeatureHighlighting({ props }) {
+
+  },
   getHighlightedGeoJSON({
     highlightedFeature,
     year,
@@ -17,7 +20,12 @@ const atlasHighlightMethods = {
         ['==', 'Name', highlightedFeature.properties.Name],
       ],
     });
-    // console.log('features', features);
+    if (features.length === 0) {
+      return {
+        type: 'FeatureCollection',
+        features,
+      };
+    }
 
     if (highlightedFeature.geometry.type.includes('Polygon')) {
       return {

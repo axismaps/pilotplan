@@ -3,7 +3,7 @@ import area from '@turf/area';
 import length from '@turf/length';
 import highlightMethods from './atlasHighlightMethods';
 /* eslint-disable no-param-reassign */
-const getLoadingCallbacks = ({ props }) => {
+const setLoadingCallbacks = ({ props }) => {
   const {
     drawHighlightedFeature,
     clearHighlightedFeature,
@@ -27,16 +27,15 @@ const getLoadingCallbacks = ({ props }) => {
     }
 
     props.highlightLoadingTimer = setTimeout(() => {
-      props.highlightFeatureLoading = true;
-      props.searchLocationLoading = false;
-
-
       props.highlightedFeatureJSON = getHighlightedGeoJSON({
         highlightedFeature,
         year,
         mbMap,
       });
 
+      // move this to separate function
+      props.highlightFeatureLoading = true;
+      props.searchLocationLoading = false;
       onFeatureSourceData();
       props.counter = 0;
       const newBounds = getBBox(props.highlightedFeatureJSON);
@@ -128,4 +127,4 @@ const getLoadingCallbacks = ({ props }) => {
 };
 /* eslint-enable no-param-reassign */
 
-export default getLoadingCallbacks;
+export default setLoadingCallbacks;
