@@ -3,10 +3,11 @@ const getSliderBase = ({ privateProps }) => ({
     const props = privateProps.get(this);
     const {
       valueRange,
+      stepSections,
     } = props;
 
     props.scale = d3.scaleLinear()
-      .domain(valueRange);
+      .domain([valueRange[0], stepSections[0].years[1], valueRange[1]]);
     const { scale } = props;
 
     props.handleScale = d3.scaleLinear()
@@ -20,12 +21,13 @@ const getSliderBase = ({ privateProps }) => ({
       handleWidth,
       scale,
       handleScale,
+      stepSections,
     } = privateProps.get(this);
 
     const domain = scale.domain();
 
-    const increments1 = 2;
-    const increments2 = 1;
+    const increments1 = stepSections[0].increment;
+    const increments2 = stepSections[1].increment;
     const steps1 = (domain[1] - domain[0]) / increments1;
     const steps2 = (domain[2] - domain[0]) / increments2;
 

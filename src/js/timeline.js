@@ -18,6 +18,7 @@ const privateMethods = {
       backgroundTrackAttrs,
       activeTrackAttrs,
       yearRange,
+      stepSections,
       sliderPadding,
       eras,
       language,
@@ -36,7 +37,8 @@ const privateMethods = {
       handleWidth,
       backgroundTrackAttrs,
       activeTrackAttrs,
-      valueRange: [yearRange[0], 1955, yearRange[1]],
+      stepSections,
+      valueRange: yearRange,
       onDragEnd: updateYear,
       tooltip: true,
       onDrag: d => console.log('drag', d),
@@ -144,9 +146,11 @@ class Timeline {
       },
       // valueRange: [1950, 2016],
       sliderPadding: { left: 10, right: 15 },
+      yearRange: null,
+      stepSections: null,
     });
     this.config(config);
-
+    console.log('config', config);
     setSliderSize.call(this);
     drawSlider.call(this);
     initEvents.call(this);

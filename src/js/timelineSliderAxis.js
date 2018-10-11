@@ -36,6 +36,7 @@ const axisMethods = ({ privateProps, privateMethods }) => ({
     const props = privateProps.get(this);
     const {
       scale,
+      stepSections,
     } = props;
 
     props.axis = d3.axisBottom(scale)

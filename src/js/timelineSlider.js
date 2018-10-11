@@ -158,13 +158,13 @@ const privateMethods = {
           setTooltipPosition.call(this, { x: d3.event.x + svgPosition.left });
         }
         let newValue;
-        if (sliderValue >= valueRange[0] && sliderValue <= valueRange[2]) {
+        if (sliderValue >= valueRange[0] && sliderValue <= valueRange[1]) {
           newValue = sliderValue;
         } else if (sliderValue < valueRange[0]) {
           /* eslint-disable prefer-destructuring */
           newValue = valueRange[0];
-        } else if (sliderValue > valueRange[2]) {
-          newValue = valueRange[2];
+        } else if (sliderValue > valueRange[1]) {
+          newValue = valueRange[1];
           /* eslint-enable prefer-destructuring */
         }
         // props.currentValue = newValue;
@@ -195,6 +195,7 @@ class TimelineSlider {
       highlightedRange: undefined,
     });
     this.config(config);
+
     privateMethods.init.call(this);
   }
   config(config) {
@@ -223,7 +224,7 @@ class TimelineSlider {
     if (highlightedRange !== undefined) {
       const width = handleScale(highlightedRange[1]) - handleScale(highlightedRange[0]);
       const atStart = highlightedRange[0] === valueRange[0];
-      const atEnd = highlightedRange[1] === valueRange[2];
+      const atEnd = highlightedRange[1] === valueRange[1];
       const bigEnough = width >= (handleScale.range()[1] - handleScale.range()[0]) / 2;
 
       highlightedRangeBar

@@ -25,6 +25,9 @@ const app = {
   cachedMetadata: new Map(),
   init() {
     loadData((cleanedData) => {
+      const test = new mapboxgl.Map({
+        container: document.createElement('div'),
+      });
       this.data = cleanedData;
       console.log('translations', this.data.translations);
       this.initURL();
@@ -193,6 +196,16 @@ const app = {
         state.update({ year: Math.round(newYear) });
       },
       yearRange,
+      stepSections: [
+        {
+          years: [yearRange[0], 1955],
+          increment: 2,
+        },
+        {
+          years: [1955, yearRange[1]],
+          increment: 1,
+        },
+      ],
     });
 
 

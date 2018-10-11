@@ -3,6 +3,7 @@ import getBBox from '@turf/bbox';
 import clickSearchMethods from './atlasClickSearchMethods';
 import highlightMethods from './atlasHighlightMethods';
 import generalMethods from './atlasMethods';
+import getZoom from './atlasGetZoom';
 
 const getAtlasUpdateMethods = ({
   privateProps,
@@ -94,16 +95,27 @@ const getAtlasUpdateMethods = ({
 
 
       if (highlightedFeature !== null && Object.prototype.hasOwnProperty.call(highlightedFeature, 'dataLayer')) {
-        console.log('highlighted layer', highlightedFeature);
         const newBounds = getLayerBounds({
           year,
           highlightedFeature,
           extentsData,
         });
+        const newZoom = getZoom({
+          mbMap,
+          bounds: newBounds,
+          highlightedFeature,
+          padding: 0,
+        });
+        // console.log('new zoom', newZoom);
         props.highlightLayerLoading = true;
         props.highlightFeatureLoading = false;
         onLayerSourceData();
-        mbMap.fitBounds(newBounds);
+        mbMap.easeTo({
+          bearing: 0,
+          zoom: newZoom,
+          center: newBounds.getCenter(),
+          duration: 2000,
+        });
       } else {
         if (highlightedFeature === null) return;
         const highlightedFeatureJSON = getHighlightedGeoJSON({
