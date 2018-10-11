@@ -17,14 +17,34 @@ const getSliderBase = ({ privateProps }) => ({
       size,
       padding,
       handleHeight,
+      handleWidth,
       scale,
       handleScale,
     } = privateProps.get(this);
 
+    const domain = scale.domain();
+
+    const increments1 = 2;
+    const increments2 = 1;
+    const steps1 = (domain[1] - domain[0]) / increments1;
+    const steps2 = (domain[2] - domain[0]) / increments2;
+
+    const pctWayThrough = steps1 / (steps1 + steps2);
+
+    // const pctWayThrough = (domain[1] - domain[0]) / (domain[2] - domain[0]);
+    console.log('domain', domain);
+    console.log('pct', pctWayThrough);
+    // const overallWidth = size.width - padding.left - padding.right - handleWidth;
+    const startPoint = padding.left + (handleWidth / 2);
+    const endPoint = size.width - padding.right - (handleWidth / 2);
+    const midPoint = (endPoint - startPoint) * pctWayThrough;
+    console.log('handleHeight', handleHeight);
+    console.log('handleWidth', handleWidth);
+
     scale
-      .range([padding.left + (handleHeight / 2), size.width - padding.right - (handleHeight / 2)]);
-    // handleScale
-    //   .range([scale.range()[0] + (handleHeight / 2), scale.range()[1] - (handleHeight / 2)]);
+      .range([startPoint, midPoint, endPoint]);
+    // .range([padding.left + (handleWidth / 2), size.width - padding.right - (handleWidth / 2)]);
+    console.log('range', scale.range());
     handleScale.range(scale.range());
   },
   updateScaleValueRange() {
@@ -104,7 +124,7 @@ const getSliderBase = ({ privateProps }) => ({
     } = privateProps.get(this);
     detectionTrack.attrs({
       x1: scale.range()[0],
-      x2: scale.range()[1],
+      x2: scale.range()[2],
     });
   },
   drawBackgroundTrack() {
@@ -142,7 +162,7 @@ const getSliderBase = ({ privateProps }) => ({
     backgroundTrack
       .attrs({
         x: scale.range()[0],
-        width: scale.range()[1] - scale.range()[0],
+        width: scale.range()[2] - scale.range()[0],
       });
   },
   drawActiveTrack() {

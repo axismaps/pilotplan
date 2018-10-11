@@ -94,6 +94,7 @@ const getAtlasUpdateMethods = ({
 
 
       if (highlightedFeature !== null && Object.prototype.hasOwnProperty.call(highlightedFeature, 'dataLayer')) {
+        console.log('highlighted layer', highlightedFeature);
         const newBounds = getLayerBounds({
           year,
           highlightedFeature,
@@ -118,7 +119,7 @@ const getAtlasUpdateMethods = ({
           onFeatureSourceData();
           props.counter = 0;
           const newBounds = getBBox(props.highlightedFeatureJSON);
-          mbMap.fitBounds(newBounds, { padding: 200 });
+          mbMap.fitBounds(newBounds, { padding: 200, minZoom: 8 });
         } else {
           props.highlightLayerLoading = false;
           props.searchLocationLoading = true;

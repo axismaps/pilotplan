@@ -22,7 +22,7 @@ const privateMethods = {
       eras,
       language,
     } = props;
-
+    console.log('year range', yearRange);
     props.slider = new TimelineSlider({
       language,
       eras,
@@ -36,7 +36,7 @@ const privateMethods = {
       handleWidth,
       backgroundTrackAttrs,
       activeTrackAttrs,
-      valueRange: yearRange,
+      valueRange: [yearRange[0], 1955, yearRange[1]],
       onDragEnd: updateYear,
       tooltip: true,
       onDrag: d => console.log('drag', d),
@@ -143,7 +143,7 @@ class Timeline {
         ry: 8,
       },
       // valueRange: [1950, 2016],
-      sliderPadding: { left: 0, right: 2 },
+      sliderPadding: { left: 10, right: 15 },
     });
     this.config(config);
 
