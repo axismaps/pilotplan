@@ -9,12 +9,14 @@ const getUpdateLanguage = ({
       languageDropdown,
       eraDropdown,
       intro,
+      eras,
     } = components;
 
     urlParams.config({ language }).update();
     languageDropdown.config({ language }).update();
     eraDropdown.config({ language }).update();
     intro.config({ language }).update();
+    eras.config({ language }).updateLanguage();
   };
   return updateLanguage;
 };

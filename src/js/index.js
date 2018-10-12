@@ -25,9 +25,6 @@ const app = {
   cachedMetadata: new Map(),
   init() {
     loadData((cleanedData) => {
-      const test = new mapboxgl.Map({
-        container: document.createElement('div'),
-      });
       this.data = cleanedData;
       console.log('translations', this.data.translations);
       this.initURL();
@@ -132,7 +129,6 @@ const app = {
       onMapButtonClick: () => {
         state.update({ view: 'map' });
       },
-
       updateYear: (newYear) => {
         state.update({ year: newYear });
       },
@@ -141,6 +137,7 @@ const app = {
       },
       year: state.get('year'),
       view: state.get('view'),
+      translations: this.data.translations,
     });
   },
   initAtlas,
@@ -179,6 +176,7 @@ const app = {
         state.update({ view: 'intro' });
       },
       getExportLink: () => atlas.getMapExportLink(),
+      getContext: () => atlas.getContext(),
     });
   },
   initComponents() {

@@ -52,6 +52,7 @@ export const selections = {
   hintProbeContainer: d3.select('.hint-probe__outer'),
   erasButtonContainer: d3.select('.header__eras-button'),
   erasButtonText: d3.select('.header__eras-button-text'),
+  erasMapButtonText: d3.select('.eras__map-button-text'),
   headerRegisterButton: d3.select('.header__register-button'),
   headerFacebookButton: d3.select('.header__facebook'),
   headerTwitterButton: d3.select('.header__twitter'),

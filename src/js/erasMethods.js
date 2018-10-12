@@ -86,9 +86,6 @@ const erasMethods = {
         left: '0px',
         opacity: 0,
       });
-      // .style('left', `${-offset}px`);
-    // need to calculate new offset.... OOF
-
     const newTitle = newTitleContainer.append('div')
       .attr('class', 'eras__title')
       .text(currentEra[language]);

@@ -13,6 +13,15 @@ const privateMethods = {
     erasMapButtonContainer
       .on('click', onMapButtonClick);
   },
+  setMapButtonText() {
+    const {
+      erasMapButtonText,
+      translations,
+      language,
+    } = privateProps.get(this);
+    erasMapButtonText
+      .text(translations['go-to-map'][language]);
+  },
   setStepperListeners() {
     const props = privateProps.get(this);
     const {
@@ -65,7 +74,6 @@ const privateMethods = {
     d3.select('.eras__stepper-years')
       .text(`${currentEra.datesDisplay[0]} - ${currentEra.datesDisplay[1]}`);
   },
-
 };
 
 class Eras {
@@ -74,25 +82,30 @@ class Eras {
       erasMapButtonContainer,
       erasStepperLeftButton,
       erasStepperRightButton,
+      erasMapButtonText,
     } = selections;
 
     privateProps.set(this, {
       erasMapButtonContainer,
       erasStepperLeftButton,
       erasStepperRightButton,
+      erasMapButtonText,
       onMapButtonClick: null,
       year: null,
       previousYear: null,
       mouseEventsDisabled: null,
     });
     this.config(config);
+
     const {
       setMapButtonListener,
       setStepperListeners,
       setInitialEra,
+      setMapButtonText,
     } = privateMethods;
 
     setMapButtonListener.call(this);
+    setMapButtonText.call(this);
     setStepperListeners.call(this);
     setInitialEra.call(this);
   }
@@ -146,6 +159,38 @@ class Eras {
       titleOuterContainer: d3.select('.eras__stepper-years-outer'),
       titleTextContainer: d3.select('.eras__stepper-years'),
       titleInnerContainer: d3.select('.eras__stepper-years-inner'),
+    });
+  }
+  updateLanguage() {
+    const {
+      view,
+      mouseEventsDisabled,
+      animationDirection,
+      language,
+      year,
+      eras,
+    } = privateProps.get(this);
+
+    const {
+      setMapButtonText,
+    } = privateMethods;
+
+    const {
+      getCurrentEra,
+      updateEra,
+    } = erasMethods;
+
+    const currentEra = getCurrentEra({ year, eras });
+
+    setMapButtonText.call(this);
+
+    updateEra({
+      view,
+      mouseEventsDisabled,
+      currentEra,
+      animationDirection,
+      language,
+      erasTitleContainer: d3.select('.eras__title-container'),
     });
   }
 }

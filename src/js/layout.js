@@ -110,10 +110,13 @@ const privateMethods = {
       headerTwitterButton,
       headerDownloadButton,
       getExportLink,
+      // getContext,
     } = privateProps.get(this);
 
     headerDownloadButton
       .on('click', function exportMap() {
+        // const context = getContext();
+
         const link = getExportLink();
         d3.select(this).attr('href', link);
       });

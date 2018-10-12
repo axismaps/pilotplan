@@ -311,6 +311,10 @@ class Atlas {
     const { mbMap } = privateProps.get(this);
     return mbMap.getCanvas().toDataURL('image/png');
   }
+  getContext() {
+    const { mbMap } = privateProps.get(this);
+    return mbMap.getCanvas().getContext('webgl');
+  }
   setSearchLocation() {
     const props = privateProps.get(this);
     const { mbMap } = props;
