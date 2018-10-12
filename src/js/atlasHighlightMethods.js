@@ -2,9 +2,6 @@ import union from '@turf/union';
 import { colors } from './config';
 
 const atlasHighlightMethods = {
-  initiateFeatureHighlighting({ props }) {
-
-  },
   getHighlightedGeoJSON({
     highlightedFeature,
     year,

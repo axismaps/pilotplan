@@ -23,7 +23,7 @@ const privateMethods = {
       eras,
       language,
     } = props;
-    console.log('year range', yearRange);
+
     props.slider = new TimelineSlider({
       language,
       eras,
@@ -150,7 +150,7 @@ class Timeline {
       stepSections: null,
     });
     this.config(config);
-    console.log('config', config);
+
     setSliderSize.call(this);
     drawSlider.call(this);
     initEvents.call(this);

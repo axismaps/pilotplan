@@ -17,7 +17,6 @@ const getSliderBase = ({ privateProps }) => ({
     const {
       size,
       padding,
-      handleHeight,
       handleWidth,
       scale,
       handleScale,
@@ -33,20 +32,19 @@ const getSliderBase = ({ privateProps }) => ({
 
     const pctWayThrough = steps1 / (steps1 + steps2);
 
-    // const pctWayThrough = (domain[1] - domain[0]) / (domain[2] - domain[0]);
-    console.log('domain', domain);
-    console.log('pct', pctWayThrough);
-    // const overallWidth = size.width - padding.left - padding.right - handleWidth;
+    // console.log('domain', domain);
+    // console.log('pct', pctWayThrough);
+
     const startPoint = padding.left + (handleWidth / 2);
     const endPoint = size.width - padding.right - (handleWidth / 2);
     const midPoint = (endPoint - startPoint) * pctWayThrough;
-    console.log('handleHeight', handleHeight);
-    console.log('handleWidth', handleWidth);
+
+    // console.log('handleWidth', handleWidth);
 
     scale
       .range([startPoint, midPoint, endPoint]);
     // .range([padding.left + (handleWidth / 2), size.width - padding.right - (handleWidth / 2)]);
-    console.log('range', scale.range());
+    // console.log('range', scale.range());
     handleScale.range(scale.range());
   },
   updateScaleValueRange() {
