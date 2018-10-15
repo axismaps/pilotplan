@@ -14,6 +14,18 @@ const getSidebarMethods = (privateProps) => {
       listenForText.call(this);
       setSearchReturnListener.call(this);
     },
+    clearResults() {
+      const { clearResults } = searchMethods;
+      const {
+        rasterResultsContainer,
+        nonRasterResultsContainer,
+      } = privateProps.get(this);
+
+      clearResults({
+        rasterResultsContainer,
+        nonRasterResultsContainer,
+      });
+    },
     clearContent() {
       const {
         sidebarContentContainer,

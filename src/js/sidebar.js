@@ -141,6 +141,8 @@ class Sidebar {
       onRasterClick,
       cachedMetadata,
       // resultRowContainer,
+      translations,
+      language,
     } = props;
     const {
       setSidebarClass,
@@ -157,6 +159,8 @@ class Sidebar {
     setSidebarClass.call(this);
 
     drawRasterSearchResults({
+      language,
+      translations,
       onRasterClick,
       container: rasterResultsContainer,
       results: results === null ? [] : results.raster,
@@ -165,6 +169,8 @@ class Sidebar {
     });
 
     drawNonRasterSearchResults({
+      language,
+      translations,
       container: nonRasterResultsContainer,
       results: results === null ? [] : results.nonRaster,
       onFeatureClick,
@@ -208,9 +214,12 @@ class Sidebar {
     const {
       clearContent,
       drawContent,
+      clearResults,
     } = privateMethods;
+
     clearContent.call(this);
     drawContent.call(this);
+    clearResults.call(this);
   }
 }
 

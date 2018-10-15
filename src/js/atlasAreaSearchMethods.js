@@ -103,7 +103,7 @@ const getAreaSearchMethods = ({
       const rasterFeatures = getRasterResults(features)
         .map(d => flattenedRasterData.find(dd => dd.SS_ID === d.properties.SS_ID));
 
-
+      // console.log('raster features', rasterFeatures);
       const nonRasterFeatures = getNonRasterResults(features);
       onAreaSearch({
         raster: rasterFeatures,

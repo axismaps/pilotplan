@@ -123,7 +123,7 @@ const getAtlasUpdateMethods = ({
           year,
           mbMap,
         });
-        console.log('highlighted', highlightedFeatureJSON);
+
         if (highlightedFeatureJSON.features.length > 0) {
           props.highlightedFeatureJSON = highlightedFeatureJSON;
           props.highlightFeatureLoading = true;

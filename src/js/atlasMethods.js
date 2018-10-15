@@ -102,9 +102,9 @@ const atlasMethods = {
         const currentLocation = getCurrentLocation({ mbMap });
         onMove(currentLocation);
       })
-      .on('zoomend', () => {
-        console.log('endzoom', mbMap.getZoom());
-      })
+      // .on('zoomend', () => {
+      //   console.log('endzoom', mbMap.getZoom());
+      // })
       .on('movestart', () => {
         removePulse();
       })

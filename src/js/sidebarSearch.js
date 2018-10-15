@@ -11,15 +11,20 @@ const searchMethods = {
       onTextInput(val);
     });
   },
-  clearResults(resultRowContainer) {
-    if (resultRowContainer === undefined) return;
-    resultRowContainer.remove();
+  clearResults({
+    rasterResultsContainer,
+    nonRasterResultsContainer,
+  }) {
+    rasterResultsContainer.selectAll('div').remove();
+    nonRasterResultsContainer.selectAll('div').remove();
   },
   drawRasterSearchResults({
+    translations,
     container,
     results,
     onRasterClick,
     cachedMetadata,
+    language,
   }) {
     const {
       drawSearchResultGroups,
@@ -27,6 +32,8 @@ const searchMethods = {
     } = searchMethods;
 
     const groups = drawSearchResultGroups({
+      language,
+      translations,
       container,
       results,
       isRaster: true,
@@ -48,9 +55,11 @@ const searchMethods = {
     //   .on('click', onRasterClick);
   },
   drawNonRasterSearchResults({
+    translations,
     container,
     results,
     onFeatureClick,
+    language,
   }) {
     const {
       drawSearchResultGroups,
@@ -59,6 +68,8 @@ const searchMethods = {
     } = searchMethods;
 
     const groups = drawSearchResultGroups({
+      language,
+      translations,
       container,
       results,
     });
@@ -69,6 +80,8 @@ const searchMethods = {
     });
   },
   drawSearchResultGroups({
+    language,
+    translations,
     container,
     results,
     isRaster = false,
@@ -85,7 +98,8 @@ const searchMethods = {
 
     newGroups.append('div')
       .attr('class', 'sidebar__layer-group-title')
-      .text(d => (isRaster ? d.category : d.sourceLayer)); // should be d[language]
+      .text(d => (isRaster ? translations.ViewConesPoly[language] :
+        translations[d.sourceLayer][language]));
 
     newGroups.append('div')
       .attr('class', 'sidebar__result-rows');
@@ -141,7 +155,6 @@ const searchMethods = {
     // draw title/data/rows here, in enter() selection
     groups.each(function drawLayers(d) {
       // get unique data;
-      // console.log('features', d);
       const uniqueFeatures = [...new Set(d.features.map(dd => dd.properties.Name))]
         .map(id => d.features.find(dd => dd.properties.Name === id));
       // console.log('ids', uniqueFeatures);
