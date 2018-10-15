@@ -10,6 +10,7 @@ const getUpdateLanguage = ({
       eraDropdown,
       intro,
       eras,
+      sidebar,
     } = components;
 
     urlParams.config({ language }).update();
@@ -17,6 +18,7 @@ const getUpdateLanguage = ({
     eraDropdown.config({ language }).update();
     intro.config({ language }).update();
     eras.config({ language }).updateLanguage();
+    sidebar.config({ language }).updateLanguage();
   };
   return updateLanguage;
 };

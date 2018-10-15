@@ -204,6 +204,14 @@ class Sidebar {
     setSidebarClass.call(this);
     onSearchReturn();
   }
+  updateLanguage() {
+    const {
+      clearContent,
+      drawContent,
+    } = privateMethods;
+    clearContent.call(this);
+    drawContent.call(this);
+  }
 }
 
 export default Sidebar;

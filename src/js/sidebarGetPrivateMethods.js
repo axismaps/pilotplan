@@ -4,25 +4,37 @@ const getSidebarMethods = (privateProps) => {
   const privateMethods = {
     init() {
       const {
-        setViewLayerVisibility,
-        drawLayerGroups,
-        drawLayers,
-        drawFeatures, // draw features
         listenForText,
         setSearchReturnListener,
-        setViewLayerListener,
-        setViewLayerIcon,
+        drawContent,
       } = privateMethods;
 
       // drawLayerCategories.call(this);
+      drawContent.call(this);
+      listenForText.call(this);
+      setSearchReturnListener.call(this);
+    },
+    clearContent() {
+      const {
+        sidebarContentContainer,
+      } = privateProps.get(this);
+      sidebarContentContainer.selectAll('div').remove();
+    },
+    drawContent() {
+      const {
+        setViewLayerVisibility,
+        drawLayerGroups,
+        drawLayers,
+        drawFeatures,
+        setViewLayerIcon,
+        setViewLayerListener,
+      } = privateMethods;
       setViewLayerIcon.call(this);
       setViewLayerListener.call(this);
       setViewLayerVisibility.call(this);
       drawLayerGroups.call(this);
       drawLayers.call(this);
       drawFeatures.call(this);
-      listenForText.call(this);
-      setSearchReturnListener.call(this);
     },
     listenForText() {
       const {
@@ -94,6 +106,8 @@ const getSidebarMethods = (privateProps) => {
       const {
         availableLayers,
         sidebarContentContainer,
+        translations,
+        language,
       } = props;
 
       const groups = sidebarContentContainer
@@ -107,7 +121,7 @@ const getSidebarMethods = (privateProps) => {
       newGroups
         .append('div')
         .attr('class', 'sidebar__layer-group-title')
-        .text(d => d.group);
+        .text(d => translations[d.group][language]);
 
       newGroups.append('div')
         .attr('class', 'sidebar__layer-block');
@@ -123,6 +137,7 @@ const getSidebarMethods = (privateProps) => {
         layerGroups,
         language,
         onLayerClick,
+        translations,
       } = props;
 
       // const { addLayerRowContent } = privateMethods;
@@ -145,7 +160,7 @@ const getSidebarMethods = (privateProps) => {
 
         titleRows.each(function addSwatch(dd) {
           let html = '<input class="sidebar__layer-checkbox" type="checkbox" value="builtdomain" checked="checked">';
-          html += `<span class="sidebar__layer-name">${dd[language]}</span>`;
+          html += `<span class="sidebar__layer-name">${translations[dd.sourceLayer][language]}</span>`;
           d3.select(this).html(html);
         });
 
@@ -195,6 +210,7 @@ const getSidebarMethods = (privateProps) => {
         onFeatureClick,
         cachedSwatches,
         layerStyles,
+        translations,
       } = props;
 
       const {
@@ -213,19 +229,17 @@ const getSidebarMethods = (privateProps) => {
           .enter()
           .append('div')
           .attr('class', 'sidebar__feature-row');
-
         newFeatureRows
           .append('div')
           .attr('class', 'sidebar__feature-button')
           .classed('sidebar__feature-button--inactive', feature => feature.style === undefined)
           .html(feature => `
             <i class="icon-binoculars sidebar__feature-icon"></i>
-            <span class="sidebar__feature-name">${feature[language]}</span>
+            <span class="sidebar__feature-name">${translations[feature.dataLayer][language]}</span>
           `)
           .on('click', (feature) => {
             onFeatureClick(Object.assign({}, feature, { sourceLayer: d.sourceLayer }));
           });
-        // console.log('icon', d.icon);
         if (cachedSwatches.has(d.icon)) {
           // console.log('loaded from cache');
           const html = cachedSwatches.get(d.icon);
