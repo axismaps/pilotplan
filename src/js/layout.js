@@ -109,8 +109,6 @@ const privateMethods = {
       headerFacebookButton,
       headerTwitterButton,
       headerDownloadButton,
-      getExportLink,
-      // getContext,
       getCanvas,
       language,
       translations,
@@ -119,19 +117,10 @@ const privateMethods = {
 
     headerDownloadButton
       .on('click', function exportMap() {
-        // var Image = Canvas.Image,
-        // canvas = new Canvas( dimensions.x, dimensions.y ),
-        // context = canvas.getContext( '2d' );
-
-        // var layers = new Image;
-
         const {
           width,
           height,
         } = getCanvas().getBoundingClientRect();
-
-        const mapImage = new Image(width, height);
-        mapImage.src = getExportLink();
 
         const canvas = document.createElement('canvas');
         canvas.height = height;
