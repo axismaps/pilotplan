@@ -125,18 +125,16 @@ const privateMethods = {
         const canvas = document.createElement('canvas');
         canvas.height = height;
         canvas.width = width;
-        const context = canvas.getContext('2d');
-        context.drawImage(getCanvas(), 0, 0, width, height);
-
         const titleHeight = 50;
 
+        const context = canvas.getContext('2d');
+        context.drawImage(getCanvas(), 0, 0, width, height);
         context.fillStyle = 'rgba( 230, 230, 230, 0.8 )';
         context.fillRect(0, 0, width, titleHeight);
         context.fillStyle = '#666';
         context.fillRect(0, titleHeight - 1, width, 1);
         context.font = '100 30px Raleway';
         context.fillText(translations.h1[language], 20, 35);
-
         context.font = 'bold 20px Raleway';
         context.fillText(year, width - 100, 35);
 

@@ -87,6 +87,7 @@ const allRasterMethods = {
           const config = getProbeConfig({
             selection: d3.select(this),
             data: dd,
+            leader: true,
           });
           dataProbe
             .config(config)
