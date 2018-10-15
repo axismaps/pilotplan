@@ -134,10 +134,10 @@ const privateMethods = {
         context.fillRect(0, 0, width, titleHeight);
         context.fillStyle = '#666';
         context.fillRect(0, titleHeight - 1, width, 1);
-        context.font = '100 30px Raleway';
+        context.font = "100 30px 'Helvetica Neue', Helvetica, Arial, sans-serif";
         context.fillText(translations.h1[language], 20, 35);
 
-        context.font = 'bold 20px Raleway';
+        context.font = "bold 20px 'Helvetica Neue', Helvetica, Arial, sans-serif";
         context.fillText(year, width - 100, 35);
 
         const url = canvas.toDataURL('image/png');
