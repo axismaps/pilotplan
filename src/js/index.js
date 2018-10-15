@@ -144,6 +144,7 @@ const app = {
   initLayout() {
     const { state, eras, atlas } = this.components;
     this.components.layout = new Layout({
+      year: state.get('year'),
       zoomedOut: state.get('currentLocation') !== null ?
         state.get('currentLocation').zoom < 11 : false,
       translations: this.data.translations,
@@ -176,7 +177,7 @@ const app = {
         state.update({ view: 'intro' });
       },
       getExportLink: () => atlas.getMapExportLink(),
-      getContext: () => atlas.getContext(),
+      getCanvas: () => atlas.getCanvas(),
     });
   },
   initComponents() {

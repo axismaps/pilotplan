@@ -111,14 +111,48 @@ const privateMethods = {
       headerDownloadButton,
       getExportLink,
       // getContext,
+      getCanvas,
+      language,
+      translations,
+      year,
     } = privateProps.get(this);
 
     headerDownloadButton
       .on('click', function exportMap() {
-        // const context = getContext();
+        // var Image = Canvas.Image,
+        // canvas = new Canvas( dimensions.x, dimensions.y ),
+        // context = canvas.getContext( '2d' );
 
-        const link = getExportLink();
-        d3.select(this).attr('href', link);
+        // var layers = new Image;
+
+        const {
+          width,
+          height,
+        } = getCanvas().getBoundingClientRect();
+
+        const mapImage = new Image(width, height);
+        mapImage.src = getExportLink();
+
+        const canvas = document.createElement('canvas');
+        canvas.height = height;
+        canvas.width = width;
+        const context = canvas.getContext('2d');
+        context.drawImage(getCanvas(), 0, 0, width, height);
+
+        const titleHeight = 50;
+
+        context.fillStyle = 'rgba( 230, 230, 230, 0.8 )';
+        context.fillRect(0, 0, width, titleHeight);
+        context.fillStyle = '#666';
+        context.fillRect(0, titleHeight - 1, width, 1);
+        context.font = '100 30px Raleway';
+        context.fillText(translations.h1[language], 20, 35);
+
+        context.font = 'bold 20px Raleway';
+        context.fillText(year, width - 100, 35);
+
+        const url = canvas.toDataURL('image/png');
+        d3.select(this).attr('href', url);
       });
 
     headerTwitterButton
@@ -202,6 +236,7 @@ class Layout {
       rotated: false,
       registerOpen: false,
       zoomedOut: false,
+      translations: null,
     });
     const {
       initAreaButton,

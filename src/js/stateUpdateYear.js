@@ -63,6 +63,7 @@ const getUpdateYear = ({
     layout
       .config({
         currentEra,
+        year,
       })
       .updateEra();
 
