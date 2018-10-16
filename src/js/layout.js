@@ -174,6 +174,15 @@ const privateMethods = {
     areaSearchText
       .text(translations['probe-area-text'][language]);
   },
+  setRegisterButtonLanguage() {
+    const {
+      headerRegisterButtonText,
+      // language,
+      // translations,
+    } = privateProps.get(this);
+    headerRegisterButtonText
+      .text('Register'); // placeholder until translations csv updated
+  },
 };
 
 class Layout {
@@ -193,6 +202,7 @@ class Layout {
       sidebarToggleButton,
       sidebarToggleHelpContainer,
       headerRegisterButton,
+      headerRegisterButtonText,
       headerFacebookButton,
       headerTwitterButton,
       headerDownloadButton,
@@ -232,6 +242,7 @@ class Layout {
       hintProbeContainer,
       hintProbeText,
       headerRegisterButton,
+      headerRegisterButtonText,
       headerFacebookButton,
       headerTwitterButton,
       headerDownloadButton,

@@ -56,6 +56,7 @@ export const selections = {
   erasButtonText: d3.select('.header__eras-button-text'),
   erasMapButtonText: d3.select('.eras__map-button-text'),
   headerRegisterButton: d3.select('.header__register-button'),
+  headerRegisterButtonText: d3.select('.header__register-button-text'),
   headerFacebookButton: d3.select('.header__facebook'),
   headerTwitterButton: d3.select('.header__twitter'),
   headerDownloadButton: d3.select('.header__download'),

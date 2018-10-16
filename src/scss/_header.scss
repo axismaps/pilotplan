@@ -16,6 +16,12 @@
 
 .header__register-button {
   cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.header__register-button-text {
+  margin-left: 5px;
 }
 
 .header__register-button:hover {
