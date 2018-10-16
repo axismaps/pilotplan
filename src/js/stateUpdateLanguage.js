@@ -13,6 +13,7 @@ const getUpdateLanguage = ({
       sidebar,
       layout,
       footer,
+      atlas,
     } = components;
 
     urlParams.config({ language }).update();
@@ -23,6 +24,7 @@ const getUpdateLanguage = ({
     sidebar.config({ language }).updateLanguage();
     layout.config({ language }).updateLanguage();
     footer.config({ language }).updateLanguage();
+    atlas.config({ language });
   };
   return updateLanguage;
 };

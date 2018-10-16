@@ -61,6 +61,8 @@ const atlasMethods = {
     viewshedsGeo,
     initApp,
     style,
+    getLanguage,
+    translations,
     getCurrentView,
     setCancelClickSearch,
     getRasterData,
@@ -136,7 +138,7 @@ const atlasMethods = {
             bottom: (window.innerHeight - d.point.y) + offset,
             width: 200,
           },
-          clickText: 'Click for details',
+          clickText: translations['click-for-details'][getLanguage()],
         });
 
         dataProbe

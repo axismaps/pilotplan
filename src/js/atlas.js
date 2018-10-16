@@ -29,6 +29,7 @@ const privateMethods = {
       onLayerSourceData,
       onFeatureSourceData,
       onReturnToSearch,
+      translations,
     } = props;
 
     const {
@@ -50,8 +51,10 @@ const privateMethods = {
             props.cancelClickSearch = true;
           },
           onViewClick,
+          translations,
           getRasterData: () => props.rasterData,
           getCurrentView: () => props.currentView,
+          getLanguage: () => props.language,
           style: getCurrentStyle({ style, year }),
         });
 
