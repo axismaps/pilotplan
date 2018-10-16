@@ -47,6 +47,7 @@ export const footerCategoryIcons = {
 export const selections = {
   outerContainer: d3.select('.outer-container'),
   areaSearchButton: d3.select('.area-button'),
+  areaSearchText: d3.select('.area-button-text'),
   probeButtonsContainer: d3.select('.probe-buttons-container'),
   overlayButtonContainer: d3.select('.overlay-button'),
   hintProbeContainer: d3.select('.hint-probe__outer'),

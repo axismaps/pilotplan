@@ -164,6 +164,16 @@ const privateMethods = {
     hintProbeText
       .text(translations['probe-hint-text'][language]);
   },
+  setAreaProbeLanguage() {
+    const {
+      areaSearchText,
+      language,
+      translations,
+    } = privateProps.get(this);
+
+    areaSearchText
+      .text(translations['probe-area-text'][language]);
+  },
 };
 
 class Layout {
@@ -189,6 +199,7 @@ class Layout {
       registerOuterContainer,
       registerInnerContainer,
       registerCancelButton,
+      areaSearchText,
     } = selections;
 
     privateProps.set(this, {
@@ -227,6 +238,7 @@ class Layout {
       registerOuterContainer,
       registerInnerContainer,
       registerCancelButton,
+      areaSearchText,
       transitionSpeed: 500,
       mouseEventsDisabled: false,
       transitionsDisabled: false,
