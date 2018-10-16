@@ -108,10 +108,12 @@ const getPublicMethods = ({ privateProps, privateMethods }) => ({
       setHintProbeLanguage,
       setAreaProbeLanguage,
       setRegisterButtonLanguage,
+      setErasButtonText,
     } = privateMethods;
     setHintProbeLanguage.call(this);
     setAreaProbeLanguage.call(this);
     setRegisterButtonLanguage.call(this);
+    setErasButtonText.call(this);
   },
   updateRegisterScreen() {
     const {
