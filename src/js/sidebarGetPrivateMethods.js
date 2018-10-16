@@ -7,12 +7,14 @@ const getSidebarMethods = (privateProps) => {
         listenForText,
         setSearchReturnListener,
         drawContent,
+        setToggleButtonText,
       } = privateMethods;
 
       // drawLayerCategories.call(this);
       drawContent.call(this);
       listenForText.call(this);
       setSearchReturnListener.call(this);
+      setToggleButtonText.call(this);
     },
     clearResults() {
       const { clearResults } = searchMethods;
@@ -307,6 +309,15 @@ const getSidebarMethods = (privateProps) => {
     clearTextInput() {
       const { searchInput } = privateProps.get(this);
       searchInput.node().value = '';
+    },
+    setToggleButtonText() {
+      const {
+        sidebarToggleButtonText,
+        language,
+        translations,
+      } = privateProps.get(this);
+      sidebarToggleButtonText
+        .text(translations['legend-title-text'][language]);
     },
   };
   return privateMethods;

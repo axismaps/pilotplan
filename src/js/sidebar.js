@@ -20,6 +20,7 @@ class Sidebar {
       sidebarViewshedLayerBlock,
       sidebarViewshedLayerRow,
       sidebarViewshedLayerIconContainer,
+      sidebarToggleButtonText,
     } = selections;
     const {
       init,
@@ -38,6 +39,7 @@ class Sidebar {
       sidebarViewshedLayerBlock,
       sidebarViewshedLayerRow,
       sidebarViewshedLayerIconContainer,
+      sidebarToggleButtonText,
       cachedSwatches: new Map(),
       view: null,
       previousView: null,
@@ -215,11 +217,13 @@ class Sidebar {
       clearContent,
       drawContent,
       clearResults,
+      setToggleButtonText,
     } = privateMethods;
 
     clearContent.call(this);
     drawContent.call(this);
     clearResults.call(this);
+    setToggleButtonText.call(this);
   }
 }
 
