@@ -45,10 +45,11 @@ const privateMethods = {
       currentEra,
       erasButtonText,
       language,
+      translations,
     } = privateProps.get(this);
 
     erasButtonText
-      .text(currentEra[language]);
+      .text(`${translations['back-to-text'][language]} ${currentEra[language]}`);
   },
   initMenuTransitions() {
     const {
@@ -183,6 +184,15 @@ const privateMethods = {
     headerRegisterButtonText
       .text('Register'); // placeholder until translations csv updated
   },
+  setErasBackButtonText() {
+    const {
+      erasBackButtonText,
+      language,
+      translations,
+    } = privateProps.get(this);
+    erasBackButtonText
+      .text(`${translations['back-to-text'][language]} ${translations.start[language]}`);
+  },
 };
 
 class Layout {
@@ -197,6 +207,7 @@ class Layout {
       erasButtonContainer,
       erasButtonText,
       erasBackButton,
+      erasBackButtonText,
       sidebarContainer,
       footerContainer,
       sidebarToggleButton,
@@ -235,6 +246,7 @@ class Layout {
       erasButtonContainer,
       erasButtonText,
       erasBackButton,
+      erasBackButtonText,
       sidebarContainer,
       footerContainer,
       sidebarToggleButton,

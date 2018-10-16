@@ -230,6 +230,14 @@ $menu-speed: 250ms;
   // background: $main-background-fill;
 }
 
+.eras__back-button-inner {
+  display: flex;
+}
+
+.eras__back-button-text {
+  margin-left: 5px;
+}
+
 .intro__language-button-inner {
   display: flex;
 }

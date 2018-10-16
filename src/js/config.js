@@ -140,4 +140,5 @@ export const selections = {
   erasStepperRightButton: d3.select('.eras__stepper-icon-right'),
   erasTitleContainer: d3.select('.eras__title'),
   erasBackButton: d3.select('.eras__back-button-outer'),
+  erasBackButtonText: d3.select('.eras__back-button-text'),
 };
