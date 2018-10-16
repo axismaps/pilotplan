@@ -11,6 +11,7 @@ const getUpdateLanguage = ({
       intro,
       eras,
       sidebar,
+      layout,
     } = components;
 
     urlParams.config({ language }).update();
@@ -19,6 +20,7 @@ const getUpdateLanguage = ({
     intro.config({ language }).update();
     eras.config({ language }).updateLanguage();
     sidebar.config({ language }).updateLanguage();
+    layout.config({ language }).updateLanguage();
   };
   return updateLanguage;
 };

@@ -155,6 +155,15 @@ const privateMethods = {
         `https://www.facebook.com/sharer/sharer.php?&u=${encodeURIComponent(window.location.href)}`,
       );
   },
+  setHintProbeLanguage() {
+    const {
+      hintProbeText,
+      translations,
+      language,
+    } = privateProps.get(this);
+    hintProbeText
+      .text(translations['probe-hint-text'][language]);
+  },
 };
 
 class Layout {
@@ -164,6 +173,7 @@ class Layout {
       areaSearchButton,
       probeButtonsContainer,
       hintProbeContainer,
+      hintProbeText,
       overlayButtonContainer,
       erasButtonContainer,
       erasButtonText,
@@ -209,6 +219,7 @@ class Layout {
       sidebarToggleButton,
       sidebarToggleHelpContainer,
       hintProbeContainer,
+      hintProbeText,
       headerRegisterButton,
       headerFacebookButton,
       headerTwitterButton,
@@ -259,6 +270,7 @@ class Layout {
     this.updateRasterProbe();
     this.updateLocation();
     this.updateRegisterScreen();
+    this.updateLanguage();
 
     // initMenuTransitions.call(this);
   }
