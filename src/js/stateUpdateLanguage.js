@@ -12,6 +12,7 @@ const getUpdateLanguage = ({
       eras,
       sidebar,
       layout,
+      footer,
     } = components;
 
     urlParams.config({ language }).update();
@@ -21,6 +22,7 @@ const getUpdateLanguage = ({
     eras.config({ language }).updateLanguage();
     sidebar.config({ language }).updateLanguage();
     layout.config({ language }).updateLanguage();
+    footer.config({ language }).updateLanguage();
   };
   return updateLanguage;
 };

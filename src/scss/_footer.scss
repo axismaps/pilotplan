@@ -76,9 +76,14 @@
 }
 
 
-.footer__toggle-text {
+.footer__toggle-text-container {
+  display: flex;
   margin-left: 10px;
   padding-right: 5px;
+}
+
+.footer__toggle-text {
+  margin-right: 8px;
 }
 
 .footer__categories {
@@ -183,7 +188,7 @@ background: $main-lighter-gray;
   .footer__toggle-no-raster-text {
     display: block;
   }
-  .footer__toggle-text,
+  .footer__toggle-text-container,
   .footer__toggle-rasters-container {
     display: none;
   }

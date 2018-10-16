@@ -66,6 +66,7 @@ export const selections = {
   showAllContainer: d3.select('.footer__show-all'),
   footerToggleButton: d3.select('.footer__toggle-button'),
   footerToggleText: d3.select('.footer__toggle-text'),
+  footerToggleTextContainer: d3.select('.footer__toggle-text-container'),
   footerToggleYearContainer: d3.select('.footer__toggle-year'),
   footerToggleRastersContainer: d3.select('.footer__toggle-rasters-container'),
   allRasterOuterContainer: d3.select('.allraster__outer'),

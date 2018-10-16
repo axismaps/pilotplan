@@ -194,6 +194,7 @@ class Footer {
       footerContainer,
       footerToggleRastersContainer,
       footerToggleYearContainer,
+      footerToggleText,
     } = selections;
 
     privateProps.set(this, {
@@ -206,6 +207,7 @@ class Footer {
       footerToggleButton,
       footerToggleRastersContainer,
       footerToggleYearContainer,
+      footerToggleText,
       outerContainer,
       footerContainer,
       dataProbe: new DataProbe({
@@ -219,6 +221,8 @@ class Footer {
       cachedMetadata: null,
       firstAllRasterLoad: true,
       year: null,
+      language: null,
+      translations: null,
     });
 
     const {
@@ -234,6 +238,7 @@ class Footer {
     initToggleButton.call(this);
 
     this.updateRasterData();
+    this.updateLanguage();
     // this.updateToggleRasters();
   }
   config(config) {
@@ -275,6 +280,15 @@ class Footer {
     if (allRasterOpen) {
       drawAllRaster.call(this);
     }
+  }
+  updateLanguage() {
+    const {
+      // language,
+      // translations,
+      footerToggleText,
+    } = privateProps.get(this);
+    footerToggleText
+      .text('Historical Overlays'); // placeholder until translation is added to csv
   }
 }
 
