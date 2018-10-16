@@ -63,7 +63,7 @@ const setLoadingCallbacks = ({ props }) => {
         year,
       });
       props.highlightLayerLoading = false;
-    }, 500);
+    }, 600);
   };
 
   props.onFeatureSourceData = () => {
