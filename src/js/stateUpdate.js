@@ -10,10 +10,6 @@ const setStateEvents = ({ components, data }) => {
   const { state } = components;
 
   state.registerCallbacks({
-    componentsInitialized() {
-      const { layout } = components;
-      layout.initializedComponents();
-    },
     year: getUpdateYear({ data, components }),
     view: getUpdateView({ components }),
     language: getUpdateLanguage({ data, components }),
@@ -270,8 +266,9 @@ const setStateEvents = ({ components, data }) => {
     },
     mapLoaded() {
       const { mapLoaded } = this.props();
-      const { views } = components;
+      const { views, layout } = components;
       views.config({ mapLoaded });
+      layout.config({ mapLoaded }).updateMapLoaded();
     },
     overlayOpacity() {
       const { overlayOpacity } = this.props();

@@ -125,16 +125,19 @@ const getPublicMethods = ({ privateProps, privateMethods }) => ({
     registerOuterContainer
       .classed('register__outer--on', registerOpen);
   },
-  initializedComponents() {
+  updateMapLoaded() {
     const {
       loadingScreenContainer,
+      mapLoaded,
     } = privateProps.get(this);
-    loadingScreenContainer
-      .style('opacity', 1)
-      .transition()
-      .duration(750)
-      .style('opacity', 0)
-      .remove();
+    if (mapLoaded) {
+      loadingScreenContainer
+        .style('opacity', 1)
+        .transition()
+        .duration(750)
+        .style('opacity', 0)
+        .remove();
+    }
   },
 });
 
