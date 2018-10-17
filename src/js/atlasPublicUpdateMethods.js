@@ -114,7 +114,7 @@ const getAtlasUpdateMethods = ({
           bearing: 0,
           zoom: newZoom,
           center: newBounds.getCenter(),
-          duration: 2000,
+          duration: 1500,
         });
       } else {
         if (highlightedFeature === null) return;
