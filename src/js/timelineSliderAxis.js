@@ -29,14 +29,12 @@ const axisMethods = ({ privateProps, privateMethods }) => ({
         class: 'slider__axis',
       });
   },
-  setTickProps() {
-    // conditional statements here--year span to width ratio etc.
-  },
   setAxisGenerator() {
     const props = privateProps.get(this);
     const {
       scale,
       stepSections,
+      mobile,
     } = props;
     const { isLabeledTick } = privateMethods;
 
@@ -68,7 +66,7 @@ const axisMethods = ({ privateProps, privateMethods }) => ({
       // .ticks(20)
       // .ticks([1900, 1920, 1950, 1975])
       .tickValues(tickValues)
-      .tickFormat(d => (isLabeledTick({ value: d, breakpoint: stepSections[0].years[1] }) ? d : ''));
+      .tickFormat(d => (isLabeledTick({ value: d, breakpoint: stepSections[0].years[1] }) && !mobile ? d : ''));
   },
   isLabeledTick({ value, breakpoint }) {
     if (value > breakpoint) {

@@ -22,9 +22,11 @@ const privateMethods = {
       sliderPadding,
       eras,
       language,
+      mobile,
     } = props;
 
     props.slider = new TimelineSlider({
+      mobile,
       language,
       eras,
       container: sliderContainer,

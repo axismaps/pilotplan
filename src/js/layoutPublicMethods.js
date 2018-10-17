@@ -139,6 +139,15 @@ const getPublicMethods = ({ privateProps, privateMethods }) => ({
         .remove();
     }
   },
+  updateMobile() {
+    const {
+      outerContainer,
+      mobile,
+    } = privateProps.get(this);
+    outerContainer
+      .classed('outer-container--desktop', !mobile)
+      .classed('outer-container--mobile', mobile);
+  },
 });
 
 export default getPublicMethods;

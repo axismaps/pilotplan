@@ -274,6 +274,7 @@ class Layout {
       zoomedOut: false,
       translations: null,
       mapLoaded: false,
+      mobile: false,
     });
     const {
       initAreaButton,
@@ -310,6 +311,7 @@ class Layout {
     this.updateRegisterScreen();
     this.updateLanguage();
     this.updateMapLoaded();
+    this.updateMobile();
 
     // initMenuTransitions.call(this);
   }

@@ -89,7 +89,7 @@ body {
   top: 0px;
   left: 0px;
   width: 100%;
-  height: $timeline-height;
+  height: $header-height;
   display: flex;
   align-items: center;
   color: white;
@@ -126,6 +126,7 @@ body {
 .timeline-container {
   position: absolute;
   top: ($header-height)-10px;
+  // top: $header-height;
   left: 0px;
   height: $timeline-height;
   width: 100%;

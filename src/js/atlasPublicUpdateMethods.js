@@ -106,6 +106,7 @@ const getAtlasUpdateMethods = ({
           highlightedFeature,
           padding: 0,
         });
+        console.log('newZoom', newZoom);
         // console.log('new zoom', newZoom);
         props.highlightLayerLoading = true;
         props.highlightFeatureLoading = false;

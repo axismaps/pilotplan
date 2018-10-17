@@ -13,9 +13,8 @@ const getState = function getState({ urlParams }) {
       zoom,
       bearing,
     };
-  // const startBounds = urlParams.get('bounds');
 
-  // const startView = 'map';
+
   const startView = initialLocation === null ? 'intro' : 'map';
   const state = new State({
     // year: 1960,
@@ -43,6 +42,9 @@ const getState = function getState({ urlParams }) {
     highlightedFeature: null,
     mouseEventsDisabled: false,
     transitionsDisabled: false,
+    mobile: null,
+    // mobile: window.innerWidth <= 700,
+    // mobileLandscape: window.innerWidth <= 700 && window.innerWidth >= 415,
     language: urlParams.get('language'),
     // language: 'pr',
     screenSize: [window.innerWidth, window.innerHeight],
@@ -135,6 +137,19 @@ const getState = function getState({ urlParams }) {
     }
     return state.get('footerView');
   };
+
+  state.getOrientation = function getOrientation() {
+    const width = this.get('screenSize')[0];
+
+    if (width > 700) {
+      return 'desktop';
+    } else if (width >= 415 && width <= 700) {
+      return 'mobileLandscape';
+    }
+    return 'mobile';
+  };
+
+  state.set('mobile', state.getOrientation() === 'mobile');
 
   return state;
 };

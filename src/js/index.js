@@ -144,6 +144,7 @@ const app = {
   initLayout() {
     const { state, eras, atlas } = this.components;
     this.components.layout = new Layout({
+      mobile: state.get('mobile'),
       year: state.get('year'),
       zoomedOut: state.get('currentLocation') !== null ?
         state.get('currentLocation').zoom < 11 : false,
@@ -188,6 +189,7 @@ const app = {
     console.log('initialize components');
 
     this.components.timeline = new Timeline({
+      mobile: state.get('mobile'),
       language: state.get('language'),
       eras: this.data.eras,
       year: state.get('year'),
