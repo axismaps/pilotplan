@@ -125,6 +125,17 @@ const getPublicMethods = ({ privateProps, privateMethods }) => ({
     registerOuterContainer
       .classed('register__outer--on', registerOpen);
   },
+  initializedComponents() {
+    const {
+      loadingScreenContainer,
+    } = privateProps.get(this);
+    loadingScreenContainer
+      .style('opacity', 1)
+      .transition()
+      .duration(750)
+      .style('opacity', 0)
+      .remove();
+  },
 });
 
 export default getPublicMethods;

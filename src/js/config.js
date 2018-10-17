@@ -62,6 +62,8 @@ export const selections = {
   headerDownloadButton: d3.select('.header__download'),
   headerInfoButton: d3.select('.header__info'),
 
+  loadingScreenContainer: d3.select('.loading__outer'),
+
   footerContainer: d3.select('.footer'),
   categoriesContainer: d3.select('.footer__categories'),
   imagesContainer: d3.select('.footer__images'),

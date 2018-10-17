@@ -1,0 +1,29 @@
+.loading__outer {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  left: 0px;
+  top: 0px;
+  z-index: 3000;
+  background: $lightbox-background;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  color: white;
+}
+
+.loading__spinner-container {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+.loading__spinner {
+  font-size: 40px;
+}
+
+.loading__spinner-text {
+  margin-top: 20px;
+  font-size: 30px;
+}

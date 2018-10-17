@@ -221,6 +221,7 @@ class Layout {
       registerInnerContainer,
       registerCancelButton,
       areaSearchText,
+      loadingScreenContainer,
     } = selections;
 
     privateProps.set(this, {
@@ -262,6 +263,7 @@ class Layout {
       registerInnerContainer,
       registerCancelButton,
       areaSearchText,
+      loadingScreenContainer,
       transitionSpeed: 500,
       mouseEventsDisabled: false,
       transitionsDisabled: false,

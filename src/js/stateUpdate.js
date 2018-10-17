@@ -10,6 +10,10 @@ const setStateEvents = ({ components, data }) => {
   const { state } = components;
 
   state.registerCallbacks({
+    componentsInitialized() {
+      const { layout } = components;
+      layout.initializedComponents();
+    },
     year: getUpdateYear({ data, components }),
     view: getUpdateView({ components }),
     language: getUpdateLanguage({ data, components }),
