@@ -1,0 +1,27 @@
+.outer-container--mobile {
+  .probe-buttons-container {
+    left: 0px;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .area-button {
+    margin-right: 10px;
+  }
+
+  .hint-probe {
+    margin-left: 10px;
+  }
+
+  .area-button .icon-search-area {
+    padding-right: 0px;
+  }
+
+  .area-button-text {
+    display: none;
+  }
+
+  .hint-probe__triangle {
+    display: none;
+  }
+}
