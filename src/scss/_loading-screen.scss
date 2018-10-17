@@ -6,7 +6,8 @@
   top: 0px;
   z-index: 3000;
   background: $lightbox-background;
-  display: flex;
+  // display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   
@@ -26,4 +27,8 @@
 .loading__spinner-text {
   margin-top: 20px;
   font-size: 30px;
+}
+
+.outer-container--map .loading__outer {
+  display: flex;
 }
