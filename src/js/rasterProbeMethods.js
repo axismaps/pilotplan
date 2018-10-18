@@ -141,6 +141,7 @@ const rasterProbeMethods = {
     overlayOpacity,
     rasterProbeSliderContainer,
   }) {
+    console.log('draw raster slider');
     rasterProbeSliderContainer.select('svg').remove();
     // setTimeout(() => {
     const { width } = rasterProbeSliderContainer
@@ -168,6 +169,10 @@ const rasterProbeMethods = {
       handleWidth: 14,
       padding: { left: 0, right: 2 },
       valueRange: [0, 1],
+      stepSections: [{
+        increment: 1,
+        years: [0, 1],
+      }],
       onDragEnd: onSliderDrag,
       size: {
         width,

@@ -6,8 +6,11 @@ const getSliderBase = ({ privateProps }) => ({
       stepSections,
     } = props;
 
+    const domain = stepSections.length === 2 ?
+      [valueRange[0], stepSections[0].years[1], valueRange[1]] :
+      valueRange;
     props.scale = d3.scaleLinear()
-      .domain([valueRange[0], stepSections[0].years[1], valueRange[1]]);
+      .domain(domain);
     const { scale } = props;
 
     props.handleScale = d3.scaleLinear()
@@ -25,26 +28,24 @@ const getSliderBase = ({ privateProps }) => ({
 
     const domain = scale.domain();
 
-    const increments1 = stepSections[0].increment;
-    const increments2 = stepSections[1].increment;
-    const steps1 = (domain[1] - domain[0]) / increments1;
-    const steps2 = (domain[2] - domain[0]) / increments2;
+    if (stepSections.length === 2) {
+      const increments1 = stepSections[0].increment;
+      const increments2 = stepSections[1].increment;
+      const steps1 = (domain[1] - domain[0]) / increments1;
+      const steps2 = (domain[2] - domain[0]) / increments2;
 
-    const pctWayThrough = steps1 / (steps1 + steps2);
+      const pctWayThrough = steps1 / (steps1 + steps2);
 
-    // console.log('domain', domain);
-    // console.log('pct', pctWayThrough);
+      const startPoint = padding.left + (handleWidth / 2);
+      const endPoint = size.width - padding.right - (handleWidth / 2);
+      const midPoint = (endPoint - startPoint) * pctWayThrough;
 
-    const startPoint = padding.left + (handleWidth / 2);
-    const endPoint = size.width - padding.right - (handleWidth / 2);
-    const midPoint = (endPoint - startPoint) * pctWayThrough;
-
-    // console.log('handleWidth', handleWidth);
-
-    scale
-      .range([startPoint, midPoint, endPoint]);
-    // .range([padding.left + (handleWidth / 2), size.width - padding.right - (handleWidth / 2)]);
-    // console.log('range', scale.range());
+      scale
+        .range([startPoint, midPoint, endPoint]);
+    } else if (stepSections.length === 1) {
+      scale
+        .range([padding.left + (handleWidth / 2), size.width - padding.right - (handleWidth / 2)]);
+    }
     handleScale.range(scale.range());
   },
   updateScaleValueRange() {
@@ -124,7 +125,7 @@ const getSliderBase = ({ privateProps }) => ({
     } = privateProps.get(this);
     detectionTrack.attrs({
       x1: scale.range()[0],
-      x2: scale.range()[2],
+      x2: scale.range().slice(-1)[0],
     });
   },
   drawBackgroundTrack() {
@@ -162,7 +163,7 @@ const getSliderBase = ({ privateProps }) => ({
     backgroundTrack
       .attrs({
         x: scale.range()[0],
-        width: scale.range()[2] - scale.range()[0],
+        width: scale.range()[scale.range().length - 1] - scale.range()[0],
       });
   },
   drawActiveTrack() {

@@ -95,6 +95,7 @@ const privateMethods = {
 
     // handle.attr('cx', handleScale(currentValue));
     // handle.attr('x', handleScale(currentValue) - (handleWidth / 2));
+
     handle
       .attr('transform', `translate(${handleScale(currentValue) - (handleWidth / 2)}, ${(size.height / 2) - (handleHeight / 2)})`);
   },
