@@ -85,6 +85,13 @@ const setLoadingCallbacks = ({ props }) => {
           } else if (isLayer) {
             mbMap.setPaintProperty(layer.id, 'fill-opacity', 1);
           }
+        } else if (layer.type === 'symbol') {
+          if (!isLayer) {
+            console.log('?', layer);
+            mbMap.setPaintProperty(layer.id, 'text-opacity', 0.1);
+          } else if (isLayer) {
+            mbMap.setPaintProperty(layer.id, 'text-opacity', 1);
+          }
         }
       });
 

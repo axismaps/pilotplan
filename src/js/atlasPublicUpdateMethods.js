@@ -100,6 +100,8 @@ const getAtlasUpdateMethods = ({
             fillField = 'fill-opacity';
           } else if (layer.type === 'line') {
             fillField = 'line-opacity';
+          } else if (layer.type === 'symbol') {
+            fillField = 'text-opacity';
           }
           if (fillField !== undefined) {
             mbMap.setPaintProperty(layer.id, fillField, layerOpacities[layer.id]);
