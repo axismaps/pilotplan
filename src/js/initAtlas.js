@@ -9,6 +9,8 @@ const initAtlas = function initAtlas() {
     initialLocation: state.get('currentLocation'),
     viewshedsGeo: this.data.viewshedsGeo,
     highlightedFeature: state.get('highlightedFeature'),
+    highlightedLayer: state.get('highlightedLayer'),
+    availableLayers: this.components.state.getAvailableLayers(this.data),
     currentLayers: state.get('currentLayers'),
     currentOverlay: state.get('currentOverlay'),
     currentView: state.get('currentView'),
@@ -53,6 +55,7 @@ const initAtlas = function initAtlas() {
     translations: this.data.translations,
     language: state.get('language'),
   });
+  // console.log('data?', data);
 };
 
 export default initAtlas;

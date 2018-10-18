@@ -41,7 +41,6 @@ const atlasHighlightMethods = {
     highlightedFeature,
     extentsData,
   }) {
-    // console.log('get layer bounds', highlightedFeature);
     const extentsForLayer =
       extentsData[highlightedFeature.sourceLayer][highlightedFeature.dataLayer];
     const years = Object.keys(extentsForLayer).map(d => parseInt(d, 10));

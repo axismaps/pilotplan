@@ -38,6 +38,25 @@ const atlasMethods = {
 
     return newLayer;
   },
+  getLayerOpacities({
+    mbMap,
+  }) {
+    return mbMap.getStyle().layers.reduce((accumulator, layer) => {
+      // console.log('layer', layer);
+      /* eslint-disable no-param-reassign */
+      if (layer.type === 'fill') {
+        const opacity = mbMap.getPaintProperty(layer.id, 'fill-opacity');
+        accumulator[layer.id] = opacity === undefined ? 1 : opacity;
+      } else if (layer.type === 'line') {
+        const opacity = mbMap.getPaintProperty(layer.id, 'line-opacity');
+        accumulator[layer.id] = opacity === undefined ? 1 : opacity;
+      } else {
+        accumulator[layer.id] = 1;
+      }
+      return accumulator;
+      /* eslint-enable no-param-reassign */
+    }, {});
+  },
   getCurrentStyle({
     style,
     year,
@@ -69,7 +88,7 @@ const atlasMethods = {
     onViewClick,
     onMove,
     dataProbe,
-    onLayerSourceData,
+    // onLayerSourceData,
     onFeatureSourceData,
     onReturnToSearch,
   }) {
@@ -115,7 +134,7 @@ const atlasMethods = {
         initApp();
       })
       .on('sourcedata', () => {
-        onLayerSourceData();
+        // onLayerSourceData();
         onReturnToSearch();
         onFeatureSourceData();
       })

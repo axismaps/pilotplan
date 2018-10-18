@@ -70,7 +70,88 @@ const getAtlasUpdateMethods = ({
         mbMap.dragPan.enable();
       }
     },
+    updateHighlightedLayer() {
+      const {
+        highlightedLayer,
+        // availableLayers,
+        mbMap,
+        layerOpacities,
+        year,
+        extentsData,
+      } = privateProps.get(this);
 
+      const {
+        getLayerBounds,
+      } = highlightMethods;
+
+      const { layers } = mbMap.getStyle();
+
+
+      if (highlightedLayer === null) {
+        layers.forEach((layer) => {
+          let fillField;
+          if (layer.type === 'fill') {
+            fillField = 'fill-opacity';
+          } else if (layer.type === 'line') {
+            fillField = 'line-opacity';
+          }
+          if (fillField !== undefined) {
+            mbMap.setPaintProperty(layer.id, fillField, layerOpacities[layer.id]);
+          }
+        });
+        return;
+      }
+      const newBounds = getLayerBounds({
+        year,
+        highlightedFeature: highlightedLayer,
+        extentsData,
+      });
+      const newZoom = getZoom({
+        mbMap,
+        bounds: newBounds,
+        highlightedFeature: highlightedLayer,
+        padding: 0,
+      });
+
+      // console.log('new zoom', newZoom);
+      mbMap.easeTo({
+        bearing: 0,
+        zoom: newZoom,
+        center: newBounds.getCenter(),
+        duration: 1500,
+      });
+      // if null, go through each layer and reset original opacity,
+      // const flatLayers = availableLayers.reduce((accumulator, group) => {
+      //   const sourceLayers = group.layers;
+      //   console.log('sourceLayers', sourceLayers);
+      //   const allDataLayers = sourceLayers.reduce((innerAccumulator, layer) =>
+      //     [...innerAccumulator, ...layer.features]);
+      //   return [...accumulator, ...allDataLayers];
+      // })
+      //   .map(d => d.dataLayer);
+      // console.log('flatLayers', flatLayers);
+
+      layers.forEach((layer) => {
+        const isLayer = highlightedLayer.dataLayer === layer.id ||
+          highlightedLayer.style === layer.id ||
+          layer.id.includes(highlightedLayer.dataLayer);
+
+
+        if (layer.type === 'line') {
+          if (!isLayer) {
+            mbMap.setPaintProperty(layer.id, 'line-opacity', 0.1);
+          } else if (isLayer) {
+            mbMap.setPaintProperty(layer.id, 'line-opacity', 1);
+          }
+        } else if (layer.type === 'fill') {
+          if (!isLayer) {
+            mbMap.setPaintProperty(layer.id, 'fill-opacity', 0.1);
+          } else if (isLayer) {
+            mbMap.setPaintProperty(layer.id, 'fill-opacity', 1);
+          }
+        }
+      });
+    },
     updateHighlightedFeature() {
       const {
         clearHighlightedFeature,

@@ -40,6 +40,7 @@ const getState = function getState({ urlParams }) {
     currentLocation: initialLocation,
     currentRasterProbe: null,
     highlightedFeature: null,
+    highlightedLayer: null,
     mouseEventsDisabled: false,
     transitionsDisabled: false,
     mobile: null,

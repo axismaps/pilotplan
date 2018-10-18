@@ -5,6 +5,7 @@ const initSidebar = function initSidebar() {
   const { state } = this.components;
   const sidebar = new Sidebar({
     highlightedFeature: state.get('highlightedFeature'),
+    highlightedLayer: state.get('highlightedLayer'),
     sidebarOpen: state.get('sidebarOpen'),
     layerStyles: this.components.atlas.getStyle().layers,
     availableLayers: state.getAvailableLayers(this.data),
@@ -32,6 +33,18 @@ const initSidebar = function initSidebar() {
     },
     onTextInput(val) {
       state.update({ textSearch: val });
+    },
+    onLayerHighlightClick(newLayer) {
+      const currentHighlightedLayer = state.get('highlightedLayer');
+      console.log(currentHighlightedLayer, newLayer);
+      if (currentHighlightedLayer === null) {
+        state.update({ highlightedLayer: newLayer });
+      } else {
+        state.update({
+          highlightedLayer: currentHighlightedLayer.dataLayer === newLayer.dataLayer ?
+            null : newLayer,
+        });
+      }
     },
     onFeatureClick(feature) {
       const oldFeature = state.get('highlightedFeature');

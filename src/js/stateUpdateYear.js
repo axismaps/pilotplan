@@ -80,13 +80,17 @@ const getUpdateYear = ({
       })
       .updateRasterData();
 
+    const availableLayers = this.getAvailableLayers(data);
+
     sidebar
       .config({
         // rasterData,
         viewLayersOn: this.getAvailableRasters(data).get('views').length > 0,
-        availableLayers: this.getAvailableLayers(data),
+        availableLayers,
       })
       .updateAvailableLayers();
+
+    atlas.config({ availableLayers });
 
     const stateToUpdate = {
       currentLayers: this.getAllAvailableLayers(data),

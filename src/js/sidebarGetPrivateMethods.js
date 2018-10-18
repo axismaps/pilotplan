@@ -221,7 +221,7 @@ const getSidebarMethods = (privateProps) => {
         layers,
         language,
         sidebarContentContainer,
-        onFeatureClick,
+        onLayerHighlightClick,
         cachedSwatches,
         layerStyles,
         translations,
@@ -252,7 +252,8 @@ const getSidebarMethods = (privateProps) => {
             <span class="sidebar__feature-name">${translations[feature.dataLayer][language]}</span>
           `)
           .on('click', (feature) => {
-            onFeatureClick(Object.assign({}, feature, { sourceLayer: d.sourceLayer }));
+            onLayerHighlightClick(Object.assign({}, feature, { sourceLayer: d.sourceLayer }));
+            // onLayerHighlightClick(feature);
           });
         if (cachedSwatches.has(d.icon)) {
           // console.log('loaded from cache');

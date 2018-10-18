@@ -10,6 +10,15 @@ const setStateEvents = ({ components, data }) => {
   const { state } = components;
 
   state.registerCallbacks({
+    highlightedLayer() {
+      const {
+        atlas,
+        sidebar,
+      } = components;
+      const { highlightedLayer } = this.props();
+      sidebar.config({ highlightedLayer }).updateHighlightedLayer();
+      atlas.config({ highlightedLayer }).updateHighlightedLayer();
+    },
     year: getUpdateYear({ data, components }),
     view: getUpdateView({ components }),
     language: getUpdateLanguage({ data, components }),

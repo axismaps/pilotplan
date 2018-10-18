@@ -167,6 +167,16 @@ const privateMethods = {
 
     canvas.addEventListener('mousedown', onMouseDown, true);
   },
+  saveLayerOpacities() {
+    const props = privateProps.get(this);
+    const {
+      mbMap,
+    } = props;
+    const { getLayerOpacities } = generalMethods;
+    const layerOpacities = getLayerOpacities({ mbMap });
+    props.layerOpacities = layerOpacities;
+    // console.log('opacities', layerOpacities);
+  },
 };
 
 class Atlas {
@@ -185,6 +195,7 @@ class Atlas {
       areaSearchActive: null,
       currentView: null,
       highlightedFeature: null,
+      highlightedLayer: null,
       currentLayers: null,
       currentOverlay: null,
       viewshedsGeo: null,
@@ -213,6 +224,7 @@ class Atlas {
       setClickSearch,
       setAreaSearch,
       addRaster,
+      saveLayerOpacities,
     } = privateMethods;
     const {
       onLoad,
@@ -221,6 +233,7 @@ class Atlas {
     } = privateProps.get(this);
     console.log('loaded');
     onLoad();
+    saveLayerOpacities.call(this);
     addControlsToMap.call(this);
     setClickSearch.call(this);
     setAreaSearch.call(this);

@@ -46,6 +46,8 @@ class Sidebar {
       results: null,
       availableLayers: null,
       viewLayerOn: true,
+      highlightedFeature: null,
+      highlightedLayer: null,
     });
 
     this.config(config);
@@ -130,6 +132,22 @@ class Sidebar {
     nonRasterResultsContainer
       .selectAll('.sidebar__results-button')
       .classed('sidebar__results-button--highlighted', isHighlightedFeature);
+  }
+  updateHighlightedLayer() {
+    const {
+      sidebarContentContainer,
+      highlightedLayer,
+    } = privateProps.get(this);
+    // console.log('sidebar update', highlightedLayer);
+    const isHighlightedLayer = (d) => {
+      if (highlightedLayer === null) {
+        return false;
+      }
+      return d.dataLayer === highlightedLayer.dataLayer;
+    };
+    sidebarContentContainer
+      .selectAll('.sidebar__feature-button')
+      .classed('sidebar__feature-button--highlighted', isHighlightedLayer);
   }
   updateResults() {
     const props = privateProps.get(this);
