@@ -36,7 +36,7 @@ const initSidebar = function initSidebar() {
     },
     onLayerHighlightClick(newLayer) {
       const currentHighlightedLayer = state.get('highlightedLayer');
-      console.log(currentHighlightedLayer, newLayer);
+
       if (currentHighlightedLayer === null) {
         state.update({ highlightedLayer: newLayer });
       } else {

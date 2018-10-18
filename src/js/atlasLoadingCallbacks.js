@@ -47,21 +47,47 @@ const setLoadingCallbacks = ({ props }) => {
     const {
       highlightLayerLoading,
       highlightLoadingTimer,
-      highlightedFeature,
+      // highlightedFeature,
+      highlightedLayer,
       mbMap,
-      year,
+      // year,
     } = props;
+
+    const { layers } = mbMap.getStyle();
+
     if (!highlightLayerLoading) return;
 
     if (highlightLoadingTimer !== null) {
       clearTimeout(highlightLoadingTimer);
     }
+
     props.highlightLoadingTimer = setTimeout(() => {
-      drawHighlightedFeature({
-        highlightedFeature,
-        mbMap,
-        year,
+      // drawHighlightedFeature({
+      //   highlightedFeature,
+      //   mbMap,
+      //   year,
+      // });
+      layers.forEach((layer) => {
+        const isLayer = highlightedLayer.dataLayer === layer.id ||
+          highlightedLayer.style === layer.id ||
+          layer.id.includes(highlightedLayer.dataLayer);
+
+
+        if (layer.type === 'line') {
+          if (!isLayer) {
+            mbMap.setPaintProperty(layer.id, 'line-opacity', 0.1);
+          } else if (isLayer) {
+            mbMap.setPaintProperty(layer.id, 'line-opacity', 1);
+          }
+        } else if (layer.type === 'fill') {
+          if (!isLayer) {
+            mbMap.setPaintProperty(layer.id, 'fill-opacity', 0.1);
+          } else if (isLayer) {
+            mbMap.setPaintProperty(layer.id, 'fill-opacity', 1);
+          }
+        }
       });
+
       props.highlightLayerLoading = false;
     }, 700);
   };

@@ -88,7 +88,7 @@ const atlasMethods = {
     onViewClick,
     onMove,
     dataProbe,
-    // onLayerSourceData,
+    onLayerSourceData,
     onFeatureSourceData,
     onReturnToSearch,
   }) {
@@ -134,7 +134,7 @@ const atlasMethods = {
         initApp();
       })
       .on('sourcedata', () => {
-        // onLayerSourceData();
+        onLayerSourceData();
         onReturnToSearch();
         onFeatureSourceData();
       })
