@@ -213,7 +213,7 @@ const getAtlasUpdateMethods = ({
           onFeatureSourceData();
           props.counter = 0;
           const newBounds = getBBox(props.highlightedFeatureJSON);
-          mbMap.fitBounds(newBounds, { padding: 200, minZoom: 8 });
+          mbMap.fitBounds(newBounds, { padding: 200 });
         } else {
           props.highlightLayerLoading = false;
           props.searchLocationLoading = true;
