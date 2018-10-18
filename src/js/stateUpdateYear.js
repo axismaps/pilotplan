@@ -121,6 +121,7 @@ const getUpdateYear = ({
       'highlightedFeature',
       'currentRasterProbe',
       'currentView',
+      'highlightedLayer',
     ]);
 
     Object.assign(stateToUpdate, layersToClear);

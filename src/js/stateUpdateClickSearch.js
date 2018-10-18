@@ -36,6 +36,7 @@ const getUpdateClickSearch = ({
   // if only one result, make this highlightedFeature
   const layersToClear = this.getLayersToClear([
     'highlightedFeature',
+    'highlightedLayer',
   ]);
   if (clickSearch !== null && !this.get('sidebarOpen')) {
     this.update({ sidebarOpen: true });

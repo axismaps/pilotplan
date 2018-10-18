@@ -35,6 +35,7 @@ const getUpdateAreaSearch = ({
 
   const layersToClear = this.getLayersToClear([
     'highlightedFeature',
+    'highlightedLayer',
   ]);
   this.update(layersToClear);
 
