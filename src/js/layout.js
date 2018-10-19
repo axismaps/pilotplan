@@ -73,6 +73,15 @@ const privateMethods = {
     sidebarToggleButton
       .on('click', onSidebarToggleClick);
   },
+  initCloseSidebarButton() {
+    const {
+      sidebarCloseButtonMobile,
+      onSidebarToggleClick,
+    } = privateProps.get(this);
+
+    sidebarCloseButtonMobile
+      .on('click', onSidebarToggleClick);
+  },
   initRegisterButton() {
     const {
       headerRegisterButton,
@@ -222,6 +231,7 @@ class Layout {
       registerCancelButton,
       areaSearchText,
       loadingScreenContainer,
+      sidebarCloseButtonMobile,
     } = selections;
 
     privateProps.set(this, {
@@ -264,6 +274,7 @@ class Layout {
       registerCancelButton,
       areaSearchText,
       loadingScreenContainer,
+      sidebarCloseButtonMobile,
       transitionSpeed: 500,
       mouseEventsDisabled: false,
       transitionsDisabled: false,
@@ -287,6 +298,7 @@ class Layout {
       initRegisterButton,
       initRegisterScreen,
       initSocialMediaButtons,
+      initCloseSidebarButton,
     } = privateMethods;
 
     this.config(config);
@@ -300,6 +312,7 @@ class Layout {
     initRegisterButton.call(this);
     initRegisterScreen.call(this);
     initSocialMediaButtons.call(this);
+    initCloseSidebarButton.call(this);
 
     this.updateSidebar();
     this.updateFooter();

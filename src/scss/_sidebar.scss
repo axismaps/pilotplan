@@ -235,11 +235,13 @@ $sidebar-content-zoom-margin: $sidebar-zoom-height + $sidebar-zoom-triangle-heig
   cursor: pointer;
 }
 
+.sidebar__close-button,
 .sidebar__text-search-return-icon,
 .sidebar__search-return-icon {
   font-size: 30px;
 }
 
+.sidebar__close-button::before,
 .sidebar__search-return-icon::before {
   margin-left: 0px;
 }

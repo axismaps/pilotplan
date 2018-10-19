@@ -1,5 +1,28 @@
 .outer-container--mobile {
+  .sidebar {
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100vh;
+    display: none;
+  }
+
   .sidebar__toggle-button {
     display: none;
+  }
+
+  .sidebar--click-search {
+    .sidebar__close-button {
+      display: none;
+    }
+  }
+
+  
+}
+
+.outer-container.outer-container--mobile.sidebar-open {
+  .sidebar {
+    display: block;
+    width: 100%;
   }
 }

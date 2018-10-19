@@ -122,6 +122,7 @@ export const selections = {
   resultsContainer: d3.select('.sidebar__results'),
   rasterResultsContainer: d3.select('.sidebar__raster-results'),
   nonRasterResultsContainer: d3.select('.sidebar__nonraster-results'),
+  sidebarCloseButtonMobile: d3.select('.sidebar__close-button'),
 
   introBeginButtonContainer: d3.select('.intro__begin-button'),
   introBeginButtonText: d3.select('.intro__begin-button-text'),
