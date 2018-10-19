@@ -4,7 +4,7 @@
   
   .mapboxgl-ctrl-bottom-left {
     bottom: $footer-bottom-mobile;
-    left: 20;
+    left: $mobile-right-left-margin;
   }
   .mapboxgl-ctrl-bottom-right {
     bottom: 0px;

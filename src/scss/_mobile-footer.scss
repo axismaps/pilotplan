@@ -9,7 +9,7 @@
   .mobileFooter__toggle {
     position: absolute;
     bottom: $footer-bottom-mobile;
-    right: 20px;
+    right: $mobile-right-left-margin;
     font-size: 24px;
     color: white;
     background: $atlas-button-background;
@@ -20,4 +20,8 @@
     justify-content: center;
     align-items: center;
   }
+}
+
+.outer-container--mobile.footer-on {
+
 }

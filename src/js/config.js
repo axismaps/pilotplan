@@ -111,6 +111,7 @@ export const selections = {
   sidebarContainer: d3.select('.sidebar'),
   sidebarContentContainer: d3.select('.sidebar__inner-content'),
   sidebarToggleButton: d3.select('.sidebar__toggle-button'),
+  sidebarToggleButtonMobile: d3.select('.header__legend-button'),
   sidebarToggleButtonText: d3.select('.sidebar__toggle-button-text'),
   sidebarToggleHelpContainer: d3.select('.sidebar__toggle-help-container'),
   sidebarViewshedLayerBlock: d3.select('.sidebar__viewsheds'),

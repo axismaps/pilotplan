@@ -13,6 +13,17 @@
     display: none;
   }
 
+  .header__legend-button {
+    position: absolute;
+    top: 0px;
+    right: $mobile-right-left-margin;
+    height: $header-height-mobile;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    z-index: 2000;
+  }
+
   .header__eras-button-text {
     display: none;
   }

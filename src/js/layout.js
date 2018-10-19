@@ -67,11 +67,15 @@ const privateMethods = {
   initSidebarToggleButton() {
     const {
       sidebarToggleButton,
+      sidebarToggleButtonMobile,
       onSidebarToggleClick,
     } = privateProps.get(this);
 
     sidebarToggleButton
       .on('click', onSidebarToggleClick);
+
+    sidebarToggleButtonMobile
+      .on('touchstart', onSidebarToggleClick);
   },
   initCloseSidebarButton() {
     const {
@@ -232,6 +236,7 @@ class Layout {
       areaSearchText,
       loadingScreenContainer,
       sidebarCloseButtonMobile,
+      sidebarToggleButtonMobile,
     } = selections;
 
     privateProps.set(this, {
@@ -275,6 +280,7 @@ class Layout {
       areaSearchText,
       loadingScreenContainer,
       sidebarCloseButtonMobile,
+      sidebarToggleButtonMobile,
       transitionSpeed: 500,
       mouseEventsDisabled: false,
       transitionsDisabled: false,
