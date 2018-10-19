@@ -37,11 +37,14 @@ const initSidebar = function initSidebar() {
     onLayerHighlightClick(newLayer) {
       const currentHighlightedLayer = state.get('highlightedLayer');
 
+      const turnOffLayer = currentHighlightedLayer === null ?
+        false :
+        currentHighlightedLayer.dataLayer === newLayer.dataLayer;
       if (currentHighlightedLayer === null) {
         state.update({ highlightedLayer: newLayer });
       } else {
         state.update({
-          highlightedLayer: currentHighlightedLayer.dataLayer === newLayer.dataLayer ?
+          highlightedLayer: turnOffLayer ?
             null : newLayer,
         });
       }

@@ -50,6 +50,7 @@ const setLoadingCallbacks = ({ props }) => {
       // highlightedFeature,
       highlightedLayer,
       mbMap,
+      toggleOverlayFade,
       // year,
     } = props;
 
@@ -93,7 +94,7 @@ const setLoadingCallbacks = ({ props }) => {
           }
         }
       });
-
+      toggleOverlayFade(true);
       props.highlightLayerLoading = false;
     }, 700);
   };

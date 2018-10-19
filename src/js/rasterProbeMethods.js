@@ -141,7 +141,6 @@ const rasterProbeMethods = {
     overlayOpacity,
     rasterProbeSliderContainer,
   }) {
-    console.log('draw raster slider');
     rasterProbeSliderContainer.select('svg').remove();
     // setTimeout(() => {
     const { width } = rasterProbeSliderContainer

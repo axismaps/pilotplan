@@ -7,6 +7,7 @@ import getZoom from './atlasGetZoom';
 
 const getAtlasUpdateMethods = ({
   privateProps,
+  privateMethods,
 }) => {
   const updateMethods = {
     updateCurrentLayers() {
@@ -81,6 +82,7 @@ const getAtlasUpdateMethods = ({
         extentsData,
         onLayerSourceData,
         highlightLoadingTimer,
+        toggleOverlayFade,
       } = props;
 
       const {
@@ -108,6 +110,7 @@ const getAtlasUpdateMethods = ({
           }
           props.highlightLayerLoading = false;
         });
+        toggleOverlayFade(false);
         return;
       }
       props.highlightLayerLoading = true;
@@ -291,6 +294,12 @@ const getAtlasUpdateMethods = ({
     resizeMap() {
       const { mbMap } = privateProps.get(this);
       mbMap.resize();
+    },
+    updateYear() {
+      const {
+        updateYear,
+      } = privateMethods;
+      updateYear.call(this);
     },
   };
   return updateMethods;

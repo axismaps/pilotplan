@@ -27,8 +27,7 @@ const getZoom = ({
   /* eslint-enable no-mixed-operators */
   const newZoom = ((zoom1 < zoom2) ? zoom1 : zoom2) - 0.3;
   const minZoom = mbMap.getLayer(highlightedFeature.style).minzoom;
-  // console.log('min zoom', highlightedFeature.style, minZoom);
-  // console.log('highlightedFeature', highlightedFeature);
+
   if (minZoom !== undefined) {
     if (minZoom > newZoom) return minZoom;
   }

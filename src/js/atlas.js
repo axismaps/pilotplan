@@ -263,12 +263,7 @@ class Atlas {
     Object.assign(privateProps.get(this), config);
     return this;
   }
-  updateYear() {
-    const {
-      updateYear,
-    } = privateMethods;
-    updateYear.call(this);
-  }
+
   getMap() {
     const { mbMap } = privateProps.get(this);
     return mbMap;
@@ -345,6 +340,6 @@ class Atlas {
   }
 }
 
-Object.assign(Atlas.prototype, getPublicUpdateMethods({ privateProps }));
+Object.assign(Atlas.prototype, getPublicUpdateMethods({ privateProps, privateMethods }));
 
 export default Atlas;

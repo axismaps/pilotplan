@@ -52,6 +52,16 @@ const initAtlas = function initAtlas() {
       // currentBounds: newBounds,
       // });
     },
+    toggleOverlayFade(toggle) {
+      const overlayOn = state.get('currentOverlay') !== null;
+      if (overlayOn) {
+        if (toggle) {
+          state.update({ overlayOpacity: 0.1 });
+        } else {
+          state.update({ overlayOpacity: 1 });
+        }
+      }
+    },
     translations: this.data.translations,
     language: state.get('language'),
   });
