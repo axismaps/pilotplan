@@ -1,0 +1,17 @@
+
+.outer-container--mobile.footer-open,
+.outer-container--mobile {
+  $bottom: 45px;
+  .mapboxgl-ctrl-bottom-left {
+    bottom: $bottom;
+    left: 20;
+  }
+  .mapboxgl-ctrl-bottom-right {
+    bottom: 0px;
+    // display: flex;
+    // justify-content: right;
+  }
+  .mapboxgl-ctrl-attrib {
+    display: none;
+  }
+}

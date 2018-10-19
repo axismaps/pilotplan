@@ -16,9 +16,10 @@
 
 @import 'views';
 
-@import 'mobile-layout';
 @import 'mobile-footer';
 @import 'mobile-header';
 @import 'mobile-sidebar';
 @import 'mobile-timeline';
-@import 'probe-buttons-mobile';
+@import 'mobile-atlas';
+@import 'mobile-probe-buttons.scss';
+@import 'mobile-layout';

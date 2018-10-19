@@ -1,5 +1,6 @@
 .outer-container--mobile {
   .probe-buttons-container {
+    top: $header-height-mobile + $timeline-height + 10;
     left: 0px;
     width: 100%;
     justify-content: space-between;
