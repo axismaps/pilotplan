@@ -1,9 +1,9 @@
 
 .outer-container--mobile.footer-open,
 .outer-container--mobile {
-  $bottom: 45px;
+  
   .mapboxgl-ctrl-bottom-left {
-    bottom: $bottom;
+    bottom: $footer-bottom-mobile;
     left: 20;
   }
   .mapboxgl-ctrl-bottom-right {
@@ -13,5 +13,9 @@
   }
   .mapboxgl-ctrl-attrib {
     display: none;
+  }
+
+  .atlas__button-container {
+    margin: 0px;
   }
 }

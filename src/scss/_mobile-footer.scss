@@ -3,4 +3,21 @@
   .footer {
     display: none;
   }
+
+  $button-height: 46px;
+  $button-radius: $button-height / 2;
+  .mobileFooter__toggle {
+    position: absolute;
+    bottom: $footer-bottom-mobile;
+    right: 20px;
+    font-size: 24px;
+    color: white;
+    background: $atlas-button-background;
+    width: $button-height;
+    height: $button-height;
+    border-radius: $button-radius;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }

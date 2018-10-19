@@ -129,6 +129,7 @@ const privateMethods = {
       detectionTrack,
       onDragEnd,
       tooltip,
+      mobile,
       // onDrag,
     } = props;
 
@@ -155,7 +156,7 @@ const privateMethods = {
       .on('start drag', () => {
         const { valueRange, svgPosition } = props;
         const sliderValue = scale.invert(d3.event.x);
-        if (tooltip) {
+        if (tooltip && !mobile) {
           setTooltipPosition.call(this, { x: d3.event.x + svgPosition.left });
         }
         let newValue;
