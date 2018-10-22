@@ -68,6 +68,7 @@ const allRasterMethods = {
     cachedMetadata,
     onAllRasterCloseClick,
     dataProbe,
+    mobile,
   }) {
     allRasterSections.each(function drawRasters(d) {
       const block = d3.select(this).select('.allraster__image-block');
@@ -78,6 +79,7 @@ const allRasterMethods = {
         .enter()
         .append('div')
         .attr('class', 'footer__image allraster__image')
+        .classed('allraster__image--mobile', mobile)
         .on('click', (dd) => {
           onRasterClick(dd);
           onAllRasterCloseClick();
@@ -100,12 +102,35 @@ const allRasterMethods = {
       setEachRasterBackground({
         images: newImages,
         cachedMetadata,
-        maxDim: 130,
+        maxDim: mobile ? 90 : 130,
         spinner: true,
       });
 
       images.exit().remove();
     });
+  },
+  scrollToCategory({
+    category,
+    getAllRasterSections,
+    allRasterInnerContainer,
+  }) {
+    /* eslint-disable no-param-reassign */
+    const sections = getAllRasterSections();
+
+    allRasterInnerContainer
+      .node()
+      .scrollTop = 0;
+
+    const positions = {};
+
+    sections.each(function getPosition(d) {
+      positions[d.key] = this.getBoundingClientRect();
+    });
+
+    allRasterInnerContainer
+      .node()
+      .scrollTop = positions[category].top - 20;
+    /* eslint-enable no-param-reassign */
   },
 };
 

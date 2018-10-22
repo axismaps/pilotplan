@@ -8,6 +8,7 @@ const initFooter = function initFooter() {
     translations: this.data.translations,
     language: state.get('language'),
     year: state.get('year'),
+    mobile: state.get('mobile'),
     footerView: state.get('footerView'),
     rasterData: state.getAvailableRasters(this.data),
     cachedMetadata: this.cachedMetadata,

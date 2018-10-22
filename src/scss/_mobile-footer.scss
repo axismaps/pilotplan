@@ -10,6 +10,18 @@
     position: absolute;
     bottom: $footer-bottom-mobile;
     right: $mobile-right-left-margin;
+  }
+
+  .mobileFooter__categories {
+    position: absolute;
+    right: $mobile-right-left-margin;
+    bottom: $footer-bottom-mobile + $button-height + 15;
+    display: none;
+    flex-flow: column;
+  }
+
+  .mobileFooter__toggle,
+  .mobileFooter__category {
     font-size: 24px;
     color: white;
     background: $atlas-button-background;
@@ -20,8 +32,18 @@
     justify-content: center;
     align-items: center;
   }
+
+  .mobileFooter__category {
+    margin-top: 10px;
+  }
+
+  .footer__category--disabled {
+    display: none;
+  }
 }
 
-.outer-container--mobile.footer-on {
-
+.outer-container--mobile.footer-open {
+  .mobileFooter__categories {
+    display: flex;
+  }
 }

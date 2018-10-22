@@ -81,31 +81,31 @@ const footerMethods = {
   },
   drawCategoryButtons({
     rasterCategories,
-    categoriesContainer,
-    onCategoryClick,
+    container,
+    onClick,
   }) {
-    return categoriesContainer
+    return container
       .selectAll('.footer__category')
       .data(rasterCategories)
       .enter()
       .append('div')
       .attr('class', 'footer__category')
       .html(d => `<i class="${footerCategoryIcons[d]}"></i>`)
-      .on('click', onCategoryClick);
+      .on('click', onClick);
   },
   drawMobileCategoryButtons({
-    footerCategoriesMobile,
+    container,
     rasterCategories,
-    onCategoryClick,
+    onClick,
   }) {
-    return footerCategoriesMobile
+    return container
       .selectAll('.footer__category')
       .data(rasterCategories)
       .enter()
       .append('div')
       .attr('class', 'mobileFooter__category')
       .html(d => `<i class="${footerCategoryIcons[d]}"></i>`)
-      .on('click', onCategoryClick);
+      .on('click', onClick);
   },
 };
 

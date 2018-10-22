@@ -13,19 +13,47 @@ const privateMethods = {
     const {
       rasterData,
       categoriesContainer,
+      footerCategoriesMobile,
       onCategoryClick,
+      mobile,
+      onAllRasterClick,
+      allRasterInnerContainer,
     } = props;
     const {
       drawCategoryButtons,
+      drawMobileCategoryButtons,
     } = methods;
     const {
       getRasterCategories,
     } = rasterMethods;
 
-    props.categoryButtons = drawCategoryButtons({
+    const {
+      scrollToCategory,
+    } = allRasterMethods;
+
+    const drawMethod = mobile ? drawMobileCategoryButtons : drawCategoryButtons;
+
+    let onClick;
+    if (!mobile) {
+      onClick = onCategoryClick;
+    } else {
+      onClick = (category) => {
+        // scroll to
+        onAllRasterClick({
+          category,
+        });
+        scrollToCategory({
+          category,
+          allRasterInnerContainer,
+          getAllRasterSections: () => props.allRasterSections,
+        });
+      };
+    }
+
+    props.categoryButtons = drawMethod({
       rasterCategories: getRasterCategories({ rasterData }),
-      categoriesContainer,
-      onCategoryClick,
+      container: mobile ? footerCategoriesMobile : categoriesContainer,
+      onClick,
     });
   },
   initAllRasterButton() {
@@ -113,6 +141,7 @@ const privateMethods = {
       onRasterClick,
       cachedMetadata,
       dataProbe,
+      mobile,
     } = props;
 
     const {
@@ -147,6 +176,7 @@ const privateMethods = {
     });
 
     drawAllRasterImages({
+      mobile,
       allRasterSections,
       onRasterClick,
       cachedMetadata,
@@ -154,6 +184,7 @@ const privateMethods = {
       dataProbe,
     });
 
+    props.allRasterSections = allRasterSections;
     props.firstAllRasterLoad = false;
   },
   updateToggleYear() {
@@ -188,6 +219,7 @@ class Footer {
   constructor(config) {
     const {
       categoriesContainer,
+      footerCategoriesMobile,
       imagesContainer,
       showAllContainer,
       allRasterOuterContainer,
@@ -204,6 +236,7 @@ class Footer {
 
     privateProps.set(this, {
       categoriesContainer,
+      footerCategoriesMobile,
       imagesContainer,
       showAllContainer,
       allRasterOuterContainer,
