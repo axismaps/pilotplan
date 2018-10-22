@@ -93,6 +93,20 @@ const footerMethods = {
       .html(d => `<i class="${footerCategoryIcons[d]}"></i>`)
       .on('click', onCategoryClick);
   },
+  drawMobileCategoryButtons({
+    footerCategoriesMobile,
+    rasterCategories,
+    onCategoryClick,
+  }) {
+    return footerCategoriesMobile
+      .selectAll('.footer__category')
+      .data(rasterCategories)
+      .enter()
+      .append('div')
+      .attr('class', 'mobileFooter__category')
+      .html(d => `<i class="${footerCategoryIcons[d]}"></i>`)
+      .on('click', onCategoryClick);
+  },
 };
 
 export default footerMethods;

@@ -39,9 +39,13 @@ const privateMethods = {
   initToggleButton() {
     const {
       footerToggleButton,
+      footerToggleButtonMobile,
       onToggleClick,
     } = privateProps.get(this);
     footerToggleButton
+      .on('click', onToggleClick);
+
+    footerToggleButtonMobile
       .on('click', onToggleClick);
   },
   drawRasters() {
@@ -190,6 +194,7 @@ class Footer {
       allRasterInnerContainer,
       allRasterContentContainer,
       footerToggleButton,
+      footerToggleButtonMobile,
       outerContainer,
       footerContainer,
       footerToggleRastersContainer,
@@ -205,6 +210,7 @@ class Footer {
       allRasterInnerContainer,
       allRasterContentContainer,
       footerToggleButton,
+      footerToggleButtonMobile,
       footerToggleRastersContainer,
       footerToggleYearContainer,
       footerToggleText,

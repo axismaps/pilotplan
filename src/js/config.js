@@ -66,9 +66,11 @@ export const selections = {
 
   footerContainer: d3.select('.footer'),
   categoriesContainer: d3.select('.footer__categories'),
+  footerCategoriesMobile: d3.select('.mobileFooter__categories'),
   imagesContainer: d3.select('.footer__images'),
   showAllContainer: d3.select('.footer__show-all'),
   footerToggleButton: d3.select('.footer__toggle-button'),
+  footerToggleButtonMobile: d3.select('.mobileFooter__toggle'),
   footerToggleText: d3.select('.footer__toggle-text'),
   footerToggleTextContainer: d3.select('.footer__toggle-text-container'),
   footerToggleYearContainer: d3.select('.footer__toggle-year'),
