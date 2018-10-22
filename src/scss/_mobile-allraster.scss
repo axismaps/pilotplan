@@ -1,16 +1,28 @@
 .outer-container--mobile {
+  $allraster-mobile-margin: 20px;
   .allraster__inner {
     position: absolute;
-    left: 0px;
-    width: 100%;
-    top: 0px;
-    height: 100vh;
+    left: $allraster-mobile-margin;
+    width: calc(100% - #{$allraster-mobile-margin * 2});
+    top: $allraster-mobile-margin;
+    height: calc(100vh - #{$allraster-mobile-margin * 2});
     max-height: none;
+    background: $main-background;
   }
+
+  .allraster__outer {
+    background: $main-background;
+  }
+
   .allraster__image--mobile {
     width: 90px;
     height: 90px;
     margin-left: 10px;
     margin-right: 10px;
+    margin-bottom: 20px;
+  }
+
+  .allraster__content {
+    padding: 0px;
   }
 }
