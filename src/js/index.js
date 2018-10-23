@@ -215,6 +215,7 @@ const app = {
       currentView: state.get('currentView'),
       currentOverlay: state.get('currentOverlay'),
       overlayOpacity: state.get('overlayOpacity'),
+      mobile: state.get('mobile'),
       onCloseClick() {
         const currentRasterProbe = state.get('currentRasterProbe');
         const { type } = currentRasterProbe;

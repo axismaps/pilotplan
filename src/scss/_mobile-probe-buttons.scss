@@ -2,8 +2,12 @@
   .probe-buttons-container {
     top: $header-height-mobile + $timeline-height + 10;
     right: 0px;
-    width: 100%;
-    justify-content: space-between;
+    // width: 100%;
+    // justify-content: space-between;
+  }
+
+  .overlay-button {
+    margin-right: 10px;
   }
 
   .area-button {

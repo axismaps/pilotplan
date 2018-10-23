@@ -46,6 +46,8 @@ const rasterProbeMethods = {
     cachedMetadata,
     rasterProbeImageContainer,
     onImageClick,
+    mobile,
+    rasterProbeInnerContainer,
   }) {
     const {
       clearImage,
@@ -61,16 +63,19 @@ const rasterProbeMethods = {
       rasterProbeImageContainer,
       onImageClick,
     });
-
+    const padding = parseFloat(rasterProbeInnerContainer
+      .style('padding-left')
+      .replace('px', ''));
 
     setBackgroundToContainerWidth({
       selection: rasterProbeImageContainer,
       cachedMetadata,
       currentRasterProbe,
+      // resizeContainer: !mobile,
       resizeContainer: true,
-      resizeProbe: true,
-      maxHeight: 400,
-      maxWidth: 410,
+      // resizeProbe: true,
+      maxHeight: mobile ? 150 : 400,
+      maxWidth: mobile ? window.innerWidth - (padding * 2) : 410,
     });
   },
   setCloseButtonListener({

@@ -106,6 +106,7 @@ const allRasterMethods = {
         })
         .on('mouseover', function drawProbe(dd) {
           // const config = getProbeConfig.call(this, dd);
+          if (mobile) return;
           const config = getProbeConfig({
             selection: d3.select(this),
             data: dd,
@@ -116,6 +117,7 @@ const allRasterMethods = {
             .draw();
         })
         .on('mouseout', () => {
+          if (mobile) return;
           dataProbe.remove();
         });
 

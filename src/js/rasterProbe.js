@@ -44,6 +44,7 @@ const privateMethods = {
       lightboxCloseButton,
       onSliderDrag,
       overlayOpacity,
+      mobile,
     } = props;
 
     const {
@@ -75,6 +76,8 @@ const privateMethods = {
       currentRasterProbe,
       cachedMetadata,
       rasterProbeImageContainer,
+      mobile,
+      rasterProbeInnerContainer,
       onImageClick: () => {
         initLightbox({
           currentRasterProbe,
