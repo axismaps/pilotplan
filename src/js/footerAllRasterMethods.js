@@ -18,6 +18,12 @@ const allRasterMethods = {
       d3.event.stopPropagation();
     });
   },
+  setAllRasterCloseButton({
+    allRasterCloseButton,
+    onAllRasterCloseClick,
+  }) {
+    allRasterCloseButton.on('click', onAllRasterCloseClick);
+  },
   drawAllRasterCategories({
     rasterData,
     allRasterContentContainer,
@@ -47,13 +53,27 @@ const allRasterMethods = {
       .append('div')
       .attr('class', 'allraster__title');
 
-    titles.append('i')
+    const titleTextBlock = titles
+      .append('div')
+      .attr('class', 'allraster__title-text-block');
+
+    titleTextBlock.append('i')
       .attr('class', d => footerCategoryIcons[d.key]);
 
-    titles
+    titleTextBlock
       .append('div')
       .attr('class', 'allraster__title-text')
       .text(d => d.key);
+
+    // titles
+    //   .each(function addCloseButton(d, i) {
+    //     if (i === 0) {
+    //       d3.select(this)
+    //         .append('div')
+    //         .attr('class', 'allraster__close-button mobile')
+    //         .html('<i class="icon-times"></i>');
+    //     }
+    //   });
   },
   drawAllRasterImageBlocks({
     newAllRasterSections,

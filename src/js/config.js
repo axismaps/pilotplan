@@ -78,6 +78,7 @@ export const selections = {
   allRasterOuterContainer: d3.select('.allraster__outer'),
   allRasterInnerContainer: d3.select('.allraster__inner'),
   allRasterContentContainer: d3.select('.allraster__content'),
+  allRasterCloseButton: d3.select('.allraster__close-button'),
 
   mapContainer: d3.select('#map'),
 

@@ -45,7 +45,12 @@
   // padding: 20px;
   display: flex;
   font-size: 18px;
+  justify-content: space-between;
   // margin-bottom: 30px;
+}
+
+.allraster__title-text-block {
+  display: flex;
 }
 
 .allraster__title-text {

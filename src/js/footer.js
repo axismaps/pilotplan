@@ -137,6 +137,7 @@ const privateMethods = {
       onAllRasterCloseClick,
       firstAllRasterLoad,
       allRasterContentContainer,
+      allRasterCloseButton,
       rasterData,
       onRasterClick,
       cachedMetadata,
@@ -150,6 +151,7 @@ const privateMethods = {
       drawAllRasterTitles,
       drawAllRasterImageBlocks,
       drawAllRasterImages,
+      setAllRasterCloseButton,
     } = allRasterMethods;
 
     if (firstAllRasterLoad) {
@@ -158,6 +160,11 @@ const privateMethods = {
         allRasterOuterContainer,
         onAllRasterCloseClick,
         firstAllRasterLoad,
+      });
+
+      setAllRasterCloseButton({
+        allRasterCloseButton,
+        onAllRasterCloseClick,
       });
     }
 
@@ -225,6 +232,7 @@ class Footer {
       allRasterOuterContainer,
       allRasterInnerContainer,
       allRasterContentContainer,
+      allRasterCloseButton,
       footerToggleButton,
       footerToggleButtonMobile,
       outerContainer,
@@ -242,6 +250,7 @@ class Footer {
       allRasterOuterContainer,
       allRasterInnerContainer,
       allRasterContentContainer,
+      allRasterCloseButton,
       footerToggleButton,
       footerToggleButtonMobile,
       footerToggleRastersContainer,
