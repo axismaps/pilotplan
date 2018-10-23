@@ -5,6 +5,7 @@ dist/index.html
 bundle.js
 styles.css
 old
+legend_old
 .env
 scratch
 data/tiles/*

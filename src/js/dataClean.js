@@ -9,6 +9,7 @@ const cleanData = (rawData) => {
     rawPlans,
     rawExtents,
     rawTranslations,
+    rawLegendSwatches,
   ] = rawData;
 
   const layerGroups = [
@@ -69,7 +70,7 @@ const cleanData = (rawData) => {
   rasters.set('maps', processOverlay(rawMaps));
   rasters.set('plans', processOverlay(rawPlans));
   rasters.set('aerials', processOverlay(rawAerials));
-
+  // console.log('raw legend', rawLegendSwatches);
   const data = {
     layers,
     viewshedsGeo: rawViewsheds,
@@ -77,6 +78,7 @@ const cleanData = (rawData) => {
     translations,
     eras: erasWithTranslations,
     extents: rawExtents,
+    legendSwatches: rawLegendSwatches,
   };
 
   return data;

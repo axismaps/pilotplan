@@ -9,6 +9,7 @@ const initSidebar = function initSidebar() {
     sidebarOpen: state.get('sidebarOpen'),
     layerStyles: this.components.atlas.getStyle().layers,
     availableLayers: state.getAvailableLayers(this.data),
+    legendSwatches: this.data.legendSwatches,
     viewLayersOn: state.getAvailableRasters(this.data).get('views').length > 0,
     cachedMetadata: this.cachedMetadata,
     translations: this.data.translations,

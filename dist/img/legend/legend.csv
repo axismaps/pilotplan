@@ -1,0 +1,34 @@
+Feature,SVG,Hex,Note
+Bus Line,line-dashed.svg,c56307,
+Subway,line-dotted.svg,c56307,
+Bucolic Scale,area-pattern.svg,634333,#282828 background if needed
+Residential Scale,area-pattern.svg,634562,#282828 background if needed
+Monumental Scale,area-pattern.svg,cc5A32,#282828 background if needed
+Clustered Scale,area-pattern.svg,8e2d2d,#282828 background if needed
+Built Domain,area-pattern.svg,3b3b3b,#282828 background if needed
+Lake,area-solid.svg,30373b,
+Reservoir,area-solid.svg,30373b,
+Fountain,area-solid.svg,30373b,
+Reflecting Pool,area-solid.svg,30373b,
+Lawn,area-solid.svg,313831,
+Park,area-solid.svg,313831,
+Entrequadra,area-solid.svg,313831,
+Tree Belt,area-solid.svg,4b5546,
+Airport,area-solid.svg,3d3d3d,
+Orchard,area-solid.svg,39403a,
+Cerrado Savannah,area-solid.svg,2e302d,
+Uncovered Area,area-solid.svg,312d29,
+Reforested Area,area-solid.svg,343831,
+Pasture,area-solid.svg,33332f,
+Parking Lot,area-solid.svg,3d3d3d,
+Work,area-solid.svg,94494a,
+Live,area-solid.svg,94925d,
+Cultivate Body and Mind,area-solid.svg,705a7b,
+Circulate,area-solid.svg,9c673a,
+Creek,line-solid.svg,30373b,
+Stream,line-solid.svg,30373b,
+River,line-solid.svg,30373b,
+Local,line-solid.svg,868686,
+Arterial,line-solid.svg,868686,
+Expressway,line-solid.svg,868686,
+Collector,line-solid.svg,868686,

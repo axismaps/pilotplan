@@ -224,6 +224,7 @@ const getSidebarMethods = (privateProps) => {
         onLayerHighlightClick,
         cachedSwatches,
         layerStyles,
+        legendSwatches,
         translations,
       } = props;
 
@@ -255,33 +256,63 @@ const getSidebarMethods = (privateProps) => {
             onLayerHighlightClick(Object.assign({}, feature, { sourceLayer: d.sourceLayer }));
             // onLayerHighlightClick(feature);
           });
-        if (cachedSwatches.has(d.icon)) {
-          // console.log('loaded from cache');
-          const html = cachedSwatches.get(d.icon);
-          const swatches = newFeatureRows
-            .append('div')
-            .attr('class', 'sidebar__swatch')
-            .html(html);
 
-          setSwatchStyles({ swatches, layerStyles });
-        } else {
-          // console.log('load new');
-          d3.xml(`img/legend/${d.icon}`)
-            .then((icon) => {
-              const html = new XMLSerializer().serializeToString(icon);
-              if (!cachedSwatches.has(d.icon)) {
-                // console.log('save new', d.icon);
-                cachedSwatches.set(d.icon, html);
-              }
+        newFeatureRows.each(function addSwatch(feature) {
+          const featureSwatch = legendSwatches.find(swatch => swatch.Feature === feature.dataLayer);
 
-              const swatches = newFeatureRows
-                .append('div')
-                .attr('class', 'sidebar__swatch')
-                .html(html);
+          const featureRow = d3.select(this);
+          if (featureSwatch === undefined) return;
+          if (cachedSwatches.has(featureSwatch)) {
+            const html = cachedSwatches.get(featureSwatch);
+            featureRow.append('div')
+              .attr('class', 'sidebar__swatch')
+              .html(html)
+              .select('svg')
+              .attr('fill', `#${featureSwatch.Hex}`);
+          } else {
+            d3.xml(`img/legend/${featureSwatch.SVG}`)
+              .then((icon) => {
+                const html = new XMLSerializer().serializeToString(icon);
 
-              setSwatchStyles({ swatches, layerStyles });
-            });
-        }
+                if (!cachedSwatches.has(featureSwatch)) {
+                  cachedSwatches.set(featureSwatch, html);
+                }
+
+                featureRow.append('div')
+                  .attr('class', 'sidebar__swatch')
+                  .html(html)
+                  .select('svg')
+                  .attr('fill', `#${featureSwatch.Hex}`);
+
+                // featureRow.select('svg')
+                // .attr('fill', featureSwatch.Hex);
+              });
+          }
+        });
+        // if (cachedSwatches.has(d.icon)) {
+        //   const html = cachedSwatches.get(d.icon);
+        //   const swatches = newFeatureRows
+        //     .append('div')
+        //     .attr('class', 'sidebar__swatch')
+        //     .html(html);
+
+        //   setSwatchStyles({ swatches, layerStyles });
+        // } else {
+        //   d3.xml(`img/legend/${d.icon}`)
+        //     .then((icon) => {
+        //       const html = new XMLSerializer().serializeToString(icon);
+        //       if (!cachedSwatches.has(d.icon)) {
+        //         cachedSwatches.set(d.icon, html);
+        //       }
+
+        //       const swatches = newFeatureRows
+        //         .append('div')
+        //         .attr('class', 'sidebar__swatch')
+        //         .html(html);
+
+        //       setSwatchStyles({ swatches, layerStyles });
+        //     });
+        // }
 
 
         features.exit().remove();
