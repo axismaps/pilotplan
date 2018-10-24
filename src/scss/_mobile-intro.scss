@@ -1,0 +1,40 @@
+.outer-container--mobile {
+
+  .eras__content-outer,
+  .intro__content-outer {
+    top: $intro-pattern-height;
+  }
+
+  .eras__title {
+    font-size: 46px;
+    width: 90%;
+    white-space: normal;
+    line-height: 50px;
+    text-align: center;
+  }
+  .eras__content-inner,
+  .intro__content-inner {
+    margin-top: 220px;
+  }
+
+  .eras__stepper-outer-container {
+    width: 100%;
+  }
+
+  .eras__stepper-icon {
+    font-size: 30px;
+  }
+
+  .eras__stepper-icon:before {
+    color: $stepper-color;
+    border-radius: 15px;
+    width: 30px;
+    line-height: 30px;
+    margin: 0 5px;
+    // font-size: 18px;
+  }
+
+  .eras__stepper-years {
+    font-size: 22px;
+  }
+}
