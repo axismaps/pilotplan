@@ -5,6 +5,8 @@
     top: $intro-pattern-height;
   }
 
+  .intro__title, 
+
   .eras__title {
     font-size: 46px;
     width: 90%;
@@ -36,5 +38,14 @@
 
   .eras__stepper-years {
     font-size: 22px;
+  }
+}
+
+.outer-container--intro.outer-container--mobile {
+  .intro__content-inner {
+    margin-top: 20px;
+  }
+  .outer-intro-view {
+    overflow-y: auto;
   }
 }
