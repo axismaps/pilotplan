@@ -4,6 +4,7 @@ import Sidebar from './sidebar';
 const initSidebar = function initSidebar() {
   const { state } = this.components;
   const sidebar = new Sidebar({
+    mobile: state.get('mobile'),
     highlightedFeature: state.get('highlightedFeature'),
     highlightedLayer: state.get('highlightedLayer'),
     sidebarOpen: state.get('sidebarOpen'),

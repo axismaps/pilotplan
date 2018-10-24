@@ -148,11 +148,13 @@ const privateMethods = {
       canvas,
       mbMap,
       onAreaSearch,
+      mobile,
     } = props;
 
     const { getFlattenedRasterData } = rasterMethods;
 
     const areaSearchMethods = getAreaSearchMethods({
+      mobile,
       getAreaSearchActive: () => props.areaSearchActive,
       canvas,
       mbMap,
@@ -165,7 +167,11 @@ const privateMethods = {
       onMouseDown,
     } = areaSearchMethods;
 
-    canvas.addEventListener('mousedown', onMouseDown, true);
+    if (!mobile) {
+      canvas.addEventListener('mousedown', onMouseDown, true);
+    } else {
+      canvas.addEventListener('touchstart', onMouseDown, true);
+    }
   },
   saveLayerOpacities() {
     const props = privateProps.get(this);

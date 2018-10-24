@@ -51,6 +51,7 @@ const setStateEvents = ({ components, data }) => {
       const {
         layout,
         // atlas,
+        sidebar,
       } = components;
 
       layout
@@ -61,6 +62,13 @@ const setStateEvents = ({ components, data }) => {
 
       if (sidebarOpen) {
         layout.removeSidebarToggleLabel();
+      } else {
+        // sidebar
+        //   .config({
+        //     sidebarView: 'legend',
+        //   })
+        //   .updateView();
+        sidebar.clearSearch();
       }
     },
     footerOpen() {

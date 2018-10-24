@@ -123,6 +123,7 @@ export const selections = {
   sidebarViewshedLayerIconContainer: d3.select('.sidebar__viewsheds-icon'),
   searchReturnContainer: d3.select('.sidebar__search-return'),
   textSearchReturnButton: d3.select('.sidebar__text-search-return-icon'),
+  textSearchReturnButtonMobile: d3.select('.sidebar__text-search-return-icon-mobile'),
   searchInput: d3.select('.sidebar__input'),
   resultsContainer: d3.select('.sidebar__results'),
   rasterResultsContainer: d3.select('.sidebar__raster-results'),

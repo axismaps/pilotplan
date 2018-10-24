@@ -7,6 +7,7 @@ const getAreaSearchMethods = ({
   getYear,
   onAreaSearch,
   getFlattenedRasterData,
+  mobile,
 }) => {
   const localState = {
     start: null,
@@ -17,9 +18,16 @@ const getAreaSearchMethods = ({
     getMousePos(e) {
       const rect = canvas.getBoundingClientRect();
 
+      if (!mobile) {
+        return new mapboxgl.Point(
+          e.clientX - rect.left - canvas.clientLeft,
+          e.clientY - rect.top - canvas.clientTop,
+        );
+      }
+      const touch = e.touches[0];
       return new mapboxgl.Point(
-        e.clientX - rect.left - canvas.clientLeft,
-        e.clientY - rect.top - canvas.clientTop,
+        touch.clientX,
+        touch.clientY,
       );
     },
     onMouseDown(e) {
@@ -33,8 +41,13 @@ const getAreaSearchMethods = ({
 
       localState.start = getMousePos(e);
 
-      document.addEventListener('mousemove', onMouseMove);
-      document.addEventListener('mouseup', onMouseUp);
+      if (!mobile) {
+        document.addEventListener('mousemove', onMouseMove);
+        document.addEventListener('mouseup', onMouseUp);
+      } else {
+        document.addEventListener('touchmove', onMouseMove);
+        document.addEventListener('touchend', onMouseUp);
+      }
     },
     onMouseMove(e) {
       const {
@@ -67,16 +80,17 @@ const getAreaSearchMethods = ({
       })
         .classed('search-box--hidden', false);
     },
-    onMouseUp(e) {
+    onMouseUp() {
       const {
         onMouseMove,
         onMouseUp,
-        getMousePos,
+        // getMousePos,
       } = areaMouseMethods;
 
       const {
         box,
         start,
+        current,
       } = localState;
 
       const {
@@ -85,12 +99,17 @@ const getAreaSearchMethods = ({
       } = dataMethods;
 
       const flattenedRasterData = getFlattenedRasterData();
+      if (!mobile) {
+        document.removeEventListener('mousemove', onMouseMove);
+        document.removeEventListener('mouseup', onMouseUp);
+      } else {
+        document.removeEventListener('touchmove', onMouseMove);
+        document.removeEventListener('touchend', onMouseUp);
+      }
 
-      document.removeEventListener('mousemove', onMouseMove);
-      document.removeEventListener('mouseup', onMouseUp);
       box.classed('search-box--hidden', true);
 
-      const bbox = [start, getMousePos(e)];
+      const bbox = [start, current];
 
       const features = mbMap.queryRenderedFeatures(bbox, {
         filter: [
@@ -103,7 +122,7 @@ const getAreaSearchMethods = ({
       const rasterFeatures = getRasterResults(features)
         .map(d => flattenedRasterData.find(dd => dd.SS_ID === d.properties.SS_ID));
 
-      // console.log('raster features', rasterFeatures);
+
       const nonRasterFeatures = getNonRasterResults(features);
       onAreaSearch({
         raster: rasterFeatures,

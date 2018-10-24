@@ -13,6 +13,7 @@ class Sidebar {
       sidebarContentContainer,
       searchReturnContainer,
       textSearchReturnButton,
+      textSearchReturnButtonMobile,
       searchInput,
       resultsContainer,
       rasterResultsContainer,
@@ -32,6 +33,7 @@ class Sidebar {
       sidebarContentContainer,
       searchReturnContainer,
       textSearchReturnButton,
+      textSearchReturnButtonMobile,
       searchInput,
       resultsContainer,
       rasterResultsContainer,
@@ -203,6 +205,7 @@ class Sidebar {
   }
   updateView() {
     const { setSidebarClass } = privateMethods;
+    console.log('update view');
     setSidebarClass.call(this);
   }
   getSearchText() {
@@ -224,7 +227,7 @@ class Sidebar {
       setSidebarToLegend,
       clearTextInput,
     } = privateMethods;
-
+    console.log('clear search');
     setSidebarToLegend.call(this);
     clearTextInput.call(this);
     setSidebarClass.call(this);

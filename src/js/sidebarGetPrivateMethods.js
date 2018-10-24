@@ -69,17 +69,20 @@ const getSidebarMethods = (privateProps) => {
       const {
         searchReturnContainer,
         textSearchReturnButton,
+        textSearchReturnButtonMobile,
         searchInput,
+        mobile,
         // onSearchReturn,
       } = props;
 
       const { setSearchReturnListener } = searchMethods;
-
+      console.log('mobile', mobile);
       setSearchReturnListener({
         searchReturnContainer,
-        textSearchReturnButton,
+        textSearchReturnButton: mobile ? textSearchReturnButtonMobile : textSearchReturnButton,
         searchInput,
         clearSearch: () => {
+          console.log('clear');
           this.clearSearch();
         },
       });

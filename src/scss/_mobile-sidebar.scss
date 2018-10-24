@@ -11,13 +11,36 @@
     display: none;
   }
 
+  .sidebar__text-search-return-icon-mobile {
+    display: none;
+  }
+
+  // .sidebar--click-search {
+  //   .sidebar__close-button {
+  //     display: none;
+  //   }
+  // }
+
   .sidebar--click-search {
     .sidebar__close-button {
+      display: block;
+    }
+    .sidebar__search-return-icon {
       display: none;
     }
   }
 
-  
+  .sidebar--text-search {
+    .sidebar__close-button {
+      display: none;
+    }
+    .sidebar__text-search-return-icon-mobile {
+      display: block;
+    }
+    // .sidebar__search-return-icon {
+    //   display: block;
+    // }
+  }
 }
 
 .outer-container.outer-container--mobile.sidebar-open {
