@@ -89,6 +89,7 @@ const privateMethods = {
           lightboxSharedShelfButton,
           lightboxCloseButton,
           cachedMetadata,
+          mobile,
           cachedSharedShelfURLs,
         });
       },

@@ -30,4 +30,14 @@
   .area-button-text {
     display: none;
   }
+
+  .lightbox__inner {
+    width: 100%;
+    max-height: none;
+  }
+
+  // .lightbox__content,
+  .lightbox__inner-scroll {
+    height: auto;
+  }
 }

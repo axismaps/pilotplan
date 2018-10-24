@@ -40,6 +40,7 @@ const localMethods = {
     lightboxImageContainer,
     currentRasterProbe,
     cachedMetadata,
+    mobile,
   }) {
     const {
       setBackgroundToContainerWidth,
@@ -50,7 +51,7 @@ const localMethods = {
       currentRasterProbe,
       cachedMetadata,
       resizeContainer: true,
-      maxWidth: 1054,
+      maxWidth: mobile ? window.innerWidth : 1054,
     });
   },
   initSharedShelfButton({
@@ -86,6 +87,7 @@ const lightboxMethods = {
     cachedSharedShelfURLs,
     lightboxSharedShelfButton,
     lightboxCloseButton,
+    mobile,
   }) {
     const {
       openLightbox,
@@ -111,6 +113,7 @@ const lightboxMethods = {
       lightboxMetadataContainer,
       currentRasterProbe,
       cachedMetadata,
+      mobile,
     });
 
     updateCredits({
