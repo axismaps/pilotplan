@@ -98,9 +98,14 @@ const getPublicMethods = ({ privateProps, privateMethods }) => ({
   },
   removeHintProbe() {
     const props = privateProps.get(this);
-    const { hintProbeContainer, hintProbeOn } = props;
+    const {
+      hintProbeContainer,
+      hintProbeContainerMobile,
+      hintProbeOn,
+    } = props;
     if (!hintProbeOn) return;
     hintProbeContainer.remove();
+    hintProbeContainerMobile.remove();
     props.hintProbeOn = false;
   },
   updateLanguage() {

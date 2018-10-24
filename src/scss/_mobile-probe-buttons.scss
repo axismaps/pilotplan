@@ -1,7 +1,7 @@
 .outer-container--mobile {
   .probe-buttons-container {
     top: $header-height-mobile + $timeline-height + 10;
-    right: 0px;
+    right: 20px;
     // width: 100%;
     // justify-content: space-between;
   }
@@ -12,11 +12,15 @@
 
   .area-button {
     margin-left: auto;
-    margin-right: 10px;
+    // margin-right: 20px;
   }
 
-  .hint-probe {
-    margin-left: 10px;
+  .hint-probe__mobile {
+    // margin-left: 10px;
+    position: absolute;
+    top: $header-height-mobile + $timeline-height + 10;
+    left: 20px;
+    height: $probe-buttons-height;
   }
 
   .area-button .icon-search-area {
@@ -24,10 +28,6 @@
   }
 
   .area-button-text {
-    display: none;
-  }
-
-  .hint-probe__triangle {
     display: none;
   }
 }

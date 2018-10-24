@@ -51,6 +51,7 @@ export const selections = {
   probeButtonsContainer: d3.select('.probe-buttons-container'),
   overlayButtonContainer: d3.select('.overlay-button'),
   hintProbeContainer: d3.select('.hint-probe__outer'),
+  hintProbeContainerMobile: d3.select('.hint-probe__mobile'),
   hintProbeText: d3.select('.hint-probe'),
   erasButtonContainer: d3.select('.header__eras-button'),
   erasButtonText: d3.select('.header__eras-button-text'),
