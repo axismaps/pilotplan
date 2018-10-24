@@ -1,11 +1,11 @@
 Feature,SVG,Hex,Note
-Bus Line,line-dashed.svg,c56307,
-Subway,line-dotted.svg,c56307,
-Bucolic Scale,area-pattern.svg,634333,#282828 background if needed
-Residential Scale,area-pattern.svg,634562,#282828 background if needed
-Monumental Scale,area-pattern.svg,cc5A32,#282828 background if needed
-Clustered Scale,area-pattern.svg,8e2d2d,#282828 background if needed
-Built Domain,area-pattern.svg,3b3b3b,#282828 background if needed
+Bus Line,line-dashed.svg,c57838,
+Subway,line-dotted.svg,c57838,
+Bucolic Scale,area-pattern.svg,745c51,#282828 background if needed
+Residential Scale,area-pattern.svg,6b576a,#282828 background if needed
+Monumental Scale,area-pattern.svg,ab614b,#282828 background if needed
+Clustered Scale,area-pattern.svg,884849,#282828 background if needed
+Built Domain,area-pattern.svg,4f4f4f,#282828 background if needed
 Lake,area-solid.svg,30373b,
 Reservoir,area-solid.svg,30373b,
 Fountain,area-solid.svg,30373b,
