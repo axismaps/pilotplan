@@ -227,7 +227,7 @@ class Sidebar {
       setSidebarToLegend,
       clearTextInput,
     } = privateMethods;
-    console.log('clear search');
+    // console.log('clear search');
     setSidebarToLegend.call(this);
     clearTextInput.call(this);
     setSidebarClass.call(this);

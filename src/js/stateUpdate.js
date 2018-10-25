@@ -134,7 +134,7 @@ const setStateEvents = ({ components, data }) => {
         // year,
       } = this.props();
       // console.log('extents', extents);
-      // console.log('highlightfeature', highlightedFeature);
+      console.log('highlightfeature', highlightedFeature);
 
       const {
         atlas,

@@ -155,6 +155,7 @@ const getAtlasUpdateMethods = ({
         onReturnToSearch,
         onFeatureSourceData,
         searchLocation,
+        mobile,
       } = props;
 
       clearHighlightedFeature(mbMap);
@@ -198,7 +199,8 @@ const getAtlasUpdateMethods = ({
           onFeatureSourceData();
           props.counter = 0;
           const newBounds = getBBox(props.highlightedFeatureJSON);
-          mbMap.fitBounds(newBounds, { padding: 200 });
+          // console.log('fitbounds', mobile, newBounds);
+          mbMap.fitBounds(newBounds, { padding: mobile ? 0 : 200 });
         } else {
           props.highlightLayerLoading = false;
           props.searchLocationLoading = true;

@@ -17,7 +17,9 @@ const initSidebar = function initSidebar() {
     language: state.get('language'),
     view: state.get('sidebarView'),
     onSearchReturn() {
-      state.update({ highlightedFeature: null });
+      if (!state.get('mobile')) {
+        state.update({ highlightedFeature: null });
+      }
     },
     onLayerClick(layer) {
       const currentLayers = state.get('currentLayers');
@@ -55,21 +57,27 @@ const initSidebar = function initSidebar() {
     },
     onFeatureClick(feature) {
       const oldFeature = state.get('highlightedFeature');
-      // test if 'feature' is entire layer (has 'dataLayer') or array of features
-      let newFeature;
-      // if no old feature
-      if (oldFeature === null) {
-        newFeature = feature;
-        // if new feature is entire layer
-      } else if (Object.prototype.hasOwnProperty.call(feature, 'dataLayer')) {
-        newFeature = oldFeature.dataLayer === feature.dataLayer ? null : feature;
-        // if new feature is array of features (not entire layer)
-        // and old layer is also array of features
+
+      const highlight = oldFeature === null ||
+        feature.id !== oldFeature.id;
+      const stateToUpdate = {};
+      if (highlight) {
+        Object.assign(stateToUpdate, { highlightedFeature: feature });
       } else {
-        newFeature = oldFeature.id === feature.id ? null : feature;
+        Object.assign(stateToUpdate, { highlightedFeature: null });
       }
 
-      state.update({ highlightedFeature: newFeature });
+      if (state.get('mobile') && highlight) {
+        Object.assign(stateToUpdate, { sidebarOpen: false });
+      }
+      state.update(stateToUpdate);
+      // if (oldFeature === null) {
+      //   newFeature = feature;
+      // } else {
+      //   newFeature = oldFeature.id === feature.id ? null : feature;
+      // }
+
+      // state.update({ highlightedFeature: newFeature });
     },
   });
   return sidebar;
