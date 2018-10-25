@@ -5,6 +5,47 @@ const getPublicMethods = ({ privateProps, privateMethods }) => ({
     Object.assign(privateProps.get(this), config);
     return this;
   },
+  updateHighlightedFeature() {
+    const {
+      outerContainer,
+      highlightedFeature,
+      dataProbeMobileTitle,
+      dataProbeMobileContent,
+    } = privateProps.get(this);
+
+    outerContainer
+      .classed('outer-container--highlighted', highlightedFeature !== null);
+
+    if (highlightedFeature == null) return;
+
+    dataProbeMobileTitle
+      .text(highlightedFeature.properties.Name);
+
+    const start = highlightedFeature.properties.FirstYear;
+    const end = highlightedFeature.properties.LastYear === 8888 ?
+      new Date().getFullYear() :
+      highlightedFeature.properties.LastYear;
+
+    const creator = highlightedFeature.properties.Creator;
+
+    let content = '';
+
+    const addContentRow = (text) => {
+      content += `
+      <div class="mobile-probe__content-row">
+        ${text}
+      </div>
+    `;
+    };
+    if (creator !== '') {
+      addContentRow(`Creator: ${creator}`);
+    }
+
+    addContentRow(`Mapped: ${start} - ${end}`);
+
+    dataProbeMobileContent
+      .html(content);
+  },
   updateRasterProbe() {
     const {
       outerContainer,

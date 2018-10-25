@@ -169,6 +169,14 @@ const privateMethods = {
         `https://www.facebook.com/sharer/sharer.php?&u=${encodeURIComponent(window.location.href)}`,
       );
   },
+  initMobileDataProbe() {
+    const {
+      dataProbeMobileCloseButton,
+      onMobileProbeClose,
+    } = privateProps.get(this);
+    dataProbeMobileCloseButton
+      .on('click', onMobileProbeClose);
+  },
   setHintProbeLanguage() {
     const {
       hintProbeText,
@@ -238,6 +246,10 @@ class Layout {
       loadingScreenContainer,
       sidebarCloseButtonMobile,
       sidebarToggleButtonMobile,
+      dataProbeMobileContainer,
+      dataProbeMobileTitle,
+      dataProbeMobileContent,
+      dataProbeMobileCloseButton,
     } = selections;
 
     privateProps.set(this, {
@@ -283,6 +295,10 @@ class Layout {
       loadingScreenContainer,
       sidebarCloseButtonMobile,
       sidebarToggleButtonMobile,
+      dataProbeMobileContainer,
+      dataProbeMobileTitle,
+      dataProbeMobileContent,
+      dataProbeMobileCloseButton,
       transitionSpeed: 500,
       mouseEventsDisabled: false,
       transitionsDisabled: false,
@@ -294,6 +310,7 @@ class Layout {
       translations: null,
       mapLoaded: false,
       mobile: false,
+      highlightedFeature: false,
     });
     const {
       initAreaButton,
@@ -307,9 +324,12 @@ class Layout {
       initRegisterScreen,
       initSocialMediaButtons,
       initCloseSidebarButton,
+      initMobileDataProbe,
     } = privateMethods;
 
     this.config(config);
+
+    const { mobile } = privateProps.get(this);
 
     initAreaButton.call(this);
     initOverlayButton.call(this);
@@ -321,6 +341,10 @@ class Layout {
     initRegisterScreen.call(this);
     initSocialMediaButtons.call(this);
     initCloseSidebarButton.call(this);
+    if (mobile) {
+      initMobileDataProbe.call(this);
+    }
+
 
     this.updateSidebar();
     this.updateFooter();

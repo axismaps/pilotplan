@@ -81,6 +81,11 @@ export const selections = {
   allRasterContentContainer: d3.select('.allraster__content'),
   allRasterCloseButton: d3.select('.allraster__close-button'),
 
+  dataProbeMobileContainer: d3.select('.mobile-probe__outer'),
+  dataProbeMobileCloseButton: d3.select('.mobile-probe__close-button'),
+  dataProbeMobileTitle: d3.select('.mobile-probe__title'),
+  dataProbeMobileContent: d3.select('.mobile-probe__content'),
+
   mapContainer: d3.select('#map'),
 
   timelineContainer: d3.select('.timeline-container'),

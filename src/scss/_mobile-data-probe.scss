@@ -1,0 +1,39 @@
+.outer-container--mobile {
+  .mobile-probe__outer {
+    background: $main-background-fill;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    color: white;
+    z-index: 2000;
+    display: none;
+  }
+
+  .mobile-probe__inner {
+    padding: 15px;
+  }
+
+  .mobile-probe__title-row {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .mobile-probe__title {
+    font-weight: 700;
+  }
+
+  .mobile-probe__content {
+    margin-top: 15px;
+  }
+
+  .mobile-probe__content-row {
+    margin-top: 5px;
+  }
+}
+
+.outer-container--highlighted.outer-container--mobile {
+  .mobile-probe__outer {
+    display: block;
+  }
+}

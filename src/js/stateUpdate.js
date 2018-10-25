@@ -131,14 +131,15 @@ const setStateEvents = ({ components, data }) => {
     highlightedFeature() {
       const {
         highlightedFeature,
+        mobile,
         // year,
       } = this.props();
-      // console.log('extents', extents);
-      console.log('highlightfeature', highlightedFeature);
+
 
       const {
         atlas,
         sidebar,
+        layout,
       } = components;
       //
       atlas
@@ -154,6 +155,14 @@ const setStateEvents = ({ components, data }) => {
           highlightedFeature,
         })
         .updateHighlightedFeature();
+
+      if (mobile) {
+        layout
+          .config({
+            highlightedFeature,
+          })
+          .updateHighlightedFeature();
+      }
     },
     currentOverlay() {
       const {

@@ -178,6 +178,9 @@ const app = {
       onBackButtonClick: () => {
         state.update({ view: 'intro' });
       },
+      onMobileProbeClose: () => {
+        state.update({ highlightedFeature: null });
+      },
       getExportLink: () => atlas.getMapExportLink(),
       getCanvas: () => atlas.getCanvas(),
     });
