@@ -76,7 +76,7 @@ const getSidebarMethods = (privateProps) => {
       } = props;
 
       const { setSearchReturnListener } = searchMethods;
-      console.log('mobile', mobile);
+
       setSearchReturnListener({
         searchReturnContainer,
         textSearchReturnButton: mobile ? textSearchReturnButtonMobile : textSearchReturnButton,
@@ -226,14 +226,9 @@ const getSidebarMethods = (privateProps) => {
         sidebarContentContainer,
         onLayerHighlightClick,
         cachedSwatches,
-        layerStyles,
         legendSwatches,
         translations,
       } = props;
-
-      const {
-        setSwatchStyles,
-      } = privateMethods;
 
 
       layers.each(function addFeature(d) {

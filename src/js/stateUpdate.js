@@ -62,12 +62,7 @@ const setStateEvents = ({ components, data }) => {
 
       if (sidebarOpen) {
         layout.removeSidebarToggleLabel();
-      } else {
-        // sidebar
-        //   .config({
-        //     sidebarView: 'legend',
-        //   })
-        //   .updateView();
+      } else if (sidebar.getView() !== 'legend') {
         sidebar.clearSearch();
       }
     },

@@ -28,7 +28,9 @@ const initSidebar = function initSidebar() {
         { sourceLayer: layer.sourceLayer, status: !currentLayers[layerIndex].status },
         ...currentLayers.slice(layerIndex + 1),
       ];
-      state.update({ currentLayers: newLayers });
+      const stateToUpdate = { currentLayers: newLayers };
+
+      state.update(stateToUpdate);
     },
     onRasterClick(rasterData) {
       onRasterClick({ rasterData, state });
@@ -38,18 +40,18 @@ const initSidebar = function initSidebar() {
     },
     onLayerHighlightClick(newLayer) {
       const currentHighlightedLayer = state.get('highlightedLayer');
-
-      const turnOffLayer = currentHighlightedLayer === null ?
-        false :
-        currentHighlightedLayer.dataLayer === newLayer.dataLayer;
-      if (currentHighlightedLayer === null) {
-        state.update({ highlightedLayer: newLayer });
+      const stateToUpdate = {};
+      const highlight = currentHighlightedLayer === null ||
+      currentHighlightedLayer.dataLayer !== newLayer.dataLayer;
+      if (highlight) {
+        Object.assign(stateToUpdate, { highlightedLayer: newLayer });
       } else {
-        state.update({
-          highlightedLayer: turnOffLayer ?
-            null : newLayer,
-        });
+        Object.assign(stateToUpdate, { highlightedLayer: null });
       }
+      if (state.get('mobile') && highlight) {
+        Object.assign(stateToUpdate, { sidebarOpen: false });
+      }
+      state.update(stateToUpdate);
     },
     onFeatureClick(feature) {
       const oldFeature = state.get('highlightedFeature');

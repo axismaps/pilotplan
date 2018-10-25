@@ -140,7 +140,7 @@ class Sidebar {
       sidebarContentContainer,
       highlightedLayer,
     } = privateProps.get(this);
-    // console.log('sidebar update', highlightedLayer);
+    console.log('sidebar update', highlightedLayer);
     const isHighlightedLayer = (d) => {
       if (highlightedLayer === null) {
         return false;
@@ -203,11 +203,11 @@ class Sidebar {
   getView() {
     return privateProps.get(this).view;
   }
-  updateView() {
-    const { setSidebarClass } = privateMethods;
-    console.log('update view');
-    setSidebarClass.call(this);
-  }
+  // updateView() {
+  //   const { setSidebarClass } = privateMethods;
+  //   console.log('update view');
+  //   setSidebarClass.call(this);
+  // }
   getSearchText() {
     const {
       searchInput,

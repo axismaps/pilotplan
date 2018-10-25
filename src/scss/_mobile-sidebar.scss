@@ -15,11 +15,10 @@
     display: none;
   }
 
-  // .sidebar--click-search {
-  //   .sidebar__close-button {
-  //     display: none;
-  //   }
-  // }
+  .sidebar__results-button:hover,
+  .sidebar__feature-button:hover {
+    background: $main-medium-dark-gray;
+  }
 
   .sidebar--click-search {
     .sidebar__close-button {
