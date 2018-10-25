@@ -188,6 +188,18 @@ const app = {
     } = this.components;
 
     console.log('initialize components');
+    setTimeout(() => {
+      d3.select('.mapboxgl-ctrl-attrib')
+        .styles({
+          opacity: 1,
+        })
+        .html(`
+        <a href="https://www.mapbox.com/about/maps/" target="_blank">© Mapbox</a>
+        <a class="mapbox-improve-map" href="https://www.mapbox.com/feedback/?owner=axismaps&amp;id=cjlxzhuj652652smt1jf50bq5&amp;access_token=pk.eyJ1IjoiYXhpc21hcHMiLCJhIjoieUlmVFRmRSJ9.CpIxovz1TUWe_ecNLFuHNg" target="_blank">Improve this map</a>
+        <a href="https://www.digitalglobe.com/" target="_blank">© DigitalGlobe</a>
+        `);
+    }, 1000);
+
 
     this.components.timeline = new Timeline({
       mobile: state.get('mobile'),

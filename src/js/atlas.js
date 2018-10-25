@@ -29,6 +29,7 @@ const privateMethods = {
       onLayerSourceData,
       onFeatureSourceData,
       onReturnToSearch,
+      correctAttribution,
       translations,
     } = props;
 
@@ -47,6 +48,7 @@ const privateMethods = {
           onLayerSourceData,
           onFeatureSourceData,
           onReturnToSearch,
+          correctAttribution,
           setCancelClickSearch: () => {
             props.cancelClickSearch = true;
           },
@@ -215,6 +217,8 @@ class Atlas {
       aerialOverlayOn: false,
       highlightLayerLoading: false,
       highlightLoadingTimer: null,
+      initialLoadTimer: null,
+      attributedCorrected: false,
       highlightFeatureLoading: false,
       highlightedFeatureJSON: null,
       previousZoom: null,
@@ -249,6 +253,7 @@ class Atlas {
     this.updateAreaSearch();
     this.updateYear();
     this.updateOverlay();
+
 
     mbMap.resize();
 

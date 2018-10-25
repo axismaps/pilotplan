@@ -91,6 +91,7 @@ const atlasMethods = {
     onLayerSourceData,
     onFeatureSourceData,
     onReturnToSearch,
+    // correctAttribution,
   }) {
     const {
       addConeToMap,
@@ -110,7 +111,21 @@ const atlasMethods = {
       container: 'map',
       style,
       preserveDrawingBuffer: true,
+      // attributionControl: false,
+      attributionControl: true,
+      // customAttribution: `
+      //   <a href="https://www.mapbox.com/about/maps/" target="_blank">© Mapbox</a>
+      //   <a class="mapbox-improve-map" href="https://www.mapbox.com/feedback/?owner=axismaps&amp;id=cjlxzhuj652652smt1jf50bq5&amp;access_token=pk.eyJ1IjoiYXhpc21hcHMiLCJhIjoieUlmVFRmRSJ9.CpIxovz1TUWe_ecNLFuHNg" target="_blank">Improve this map</a>
+      //   <a href="https://www.digitalglobe.com/" target="_blank">© DigitalGlobe</a>
+      // `,
     })
+      // .addControl(new mapboxgl.AttributionControl({
+      //   customAttribution: `
+      //   <a href="https://www.mapbox.com/about/maps/" target="_blank">© Mapbox</a>
+      //   <a class="mapbox-improve-map" href="https://www.mapbox.com/feedback/?owner=axismaps&amp;id=cjlxzhuj652652smt1jf50bq5&amp;access_token=pk.eyJ1IjoiYXhpc21hcHMiLCJhIjoieUlmVFRmRSJ9.CpIxovz1TUWe_ecNLFuHNg" target="_blank">Improve this map</a>
+      //   <a href="https://www.digitalglobe.com/" target="_blank">© DigitalGlobe</a>
+      // `,
+      // }))
       // .on('mousedown', () => {
       //   d3.select('.mapboxgl-canvas')
       //     .style('cursor', 'grab');
@@ -133,6 +148,9 @@ const atlasMethods = {
         // console.log('get loaded style', mbMap.getStyle().layers.map(d => mbMap.getLayer(d.id)));
         initApp();
       })
+      // .on('render', () => {
+      //   correctAttribution();
+      // })
       .on('sourcedata', () => {
         onLayerSourceData();
         onReturnToSearch();
@@ -207,6 +225,7 @@ const atlasMethods = {
       });
     // console.log('mbMap', mbMap);
     // console.log('style', mbMap.getStyle());
+
     return mbMap;
   },
   addConeToMap({
