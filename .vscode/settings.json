@@ -4,5 +4,6 @@
     "**/bower_components": true,
     "**/styles.css": true,
     "**/bundle.js": true
-  }
+  },
+  "python.pythonPath": "/usr/local/bin/python"
 }
