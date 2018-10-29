@@ -199,11 +199,11 @@ const privateMethods = {
   setRegisterButtonLanguage() {
     const {
       headerRegisterButtonText,
-      // language,
-      // translations,
+      language,
+      translations,
     } = privateProps.get(this);
     headerRegisterButtonText
-      .text('Register'); // placeholder until translations csv updated
+      .text(translations.Register[language]);
   },
   setErasBackButtonText() {
     const {
