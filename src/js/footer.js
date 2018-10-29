@@ -59,10 +59,10 @@ const privateMethods = {
   initAllRasterButton() {
     const props = privateProps.get(this);
     const {
-      showAllContainer,
+      footerShowAllContainer,
       onAllRasterClick,
     } = props;
-    showAllContainer.on('click', onAllRasterClick);
+    footerShowAllContainer.on('click', onAllRasterClick);
   },
   initToggleButton() {
     const {
@@ -228,7 +228,8 @@ class Footer {
       categoriesContainer,
       footerCategoriesMobile,
       imagesContainer,
-      showAllContainer,
+      footerShowAllContainer,
+      footerShowAllCircle,
       allRasterOuterContainer,
       allRasterInnerContainer,
       allRasterContentContainer,
@@ -246,7 +247,8 @@ class Footer {
       categoriesContainer,
       footerCategoriesMobile,
       imagesContainer,
-      showAllContainer,
+      footerShowAllContainer,
+      footerShowAllCircle,
       allRasterOuterContainer,
       allRasterInnerContainer,
       allRasterContentContainer,
@@ -334,10 +336,14 @@ class Footer {
       language,
       translations,
       footerToggleText,
+      footerShowAllCircle,
     } = privateProps.get(this);
-    console.log('translations', translations);
+
     footerToggleText
-      .text(translations['Historical Overlays'][language]); // placeholder until translation is added to csv
+      .text(translations['Historical Overlays'][language]);
+
+    footerShowAllCircle
+      .text(translations['Show all'][language]);
   }
 }
 
