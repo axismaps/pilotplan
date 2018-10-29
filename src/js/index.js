@@ -1,16 +1,22 @@
+/**
+ * Initializes components, sets callbacks for changes to application state
+ * @module index
+ */
+
 import setStateEvents from './stateUpdate';
 import Intro from './intro';
 import Timeline from './timeline';
 import Layout from './layout';
 import RasterProbe from './rasterProbe';
-import getState from './initState';
+import initState from './initState';
 import { yearRange } from './config';
 import loadData from './dataLoad';
 import Views from './views';
 import Eras from './eras';
-import UrlParams from './url';
+
 import LanguageDropdown from './languageDropdown';
 import EraDropdown from './eraDropdown';
+import initURL from './initURL';
 import initAtlas from './initAtlas';
 import initSidebar from './initSidebar';
 import initFooter from './initFooter';
@@ -26,11 +32,9 @@ const app = {
   init() {
     loadData((cleanedData) => {
       this.data = cleanedData;
-      console.log('translations', this.data.translations);
+
       this.initURL();
-
       this.initState();
-
       this.setStateEvents();
 
       this.initAtlas();
@@ -38,37 +42,10 @@ const app = {
       this.initIntro();
       this.initEras();
       this.initLayout();
-
-
-      // setTimeout(() => {
-      //   this.components.state.update({
-      //     year: 2000,
-      //   });
-      // }, 3000);
-
-      // setTimeout(() => {
-      //   const { state } = this.components;
-
-      //   state.update({ view: 'map' });
-      // }, 2000);
     });
   },
-  initURL() {
-    this.components.urlParams = new UrlParams({
-      rasterData: this.data.rasters,
-    });
-  },
-  initState() {
-    const { urlParams } = this.components;
-
-    this.components.state = getState({ urlParams });
-
-    this.components.state.set('currentLayers', this.components.state.getAllAvailableLayers(this.data));
-    this.components.state.set(
-      'footerView',
-      this.components.state.getAutoFooterView(this.data),
-    );
-  },
+  initURL,
+  initState,
   initViews() {
     const { state } = this.components;
     this.components.views = new Views({

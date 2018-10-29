@@ -1,7 +1,9 @@
 import State from './state/state';
 import rasterMethods from './rasterMethods';
 
-const getState = function getState({ urlParams }) {
+const initState = function initState() {
+  const { urlParams } = this.components;
+
   const startOverlay = urlParams.get('overlay');
   const center = urlParams.get('center');
   const zoom = urlParams.get('zoom');
@@ -152,7 +154,13 @@ const getState = function getState({ urlParams }) {
 
   state.set('mobile', state.getOrientation() === 'mobile');
 
-  return state;
+  state.set('currentLayers', state.getAllAvailableLayers(this.data));
+  state.set(
+    'footerView',
+    state.getAutoFooterView(this.data),
+  );
+
+  this.components.state = state;
 };
 
-export default getState;
+export default initState;
