@@ -4,7 +4,7 @@ import onRasterClick from './onRasterClick';
 const initFooter = function initFooter() {
   const { state } = this.components;
 
-  const footer = new Footer({
+  this.components.footer = new Footer({
     translations: this.data.translations,
     language: state.get('language'),
     year: state.get('year'),
@@ -30,7 +30,6 @@ const initFooter = function initFooter() {
       state.update({ footerOpen: toggle === undefined ? !state.get('footerOpen') : toggle });
     },
   });
-  return footer;
 };
 
 export default initFooter;

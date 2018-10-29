@@ -5,20 +5,13 @@ import getUpdateLanguage from './stateUpdateLanguage';
 import getStateUpdateCurrentLocation from './stateUpdateCurrentLocation';
 import getUpdateClickSearch from './stateUpdateClickSearch';
 import getAreaSearch from './stateUpdateAreaSearch';
+import getUpdateHighlightedLayer from './stateUpdateHighlightedLayer';
 
 const setStateEvents = ({ components, data }) => {
   const { state } = components;
 
   state.registerCallbacks({
-    highlightedLayer() {
-      const {
-        atlas,
-        sidebar,
-      } = components;
-      const { highlightedLayer } = this.props();
-      sidebar.config({ highlightedLayer }).updateHighlightedLayer();
-      atlas.config({ highlightedLayer }).updateHighlightedLayer();
-    },
+    highlightedLayer: getUpdateHighlightedLayer({ components }),
     year: getUpdateYear({ data, components }),
     view: getUpdateView({ components }),
     language: getUpdateLanguage({ data, components }),

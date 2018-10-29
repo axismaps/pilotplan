@@ -3,7 +3,7 @@ import Sidebar from './sidebar';
 
 const initSidebar = function initSidebar() {
   const { state } = this.components;
-  const sidebar = new Sidebar({
+  this.components.sidebar = new Sidebar({
     mobile: state.get('mobile'),
     highlightedFeature: state.get('highlightedFeature'),
     highlightedLayer: state.get('highlightedLayer'),
@@ -80,7 +80,6 @@ const initSidebar = function initSidebar() {
       // state.update({ highlightedFeature: newFeature });
     },
   });
-  return sidebar;
 };
 
 export default initSidebar;
