@@ -331,12 +331,13 @@ class Footer {
   }
   updateLanguage() {
     const {
-      // language,
-      // translations,
+      language,
+      translations,
       footerToggleText,
     } = privateProps.get(this);
+    console.log('translations', translations);
     footerToggleText
-      .text('Historical Overlays'); // placeholder until translation is added to csv
+      .text(translations['Historical Overlays'][language]); // placeholder until translation is added to csv
   }
 }
 
