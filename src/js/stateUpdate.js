@@ -6,6 +6,22 @@ import getStateUpdateCurrentLocation from './stateUpdateCurrentLocation';
 import getUpdateClickSearch from './stateUpdateClickSearch';
 import getAreaSearch from './stateUpdateAreaSearch';
 import getUpdateHighlightedLayer from './stateUpdateHighlightedLayer';
+import getUpdateAllRasterOpen from './stateUpdateAllRasterOpen';
+import getUpdateTransitionsDisabled from './stateUpdateTransitionsDisabled';
+import getUpdateScreenSize from './stateUpdateScreenSize';
+import getUpdateSidebarOpen from './stateUpdateSidebarOpen';
+import getUpdateFooterOpen from './stateUpdateFooterOpen';
+import getUpdateCurrentLayers from './stateUpdateCurrentLayers';
+import getUpdateAreaSearchActive from './stateUpdateAreaSearchActive';
+import getUpdateHighlightedFeature from './stateUpdateHighlightedFeature';
+import getUpdateCurrentOverlay from './stateUpdateCurrentOverlay';
+import getUpdateCurrentView from './stateUpdateCurrentView';
+import getUpdateCurrentRasterProbe from './stateUpdateCurrentRasterProbe';
+import getUpdateFooterView from './stateUpdateFooterView';
+import getUpdateMouseEventsDisabled from './stateUpdateMouseEventsDisabled';
+import getUpdateMapLoaded from './stateUpdateMapLoaded';
+import getUpdateOverlayOpacity from './stateUpdateOverlayOpacity';
+import getUpdateRegisterOpen from './stateUpdateRegisterOpen';
 
 const setStateEvents = ({ components, data }) => {
   const { state } = components;
@@ -18,298 +34,23 @@ const setStateEvents = ({ components, data }) => {
     currentLocation: getStateUpdateCurrentLocation({ components }),
     textSearch: getUpdateTextSearch({ components }),
     clickSearch: getUpdateClickSearch({ components }),
-    transitionsDisabled() {
-      const { transitionsDisabled } = this.props();
-      const { layout } = components;
-
-      layout
-        .config({
-          transitionsDisabled,
-        })
-        .toggleTransitions();
-    },
-    screenSize() {
-      const {
-        timeline,
-      } = components;
-
-      timeline
-        .updateScreenSize();
-    },
-    sidebarOpen() {
-      const {
-        sidebarOpen,
-        // transitionsDisabled,
-      } = this.props();
-      const {
-        layout,
-        // atlas,
-        sidebar,
-      } = components;
-
-      layout
-        .config({
-          sidebarOpen,
-        })
-        .updateSidebar();
-
-      if (sidebarOpen) {
-        layout.removeSidebarToggleLabel();
-      } else if (sidebar.getView() !== 'legend') {
-        sidebar.clearSearch();
-      }
-    },
-    footerOpen() {
-      const {
-        footerOpen,
-        // transitionsDisabled,
-      } = this.props();
-      const {
-        layout,
-        // atlas,
-      } = components;
-
-      layout
-        .config({
-          footerOpen,
-        })
-        .updateFooter();
-    },
-    currentLayers() {
-      const {
-        currentLayers,
-      } = this.props();
-      const {
-        atlas,
-        sidebar,
-      } = components;
-      atlas
-        .config({
-          currentLayers,
-        })
-        .updateCurrentLayers();
-
-      sidebar
-        .config({
-          currentLayers,
-        })
-        .updateCurrentLayers();
-    },
-
-
+    transitionsDisabled: getUpdateTransitionsDisabled({ components }),
+    screenSize: getUpdateScreenSize({ components }),
+    sidebarOpen: getUpdateSidebarOpen({ components }),
+    footerOpen: getUpdateFooterOpen({ components }),
+    currentLayers: getUpdateCurrentLayers({ components }),
     areaSearch: getAreaSearch({ components }),
-    areaSearchActive() {
-      const {
-        areaSearchActive,
-      } = this.props();
-      const {
-        layout,
-        atlas,
-      } = components;
-
-      layout
-        .config({
-          areaSearchActive,
-        })
-        .updateAreaSearch();
-
-      layout.removeHintProbe();
-
-      atlas
-        .config({
-          areaSearchActive,
-        })
-        .updateAreaSearch();
-    },
-    highlightedFeature() {
-      const {
-        highlightedFeature,
-        mobile,
-        // year,
-      } = this.props();
-
-
-      const {
-        atlas,
-        sidebar,
-        layout,
-      } = components;
-      //
-      atlas
-        .config({
-          highlightedFeature,
-        })
-        .updateHighlightedFeature();
-
-      // if we're looking at layer, zoom to that layer extent from extents.json
-
-      sidebar
-        .config({
-          highlightedFeature,
-        })
-        .updateHighlightedFeature();
-
-      if (mobile) {
-        layout
-          .config({
-            highlightedFeature,
-          })
-          .updateHighlightedFeature();
-      }
-    },
-    currentOverlay() {
-      const {
-        currentOverlay,
-        overlayOpacity,
-      } = this.props();
-
-      const {
-        atlas,
-        layout,
-        urlParams,
-      } = components;
-
-      // console.log('overlay', currentOverlay);
-      layout
-        .config({
-          overlayOn: currentOverlay !== null,
-        })
-        .updateOverlay();
-
-      atlas
-        .config({
-          currentOverlay,
-        })
-        .updateOverlay();
-
-      urlParams
-        .config({
-          overlay: currentOverlay !== null ? currentOverlay.SS_ID : null,
-        })
-        .update();
-      if (overlayOpacity !== 1 && currentOverlay !== null) {
-        state.update({ overlayOpacity: 1 });
-      }
-    },
-    currentView() {
-      const {
-        currentView,
-      } = this.props();
-
-      const {
-        atlas,
-      } = components;
-
-      atlas
-        .config({
-          currentView,
-        })
-        .updateView();
-    },
-    currentRasterProbe() {
-      const {
-        currentRasterProbe,
-      } = this.props();
-
-      const {
-        layout,
-        rasterProbe,
-      } = components;
-
-
-      layout
-        .config({
-          rasterProbeOpen: currentRasterProbe !== null,
-        })
-        .updateRasterProbe();
-
-      rasterProbe
-        .config({
-          currentRasterProbe,
-        })
-        .update();
-    },
-    footerView() {
-      const {
-        footerView,
-      } = this.props();
-      const {
-        footer,
-        atlas,
-      } = components;
-
-      footer
-        .config({
-          footerView,
-          rasterData: this.getAvailableRasters(data),
-        })
-        .updateRasterData();
-
-      atlas
-        .config({
-          rasterData: this.getAvailableRasters(data),
-        });
-    },
-    allRasterOpen() {
-      const {
-        allRasterOpen,
-      } = this.props();
-      const {
-        layout,
-        footer,
-      } = components;
-
-      layout
-        .config({
-          allRasterOpen,
-        })
-        .updateAllRaster();
-
-      footer
-        .config({
-          allRasterOpen,
-        })
-        .updateAllRaster();
-    },
-    mouseEventsDisabled() {
-      const { mouseEventsDisabled } = this.props();
-      const { layout } = components;
-      layout
-        .config({ mouseEventsDisabled })
-        .toggleMouseEvents();
-    },
-    mapLoaded() {
-      const { mapLoaded } = this.props();
-      const { views, layout } = components;
-      views.config({ mapLoaded });
-      layout.config({ mapLoaded }).updateMapLoaded();
-    },
-    overlayOpacity() {
-      const { overlayOpacity } = this.props();
-      const {
-        rasterProbe,
-        atlas,
-      } = components;
-
-      rasterProbe
-        .config({
-          overlayOpacity,
-        })
-        .updateSlider();
-      atlas
-        .config({
-          overlayOpacity,
-        })
-        .updateOverlayOpacity();
-    },
-    registerOpen() {
-      const { registerOpen } = this.props();
-      const { layout } = components;
-
-      layout
-        .config({ registerOpen })
-        .updateRegisterScreen();
-    },
+    areaSearchActive: getUpdateAreaSearchActive({ components }),
+    highlightedFeature: getUpdateHighlightedFeature({ components }),
+    currentOverlay: getUpdateCurrentOverlay({ components }),
+    currentView: getUpdateCurrentView({ components }),
+    currentRasterProbe: getUpdateCurrentRasterProbe({ components }),
+    footerView: getUpdateFooterView({ components, data }),
+    allRasterOpen: getUpdateAllRasterOpen({ components }),
+    mouseEventsDisabled: getUpdateMouseEventsDisabled({ components }),
+    mapLoaded: getUpdateMapLoaded({ components }),
+    overlayOpacity: getUpdateOverlayOpacity({ components }),
+    registerOpen: getUpdateRegisterOpen({ components }),
   });
 };
 
