@@ -1,3 +1,8 @@
+/**
+ * Callbacks that fire on changes to application state
+ * @module stateUpdate
+ */
+
 import getUpdateYear from './stateUpdateYear';
 import getUpdateView from './stateUpdateView';
 import getUpdateTextSearch from './stateUpdateTextSearch';

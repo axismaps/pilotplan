@@ -1,5 +1,5 @@
-import setDropdownListeners from './dropdownBase';
-import { selections } from './config';
+import setDropdownListeners from './introDropdownBase';
+import { selections } from '../config';
 
 const privateProps = new WeakMap();
 

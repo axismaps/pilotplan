@@ -1,5 +1,5 @@
 import onRasterClick from './onRasterClick';
-import Sidebar from './sidebar';
+import Sidebar from './sidebar/sidebar';
 
 const initSidebar = function initSidebar() {
   const { state } = this.components;

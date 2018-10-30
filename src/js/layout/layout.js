@@ -1,4 +1,4 @@
-import { selections } from './config';
+import { selections } from '../config';
 import getPublicMethods from './layoutPublicMethods';
 
 const privateProps = new WeakMap();

@@ -3,7 +3,7 @@
  * @module index
  */
 
-import setStateEvents from './stateUpdate';
+import setStateEvents from './stateUpdate/stateUpdate';
 
 
 import initState from './initState';

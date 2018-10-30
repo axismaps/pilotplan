@@ -1,3 +1,8 @@
+/**
+ * Module initializes application state
+ * Application state represents properties shared between components
+ * @module initState
+ */
 import State from './state/state';
 import rasterMethods from './rasterMethods';
 
@@ -19,14 +24,12 @@ const initState = function initState() {
 
   const startView = initialLocation === null ? 'intro' : 'map';
   const state = new State({
-    // year: 1960,
     year: parseInt(urlParams.get('year'), 10),
-    // sidebarOpen: startView === 'map',
     sidebarOpen: false,
     footerOpen: startView === 'map',
     allRasterOpen: false,
     registerOpen: false,
-    sidebarView: 'legend', // searching, results
+    sidebarView: 'legend',
     footerView: 'views',
     view: startView,
     mapLoaded: false,
@@ -38,7 +41,6 @@ const initState = function initState() {
     currentLayers: null,
     currentOverlay: startOverlay,
     currentView: null,
-    // currentBounds: startBounds,
     currentLocation: initialLocation,
     currentRasterProbe: null,
     highlightedFeature: null,
@@ -46,10 +48,7 @@ const initState = function initState() {
     mouseEventsDisabled: false,
     transitionsDisabled: false,
     mobile: null,
-    // mobile: window.innerWidth <= 700,
-    // mobileLandscape: window.innerWidth <= 700 && window.innerWidth >= 415,
     language: urlParams.get('language'),
-    // language: 'pr',
     screenSize: [window.innerWidth, window.innerHeight],
     overlayOpacity: 1,
   });
@@ -78,7 +77,6 @@ const initState = function initState() {
       .filter(group => group.layers.length > 0);
     return newLayers;
   };
-  // console.log('views', data.rasters.views);
 
   state.getAvailableRasters = function getAvailableRasters(data) {
     const year = this.get('year');
@@ -155,6 +153,7 @@ const initState = function initState() {
   state.set('mobile', state.getOrientation() === 'mobile');
 
   state.set('currentLayers', state.getAllAvailableLayers(this.data));
+
   state.set(
     'footerView',
     state.getAutoFooterView(this.data),

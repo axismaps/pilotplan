@@ -1,4 +1,4 @@
-import { selections } from './config';
+import { selections } from '../config';
 import rasterProbeMethods from './rasterProbeMethods';
 import lightboxMethods from './rasterProbeLightboxMethods';
 

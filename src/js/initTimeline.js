@@ -1,4 +1,4 @@
-import Timeline from './timeline';
+import Timeline from './timeline/timeline';
 import { yearRange } from './config';
 
 const initTimeline = function initTimeline() {

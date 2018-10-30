@@ -1,4 +1,9 @@
-import Atlas from './atlas';
+/**
+ * Module initializes atlas component
+ * @module initAtlas
+ */
+
+import Atlas from './atlas/atlas';
 
 const initAtlas = function initAtlas() {
   const { state } = this.components;
@@ -18,16 +23,11 @@ const initAtlas = function initAtlas() {
     rasterData: state.getAvailableRasters(this.data),
     year: state.get('year'),
     layerNames: this.data.layerNames,
-    // onLoad: this.onAtlasLoad.bind(this),
+    /**
+     * Some components need to be initialized only after map (vector tiles) have loaded
+     */
     onLoad: () => {
       if (state.get('view') === 'map') {
-        // initialize components on load only if starting on map view
-        // otherwise, wait to initialize until toggling map view for first time
-        // this.components.layout
-        //   .config({
-        //     exportLink: this.components.atlas.getMapExportLink(),
-        //   })
-        //   .initExportButton();
         this.initComponents();
         this.listenForResize();
       }

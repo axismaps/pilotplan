@@ -1,6 +1,6 @@
 import searchMethods from './sidebarSearch';
 import getSidebarMethods from './sidebarGetPrivateMethods';
-import { selections } from './config';
+import { selections } from '../config';
 
 const privateProps = new WeakMap();
 

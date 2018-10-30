@@ -1,4 +1,4 @@
-import RasterProbe from './rasterProbe';
+import RasterProbe from './rasterProbe/rasterProbe';
 
 const initRasterProbe = function initRasterProbe() {
   const { state } = this.components;

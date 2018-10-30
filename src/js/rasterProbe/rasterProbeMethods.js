@@ -1,5 +1,5 @@
-import rasterMethods from './rasterMethods';
-import TimelineSlider from './timelineSlider';
+import rasterMethods from '../rasterMethods';
+import TimelineSlider from '../timeline/timelineSlider';
 
 const localMethods = {
   clearImage({

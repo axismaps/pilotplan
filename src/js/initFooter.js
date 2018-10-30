@@ -1,4 +1,4 @@
-import Footer from './footer';
+import Footer from './footer/footer';
 import onRasterClick from './onRasterClick';
 
 const initFooter = function initFooter() {

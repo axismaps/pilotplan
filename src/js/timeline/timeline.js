@@ -1,5 +1,5 @@
 import TimelineSlider from './timelineSlider';
-import { selections } from './config';
+import { selections } from '../config';
 
 const privateProps = new WeakMap();
 

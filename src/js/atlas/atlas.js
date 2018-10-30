@@ -1,17 +1,13 @@
-
-// import getSearchMethods from './atlasSearch';
-
-import { selections } from './config';
+import { selections } from '../config';
 import dataMethods from './atlasDataMethods';
-import rasterMethods from './rasterMethods';
+import rasterMethods from '../rasterMethods';
 import clickSearchMethods from './atlasClickSearchMethods';
 import getAreaSearchMethods from './atlasAreaSearchMethods';
 import generalMethods from './atlasMethods';
 import getPublicUpdateMethods from './atlasPublicUpdateMethods';
 import initControls from './atlasControlMethods';
-import DataProbe from './dataProbe';
+import DataProbe from '../dataProbe';
 import setLoadingCallbacks from './atlasLoadingCallbacks';
-
 
 const privateProps = new WeakMap();
 

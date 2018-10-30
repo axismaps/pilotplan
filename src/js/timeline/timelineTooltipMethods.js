@@ -1,4 +1,4 @@
-import erasMethods from './erasMethods';
+import erasMethods from '../eras/erasMethods';
 
 const getTooltipMethods = ({ privateProps, privateMethods }) => ({
   initTooltip() {
@@ -8,7 +8,6 @@ const getTooltipMethods = ({ privateProps, privateMethods }) => ({
       outerContainer,
       tooltip,
       svg,
-      // scale,
     } = props;
 
     if (!tooltip) return;
@@ -23,14 +22,10 @@ const getTooltipMethods = ({ privateProps, privateMethods }) => ({
 
     detectionTrack
       .on('mouseover', () => {
-        // console.log('d3.event', (d3.event.x - svgPosition.left));
-        // const { x } = d3.event;
-
         props.tooltipContainer = outerContainer.append('div')
           .attr('class', 'slider__tooltip-container')
           .styles({
             position: 'absolute',
-            // left: `${x - (tooltipWidth / 2)}px`,
             width: `${tooltipWidth}px`,
             top: `${svgPosition.y - (tooltipMargin / 2) - 10}px`,
             height: `${svgPosition.height + tooltipMargin}px`,

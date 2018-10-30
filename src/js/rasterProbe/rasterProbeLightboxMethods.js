@@ -1,4 +1,4 @@
-import rasterMethods from './rasterMethods';
+import rasterMethods from '../rasterMethods';
 import rasterProbeMethods from './rasterProbeMethods';
 
 const localMethods = {

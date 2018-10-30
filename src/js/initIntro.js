@@ -1,6 +1,6 @@
-import Intro from './intro';
-import LanguageDropdown from './languageDropdown';
-import EraDropdown from './eraDropdown';
+import Intro from './intro/intro';
+import LanguageDropdown from './intro/introLanguageDropdown';
+import EraDropdown from './intro/introEraDropdown';
 
 const initIntro = function initIntro() {
   const { state } = this.components;
