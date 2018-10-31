@@ -84,7 +84,7 @@ const getAreaSearchMethods = ({
       const {
         onMouseMove,
         onMouseUp,
-        // getMousePos,
+
       } = areaMouseMethods;
 
       const {
@@ -132,32 +132,5 @@ const getAreaSearchMethods = ({
   };
   return areaMouseMethods;
 };
-// initAreaMethods() {
-//   localProps.set(this, {
-//     start: null,
-//     current: null,
-//     box: null,
-//   });
-//   const local = localProps.get(this);
-//   const {
-//     onMouseDown,
-//     onMouseMove,
-//     onMouseUp,
-//   } = localMethods;
-
-//   local.onMouseDown = onMouseDown.bind(this);
-//   local.onMouseMove = onMouseMove.bind(this);
-//   local.onMouseUp = onMouseUp.bind(this);
-// },
-// initAreaSearchListener({
-//   canvas,
-// }) {
-//   const local = localProps.get(this);
-
-//   const { onMouseDown } = local;
-
-//   canvas.addEventListener('mousedown', onMouseDown, true);
-// },
-
 
 export default getAreaSearchMethods;

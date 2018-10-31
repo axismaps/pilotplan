@@ -28,7 +28,6 @@ const privateMethods = {
     language,
     introBeginButtonText,
     introTitleText,
-    // introSubtitleText,
     introSummaryText,
   }) {
     introBeginButtonText
@@ -36,8 +35,6 @@ const privateMethods = {
 
     introTitleText
       .text(translations.h1[language]);
-    // introSubtitleText
-    //   .text(translations)
     introSummaryText
       .text(translations['era-description'][language]);
   },
@@ -46,7 +43,6 @@ const privateMethods = {
 class Intro {
   constructor(config) {
     const {
-      // introJumpButtonContainer,
       introBeginButtonContainer,
       introBeginButtonText,
       introTitleText,
@@ -55,13 +51,11 @@ class Intro {
     } = selections;
 
     privateProps.set(this, {
-      // introJumpButtonContainer,
       introBeginButtonContainer,
       introBeginButtonText,
       introTitleText,
       introSubtitleText,
       introSummaryText,
-      // onJumpButtonClick: null,
       onBeginButtonClick: null,
       translations: null,
       language: null,
@@ -69,13 +63,11 @@ class Intro {
 
     const {
       setBeginButtonListener,
-      // setJumpButtonListener,
     } = privateMethods;
 
     this.config(config);
 
     setBeginButtonListener.call(this);
-    // setJumpButtonListener.call(this);
     this.update();
   }
   config(config) {

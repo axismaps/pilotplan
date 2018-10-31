@@ -31,7 +31,6 @@ const initLayout = function initLayout() {
       state.update({ view: 'eras' });
     },
     onSidebarToggleClick() {
-      // console.log('close sidebar?', !state.get('sidebarOpen'));
       state.update({ sidebarOpen: !state.get('sidebarOpen') });
     },
     onBackButtonClick: () => {

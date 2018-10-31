@@ -68,10 +68,6 @@ const localMethods = {
       cachedSharedShelfURLs,
       selection: lightboxSharedShelfButton,
     });
-    // `https://www.sscommons.org/openlibrary/secure/metadata/${data.id}?_method=FpHtml`
-    // https://www.sscommons.org/openlibrary/ExternalIV.jsp?objectId=
-    // https://www.sscommons.org/openlibrary/secure/ViewImages?id=4jEkdDEkKjE2QkY6fz96QXxHMXohdFRxfSc%3D&userId=gDFB
-    // https://www.sscommons.org/openlibrary/ExternalIV.jsp?objectId=4jEkdDEkKjE2QkY6fz96QXxHMXohdFRxfSU%3D
   },
 };
 

@@ -17,7 +17,6 @@ const getUpdateYear = ({
 
     const {
       year,
-      // view,
       footerView,
       componentsInitialized,
     } = this.props();
@@ -37,7 +36,6 @@ const getUpdateYear = ({
       })
       .updateYear();
 
-    // if (view === 'eras') {
     eras
       .config({
         year,
@@ -84,7 +82,6 @@ const getUpdateYear = ({
 
     sidebar
       .config({
-        // rasterData,
         viewLayersOn: this.getAvailableRasters(data).get('views').length > 0,
         availableLayers,
       })
@@ -104,11 +101,6 @@ const getUpdateYear = ({
         .clearSearch();
     }
 
-    // if (rasterDataByCategory.length === 0) {
-    //   Object.assign(stateToUpdate, { footerView: 'views' });
-    // } else if (rasterData.get(footerView).length === 0) {
-    //   Object.assign(stateToUpdate, { footerView: rasterDataByCategory[0].key });
-    // }
     {
       const currentFooterCategory = this.getAutoFooterView(data);
       if (footerView !== currentFooterCategory) {

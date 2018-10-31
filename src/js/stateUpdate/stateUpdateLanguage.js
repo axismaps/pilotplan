@@ -1,6 +1,5 @@
 const getUpdateLanguage = ({
   components,
-  // data,
 }) => {
   const updateLanguage = function updateLanguage() {
     const { language } = this.props();

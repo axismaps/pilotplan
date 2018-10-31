@@ -93,20 +93,11 @@ const atlasHighlightMethods = {
     const existingHighlighted = mbMap.getSource('highlighted');
 
     if (highlightedFeature === null) return;
-    // console.log('highlighted', highlightedFeature);
+
     let featureJSON;
     const notEntireLayer = !Object.prototype.hasOwnProperty.call(highlightedFeature, 'dataLayer');
-    // JUST CONVERT TO JSON EARLIER INTSEAD
+
     if (notEntireLayer && geoJSON === undefined) {
-      // featureJSON = highlightedFeature.reduce((accumulator, feature) => {
-      //   /* eslint-disable no-param-reassign */
-      //   accumulator.features.push(feature.toJSON());
-      //   /* eslint-enable no-param-reassign */
-      //   return accumulator;
-      // }, {
-      //   type: 'FeatureCollection',
-      //   features: [],
-      // });
       featureJSON = {
         type: 'FeatureCollection',
         features: mbMap.querySourceFeatures('composite', {
@@ -123,7 +114,6 @@ const atlasHighlightMethods = {
     } else if (geoJSON !== undefined) {
       featureJSON = geoJSON;
     } else {
-      // gets all features in layer
       featureJSON = {
         type: 'FeatureCollection',
         features: mbMap.querySourceFeatures('composite', {
@@ -133,13 +123,11 @@ const atlasHighlightMethods = {
             'all',
             ['<=', 'FirstYear', year],
             ['>=', 'LastYear', year],
-            ['==', 'SubType', highlightedFeature.dataLayer], // this should be the field name...
+            ['==', 'SubType', highlightedFeature.dataLayer],
           ],
         }),
       };
     }
-
-    // const bbox = getBBox(featureJSON);
 
     if (existingHighlighted === undefined) {
       mbMap.addSource('highlighted', {
@@ -158,7 +146,6 @@ const atlasHighlightMethods = {
       paint: {
         'fill-color': colors.highlightColor,
         'fill-opacity': 0.2,
-        // 'line-join': 'round',
       },
     };
     const outlineLayerTop = {
@@ -192,7 +179,6 @@ const atlasHighlightMethods = {
 
     const isPolygon = feature => feature.geometry.type === 'Polygon' || feature.geometry.type === 'MultiPolygon';
 
-    // return if no features are returned
     if (featureJSON.features.length === 0) return;
 
     if (featureJSON.type === 'FeatureCollection') {
@@ -208,10 +194,6 @@ const atlasHighlightMethods = {
       mbMap.addLayer(outlineLayerBottom);
       mbMap.addLayer(outlineLayerTop);
     }
-
-    // if (bbox.includes(Infinity) || !notEntireLayer) return;
-
-    // mbMap.fitBounds(bbox, { padding: 100 });
   },
 };
 

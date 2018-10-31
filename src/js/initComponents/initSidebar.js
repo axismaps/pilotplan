@@ -1,4 +1,3 @@
-// import onRasterClick from './onRasterClick';
 import Sidebar from '../sidebar/sidebar';
 import rasterMethods from '../rasterProbe/rasterMethods';
 
@@ -74,13 +73,6 @@ const initSidebar = function initSidebar() {
         Object.assign(stateToUpdate, { sidebarOpen: false });
       }
       state.update(stateToUpdate);
-      // if (oldFeature === null) {
-      //   newFeature = feature;
-      // } else {
-      //   newFeature = oldFeature.id === feature.id ? null : feature;
-      // }
-
-      // state.update({ highlightedFeature: newFeature });
     },
   });
 };

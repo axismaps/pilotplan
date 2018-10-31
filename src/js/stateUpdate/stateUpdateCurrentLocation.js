@@ -9,7 +9,6 @@ const getStateUpdateCurrentLocation = ({
   } = components;
   const { center, bearing, zoom } = currentLocation;
   if (!views.mapViewInitialized()) return;
-  // console.log('zoom', zoom);
 
   urlParams
     .config({

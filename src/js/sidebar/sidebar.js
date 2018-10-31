@@ -25,7 +25,6 @@ class Sidebar {
     } = selections;
     const {
       init,
-      // listenForText,
     } = privateMethods;
 
     privateProps.set(this, {
@@ -57,16 +56,12 @@ class Sidebar {
     privateProps.get(this).previousView = config.view;
 
     init.call(this);
-
-
-    // this.updateCurrentLayers();
   }
   config(config) {
     Object.assign(privateProps.get(this), config);
     return this;
   }
   updateAvailableLayers() {
-    //
     const {
       setViewLayerVisibility,
       drawLayerGroups,
@@ -77,7 +72,6 @@ class Sidebar {
     drawLayerGroups.call(this);
     drawLayers.call(this);
     drawFeatures.call(this);
-    // this.updateCurrentLayers();
   }
   updateCurrentLayers() {
     const {
@@ -91,7 +85,6 @@ class Sidebar {
       check.property('checked', currentLayers.find(dd => dd.sourceLayer === sourceLayer).status);
     };
 
-    // update viewshed row
     updateCheck({
       check: sidebarViewshedLayerRow.select('.sidebar__layer-checkbox'),
       sourceLayer: 'ViewConesPoint',
@@ -123,7 +116,7 @@ class Sidebar {
       } else if (!isFullLayer(d) && !isFullLayer(highlightedFeature)) {
         return d.id === highlightedFeature.id;
       }
-      // if types are not the same, is not highlighted feature
+
       return false;
     };
 
@@ -162,7 +155,6 @@ class Sidebar {
       onFeatureClick,
       onRasterClick,
       cachedMetadata,
-      // resultRowContainer,
       translations,
       language,
     } = props;
@@ -203,11 +195,6 @@ class Sidebar {
   getView() {
     return privateProps.get(this).view;
   }
-  // updateView() {
-  //   const { setSidebarClass } = privateMethods;
-  //   console.log('update view');
-  //   setSidebarClass.call(this);
-  // }
   getSearchText() {
     const {
       searchInput,
@@ -227,7 +214,7 @@ class Sidebar {
       setSidebarToLegend,
       clearTextInput,
     } = privateMethods;
-    // console.log('clear search');
+
     setSidebarToLegend.call(this);
     clearTextInput.call(this);
     setSidebarClass.call(this);

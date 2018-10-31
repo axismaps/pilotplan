@@ -44,15 +44,6 @@ const searchMethods = {
       groups,
       cachedMetadata,
     });
-
-    // const rows = drawResultsRows({
-    //   container,
-    //   groups,
-    // });
-
-    // rows
-    //   .text(d => d.Title)
-    //   .on('click', onRasterClick);
   },
   drawNonRasterSearchResults({
     translations,
@@ -63,7 +54,6 @@ const searchMethods = {
   }) {
     const {
       drawSearchResultGroups,
-      // drawResultsRows,
       drawNonRasterResultsRows,
     } = searchMethods;
 
@@ -103,7 +93,7 @@ const searchMethods = {
 
     newGroups.append('div')
       .attr('class', 'sidebar__result-rows');
-    // return newGroups;
+
     return newGroups.merge(groups);
   },
   drawRasterResultRows({
@@ -152,12 +142,9 @@ const searchMethods = {
     groups,
     onFeatureClick,
   }) {
-    // draw title/data/rows here, in enter() selection
     groups.each(function drawLayers(d) {
-      // get unique data;
       const uniqueFeatures = [...new Set(d.features.map(dd => dd.properties.Name))]
         .map(id => d.features.find(dd => dd.properties.Name === id));
-      // console.log('ids', uniqueFeatures);
       const rows = d3.select(this)
         .select('.sidebar__result-rows')
         .selectAll('.sidebar__results-row')

@@ -318,7 +318,6 @@ class Layout {
       initErasButton,
       initBackToIntroButton,
       setErasButtonText,
-      // initMenuTransitions,
       initSidebarToggleButton,
       initRegisterButton,
       initRegisterScreen,
@@ -350,15 +349,12 @@ class Layout {
     this.updateFooter();
     this.updateAllRaster();
     this.updateOverlay();
-    // this.updateView();
     this.updateRasterProbe();
     this.updateLocation();
     this.updateRegisterScreen();
     this.updateLanguage();
     this.updateMapLoaded();
     this.updateMobile();
-
-    // initMenuTransitions.call(this);
   }
 }
 

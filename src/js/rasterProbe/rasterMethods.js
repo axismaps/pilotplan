@@ -66,7 +66,6 @@ const rasterMethods = {
 
         nodes.each(function test(d, i) {
           if (i === length - 1) {
-            // url = `https://www.sscommons.org/openlibrary/${d3.select(this).node().innerText.replace(/\s/gm, '')}`;
             const inner = d3.select(this).node().innerHTML;
             const t = '<wbr>';
             const slice1 = inner.slice(inner.indexOf(t) + t.length);

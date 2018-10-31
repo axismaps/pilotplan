@@ -23,7 +23,6 @@ const getAtlasUpdateMethods = ({
         .filter(layer => layer.id !== 'mapbox-satellite')
         .forEach((layer) => {
           const visible = mbMap.getLayoutProperty(layer.id, 'visibility') === 'visible';
-          // console.log('layer', layer);
 
           const currentLayer = currentLayers
             .find(d => d.sourceLayer === layer['source-layer']);
@@ -75,7 +74,6 @@ const getAtlasUpdateMethods = ({
       const props = privateProps.get(this);
       const {
         highlightedLayer,
-        // availableLayers,
         mbMap,
         layerOpacities,
         year,
@@ -127,7 +125,6 @@ const getAtlasUpdateMethods = ({
         padding: 0,
       });
 
-      // console.log('new zoom', newZoom);
       mbMap.easeTo({
         bearing: 0,
         zoom: newZoom,
@@ -173,8 +170,6 @@ const getAtlasUpdateMethods = ({
           highlightedFeature,
           padding: 0,
         });
-        console.log('newZoom', newZoom);
-        // console.log('new zoom', newZoom);
         props.highlightLayerLoading = true;
         props.highlightFeatureLoading = false;
         onLayerSourceData();
@@ -199,7 +194,6 @@ const getAtlasUpdateMethods = ({
           onFeatureSourceData();
           props.counter = 0;
           const newBounds = getBBox(props.highlightedFeatureJSON);
-          // console.log('fitbounds', mobile, newBounds);
           mbMap.fitBounds(newBounds, { padding: mobile ? 0 : 200 });
         } else {
           props.highlightLayerLoading = false;
@@ -207,8 +201,6 @@ const getAtlasUpdateMethods = ({
           onReturnToSearch();
           mbMap.easeTo(searchLocation);
         }
-
-        // mbMap.jumpTo(searchLocation);
       }
     },
     updateOverlayOpacity() {
@@ -217,7 +209,7 @@ const getAtlasUpdateMethods = ({
         mbMap,
         overlayOpacity,
       } = props;
-      // console.log('overlay', mbMap.getLayer('overlay-layer'), overlayOpacity);
+
       mbMap.setPaintProperty('overlay-layer', 'raster-opacity', overlayOpacity);
     },
     updateOverlay() {
@@ -284,13 +276,7 @@ const getAtlasUpdateMethods = ({
           mbMap,
         });
         const bbox = getBBox(coneFeature);
-        // const mapBBox = mbMap.getBounds();
-        // console.log('bounds1', bbox);
-        // console.log('bounds2', mapBBox);
         mbMap.fitBounds(bbox, { padding: 100 });
-        // const bearing = mbMap.getBearing();
-        // console.log('bearing', bearing);
-        // console.log('get zoom', mbMap.getZoom());
       }
     },
     resizeMap() {

@@ -71,9 +71,7 @@ const rasterProbeMethods = {
       selection: rasterProbeImageContainer,
       cachedMetadata,
       currentRasterProbe,
-      // resizeContainer: !mobile,
       resizeContainer: true,
-      // resizeProbe: true,
       maxHeight: mobile ? 150 : 400,
       maxWidth: mobile ? window.innerWidth - (padding * 2) : 410,
     });
@@ -147,7 +145,6 @@ const rasterProbeMethods = {
     rasterProbeSliderContainer,
   }) {
     rasterProbeSliderContainer.select('svg').remove();
-    // setTimeout(() => {
     const { width } = rasterProbeSliderContainer
       .node()
       .getBoundingClientRect();
@@ -185,7 +182,6 @@ const rasterProbeMethods = {
       handleDetail: false,
     });
     return slider;
-    // });
   },
 };
 

@@ -10,7 +10,6 @@ const getSidebarMethods = (privateProps) => {
         setToggleButtonText,
       } = privateMethods;
 
-      // drawLayerCategories.call(this);
       drawContent.call(this);
       listenForText.call(this);
       setSearchReturnListener.call(this);
@@ -72,7 +71,6 @@ const getSidebarMethods = (privateProps) => {
         textSearchReturnButtonMobile,
         searchInput,
         mobile,
-        // onSearchReturn,
       } = props;
 
       const { setSearchReturnListener } = searchMethods;
@@ -157,7 +155,6 @@ const getSidebarMethods = (privateProps) => {
         translations,
       } = props;
 
-      // const { addLayerRowContent } = privateMethods;
 
       layerGroups.each(function addLayers(d) {
         const layers = d3.select(this)
@@ -172,7 +169,6 @@ const getSidebarMethods = (privateProps) => {
 
         const titleRows = layersNew.append('div')
           .attr('class', 'sidebar__layer-title-row')
-          // .html(layer => getLayerHTML({ language, layer }))
           .on('click', onLayerClick);
 
         titleRows.each(function addSwatch(dd) {
@@ -214,7 +210,7 @@ const getSidebarMethods = (privateProps) => {
             }
             return accumulator;
           }, {});
-          // console.log('style', style);
+
           swatch.attrs(style);
         });
     },
@@ -232,7 +228,6 @@ const getSidebarMethods = (privateProps) => {
 
 
       layers.each(function addFeature(d) {
-        // console.log('layer', d);
         const features = d3.select(this)
           .select('.sidebar__feature-block')
           .selectAll('.sidebar__feature-row')
@@ -252,7 +247,6 @@ const getSidebarMethods = (privateProps) => {
           `)
           .on('click', (feature) => {
             onLayerHighlightClick(Object.assign({}, feature, { sourceLayer: d.sourceLayer }));
-            // onLayerHighlightClick(feature);
           });
 
         newFeatureRows.each(function addSwatch(feature) {
@@ -281,37 +275,9 @@ const getSidebarMethods = (privateProps) => {
                   .html(html)
                   .select('svg')
                   .attr('fill', `#${featureSwatch.Hex}`);
-
-                // featureRow.select('svg')
-                // .attr('fill', featureSwatch.Hex);
               });
           }
         });
-        // if (cachedSwatches.has(d.icon)) {
-        //   const html = cachedSwatches.get(d.icon);
-        //   const swatches = newFeatureRows
-        //     .append('div')
-        //     .attr('class', 'sidebar__swatch')
-        //     .html(html);
-
-        //   setSwatchStyles({ swatches, layerStyles });
-        // } else {
-        //   d3.xml(`img/legend/${d.icon}`)
-        //     .then((icon) => {
-        //       const html = new XMLSerializer().serializeToString(icon);
-        //       if (!cachedSwatches.has(d.icon)) {
-        //         cachedSwatches.set(d.icon, html);
-        //       }
-
-        //       const swatches = newFeatureRows
-        //         .append('div')
-        //         .attr('class', 'sidebar__swatch')
-        //         .html(html);
-
-        //       setSwatchStyles({ swatches, layerStyles });
-        //     });
-        // }
-
 
         features.exit().remove();
       });
@@ -322,7 +288,7 @@ const getSidebarMethods = (privateProps) => {
         view,
         sidebarContainer,
       } = privateProps.get(this);
-      //
+
       const classesForViews = new Map([
         ['legend', 'sidebar--legend'],
         ['textSearch', 'sidebar--text-search'],

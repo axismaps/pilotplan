@@ -16,14 +16,11 @@ const setLoadingCallbacks = ({ props }) => {
       attributedCorrected,
     } = props;
     if (attributedCorrected) return;
-
-    // console.log('loading');
     if (initialLoadTimer !== null) {
       clearTimeout(initialLoadTimer);
     }
 
     props.initialLoadTimer = setTimeout(() => {
-      // console.log('rendered');
       props.attributedCorrected = true;
       d3.select('.mapboxgl-ctrl-attrib')
 
@@ -58,7 +55,6 @@ const setLoadingCallbacks = ({ props }) => {
         mbMap,
       });
 
-      // move this to separate function
       props.highlightFeatureLoading = true;
       props.searchLocationLoading = false;
       onFeatureSourceData();
@@ -72,11 +68,9 @@ const setLoadingCallbacks = ({ props }) => {
     const {
       highlightLayerLoading,
       highlightLoadingTimer,
-      // highlightedFeature,
       highlightedLayer,
       mbMap,
       toggleOverlayFade,
-      // year,
     } = props;
 
     const { layers } = mbMap.getStyle();
@@ -88,11 +82,6 @@ const setLoadingCallbacks = ({ props }) => {
     }
 
     props.highlightLoadingTimer = setTimeout(() => {
-      // drawHighlightedFeature({
-      //   highlightedFeature,
-      //   mbMap,
-      //   year,
-      // });
       layers.forEach((layer) => {
         const isLayer = highlightedLayer.dataLayer === layer.id ||
           highlightedLayer.style === layer.id ||
@@ -138,7 +127,6 @@ const setLoadingCallbacks = ({ props }) => {
     if (highlightLoadingTimer !== null) {
       clearTimeout(highlightLoadingTimer);
     }
-    // console.log('highlighted', highlightedFeature);
     props.highlightLoadingTimer = setTimeout(() => {
       const newJSON = getHighlightedGeoJSON({
         highlightedFeature,
@@ -147,16 +135,18 @@ const setLoadingCallbacks = ({ props }) => {
       });
 
       let lastIteration;
-      // move all this to somewhere else
+      /**
+       * guess if map is done loading
+       * using really arbitrary comparison of total feature area or length
+       * @private
+       */
       if (highlightedFeature.geometry.type.includes('Polygon')) {
         lastIteration = Math.abs(area(newJSON.features[0]) -
         area(highlightedFeatureJSON.features[0])) < 5 ||
           area(newJSON.features[0]) <= area(highlightedFeatureJSON.features[0]);
       } else if (highlightedFeature.geometry.type.includes('String')) {
-        // console.log('newjson', newJSON);
         const previousLength = d3.sum(highlightedFeatureJSON.features.map(d => length(d)));
         const currentLength = d3.sum(newJSON.features.map(d => length(d)));
-        // console.log(previousLength, currentLength);
         lastIteration = Math.abs(currentLength - previousLength) < 1 ||
           currentLength <= previousLength;
       }

@@ -42,7 +42,6 @@ const atlasMethods = {
     mbMap,
   }) {
     return mbMap.getStyle().layers.reduce((accumulator, layer) => {
-      // console.log('layer', layer);
       /* eslint-disable no-param-reassign */
       if (layer.type === 'fill') {
         const opacity = mbMap.getPaintProperty(layer.id, 'fill-opacity');
@@ -91,7 +90,6 @@ const atlasMethods = {
     onLayerSourceData,
     onFeatureSourceData,
     onReturnToSearch,
-    // correctAttribution,
   }) {
     const {
       addConeToMap,
@@ -106,51 +104,22 @@ const atlasMethods = {
     const mbMap = new mapboxgl.Map({
       minZoom: 9,
       maxZoom: 17,
-      // maxZoom: 14.9,
       logoPosition: 'bottom-right',
       container: 'map',
       style,
       preserveDrawingBuffer: true,
-      // attributionControl: false,
       attributionControl: true,
-      // customAttribution: `
-      //   <a href="https://www.mapbox.com/about/maps/" target="_blank">© Mapbox</a>
-      //   <a class="mapbox-improve-map" href="https://www.mapbox.com/feedback/?owner=axismaps&amp;id=cjlxzhuj652652smt1jf50bq5&amp;access_token=pk.eyJ1IjoiYXhpc21hcHMiLCJhIjoieUlmVFRmRSJ9.CpIxovz1TUWe_ecNLFuHNg" target="_blank">Improve this map</a>
-      //   <a href="https://www.digitalglobe.com/" target="_blank">© DigitalGlobe</a>
-      // `,
     })
-      // .addControl(new mapboxgl.AttributionControl({
-      //   customAttribution: `
-      //   <a href="https://www.mapbox.com/about/maps/" target="_blank">© Mapbox</a>
-      //   <a class="mapbox-improve-map" href="https://www.mapbox.com/feedback/?owner=axismaps&amp;id=cjlxzhuj652652smt1jf50bq5&amp;access_token=pk.eyJ1IjoiYXhpc21hcHMiLCJhIjoieUlmVFRmRSJ9.CpIxovz1TUWe_ecNLFuHNg" target="_blank">Improve this map</a>
-      //   <a href="https://www.digitalglobe.com/" target="_blank">© DigitalGlobe</a>
-      // `,
-      // }))
-      // .on('mousedown', () => {
-      //   d3.select('.mapboxgl-canvas')
-      //     .style('cursor', 'grab');
-      // })
-      // .on('mouseup', () => {
-      //   d3.select('.mapboxgl-canvas')
-      //     .style('cursor', 'pointer');
-      // })
       .on('moveend', () => {
         const currentLocation = getCurrentLocation({ mbMap });
         onMove(currentLocation);
       })
-      // .on('zoomend', () => {
-      //   console.log('endzoom', mbMap.getZoom());
-      // })
       .on('movestart', () => {
         removePulse();
       })
       .on('load', () => {
-        // console.log('get loaded style', mbMap.getStyle().layers.map(d => mbMap.getLayer(d.id)));
         initApp();
       })
-      // .on('render', () => {
-      //   correctAttribution();
-      // })
       .on('sourcedata', () => {
         onLayerSourceData();
         onReturnToSearch();
@@ -160,14 +129,6 @@ const atlasMethods = {
         coneFeature = viewshedsGeo.features.find(cone =>
           cone.properties.SS_ID === d.features[0].properties.SS_ID);
         const offset = 15;
-        // const probeConfig = getProbeConfig(
-        //   coneFeature.properties, {
-        //     left: d.point.x + offset,
-        //     bottom: (window.innerHeight - d.point.y) + offset,
-        //     width: 200,
-        //   },
-        //   'Click for details',
-        // );
         const probeConfig = getProbeConfig({
           data: coneFeature.properties,
           position: {
@@ -223,9 +184,6 @@ const atlasMethods = {
         onViewClick(newView);
         setCancelClickSearch();
       });
-    // console.log('mbMap', mbMap);
-    // console.log('style', mbMap.getStyle());
-
     return mbMap;
   },
   addConeToMap({
@@ -277,7 +235,6 @@ const atlasMethods = {
     mbMap.setStyle(styleCopy);
   },
   getMapLayers(mbMap) {
-    // console.log('getLayers', mbMap.getStyle().layers);
     return mbMap
       .getStyle()
       .layers

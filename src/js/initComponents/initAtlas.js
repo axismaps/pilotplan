@@ -25,6 +25,7 @@ const initAtlas = function initAtlas() {
     layerNames: this.data.layerNames,
     /**
      * Some components need to be initialized only after map (vector tiles) have loaded
+     * @private
      */
     onLoad: () => {
       if (state.get('view') === 'map') {
@@ -49,9 +50,6 @@ const initAtlas = function initAtlas() {
       state.update({
         currentLocation,
       });
-      // state.update({
-      // currentBounds: newBounds,
-      // });
     },
     toggleOverlayFade(toggle) {
       const overlayOn = state.get('currentOverlay') !== null;
@@ -66,7 +64,6 @@ const initAtlas = function initAtlas() {
     translations: this.data.translations,
     language: state.get('language'),
   });
-  // console.log('data?', data);
 };
 
 export default initAtlas;

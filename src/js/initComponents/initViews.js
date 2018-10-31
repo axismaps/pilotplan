@@ -6,8 +6,6 @@ const initViews = function initViews() {
     view: state.get('view'),
     initialize: {
       map: () => {
-        // this initializes components on first toggle to map view
-        // if components aren't already initialized from loading on map view
         this.initComponents();
         this.listenForResize();
       },

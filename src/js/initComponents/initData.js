@@ -72,7 +72,7 @@ const cleanData = (rawData) => {
   rasters.set('maps', processOverlay(rawMaps));
   rasters.set('plans', processOverlay(rawPlans));
   rasters.set('aerials', processOverlay(rawAerials));
-  // console.log('raw legend', rawLegendSwatches);
+
   const data = {
     layers,
     viewshedsGeo: rawViewsheds,

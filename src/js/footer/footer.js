@@ -38,7 +38,6 @@ const privateMethods = {
       onClick = onCategoryClick;
     } else {
       onClick = (category) => {
-        // scroll to
         onAllRasterClick({
           category,
         });
@@ -91,7 +90,6 @@ const privateMethods = {
     const {
       drawRasters,
     } = methods;
-    // console.log('draw rasters', rasterData);
 
     props.rasters = drawRasters({
       dataProbe,
@@ -124,7 +122,7 @@ const privateMethods = {
       footerView,
       rasterData,
     } = privateProps.get(this);
-    // console.log('footer view', footerView);
+
     categoryButtons
       .classed('footer__category--selected', d => d === footerView)
       .classed('footer__category--disabled', d => rasterData.get(d).length === 0);
@@ -289,24 +287,17 @@ class Footer {
 
     this.updateRasterData();
     this.updateLanguage();
-    // this.updateToggleRasters();
   }
   config(config) {
     Object.assign(privateProps.get(this), config);
     return this;
   }
-  // updateToggleRasters() {
-  //   const {
-  //     drawToggleRasters,
-  //   } = privateMethods;
-  //   drawToggleRasters.call(this);
-  // }
+
   updateRasterData() {
     const {
       drawRasters,
       updateFooterDataStatus,
       updateFooterView,
-      // autoSetFooterView,
       drawToggleRasters,
       updateToggleYear,
     } = privateMethods;
@@ -326,7 +317,7 @@ class Footer {
     const {
       drawAllRaster,
     } = privateMethods;
-    // console.log('all raster open?', allRasterOpen);
+
     if (allRasterOpen) {
       drawAllRaster.call(this);
     }

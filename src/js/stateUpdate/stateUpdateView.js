@@ -31,7 +31,6 @@ const getUpdateView = ({
       'currentRasterProbe',
       'currentView',
       'highlightedFeature',
-      // 'highlightedLayer',
       'allRasterOpen',
     ]);
 

@@ -65,10 +65,6 @@ const privateMethods = {
     const {
       mbMap,
     } = privateProps.get(this);
-    // const nav = new mapboxgl.NavigationControl({
-    //   showCompass: false,
-    // });
-    // mbMap.addControl(nav, 'bottom-left');
     initControls({
       mbMap,
     });
@@ -179,7 +175,6 @@ const privateMethods = {
     const { getLayerOpacities } = generalMethods;
     const layerOpacities = getLayerOpacities({ mbMap });
     props.layerOpacities = layerOpacities;
-    // console.log('opacities', layerOpacities);
   },
 };
 

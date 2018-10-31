@@ -30,7 +30,6 @@ const privateMethods = {
       updateYear,
       mouseEventsDisabled,
       eras,
-      // year,
     } = props;
 
     const {
@@ -43,7 +42,6 @@ const privateMethods = {
       updateYear,
       eras,
       mouseEventsDisabled,
-      // currentEra,
       getYear: () => props.year,
       setAnimationDirection: (direction) => {
         props.animationDirection = direction;

@@ -14,6 +14,5 @@ export const formatRasterResults = rasters =>
       category,
       features: rasters
         .filter(d => d.category === category),
-      // .map(d => Object.assign({}, d, { id: d.SS_ID })),
     }))
     .filter(d => d.features.length > 0);

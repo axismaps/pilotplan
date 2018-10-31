@@ -64,16 +64,6 @@ const allRasterMethods = {
       .append('div')
       .attr('class', 'allraster__title-text')
       .text(d => d.key);
-
-    // titles
-    //   .each(function addCloseButton(d, i) {
-    //     if (i === 0) {
-    //       d3.select(this)
-    //         .append('div')
-    //         .attr('class', 'allraster__close-button mobile')
-    //         .html('<i class="icon-times"></i>');
-    //     }
-    //   });
   },
   drawAllRasterImageBlocks({
     newAllRasterSections,
@@ -105,7 +95,6 @@ const allRasterMethods = {
           onAllRasterCloseClick();
         })
         .on('mouseover', function drawProbe(dd) {
-          // const config = getProbeConfig.call(this, dd);
           if (mobile) return;
           const config = getProbeConfig({
             selection: d3.select(this),

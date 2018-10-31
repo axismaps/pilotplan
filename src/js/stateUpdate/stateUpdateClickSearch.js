@@ -32,8 +32,7 @@ const getUpdateClickSearch = ({
     .updateResults();
 
   layout.removeHintProbe();
-  // instead of this, check first if only one result
-  // if only one result, make this highlightedFeature
+
   const layersToClear = this.getLayersToClear([
     'highlightedFeature',
     'highlightedLayer',

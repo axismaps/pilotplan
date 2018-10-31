@@ -26,7 +26,6 @@ const footerMethods = {
       .attr('class', 'footer__image')
       .on('click', onRasterClick)
       .on('mouseover', function drawProbe(d) {
-        // const config = getProbeConfig.call(this, d);
         const config = getProbeConfig({
           data: d,
           selection: d3.select(this),
