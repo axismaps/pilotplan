@@ -8,7 +8,6 @@ import setStateEvents from './stateUpdate/stateUpdate';
 
 import initState from './initState';
 import initData from './initData';
-
 import initURL from './initURL';
 import initAtlas from './initAtlas';
 import initSidebar from './initSidebar';
