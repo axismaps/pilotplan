@@ -1,6 +1,6 @@
 // import onRasterClick from './onRasterClick';
-import Sidebar from './sidebar/sidebar';
-import rasterMethods from './rasterMethods';
+import Sidebar from '../sidebar/sidebar';
+import rasterMethods from '../rasterMethods';
 
 const initSidebar = function initSidebar() {
   const { state } = this.components;

@@ -44,6 +44,8 @@ export const footerCategoryIcons = {
   plans: 'icon-tsquare',
 };
 
+export const accessToken = 'pk.eyJ1IjoiYXhpc21hcHMiLCJhIjoieUlmVFRmRSJ9.CpIxovz1TUWe_ecNLFuHNg';
+
 export const selections = {
   outerContainer: d3.select('.outer-container'),
   areaSearchButton: d3.select('.area-button'),

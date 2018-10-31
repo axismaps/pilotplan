@@ -1,4 +1,4 @@
-import Eras from './eras/eras';
+import Eras from '../eras/eras';
 
 const initEras = function initEras() {
   const { state } = this.components;

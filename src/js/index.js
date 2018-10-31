@@ -5,29 +5,30 @@
 
 import setStateEvents from './stateUpdate/stateUpdate';
 
+import initState from './initComponents/initState';
+import initData from './initComponents/initData';
+import initURL from './initComponents/initURL';
+import initAtlas from './initComponents/initAtlas';
+import initSidebar from './initComponents/initSidebar';
+import initFooter from './initComponents/initFooter';
+import initViews from './initComponents/initViews';
+import initIntro from './initComponents/initIntro';
+import initEras from './initComponents/initEras';
+import initLayout from './initComponents/initLayout';
+import initTimeline from './initComponents/initTimeline';
+import initRasterProbe from './initComponents/initRasterProbe';
 
-import initState from './initState';
-import initData from './initData';
-import initURL from './initURL';
-import initAtlas from './initAtlas';
-import initSidebar from './initSidebar';
-import initFooter from './initFooter';
-import initViews from './initViews';
-import initIntro from './initIntro';
-import initEras from './initEras';
-import initLayout from './initLayout';
-import initTimeline from './initTimeline';
-import initRasterProbe from './initRasterProbe';
+import { accessToken } from './config';
 
 require('../scss/index.scss');
-
-mapboxgl.accessToken = 'pk.eyJ1IjoiYXhpc21hcHMiLCJhIjoieUlmVFRmRSJ9.CpIxovz1TUWe_ecNLFuHNg';
 
 const app = {
   components: {},
   data: null,
   cachedMetadata: new Map(),
   init() {
+    mapboxgl.accessToken = accessToken;
+
     initData((cleanedData) => {
       this.data = cleanedData;
 

@@ -1,4 +1,4 @@
-import { eras } from './config';
+import { eras } from '../config';
 
 const cleanData = (rawData) => {
   const [

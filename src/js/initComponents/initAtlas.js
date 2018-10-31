@@ -3,7 +3,7 @@
  * @module initAtlas
  */
 
-import Atlas from './atlas/atlas';
+import Atlas from '../atlas/atlas';
 
 const initAtlas = function initAtlas() {
   const { state } = this.components;

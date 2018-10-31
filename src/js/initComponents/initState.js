@@ -3,8 +3,8 @@
  * Application state represents properties shared between components
  * @module initState
  */
-import State from './state/state';
-import rasterMethods from './rasterMethods';
+import State from '../state/state';
+import rasterMethods from '../rasterMethods';
 
 const initState = function initState() {
   const { urlParams } = this.components;

@@ -1,6 +1,6 @@
-import Footer from './footer/footer';
+import Footer from '../footer/footer';
 // import onRasterClick from './onRasterClick';
-import rasterMethods from './rasterMethods';
+import rasterMethods from '../rasterMethods';
 
 const initFooter = function initFooter() {
   const { state } = this.components;
