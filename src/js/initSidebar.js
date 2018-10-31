@@ -1,8 +1,11 @@
-import onRasterClick from './onRasterClick';
+// import onRasterClick from './onRasterClick';
 import Sidebar from './sidebar/sidebar';
+import rasterMethods from './rasterMethods';
 
 const initSidebar = function initSidebar() {
   const { state } = this.components;
+  const { onRasterClick } = rasterMethods;
+
   this.components.sidebar = new Sidebar({
     mobile: state.get('mobile'),
     highlightedFeature: state.get('highlightedFeature'),
