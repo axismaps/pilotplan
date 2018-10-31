@@ -5,9 +5,6 @@ const getProbeConfig = function getProbeConfig({
   selection,
   leader = false,
 }) {
-  // const selection = d3.select(this);
-
-
   let html = [
     data.Title !== '' ? data.Title : data.Creator,
     data.FirstYear === data.LastYear ? data.FirstYear : `${data.FirstYear} - ${data.LastYear}`,

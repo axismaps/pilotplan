@@ -1,5 +1,5 @@
-import rasterMethods from '../rasterMethods';
-import getProbeConfig from './footerDataProbeMethods';
+import rasterMethods from '../rasterProbe/rasterMethods';
+import getProbeConfig from '../dataProbe/dataProbeGetConfig';
 import { footerCategoryIcons } from '../config';
 
 const {

@@ -1,4 +1,4 @@
-import rasterMethods from '../rasterMethods';
+import rasterMethods from './rasterMethods';
 import TimelineSlider from '../timeline/timelineSlider';
 
 const localMethods = {

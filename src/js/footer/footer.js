@@ -1,7 +1,7 @@
 import methods from './footerMethods';
 import allRasterMethods from './footerAllRasterMethods';
-import rasterMethods from '../rasterMethods';
-import DataProbe from '../dataProbe';
+import rasterMethods from '../rasterProbe/rasterMethods';
+import DataProbe from '../dataProbe/dataProbe';
 import { selections } from '../config';
 
 const privateProps = new WeakMap();

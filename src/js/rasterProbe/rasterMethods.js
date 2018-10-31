@@ -134,15 +134,6 @@ const rasterMethods = {
           height: `${scaledDim.height}px`,
         });
     }
-
-    // if (resizeProbe) {
-    //   const formatPadding = padding => parseInt(padding.replace('px', ''), 10);
-    //   const newWidth =
-    //     scaledDim.width +
-    //     formatPadding(rasterProbeInnerContainer.style('padding-left')) +
-    //     formatPadding(rasterProbeInnerContainer.style('padding-right'));
-
-    // }
   },
   setBackgroundToContainerWidth({
     cachedMetadata,
@@ -156,11 +147,6 @@ const rasterMethods = {
       setBackgroundFromMetadata,
       getScaledDimFromMetadata,
     } = rasterMethods;
-    // const maxWidth = selection
-    //   .node()
-    //   .getBoundingClientRect()
-    //   .width;
-
 
     const { getMetadata } = rasterMethods;
     if (cachedMetadata.has(currentRasterProbe.SS_ID)) {
@@ -227,7 +213,6 @@ const rasterMethods = {
         }
 
         getMetadata({ data: d }, (metadata) => {
-          // console.log('get metadata');
           const scaledDim = getScaledCircleDimFromMetadata({
             metadata,
             maxDim,

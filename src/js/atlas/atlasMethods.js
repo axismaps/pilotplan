@@ -1,4 +1,4 @@
-import getProbeConfig from '../footer/footerDataProbeMethods';
+import getProbeConfig from '../dataProbe/dataProbeGetConfig';
 import atlasClickSearchMethods from './atlasClickSearchMethods';
 
 const atlasMethods = {

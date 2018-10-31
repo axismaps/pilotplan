@@ -4,7 +4,7 @@
  * @module initState
  */
 import State from '../state/state';
-import rasterMethods from '../rasterMethods';
+import rasterMethods from '../rasterProbe/rasterMethods';
 
 const initState = function initState() {
   const { urlParams } = this.components;

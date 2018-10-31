@@ -1,4 +1,4 @@
-import UrlParams from '../url';
+import UrlParams from '../url/url';
 
 const initURL = function initURL() {
   this.components.urlParams = new UrlParams({

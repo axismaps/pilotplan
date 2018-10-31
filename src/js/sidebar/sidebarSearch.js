@@ -1,4 +1,4 @@
-import rasterMethods from '../rasterMethods';
+import rasterMethods from '../rasterProbe/rasterMethods';
 
 const searchMethods = {
   listenForText({
