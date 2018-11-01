@@ -1,5 +1,5 @@
 import Timeline from '../timeline/timeline';
-import { yearRange } from '../config';
+import { yearRange } from '../config/config';
 
 const initTimeline = function initTimeline() {
   const { state } = this.components;

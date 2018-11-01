@@ -18,7 +18,7 @@ import initLayout from './initComponents/initLayout';
 import initTimeline from './initComponents/initTimeline';
 import initRasterProbe from './initComponents/initRasterProbe';
 
-import { accessToken } from './config';
+import { accessToken } from './config/config';
 
 require('../scss/index.scss');
 

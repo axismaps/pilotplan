@@ -1,4 +1,4 @@
-import { selections } from '../config';
+import { selections } from '../config/config';
 import dataMethods from './atlasDataMethods';
 import rasterMethods from '../rasterProbe/rasterMethods';
 import clickSearchMethods from './atlasClickSearchMethods';
@@ -232,7 +232,7 @@ class Atlas {
       mbMap,
       initialLocation,
     } = privateProps.get(this);
-    console.log('loaded');
+
     onLoad();
     saveLayerOpacities.call(this);
     addControlsToMap.call(this);

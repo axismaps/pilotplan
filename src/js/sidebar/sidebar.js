@@ -1,6 +1,6 @@
 import searchMethods from './sidebarSearch';
 import getSidebarMethods from './sidebarGetPrivateMethods';
-import { selections } from '../config';
+import { selections } from '../config/config';
 
 const privateProps = new WeakMap();
 
@@ -133,7 +133,7 @@ class Sidebar {
       sidebarContentContainer,
       highlightedLayer,
     } = privateProps.get(this);
-    console.log('sidebar update', highlightedLayer);
+
     const isHighlightedLayer = (d) => {
       if (highlightedLayer === null) {
         return false;

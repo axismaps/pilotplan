@@ -1,5 +1,5 @@
 import TimelineSlider from './timelineSlider';
-import { selections } from '../config';
+import { selections } from '../config/config';
 
 const privateProps = new WeakMap();
 
@@ -43,7 +43,7 @@ const privateMethods = {
       valueRange: yearRange,
       onDragEnd: updateYear,
       tooltip: true,
-      onDrag: d => console.log('drag', d),
+      onDrag: null,
     });
   },
   setText() {

@@ -80,7 +80,6 @@ const getSidebarMethods = (privateProps) => {
         textSearchReturnButton: mobile ? textSearchReturnButtonMobile : textSearchReturnButton,
         searchInput,
         clearSearch: () => {
-          console.log('clear');
           this.clearSearch();
         },
       });

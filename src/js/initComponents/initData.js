@@ -1,4 +1,4 @@
-import { eras } from '../config';
+import { eras } from '../config/config';
 
 const cleanData = (rawData) => {
   const [
@@ -63,8 +63,6 @@ const cleanData = (rawData) => {
 
 
   const erasWithTranslations = eras.map(d => Object.assign({}, d, translations[d.id]));
-  console.log('translations', translations);
-  console.log('eras', erasWithTranslations);
 
   const rasters = new Map();
 

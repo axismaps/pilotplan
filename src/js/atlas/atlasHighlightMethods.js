@@ -1,5 +1,5 @@
 import union from '@turf/union';
-import { colors } from '../config';
+import { colors } from '../config/config';
 
 const atlasHighlightMethods = {
   getHighlightedGeoJSON({
