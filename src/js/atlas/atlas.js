@@ -1,3 +1,4 @@
+import getBBox from '@turf/bbox';
 import { selections } from '../config/config';
 import dataMethods from './atlasDataMethods';
 import rasterMethods from '../rasterProbe/rasterMethods';
@@ -176,6 +177,21 @@ const privateMethods = {
     const layerOpacities = getLayerOpacities({ mbMap });
     props.layerOpacities = layerOpacities;
   },
+  zoomToAndHighlightFeature({ props }) {
+    const {
+      onFeatureSourceData,
+      mbMap,
+      mobile,
+    } = props;
+    /* eslint-disable no-param-reassign */
+    props.highlightFeatureLoading = true;
+    props.searchLocationLoading = false;
+    onFeatureSourceData();
+    props.counter = 0;
+    /* eslint-enable no-param-reassign */
+    const newBounds = getBBox(props.highlightedFeatureJSON);
+    mbMap.fitBounds(newBounds, { padding: mobile ? 0 : 200 });
+  },
 };
 
 class Atlas {
@@ -216,7 +232,10 @@ class Atlas {
     });
 
     this.config(config);
-    setLoadingCallbacks({ props: privateProps.get(this) });
+    setLoadingCallbacks({
+      props: privateProps.get(this),
+      privateMethods,
+    });
     createMBMap.call(this, { initApp: this.init.bind(this) });
   }
   init() {

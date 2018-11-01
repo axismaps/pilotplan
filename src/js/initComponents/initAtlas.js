@@ -61,6 +61,9 @@ const initAtlas = function initAtlas() {
         }
       }
     },
+    toggleMouseEventsDisabled(toggle) {
+      state.update({ mouseEventsDisabled: toggle });
+    },
     translations: this.data.translations,
     language: state.get('language'),
   });

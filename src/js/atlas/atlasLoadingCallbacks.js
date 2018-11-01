@@ -3,7 +3,7 @@ import area from '@turf/area';
 import length from '@turf/length';
 import highlightMethods from './atlasHighlightMethods';
 /* eslint-disable no-param-reassign */
-const setLoadingCallbacks = ({ props }) => {
+const setLoadingCallbacks = ({ props, privateMethods }) => {
   const {
     drawHighlightedFeature,
     clearHighlightedFeature,
@@ -39,9 +39,9 @@ const setLoadingCallbacks = ({ props }) => {
       highlightLoadingTimer,
       highlightedFeature,
       year,
-      onFeatureSourceData,
     } = props;
 
+    const { zoomToAndHighlightFeature } = privateMethods;
     if (!searchLocationLoading) return;
 
     if (highlightLoadingTimer !== null) {
@@ -54,13 +54,7 @@ const setLoadingCallbacks = ({ props }) => {
         year,
         mbMap,
       });
-
-      props.highlightFeatureLoading = true;
-      props.searchLocationLoading = false;
-      onFeatureSourceData();
-      props.counter = 0;
-      const newBounds = getBBox(props.highlightedFeatureJSON);
-      mbMap.fitBounds(newBounds, { padding: 200 });
+      zoomToAndHighlightFeature({ props });
     }, 500);
   };
 
@@ -113,7 +107,7 @@ const setLoadingCallbacks = ({ props }) => {
     }, 700);
   };
 
-  props.onFeatureSourceData = () => {
+  props.onFeatureSourceData = function onFeatureSourceData() {
     const {
       highlightFeatureLoading,
       highlightLoadingTimer,
@@ -121,6 +115,7 @@ const setLoadingCallbacks = ({ props }) => {
       highlightedFeatureJSON,
       mbMap,
       year,
+      mobile,
     } = props;
     if (!highlightFeatureLoading) return;
 
@@ -162,7 +157,7 @@ const setLoadingCallbacks = ({ props }) => {
 
       if (lastIteration && props.counter !== 0) return;
       const newBounds = getBBox(newJSON);
-      mbMap.fitBounds(newBounds, { padding: 200 });
+      mbMap.fitBounds(newBounds, { padding: mobile ? 0 : 200 });
       clearHighlightedFeature(mbMap);
       drawHighlightedFeature({
         highlightedFeature,

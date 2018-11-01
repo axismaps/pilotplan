@@ -137,7 +137,6 @@ const getAtlasUpdateMethods = ({
     updateHighlightedFeature() {
       const {
         clearHighlightedFeature,
-        getLayerBounds,
         getHighlightedGeoJSON,
       } = highlightMethods;
 
@@ -147,60 +146,29 @@ const getAtlasUpdateMethods = ({
         mbMap,
         highlightedFeature,
         year,
-        extentsData,
-        onLayerSourceData,
         onReturnToSearch,
-        onFeatureSourceData,
         searchLocation,
-        mobile,
       } = props;
+
+      const { zoomToAndHighlightFeature } = privateMethods;
 
       clearHighlightedFeature(mbMap);
 
+      if (highlightedFeature === null) return;
+      const highlightedFeatureJSON = getHighlightedGeoJSON({
+        highlightedFeature,
+        year,
+        mbMap,
+      });
 
-      if (highlightedFeature !== null && Object.prototype.hasOwnProperty.call(highlightedFeature, 'dataLayer')) {
-        const newBounds = getLayerBounds({
-          year,
-          highlightedFeature,
-          extentsData,
-        });
-        const newZoom = getZoom({
-          mbMap,
-          bounds: newBounds,
-          highlightedFeature,
-          padding: 0,
-        });
-        props.highlightLayerLoading = true;
-        props.highlightFeatureLoading = false;
-        onLayerSourceData();
-        mbMap.easeTo({
-          bearing: 0,
-          zoom: newZoom,
-          center: newBounds.getCenter(),
-          duration: 1500,
-        });
+      if (highlightedFeatureJSON.features.length > 0) {
+        props.highlightedFeatureJSON = highlightedFeatureJSON;
+        zoomToAndHighlightFeature({ props });
       } else {
-        if (highlightedFeature === null) return;
-        const highlightedFeatureJSON = getHighlightedGeoJSON({
-          highlightedFeature,
-          year,
-          mbMap,
-        });
-
-        if (highlightedFeatureJSON.features.length > 0) {
-          props.highlightedFeatureJSON = highlightedFeatureJSON;
-          props.highlightFeatureLoading = true;
-          props.searchLocationLoading = false;
-          onFeatureSourceData();
-          props.counter = 0;
-          const newBounds = getBBox(props.highlightedFeatureJSON);
-          mbMap.fitBounds(newBounds, { padding: mobile ? 0 : 200 });
-        } else {
-          props.highlightLayerLoading = false;
-          props.searchLocationLoading = true;
-          onReturnToSearch();
-          mbMap.easeTo(searchLocation);
-        }
+        props.highlightLayerLoading = false;
+        props.searchLocationLoading = true;
+        onReturnToSearch();
+        mbMap.easeTo(searchLocation);
       }
     },
     updateOverlayOpacity() {
