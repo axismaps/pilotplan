@@ -6,9 +6,12 @@ const getStateUpdateCurrentLocation = ({
     urlParams,
     views,
     layout,
+    atlas,
   } = components;
   const { center, bearing, zoom } = currentLocation;
   if (!views.mapViewInitialized()) return;
+
+  const style = atlas.getStyle();
 
   urlParams
     .config({
@@ -20,7 +23,10 @@ const getStateUpdateCurrentLocation = ({
 
   layout
     .config({
-      rotated: bearing !== -72,
+      rotated: bearing !== style.bearing ||
+      Math.abs(style.center[0] - center.lng) > 0.0001 ||
+      Math.abs(style.center[1] - center.lat) > 0.0001 ||
+        zoom !== style.zoom,
       zoomedOut: zoom < 11,
     })
     .updateLocation();

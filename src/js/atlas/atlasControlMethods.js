@@ -35,9 +35,17 @@ const controlMethods = {
     });
 
     center.on('click', () => {
+      const style = mbMap.getStyle();
+      const {
+        bearing,
+        pitch,
+        zoom,
+      } = style;
       mbMap.easeTo({
-        bearing: -72,
-        pitch: 0,
+        bearing,
+        pitch,
+        zoom,
+        center: style.center,
       });
     });
   },
