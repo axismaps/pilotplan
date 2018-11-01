@@ -265,11 +265,6 @@ class Atlas {
     Object.assign(privateProps.get(this), config);
     return this;
   }
-
-  getMap() {
-    const { mbMap } = privateProps.get(this);
-    return mbMap;
-  }
   getStyle() {
     const { mbMap } = privateProps.get(this);
     return mbMap.getStyle();

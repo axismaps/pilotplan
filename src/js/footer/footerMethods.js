@@ -3,8 +3,6 @@ import getProbeConfig from '../dataProbe/dataProbeGetConfig';
 import { footerCategoryIcons } from '../config/config';
 
 const footerMethods = {
-
-
   drawRasters({
     rasterData,
     imagesContainer,
