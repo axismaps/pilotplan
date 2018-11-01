@@ -98,7 +98,7 @@ const getSliderBase = ({ privateProps }) => ({
           handleHeight,
         } = privateProps.get(this);
         if (handle === undefined) return;
-        // ;
+
         const handleBBox = handle.node().getBBox();
         const svgBBox = props.svg.node().getBoundingClientRect();
 
@@ -154,8 +154,6 @@ const getSliderBase = ({ privateProps }) => ({
   },
   updateBackgroundTrack() {
     const {
-      // size,
-      // padding,
       backgroundTrack,
       scale,
     } = privateProps.get(this);

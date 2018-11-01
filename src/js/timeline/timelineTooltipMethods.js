@@ -41,17 +41,9 @@ const getTooltipMethods = ({ privateProps, privateMethods }) => ({
           .text('ERA');
       })
       .on('mousemove', () => {
-        // const {
-        //   tooltipContainer,
-
-        // } = privateProps.get(this);
         const { x } = d3.event;
 
         setTooltipPosition.call(this, { x });
-        // tooltipContainer
-        //   .styles({
-        //     left: `${x - (tooltipWidth / 2)}px`,
-        //   });
       })
       .on('mouseout', () => {
         const { tooltipContainer } = privateProps.get(this);

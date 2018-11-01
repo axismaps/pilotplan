@@ -49,7 +49,6 @@ const privateMethods = {
     const {
       svg,
       handleHeight,
-      // size,
       handleWidth,
       handleAttrs,
       handleDetail,
@@ -93,9 +92,6 @@ const privateMethods = {
       handleHeight,
     } = props;
 
-    // handle.attr('cx', handleScale(currentValue));
-    // handle.attr('x', handleScale(currentValue) - (handleWidth / 2));
-
     handle
       .attr('transform', `translate(${handleScale(currentValue) - (handleWidth / 2)}, ${(size.height / 2) - (handleHeight / 2)})`);
   },
@@ -130,28 +126,13 @@ const privateMethods = {
       onDragEnd,
       tooltip,
       mobile,
-      // onDrag,
     } = props;
 
     const { setTooltipPosition } = privateMethods;
 
-    // const { updateSliderPosition } = privateMethods;
-
     detectionTrack.call(d3.drag()
       .on('start.interrupt', () => {
         detectionTrack.interrupt();
-      })
-      .on('end drag', () => {
-        // const { valueRange } = props;
-        // const sliderValue = scale.invert(d3.event.x);
-
-        // if (sliderValue >= valueRange[0] && sliderValue <= valueRange[1]) {
-        //   onDragEnd(sliderValue);
-        // } else if (sliderValue < valueRange[0]) {
-        //   onDragEnd(valueRange[0]);
-        // } else if (sliderValue > valueRange[1]) {
-        //   onDragEnd(valueRange[1]);
-        // }
       })
       .on('start drag', () => {
         const { valueRange, svgPosition } = props;
@@ -169,8 +150,6 @@ const privateMethods = {
           newValue = valueRange[1];
           /* eslint-enable prefer-destructuring */
         }
-        // props.currentValue = newValue;
-        // updateSliderPosition.call(this);
         onDragEnd(newValue);
       }));
   },
@@ -299,7 +278,5 @@ class TimelineSlider {
     updateScaleValueRange.call(this);
   }
 }
-
-// Object.assign(ValueSlider.prototype, publicProps, publicMethods);
 
 export default TimelineSlider;

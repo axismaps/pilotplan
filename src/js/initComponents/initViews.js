@@ -1,4 +1,4 @@
-import Views from '../views';
+import Views from '../views/views';
 
 const initViews = function initViews() {
   const { state } = this.components;

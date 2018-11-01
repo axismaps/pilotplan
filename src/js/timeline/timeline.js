@@ -72,8 +72,7 @@ const privateMethods = {
       stepperRightButton,
       updateYear,
     } = privateProps.get(this);
-    // UPDATE CONTINOUS ON DRAG
-    // STOP AT DATE LIMITS
+
     stepperLeftButton
       .on('click', () => {
         const { year } = privateProps.get(this);
@@ -146,7 +145,7 @@ class Timeline {
         rx: 8,
         ry: 8,
       },
-      // valueRange: [1950, 2016],
+
       sliderPadding: { left: 10, right: 15 },
       yearRange: null,
       stepSections: null,

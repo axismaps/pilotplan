@@ -39,19 +39,10 @@ const axisMethods = ({ privateProps, privateMethods }) => ({
     const { isLabeledTick } = privateMethods;
 
     const tickValues = [1900, 1915, 1930, 1945];
-    // const span1 = stepSections[0];
     const span2 = stepSections[1];
-    // const increment1 = 15;
     const increment2 = 5;
-    // const numTicks1 = Math.round((span1.years[1] - span1.years[0]) / increment1);
     const numTicks2 = Math.round((span2.years[1] - span2.years[0]) / increment2);
 
-    // for (let i = 0;
-    //   i < numTicks1;
-    //   i += 1) {
-    //   tickValues.push(Math.round((stepSections[0].years[0] + (increment1 * (i + 1))) / 10) * 10);
-    // }
-    // const startValSeg2 = tickValues.slice(-1)[0];
     const startValSeg2 = 1950;
 
     for (let i = 1;
@@ -60,11 +51,8 @@ const axisMethods = ({ privateProps, privateMethods }) => ({
     ) {
       tickValues.push(Math.round(startValSeg2 + ((i + 1) * increment2)));
     }
-    // console.log('tick values', tickValues);
 
     props.axis = d3.axisBottom(scale)
-      // .ticks(20)
-      // .ticks([1900, 1920, 1950, 1975])
       .tickValues(tickValues)
       .tickFormat(d => (isLabeledTick({ value: d, breakpoint: stepSections[0].years[1] }) && !mobile ? d : ''));
   },
