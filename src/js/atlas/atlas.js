@@ -182,10 +182,12 @@ const privateMethods = {
       onFeatureSourceData,
       mbMap,
       mobile,
+      toggleMouseEventsDisabled,
     } = props;
     /* eslint-disable no-param-reassign */
     props.highlightFeatureLoading = true;
     props.searchLocationLoading = false;
+    toggleMouseEventsDisabled(true);
     onFeatureSourceData();
     props.counter = 0;
     /* eslint-enable no-param-reassign */

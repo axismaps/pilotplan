@@ -116,6 +116,7 @@ const setLoadingCallbacks = ({ props, privateMethods }) => {
       mbMap,
       year,
       mobile,
+      toggleMouseEventsDisabled,
     } = props;
     if (!highlightFeatureLoading) return;
 
@@ -149,6 +150,7 @@ const setLoadingCallbacks = ({ props, privateMethods }) => {
       if (lastIteration) {
         props.highlightedFeatureJSON = null;
         props.highlightFeatureLoading = false;
+        toggleMouseEventsDisabled(false);
       } else {
         props.highlightedFeatureJSON = newJSON;
         props.onFeatureSourceData();
