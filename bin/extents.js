@@ -13,7 +13,7 @@ function getYears(features) {
     features.map(f => f.properties.FirstYear),
     features.map(f => f.properties.LastYear),
   );
-  years = years.filter(y => y > 1890 && y !== 8888);
+  years = years.filter(y => y !== 8888);
   return years.sort();
 }
 
