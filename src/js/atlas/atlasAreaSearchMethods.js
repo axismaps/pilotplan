@@ -4,7 +4,10 @@
  * @memberof atlas
  */
 
-import dataMethods from './atlasDataMethods';
+import {
+  getRasterResults,
+  getNonRasterResults,
+} from '../data/data';
 
 const getAreaSearchMethods = ({
   getAreaSearchActive,
@@ -98,11 +101,6 @@ const getAreaSearchMethods = ({
         start,
         current,
       } = localState;
-
-      const {
-        getRasterResults,
-        getNonRasterResults,
-      } = dataMethods;
 
       const flattenedRasterData = getFlattenedRasterData();
       if (!mobile) {

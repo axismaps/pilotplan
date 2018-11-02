@@ -4,7 +4,7 @@
  * @memberof atlas
  */
 
-import dataMethods from './atlasDataMethods';
+import { getNonRasterResults } from '../data/data';
 import rasterMethods from '../rasterProbe/rasterMethods';
 import generalMethods from './atlasMethods';
 
@@ -28,8 +28,6 @@ const getPublicMethods = ({ privateProps }) => ({
     const { getSourceLayers } = generalMethods;
 
     const { getFlattenedRasterData } = rasterMethods;
-
-    const { getNonRasterResults } = dataMethods;
 
     const flattenedRasterData = getFlattenedRasterData({ rasterData });
 

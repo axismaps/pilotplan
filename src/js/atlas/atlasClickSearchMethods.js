@@ -4,7 +4,10 @@
  * @memberof atlas
  */
 
-import dataMethods from './atlasDataMethods';
+import {
+  getRasterResults,
+  getNonRasterResults,
+} from '../data/data';
 
 let pulsing = false;
 let pulseTimer = null;
@@ -76,10 +79,6 @@ const atlasClickSearchMethods = {
     removeCancelClickSearch,
     mbMap,
   }) {
-    const {
-      getRasterResults,
-      getNonRasterResults,
-    } = dataMethods;
     const {
       addPulse,
     } = atlasClickSearchMethods;
