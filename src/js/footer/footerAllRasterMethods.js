@@ -1,3 +1,10 @@
+/**
+ * Module comprises pure functions for displaying the 'show all' raster screen
+ * (raster thumbnail lightbox)
+ * @module
+ * @memberof footer
+ */
+
 import rasterMethods from '../rasterProbe/rasterMethods';
 import getProbeConfig from '../dataProbe/dataProbeGetConfig';
 import { footerCategoryIcons } from '../config/config';

@@ -1,3 +1,9 @@
+/**
+ * Module comprises public (prototype) methods for footer module, Footer class
+ * @module
+ * @memberof footer
+ */
+
 const getPublicMethods = ({ privateProps, privateMethods }) => ({
   config(config) {
     Object.assign(privateProps.get(this), config);
