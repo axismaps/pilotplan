@@ -1,7 +1,7 @@
 /**
  * Module comprises pure functions for displaying the 'show all' raster screen
  * (raster thumbnail lightbox)
- * @module
+ * @module footerAllRasterMethods
  * @memberof footer
  */
 

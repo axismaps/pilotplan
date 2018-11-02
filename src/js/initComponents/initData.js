@@ -1,3 +1,7 @@
+/**
+ * Module loads and parses static data
+ * @module initData
+ */
 import { cleanData } from '../data/data';
 
 const loadData = (callback) => {

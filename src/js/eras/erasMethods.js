@@ -1,3 +1,9 @@
+/**
+ * Module comprises pure functions for eras module (animated eras menu)
+ * @module erasMethods
+ * @memberof eras
+ */
+
 const erasMethods = {
   setStepperListeners({
     erasStepperLeftButton,

@@ -1,3 +1,8 @@
+/**
+ * Module initializes rasterProbe component
+ * @module initRasterProbe
+ */
+
 import RasterProbe from '../rasterProbe/rasterProbe';
 
 const initRasterProbe = function initRasterProbe() {

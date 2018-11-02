@@ -1,3 +1,8 @@
+/**
+ * Module initializes eras component
+ * @module initEras
+ */
+
 import Eras from '../eras/eras';
 
 const initEras = function initEras() {

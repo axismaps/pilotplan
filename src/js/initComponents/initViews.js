@@ -1,3 +1,8 @@
+/**
+ * Module initializes views component
+ * @module initViews
+ */
+
 import Views from '../views/views';
 
 const initViews = function initViews() {

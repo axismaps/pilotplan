@@ -1,3 +1,8 @@
+/**
+ * Module initializes intro component
+ * @module initIntro
+ */
+
 import Intro from '../intro/intro';
 import LanguageDropdown from '../intro/introLanguageDropdown';
 import EraDropdown from '../intro/introEraDropdown';

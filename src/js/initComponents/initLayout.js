@@ -1,3 +1,8 @@
+/**
+ * Module initializes layout component
+ * @module initLayout
+ */
+
 import Layout from '../layout/layout';
 
 const initLayout = function initLayout() {

@@ -1,3 +1,8 @@
+/**
+ * Module for eras screen
+ * @module eras
+ */
+
 import { selections } from '../config/config';
 import erasMethods from './erasMethods';
 

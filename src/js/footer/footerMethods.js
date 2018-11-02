@@ -1,6 +1,6 @@
 /**
  * Module comprises pure functions for display of footer (raster filmstrip)
- * @module
+ * @module footerMethods
  * @memberof footer
  */
 

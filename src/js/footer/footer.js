@@ -1,6 +1,6 @@
 /**
  * Module for displaying map footer (filmstrip)
- * @module
+ * @module footer
  */
 
 import methods from './footerMethods';

@@ -1,6 +1,6 @@
 /**
  * Module comprises public (prototype) methods for footer module, Footer class
- * @module
+ * @module footerPublicMethods
  * @memberof footer
  */
 

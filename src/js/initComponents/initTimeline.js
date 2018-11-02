@@ -1,3 +1,8 @@
+/**
+ * Module initializes timeline component
+ * @module initTimeline
+ */
+
 import Timeline from '../timeline/timeline';
 import { yearRange } from '../config/config';
 

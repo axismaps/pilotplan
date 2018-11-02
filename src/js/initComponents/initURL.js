@@ -1,3 +1,7 @@
+/**
+ * Module initializes url component
+ * @module initURL
+ */
 import UrlParams from '../url/url';
 
 const initURL = function initURL() {

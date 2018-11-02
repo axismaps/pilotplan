@@ -1,3 +1,7 @@
+/**
+ * Module initializes footer component
+ * @module initFooter
+ */
 import Footer from '../footer/footer';
 import rasterMethods from '../rasterProbe/rasterMethods';
 

@@ -1,3 +1,8 @@
+/**
+ * Module initializes sidebar component
+ * @module initSidebar
+ */
+
 import Sidebar from '../sidebar/sidebar';
 import rasterMethods from '../rasterProbe/rasterMethods';
 
