@@ -1,3 +1,8 @@
+/**
+ * Module comprises assorted contants used in several modules
+ * @module config
+ */
+
 export const eras = [
   {
     center: [-15.793936, -47.882797],

@@ -1,3 +1,8 @@
+/**
+ * Module for data probe--mouse hover data popup
+ * @module dataProbe
+ */
+
 const privateProps = new WeakMap();
 
 class DataProbe {

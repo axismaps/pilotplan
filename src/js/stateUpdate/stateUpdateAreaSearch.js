@@ -1,7 +1,7 @@
 import {
   formatNonRasterResults,
   formatRasterResults,
-} from '../data/formatSearchResults';
+} from '../data/data';
 
 const getUpdateAreaSearch = ({
   components,

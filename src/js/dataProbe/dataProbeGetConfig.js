@@ -1,3 +1,9 @@
+/**
+ * Module comprises function for getting data probe config object
+ * @module dataProbeGetConfig
+ * @memberof dataProbe
+ */
+
 const getProbeConfig = function getProbeConfig({
   data,
   position,
