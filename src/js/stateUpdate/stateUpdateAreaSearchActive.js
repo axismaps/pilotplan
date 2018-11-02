@@ -1,3 +1,11 @@
+/**
+ * Callback for areaSearchActive field
+ * "areaSearchActive" boolean field indicates if area search button has been clicked
+ * but search has not yet been performed
+ * @module
+ * @memberof stateUpdate
+ */
+
 const getUpdateAreaSearchActive = ({ components }) => {
   const updateAreaSearchActive = function updateAreaSearchActive() {
     const {

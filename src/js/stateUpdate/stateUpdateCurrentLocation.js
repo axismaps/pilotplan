@@ -1,3 +1,9 @@
+/**
+ * Callback for currentLocation field
+ * "currentLocation" object contains map location info--bearing, center, zoom
+ * @module
+ * @memberof stateUpdate
+ */
 const getStateUpdateCurrentLocation = ({
   components,
 }) => function updateCurrentLocation() {

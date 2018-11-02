@@ -1,3 +1,9 @@
+/**
+ * Callback for areaSearch field
+ * "areaSearch" object field contains results from area search
+ * @module
+ * @memberof stateUpdate
+ */
 import {
   formatNonRasterResults,
   formatRasterResults,

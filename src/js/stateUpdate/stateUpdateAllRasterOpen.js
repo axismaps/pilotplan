@@ -1,3 +1,9 @@
+/**
+ * Callback for allRasterOpen field
+ * "allRasterOpen "boolean field determines whether "show all" raster screen is on or not
+ * @module
+ * @memberof stateUpdate
+ */
 const getUpdateAllRasterOpen = ({
   components,
 }) => {

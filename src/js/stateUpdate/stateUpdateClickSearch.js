@@ -1,3 +1,9 @@
+/**
+ * Callback for clickSearch field
+ * "clickSearch" object field contains results from click search
+ * @module
+ * @memberof stateUpdate
+ */
 import {
   formatNonRasterResults,
   formatRasterResults,
