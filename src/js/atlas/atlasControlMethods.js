@@ -1,3 +1,9 @@
+/**
+ * Module comprises functions related to atlas zoom and rotate / home controls
+ * @module atlasControlMethods
+ * @memberof atlas
+ */
+
 const controlMethods = {
   drawControls() {
     const buttonContainer = d3.select('.mapboxgl-ctrl-bottom-left')

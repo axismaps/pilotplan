@@ -1,3 +1,13 @@
+/**
+ * Module comprises methods to set callbacks for feature highlighting and zooming
+ * These callbacks are fired when map moves and are on timers to determine
+ * when feature loading is complete.
+ * This is all a way to work around the limitations imposed by querying vector tiles,
+ * namely that we can only access data that is loaded in the current vector tiles
+ * @module atlasLoadingCallbacks
+ * @memberof atlas
+ */
+
 import getBBox from '@turf/bbox';
 import area from '@turf/area';
 import length from '@turf/length';

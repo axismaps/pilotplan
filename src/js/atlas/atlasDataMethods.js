@@ -1,3 +1,9 @@
+/**
+ * Module comprises functions related to atlas search results data manipulation
+ * @module atlasDataMethods
+ * @memberof atlas
+ */
+
 const atlasDataMethods = {
   getRasterResults: features =>
     features.filter(d => Object.prototype.hasOwnProperty.call(d.properties, 'SS_ID') &&

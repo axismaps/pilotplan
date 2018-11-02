@@ -1,3 +1,9 @@
+/**
+ * Module comprises functions related to atlas feature highlighting
+ * @module atlasHighlightMethods
+ * @memberof atlas
+ */
+
 import union from '@turf/union';
 
 import { colors } from '../config/config';

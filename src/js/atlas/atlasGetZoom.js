@@ -1,3 +1,8 @@
+/**
+ * Module comprises function that returns zoom level for given bounds and min zoom
+ * @module atlasGetZoom
+ * @memberof atlas
+ */
 const getZoom = ({
   mbMap,
   bounds,

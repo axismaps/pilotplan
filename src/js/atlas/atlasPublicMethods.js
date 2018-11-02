@@ -1,3 +1,9 @@
+/**
+ * Module comprises pubic methods for the atlas module (Atlas class prototype)
+ * @module atlasPublicMethods
+ * @memberof atlas
+ */
+
 import dataMethods from './atlasDataMethods';
 import rasterMethods from '../rasterProbe/rasterMethods';
 import generalMethods from './atlasMethods';
