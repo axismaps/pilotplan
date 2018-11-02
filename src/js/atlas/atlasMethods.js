@@ -1,3 +1,9 @@
+/**
+ * Module comprises pure functions related to the atlas module
+ * @module atlasMethods
+ * @memberof atlas
+ */
+
 import getProbeConfig from '../dataProbe/dataProbeGetConfig';
 import atlasClickSearchMethods from './atlasClickSearchMethods';
 

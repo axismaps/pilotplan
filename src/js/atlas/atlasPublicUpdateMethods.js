@@ -1,3 +1,9 @@
+/**
+ * Module comprises public update methods for the atlas module (Atlas class prototype)
+ * @module atlasPublicUpdateMethods
+ * @memberof atlas
+ */
+
 import getBBox from '@turf/bbox';
 
 import clickSearchMethods from './atlasClickSearchMethods';

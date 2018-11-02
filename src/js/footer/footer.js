@@ -1,3 +1,8 @@
+/**
+ * Module for displaying map footer (filmstrip)
+ * @module
+ */
+
 import methods from './footerMethods';
 import allRasterMethods from './footerAllRasterMethods';
 import rasterMethods from '../rasterProbe/rasterMethods';

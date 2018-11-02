@@ -1,3 +1,9 @@
+/**
+ * Module comprises pure functions for display of footer (raster filmstrip)
+ * @module
+ * @memberof footer
+ */
+
 import rasterMethods from '../rasterProbe/rasterMethods';
 import getProbeConfig from '../dataProbe/dataProbeGetConfig';
 import { footerCategoryIcons } from '../config/config';

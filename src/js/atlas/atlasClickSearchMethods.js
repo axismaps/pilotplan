@@ -1,3 +1,9 @@
+/**
+ * Module comprises functions related to atlas click search
+ * @module atlasClickSearchMethods
+ * @memberof atlas
+ */
+
 import dataMethods from './atlasDataMethods';
 
 let pulsing = false;

@@ -1,3 +1,9 @@
+/**
+ * Module comprises functions related to atlas feature highlighting
+ * @module atlasHighlightMethods
+ * @memberof atlas
+ */
+
 import union from '@turf/union';
 
 import { colors } from '../config/config';
@@ -42,6 +48,7 @@ const atlasHighlightMethods = {
     highlightedFeature,
     extentsData,
   }) {
+    console.log(extentsData, highlightedFeature);
     const extentsForLayer =
       extentsData[highlightedFeature.sourceLayer][highlightedFeature.dataLayer];
     const years = Object.keys(extentsForLayer).map(d => parseInt(d, 10));

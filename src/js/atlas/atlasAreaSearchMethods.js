@@ -1,3 +1,9 @@
+/**
+ * Module comprises functions related to atlas area search
+ * @module atlasAreaSearchMethods
+ * @memberof atlas
+ */
+
 import dataMethods from './atlasDataMethods';
 
 const getAreaSearchMethods = ({
