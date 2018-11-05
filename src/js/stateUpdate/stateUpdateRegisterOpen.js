@@ -1,3 +1,9 @@
+/**
+ * Callback for registerOpen field
+ * "registerOpen" boolean represents open / close status of register screen
+ * @module
+ * @memberof stateUpdate
+ */
 const getUpdateRegisterOpen = ({ components }) => {
   const updateRegisterOpen = function updateRegisterOpen() {
     const { registerOpen } = this.props();

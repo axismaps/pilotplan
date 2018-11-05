@@ -15,6 +15,7 @@ const getUpdateClickSearch = ({
   const {
     clickSearch,
   } = this.props();
+
   const {
     sidebar,
     layout,

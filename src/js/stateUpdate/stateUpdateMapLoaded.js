@@ -1,3 +1,9 @@
+/**
+ * Callback for mapLoaded field
+ * "mapLoaded" boolean represents if the map has initially loaded
+ * @module
+ * @memberof stateUpdate
+ */
 const getUpdateMapLoaded = ({ components }) => {
   const updateMapLoaded = function updateMapLoaded() {
     const { mapLoaded } = this.props();

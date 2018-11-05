@@ -1,3 +1,7 @@
+/**
+ * timeline module/class represents map slider and timeline
+ * @module timeline
+ */
 import TimelineSlider from './timelineSlider';
 import { selections } from '../config/config';
 

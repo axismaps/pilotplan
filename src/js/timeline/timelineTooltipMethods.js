@@ -1,3 +1,8 @@
+/**
+ * Module comprises methods related to slider tooltip
+ * @module timelineTooltipMethods
+ * @memberof timeline
+ */
 import erasMethods from '../eras/erasMethods';
 
 const getTooltipMethods = ({ privateProps, privateMethods }) => ({

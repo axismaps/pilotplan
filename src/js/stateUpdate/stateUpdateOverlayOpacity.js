@@ -1,3 +1,9 @@
+/**
+ * Callback for overlayOpacity field
+ * "overlayOpacity" float represents opacity of map overlay
+ * @module
+ * @memberof stateUpdate
+ */
 const getUpdateOverlayOpacity = ({ components }) => {
   const updateOverlayOpacity = function updateOverlayOpacity() {
     const { overlayOpacity } = this.props();

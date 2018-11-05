@@ -1,3 +1,7 @@
+/**
+ * Module controls url parameters
+ * @module url
+ */
 import rasterMethods from '../rasterProbe/rasterMethods';
 
 const privateProps = new WeakMap();

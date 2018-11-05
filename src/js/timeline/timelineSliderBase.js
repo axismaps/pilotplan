@@ -1,3 +1,8 @@
+/**
+ * Module comprises methods related to slider
+ * @module timelineSliderBase
+ * @memberof timeline
+ */
 const getSliderBase = ({ privateProps }) => ({
   setScale() {
     const props = privateProps.get(this);

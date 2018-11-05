@@ -1,3 +1,10 @@
+/**
+ * Callback for year field
+ * "year" integer represents map year
+ * @module
+ * @memberof stateUpdate
+ */
+
 import rasterMethods from '../rasterProbe/rasterMethods';
 
 const getUpdateYear = ({

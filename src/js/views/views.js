@@ -1,3 +1,7 @@
+/**
+ * Module controls classes and callbacks related to toggling map views
+ * @module views
+ */
 import { selections } from '../config/config';
 
 const privateProps = new WeakMap();

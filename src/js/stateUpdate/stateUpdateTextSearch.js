@@ -1,3 +1,9 @@
+/**
+ * Callback for textSearch field
+ * "textSearch" object field contains results from text search
+ * @module
+ * @memberof stateUpdate
+ */
 import {
   formatNonRasterResults,
   formatRasterResults,

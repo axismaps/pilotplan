@@ -1,3 +1,9 @@
+/**
+ * Callback for sidebarOpen field
+ * "sidebarOpen" boolean represents open / close status of sidebar
+ * @module
+ * @memberof stateUpdate
+ */
 const getUpdateSidebarOpen = ({ components }) => {
   const updateSidebarOpen = function updateSidebarOpen() {
     const {

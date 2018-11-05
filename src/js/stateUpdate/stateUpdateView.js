@@ -1,3 +1,9 @@
+/**
+ * Callback for view field
+ * "view" string represents map screen--intro, eras, map
+ * @module
+ * @memberof stateUpdate
+ */
 const getUpdateView = ({
   components,
 }) => {

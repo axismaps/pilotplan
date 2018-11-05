@@ -1,3 +1,8 @@
+/**
+ * Module comprises methods related to timeline axis
+ * @module timelineSliderAxis
+ * @memberof timeline
+ */
 const axisMethods = ({ privateProps, privateMethods }) => ({
   initAxis() {
     const {

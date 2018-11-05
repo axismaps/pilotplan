@@ -1,3 +1,9 @@
+/**
+ * Callback for highlightedFeature field
+ * "highlightedFeature" object represents data for search feature highlighted on map / sidebar
+ * @module
+ * @memberof stateUpdate
+ */
 const getUpdateHighlightedFeature = ({ components }) => {
   const updateHighlightedFeature = function updateHighlightedFeature() {
     const {

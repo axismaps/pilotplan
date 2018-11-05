@@ -1,3 +1,9 @@
+/**
+ * Callback for highlightedLayer field
+ * "highlightedLayer" object represents data for currently selected (isolated) layer
+ * @module
+ * @memberof stateUpdate
+ */
 const getUpdateHighlightedLayer = ({
   components,
 }) => {

@@ -1,3 +1,9 @@
+/**
+ * Callback for language field
+ * "language" string represents current map language
+ * @module
+ * @memberof stateUpdate
+ */
 const getUpdateLanguage = ({
   components,
 }) => {

@@ -1,3 +1,8 @@
+/**
+ * Module comprises methods related to slider
+ * @module timelineSlider
+ * @memberof timeline
+ */
 import getSliderBase from './timelineSliderBase';
 import getSliderAxis from './timelineSliderAxis';
 import getTooltipMethods from './timelineTooltipMethods';
