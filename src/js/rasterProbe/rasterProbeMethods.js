@@ -1,3 +1,9 @@
+/**
+ * Module comprises pure functions related to raster probe
+ * @module rasterProbeMethods
+ * @memberof rasterProbe
+ */
+
 import rasterMethods from './rasterMethods';
 import TimelineSlider from '../timeline/timelineSlider';
 

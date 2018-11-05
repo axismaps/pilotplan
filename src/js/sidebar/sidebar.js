@@ -1,3 +1,8 @@
+/**
+ * Module for sidebar--layers menu, search results, text search input
+ * @module sidebar
+ */
+
 import searchMethods from './sidebarSearch';
 import getSidebarMethods from './sidebarGetPrivateMethods';
 import { selections } from '../config/config';

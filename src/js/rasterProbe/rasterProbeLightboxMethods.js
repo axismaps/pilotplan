@@ -1,3 +1,9 @@
+/**
+ * Module comprises pure functions related to raster lightbox
+ * @module rasterProbeLightboxMethods
+ * @memberof rasterProbe
+ */
+
 import rasterMethods from '../rasterProbe/rasterMethods';
 import rasterProbeMethods from './rasterProbeMethods';
 

@@ -1,3 +1,10 @@
+/**
+ * Callback for currentView field
+ * "currentView" object represents data for selected viewshed
+ * @module
+ * @memberof stateUpdate
+ */
+
 const getUpdateCurrentView = ({ components }) => {
   const updateCurrentView = function updateCurrentView() {
     const {

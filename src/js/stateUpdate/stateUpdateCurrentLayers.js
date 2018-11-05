@@ -10,7 +10,7 @@ const getUpdateCurrentLayers = ({ components }) => {
     const {
       currentLayers,
     } = this.props();
-    console.log('current layers', currentLayers);
+
     const {
       atlas,
       sidebar,

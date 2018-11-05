@@ -1,3 +1,9 @@
+/**
+ * Callback for currentOverlay field
+ * "currentOverlay" object represents data for overlay toggled on map
+ * @module
+ * @memberof stateUpdate
+ */
 const getUpdateCurrentOverlay = ({ components }) => {
   const updateCurrentOverlay = function updateCurrentOverlay() {
     const {

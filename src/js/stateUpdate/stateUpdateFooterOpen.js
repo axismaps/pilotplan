@@ -1,3 +1,9 @@
+/**
+ * Callback for footerOpen field
+ * "footerOpen" boolean represents open / close status of footer
+ * @module
+ * @memberof stateUpdate
+ */
 const getUpdateFooterOpen = ({ components }) => {
   const updateFooterOpen = function updateFooterOpen() {
     const {

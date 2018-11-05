@@ -1,3 +1,9 @@
+/**
+ * Module comprises pure functions related to displaying search results on sidebar
+ * @module sidebarSearch
+ * @memberof sidebar
+ */
+
 import rasterMethods from '../rasterProbe/rasterMethods';
 
 const searchMethods = {

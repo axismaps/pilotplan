@@ -1,3 +1,7 @@
+/**
+ * Module for raster probe and raster lightbox
+ * @module rasterProbe
+ */
 import { selections } from '../config/config';
 import rasterProbeMethods from './rasterProbeMethods';
 import lightboxMethods from './rasterProbeLightboxMethods';

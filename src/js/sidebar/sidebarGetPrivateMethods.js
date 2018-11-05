@@ -1,3 +1,9 @@
+/**
+ * Module returns private methods for the sidebar module/class
+ * @module sidebarGetPrivateMethods
+ * @memberof sidebar
+ */
+
 import searchMethods from './sidebarSearch';
 
 const getSidebarMethods = (privateProps) => {

@@ -1,3 +1,7 @@
+/**
+ * Module comprises methods related to raster manipulation and raster metadata
+ * @module rasterMethods
+ */
 const rasterMethods = {
   getScaledCircleDim({ width, height, maxDim }) {
     if (width > height) {
