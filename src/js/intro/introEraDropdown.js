@@ -1,3 +1,8 @@
+/**
+ * Module comprises methods related to both intro eras dropdown
+ * @module introEraDropdown
+ * @memberof intro
+ */
 import setDropdownListeners from './introDropdownBase';
 import { selections } from '../config/config';
 

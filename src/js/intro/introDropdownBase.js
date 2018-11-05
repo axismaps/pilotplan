@@ -1,3 +1,8 @@
+/**
+ * Module comprises methods related to both intro dropdown menus
+ * @module introDropdownBase
+ * @memberof intro
+ */
 const setDropdownListeners = ({
   buttonContainer,
   dropdownContainer,

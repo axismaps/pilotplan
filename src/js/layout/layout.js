@@ -1,3 +1,8 @@
+/**
+ * Module for general layout updates
+ * Includes opening / closing menus, showing / hiding probes, etc.
+ * @module layout
+ */
 import { selections } from '../config/config';
 import getPublicMethods from './layoutPublicMethods';
 import getPrivateMethods from './layoutPrivateMethods';

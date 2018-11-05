@@ -1,3 +1,8 @@
+/**
+ * Module comprises methods related to both intro language dropdown
+ * @module introLanguageDropdown
+ * @memberof intro
+ */
 import { selections } from '../config/config';
 import setDropdownListeners from './introDropdownBase';
 

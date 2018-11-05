@@ -1,3 +1,8 @@
+/**
+ * Module comprises private methods for the layout module
+ * @module layoutPrivateMethods
+ * @memberof layout
+ */
 const getPrivateMethods = ({ privateProps }) => ({
   initAreaButton() {
     const {

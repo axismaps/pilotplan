@@ -1,3 +1,7 @@
+/**
+ * Module for intro screen--language + eras dropdowns, title screen, etc.
+ * @module intro
+ */
 import { selections } from '../config/config';
 
 const privateProps = new WeakMap();

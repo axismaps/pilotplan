@@ -1,3 +1,8 @@
+/**
+ * Module comprises public methods for the layout module
+ * @module layoutPublicMethods
+ * @memberof layout
+ */
 const getPublicMethods = ({ privateProps, privateMethods }) => ({
   config(config) {
     const props = privateProps.get(this);
