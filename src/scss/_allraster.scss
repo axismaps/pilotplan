@@ -2,7 +2,6 @@
 .lightbox__outer,
 .allraster__outer {
   background: $lightbox-background;
-  // display: flex;
   display: none;
   align-items: center;
   justify-content: center;
@@ -19,16 +18,11 @@
 .lightbox__inner,
 .allraster__inner {
   background: $main-background-fill;
-  // box-shadow: $lightbox-shadow;
   border-radius: 5px;
 }
 
 .lightbox__inner-scroll {
   overflow-y: scroll;
-}
-
-.lightbox__inner {
-  // overflow-y: scroll;
 }
 
 .allraster__inner {
@@ -38,15 +32,12 @@
 .lightbox__content {
   padding-left: 20px;
   padding-right: 20px;
-  // padding-right: 35px;
 }
 
 .allraster__title {
-  // padding: 20px;
   display: flex;
   font-size: 18px;
   justify-content: space-between;
-  // margin-bottom: 30px;
 }
 
 .allraster__title-text-block {
