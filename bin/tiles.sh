@@ -1,4 +1,4 @@
-tippecanoe -x osm_id -x Shape_Leng -x Shape_Area -x layer -x Date -x Address -x SHAPE_Le_1 -x Shape_Leng -x SHAPE_Area -x Notes -Z 9 -z 17 -aD -aG -ab -ai -f -o data/tiles/allzooms.mbtiles \
+tippecanoe -x osm_id -x Shape_Leng -x Shape_Area -x layer -x Date -x Address -x SHAPE_Le_1 -x Shape_Leng -x SHAPE_Area -x Notes -z 17 -aD -aG -ab -ai -f -o data/tiles/allzooms.mbtiles \
   -j '{ "RoadsLine": ["in", "Type", "Motorway", "Motorway_link", "Primary", "Primary_link"] }' \
   -j '{ "*": [ "all", [ "<=", "FirstDate", 2016 ], [ ">=", "LastDate", 2016 ] ] }' \
   data/geojson/geography/BoundariesPoly.json \
@@ -21,9 +21,9 @@ tippecanoe -x osm_id -x Shape_Leng -x Shape_Area -x layer -x Date -x Address -x 
   -j '{ "*": [ "all", [ "<=", "FirstDate", 2016 ], [ ">=", "LastDate", 2016 ] ] }' \
   data/geojson/geography/RoadsLine.json
 
-tippecanoe -x osm_id -x Shape_Leng -x Shape_Area -x layer -x Date -x Address -x SHAPE_Le_1 -x Shape_Leng -x SHAPE_Area -x Notes -Z 12 -z 17 -aD -aG -ab -ai -f -o data/tiles/BuildingsPoly.mbtiles data/geojson/geography/BuildingsPoly.json
+tippecanoe -x osm_id -x Shape_Leng -x Shape_Area -x layer -x Date -x Address -x SHAPE_Le_1 -x Shape_Leng -x SHAPE_Area -x Notes -Z 14 -z 17 -aD -aG -ab -ai -f -o data/tiles/BuildingsPoly.mbtiles data/geojson/geography/BuildingsPoly.json
 
-tile-join -f -o data/tiles/pilot.mbtiles data/tiles/allzooms.mbtiles data/tiles/BuildingsPoly.mbtiles data/tiles/ParcelsPoly.mbtiles data/tiles/ArterialRoads.mbtiles data/tiles/LocalRoads.mbtiles
+tile-join -f -o data/tiles/houston.mbtiles data/tiles/allzooms.mbtiles data/tiles/BuildingsPoly.mbtiles data/tiles/ArterialRoads.mbtiles data/tiles/LocalRoads.mbtiles
 
 source .env
 
