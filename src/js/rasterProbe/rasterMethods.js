@@ -2,6 +2,9 @@
  * Module comprises methods related to raster manipulation and raster metadata
  * @module rasterMethods
  */
+
+import 'whatwg-fetch';
+
 const rasterMethods = {
   getScaledCircleDim({ width, height, maxDim }) {
     if (width > height) {
@@ -46,37 +49,30 @@ const rasterMethods = {
       maxHeight,
     });
   },
-  getImageUrl({ scaledDim, metadata }) {
-    const { width, height } = scaledDim;
-    const { imageServer, imageUrl } = metadata;
-    return `${imageServer.replace('http', 'https')}${imageUrl}&&wid=${width}&hei=${height}&rgnn=0,0,1,1&cvt=JPEG`;
+  getImageUrl(metadata) {
+    const imageUrl = metadata.thumbnail_url;
+    return `https://library.artstor.org${imageUrl.replace('size0', 'size2')}`;
   },
   getMetadata({ data }, callback) {
     const { SSC_ID } = data;
-    d3.json(`https://www.sscommons.org/openlibrary/secure/imagefpx/${SSC_ID}/7731141/5`)
-      .then((metadata) => {
-        callback(metadata[0]);
-      })
-      .catch((err) => {
-        console.log(`Error: ${err.message}`);
+    window.fetch('https://library.artstor.org/api/secure/userinfo', { credentials: 'include' })
+      .then(() => {
+        window.fetch(`https://library.artstor.org/api/v1/metadata?object_ids=${SSC_ID}&openlib=true`, { credentials: 'include' })
+          .then(res => res.text())
+          .then((text) => {
+            const json = JSON.parse(text);
+            callback(json.metadata[0]);
+          })
+          .catch((err) => {
+            console.log(`Error: ${err.message}`);
+          });
       });
   },
   getSharedShelfURL({ currentRasterProbe }, callback) {
-    d3.html(`https://www.sscommons.org/openlibrary/secure/metadata/${currentRasterProbe.SSC_ID}?_method=FpHtml`)
-      .then((data) => {
-        let url;
-        const nodes = d3.select(data).selectAll('.data');
-        const length = nodes.size();
-
-        nodes.each(function test(d, i) {
-          if (i === length - 1) {
-            const inner = d3.select(this).node().innerHTML;
-            const t = '<wbr>';
-            const slice1 = inner.slice(inner.indexOf(t) + t.length);
-            const slice2 = slice1.slice(0, slice1.indexOf(t));
-            url = `https://www.sscommons.org/openlibrary/ExternalIV.jsp?objectId=${slice2}`;
-          }
-        });
+    window.fetch(`https://library.artstor.org/api/v1/metadata?object_ids=${currentRasterProbe.SSC_ID}&openlib=true`, { credentials: 'include' })
+      .then(res => res.text())
+      .then((text) => {
+        const url = `https://library.artstor.org/${JSON.parse(text).metadata[0].image_url}`;
         callback(url);
       });
   },
@@ -120,10 +116,7 @@ const rasterMethods = {
       setRasterBackground,
     } = rasterMethods;
 
-    const url = getImageUrl({
-      scaledDim,
-      metadata,
-    });
+    const url = getImageUrl(metadata);
 
     setRasterBackground({
       url,
