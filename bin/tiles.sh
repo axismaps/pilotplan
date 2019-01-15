@@ -58,6 +58,16 @@ tippecanoe -Z 14 -z 17 -aN -ab -ai -f -o data/tiles/ParcelsPoly.mbtiles \
 
 tile-join -f -o data/tiles/pilot.mbtiles data/tiles/allzooms.mbtiles data/tiles/BuildingsPoly.mbtiles data/tiles/ParcelsPoly.mbtiles data/tiles/LocalRoads.mbtiles
 
+if [ "$1" == dev ]; then
+  id="axismaps.01c7rsvl"
+  tileset="dev"
+else
+  id="axismaps.dd66zwg7"
+  tileset="production"
+fi
+
+echo Uploading to $tileset tileset
+
 source .env
 
-mapbox upload axismaps.dd66zwg7 data/tiles/pilot.mbtiles
+mapbox upload $id data/tiles/pilot.mbtiles
