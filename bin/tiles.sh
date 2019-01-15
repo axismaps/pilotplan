@@ -1,5 +1,5 @@
 # No local roads buildings, or parcels
-tippecanoe -Z 9 -z 11 -aD -aG -ab -ai -f -o data/tiles/allzooms.mbtiles \
+tippecanoe -Z 9 -z 11 -aN -ab -ai -f -o data/tiles/allzooms.mbtiles \
   -x osm_id -x Shape_Leng -x Shape_Area -x layer -x Date -x Address -x SHAPE_Le_1 -x Shape_Leng -x SHAPE_Area -x Notes -x Join_Count -x TARGET_FID -x OBJECTID -x Height -x alturaapro -x ano -x Title \
   -j '{ "RoadsLine": ["!in", "SubType", "Collector", "Local", "Service"] }' \
   data/geojson/geography/BoundariesPoly.json \
@@ -13,7 +13,7 @@ tippecanoe -Z 9 -z 11 -aD -aG -ab -ai -f -o data/tiles/allzooms.mbtiles \
   data/geojson/geography/WatersLine.json
 
 # Adding in buildings
-tippecanoe -Z 12 -z 12 -aD -aG -ab -ai -f -o data/tiles/BuildingsPoly.mbtiles \
+tippecanoe -Z 12 -z 12 -aN -ab -ai -f -o data/tiles/BuildingsPoly.mbtiles \
   -x osm_id -x Shape_Leng -x Shape_Area -x layer -x Date -x Address -x SHAPE_Le_1 -x Shape_Leng -x SHAPE_Area -x Notes -x Join_Count -x TARGET_FID -x OBJECTID -x Height -x alturaapro -x ano -x Title \
   -j '{ "RoadsLine": ["!in", "SubType", "Collector", "Local", "Service"] }' \
   data/geojson/geography/BoundariesPoly.json \
@@ -28,7 +28,7 @@ tippecanoe -Z 12 -z 12 -aD -aG -ab -ai -f -o data/tiles/BuildingsPoly.mbtiles \
   data/geojson/geography/WatersLine.json
 
 # Removing filter to add local roads
-tippecanoe -Z 13 -z 13 -aD -aG -ab -ai -f -o data/tiles/LocalRoads.mbtiles \
+tippecanoe -Z 13 -z 13 -aN -ab -ai -f -o data/tiles/LocalRoads.mbtiles \
   -x osm_id -x Shape_Leng -x Shape_Area -x layer -x Date -x Address -x SHAPE_Le_1 -x Shape_Leng -x SHAPE_Area -x Notes -x Join_Count -x TARGET_FID -x OBJECTID -x Height -x alturaapro -x ano -x Title \
   data/geojson/geography/BoundariesPoly.json \
   data/geojson/geography/BuildingsPoly.json \
@@ -42,7 +42,7 @@ tippecanoe -Z 13 -z 13 -aD -aG -ab -ai -f -o data/tiles/LocalRoads.mbtiles \
   data/geojson/geography/WatersLine.json
 
 # Adding parcels and doing all zooms
-tippecanoe -Z 14 -z 17 -aD -aG -ab -ai -f -o data/tiles/ParcelsPoly.mbtiles \
+tippecanoe -Z 14 -z 17 -aN -ab -ai -f -o data/tiles/ParcelsPoly.mbtiles \
   -x osm_id -x Shape_Leng -x Shape_Area -x layer -x Date -x Address -x SHAPE_Le_1 -x Shape_Leng -x SHAPE_Area -x Notes -x Join_Count -x TARGET_FID -x OBJECTID -x Height -x alturaapro -x ano -x Title \
   data/geojson/geography/BoundariesPoly.json \
   data/geojson/geography/BuildingsPoly.json \
