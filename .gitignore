@@ -8,5 +8,3 @@ old
 legend_old
 .env
 scratch
-data/tiles/*
-data/geotiff/converted/*
