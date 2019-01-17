@@ -50,8 +50,13 @@ const rasterMethods = {
     });
   },
   getImageUrl(metadata) {
-    const imageUrl = metadata.thumbnail_url;
-    return `https://library.artstor.org${imageUrl.replace('size0', 'size2')}`;
+    let imgPath;
+    if (metadata.image_url.lastIndexOf('.fpx') > -1) {
+      imgPath = `/${metadata.image_url.substring(0, metadata.image_url.lastIndexOf('.fpx') + 4)}`;
+    } else {
+      imgPath = `/${metadata.image_url}`;
+    }
+    return `https://tsprod.artstor.org/rosa-iiif-endpoint-1.0-SNAPSHOT/fpx${encodeURIComponent(imgPath)}/full/full/0/native.jpg`;
   },
   getMetadata({ data }, callback) {
     const { SSC_ID } = data;
