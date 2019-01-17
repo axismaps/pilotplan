@@ -74,12 +74,7 @@ const rasterMethods = {
       });
   },
   getSharedShelfURL({ currentRasterProbe }, callback) {
-    window.fetch(`https://library.artstor.org/api/v1/metadata?object_ids=${currentRasterProbe.SSC_ID}&openlib=true`, { credentials: 'include' })
-      .then(res => res.text())
-      .then((text) => {
-        const url = `https://library.artstor.org/${JSON.parse(text).metadata[0].image_url}`;
-        callback(url);
-      });
+    callback(`https://library.artstor.org/#/asset/${currentRasterProbe.SSC_ID}`);
   },
   addSharedShelfLinkToSelection({
     currentRasterProbe,
