@@ -53,6 +53,8 @@ def project_raster(tif):
 if sys.argv[1]:
   files = sys.argv[1].replace(PATH, '').split('/')
   raster_bands(files[1], files[0] + '/')
+  os.system('source .env && node bin/raster.js && shopt -s extglob')
+  os.system('rm data/geotiff/converted/*.!(gitignore)')
 else:
   for subdir in os.listdir(PATH):
     if subdir[0] != '.' and subdir != 'converted':
