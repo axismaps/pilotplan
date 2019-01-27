@@ -1,5 +1,5 @@
 # No local roads buildings, or parcels
-tippecanoe -Z 9 -z 11 -aN -ab -ai -f -o data/tiles/allzooms.mbtiles \
+tippecanoe -Z 9 -z 11 -ab -ai -f -o data/tiles/allzooms.mbtiles \
   -x osm_id -x Shape_Leng -x Shape_Area -x layer -x Date -x Address -x SHAPE_Le_1 -x Shape_Leng -x SHAPE_Area -x Notes -x Join_Count -x TARGET_FID -x OBJECTID -x Height -x alturaapro -x ano -x Title \
   -j '{ "RoadsLine": ["!in", "SubType", "Collector", "Local", "Service"] }' \
   data/geojson/geography/BoundariesPoly.json \
