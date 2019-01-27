@@ -25,6 +25,7 @@ const privateMethods = {
       stepSections,
       sliderPadding,
       eras,
+      uniqueYears,
       language,
       mobile,
     } = props;
@@ -33,6 +34,7 @@ const privateMethods = {
       mobile,
       language,
       eras,
+      uniqueYears,
       container: sliderContainer,
       outerContainer,
       currentValue: year,
@@ -54,8 +56,9 @@ const privateMethods = {
     const {
       year,
       stepperTextContainer,
+      uniqueYears,
     } = privateProps.get(this);
-    stepperTextContainer.text(year);
+    stepperTextContainer.text(this.constructor.getUniqueYear(year, uniqueYears));
   },
   resizeSlider() {
     const props = privateProps.get(this);
@@ -75,27 +78,29 @@ const privateMethods = {
       stepperLeftButton,
       stepperRightButton,
       updateYear,
+      uniqueYears,
     } = privateProps.get(this);
 
     stepperLeftButton
       .on('click', () => {
         const { year } = privateProps.get(this);
-        updateYear(year - 1);
+        updateYear(this.constructor.getUniqueYear(year - 1, uniqueYears, -1));
       });
     stepperRightButton
       .on('click', () => {
         const { year } = privateProps.get(this);
-        updateYear(year + 1);
+        updateYear(this.constructor.getUniqueYear(year + 1, uniqueYears, 1));
       });
   },
   updateYear() {
     const {
       slider,
       year,
+      uniqueYears,
     } = privateProps.get(this);
 
     slider
-      .config({ currentValue: year })
+      .config({ currentValue: this.constructor.getUniqueYear(year, uniqueYears) })
       .update();
   },
   setSliderSize() {
@@ -180,6 +185,15 @@ class Timeline {
     } = privateMethods;
     setSliderSize.call(this);
     resizeSlider.call(this);
+  }
+  static getUniqueYear(year, uniqueYears, force) {
+    let cYear = uniqueYears.find(y => y >= year);
+    if (cYear !== year && force !== 1) {
+      const prevYear = uniqueYears[uniqueYears.indexOf(cYear) - 1];
+      if (force === -1) cYear = prevYear;
+      else cYear = Math.abs(year - cYear) < Math.abs(year - prevYear) ? cYear : prevYear;
+    }
+    return cYear;
   }
 }
 

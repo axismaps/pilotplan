@@ -3,6 +3,7 @@
  * @module timelineTooltipMethods
  * @memberof timeline
  */
+import Timeline from './timeline';
 import erasMethods from '../eras/erasMethods';
 
 const getTooltipMethods = ({ privateProps, privateMethods }) => ({
@@ -66,6 +67,7 @@ const getTooltipMethods = ({ privateProps, privateMethods }) => ({
       eras,
       language,
       tooltipEra,
+      uniqueYears,
     } = privateProps.get(this);
 
     const {
@@ -80,7 +82,7 @@ const getTooltipMethods = ({ privateProps, privateMethods }) => ({
       .styles({
         left: `${x - (tooltipWidth / 2)}px`,
       });
-    tooltipYear.text(year);
+    tooltipYear.text(Timeline.getUniqueYear(year, uniqueYears));
     tooltipEra.text(currentEra[language]);
   },
 });
