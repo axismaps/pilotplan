@@ -18,6 +18,7 @@ const setLoadingCallbacks = ({ props, privateMethods }) => {
     drawHighlightedFeature,
     clearHighlightedFeature,
     getHighlightedGeoJSON,
+    updateLuminosity,
   } = highlightMethods;
 
   props.onReturnToSearch = () => {
@@ -69,18 +70,19 @@ const setLoadingCallbacks = ({ props, privateMethods }) => {
           highlightedLayer.style === layer.id ||
           layer.id.includes(highlightedLayer.dataLayer);
 
-
         if (layer.type === 'line') {
           if (!isLayer) {
             mbMap.setPaintProperty(layer.id, 'line-opacity', 0.1);
           } else if (isLayer) {
             mbMap.setPaintProperty(layer.id, 'line-opacity', 1);
+            updateLuminosity(mbMap, layer.id, 'line-color');
           }
         } else if (layer.type === 'fill') {
           if (!isLayer) {
             mbMap.setPaintProperty(layer.id, 'fill-opacity', 0.1);
           } else if (isLayer) {
             mbMap.setPaintProperty(layer.id, 'fill-opacity', 1);
+            updateLuminosity(mbMap, layer.id, 'fill-color');
           }
         } else if (layer.type === 'symbol') {
           if (!isLayer) {

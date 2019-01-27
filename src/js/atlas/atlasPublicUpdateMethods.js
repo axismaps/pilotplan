@@ -82,6 +82,7 @@ const getAtlasUpdateMethods = ({
         highlightedLayer,
         mbMap,
         layerOpacities,
+        layerFills,
         year,
         extentsData,
         onLayerSourceData,
@@ -101,16 +102,22 @@ const getAtlasUpdateMethods = ({
           clearTimeout(highlightLoadingTimer);
         }
         layers.forEach((layer) => {
+          let opacityField;
           let fillField;
           if (layer.type === 'fill') {
-            fillField = 'fill-opacity';
+            opacityField = 'fill-opacity';
+            fillField = 'fill-color';
           } else if (layer.type === 'line') {
-            fillField = 'line-opacity';
+            opacityField = 'line-opacity';
+            fillField = 'line-color';
           } else if (layer.type === 'symbol') {
-            fillField = 'text-opacity';
+            opacityField = 'text-opacity';
           }
-          if (fillField !== undefined) {
-            mbMap.setPaintProperty(layer.id, fillField, layerOpacities[layer.id]);
+          if (opacityField !== undefined) {
+            mbMap.setPaintProperty(layer.id, opacityField, layerOpacities[layer.id]);
+            if (fillField && layerFills[layer.id]) {
+              mbMap.setPaintProperty(layer.id, fillField, layerFills[layer.id]);
+            }
           }
           props.highlightLayerLoading = false;
         });
