@@ -20,28 +20,6 @@ const setLoadingCallbacks = ({ props, privateMethods }) => {
     getHighlightedGeoJSON,
   } = highlightMethods;
 
-  props.correctAttribution = () => {
-    const {
-      initialLoadTimer,
-      attributedCorrected,
-    } = props;
-    if (attributedCorrected) return;
-    if (initialLoadTimer !== null) {
-      clearTimeout(initialLoadTimer);
-    }
-
-    props.initialLoadTimer = setTimeout(() => {
-      props.attributedCorrected = true;
-      d3.select('.mapboxgl-ctrl-attrib')
-
-        .html(`
-        <a href="https://www.mapbox.com/about/maps/" target="_blank">© Mapbox</a>
-        <a class="mapbox-improve-map" href="https://www.mapbox.com/feedback/?owner=axismaps&amp;id=cjlxzhuj652652smt1jf50bq5&amp;access_token=pk.eyJ1IjoiYXhpc21hcHMiLCJhIjoieUlmVFRmRSJ9.CpIxovz1TUWe_ecNLFuHNg" target="_blank">Improve this map</a>
-        <a href="https://www.digitalglobe.com/" target="_blank">© DigitalGlobe</a>
-        `);
-    }, 2000);
-  };
-
   props.onReturnToSearch = () => {
     const {
       mbMap,

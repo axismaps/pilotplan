@@ -32,7 +32,6 @@ const privateMethods = {
       onLayerSourceData,
       onFeatureSourceData,
       onReturnToSearch,
-      correctAttribution,
       translations,
     } = props;
 
@@ -51,7 +50,6 @@ const privateMethods = {
           onLayerSourceData,
           onFeatureSourceData,
           onReturnToSearch,
-          correctAttribution,
           setCancelClickSearch: () => {
             props.cancelClickSearch = true;
           },
