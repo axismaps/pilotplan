@@ -37,11 +37,13 @@ const privateMethods = {
 
     const {
       getCurrentStyle,
+      updateTileSet,
       getMap,
     } = generalMethods;
 
     d3.json('./data/style.json')
-      .then((style) => {
+      .then((rawStyle) => {
+        const style = updateTileSet(rawStyle);
         const mbMap = getMap({
           dataProbe,
           onMove,

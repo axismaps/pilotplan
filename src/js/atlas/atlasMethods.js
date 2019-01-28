@@ -3,7 +3,7 @@
  * @module atlasMethods
  * @memberof atlas
  */
-
+import { tilesets } from '../config/config';
 import getProbeConfig from '../dataProbe/dataProbeGetConfig';
 import atlasClickSearchMethods from './atlasClickSearchMethods';
 
@@ -80,6 +80,13 @@ const atlasMethods = {
       style: mbMap.getStyle(),
       year,
     });
+  },
+  updateTileSet(style) {
+    const updatedSource = style;
+    if (/[?&]dev=true/.test(window.location.search)) {
+      updatedSource.sources.composite.url = tilesets.dev;
+    }
+    return updatedSource;
   },
   getMap({
     viewshedsGeo,

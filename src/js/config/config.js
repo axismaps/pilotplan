@@ -51,6 +51,11 @@ export const footerCategoryIcons = {
 
 export const accessToken = 'pk.eyJ1IjoiYXhpc21hcHMiLCJhIjoieUlmVFRmRSJ9.CpIxovz1TUWe_ecNLFuHNg';
 
+export const tilesets = {
+  dev: 'mapbox://axismaps.01c7rsvl',
+  prod: 'mapbox://axismaps.dd66zwg7',
+};
+
 export const selections = {
   outerContainer: d3.select('.outer-container'),
   areaSearchButton: d3.select('.area-button'),
