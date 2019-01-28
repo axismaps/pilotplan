@@ -161,6 +161,7 @@ export const selections = {
   introTitleText: d3.select('.intro__title'),
   introSubtitleText: d3.select('.intro__subtitle'),
   introSummaryText: d3.select('.intro__summary'),
+  introDisclaimerText: d3.select('.intro__disclaimer'),
 
   erasMapButtonContainer: d3.select('.eras__map-button'),
   erasStepperLeftButton: d3.select('.eras__stepper-icon-left'),
