@@ -17,7 +17,6 @@ const getPublicMethods = ({ privateProps }) => ({
     const { mbMap } = privateProps.get(this);
     return mbMap.getStyle();
   },
-
   textSearch(value) {
     const {
       mbMap,

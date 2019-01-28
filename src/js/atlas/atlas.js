@@ -179,9 +179,11 @@ const privateMethods = {
     const {
       mbMap,
     } = props;
-    const { getLayerOpacities } = generalMethods;
+    const { getLayerOpacities, getLayerFills } = generalMethods;
     const layerOpacities = getLayerOpacities({ mbMap });
+    const layerFills = getLayerFills({ mbMap });
     props.layerOpacities = layerOpacities;
+    props.layerFills = layerFills;
   },
   zoomToAndHighlightFeature({ props }) {
     const {

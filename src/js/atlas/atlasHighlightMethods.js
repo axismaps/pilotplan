@@ -166,7 +166,6 @@ const atlasHighlightMethods = {
       paint: {
         'line-width': 2,
         'line-color': '#eee',
-
       },
     };
 
@@ -201,6 +200,22 @@ const atlasHighlightMethods = {
       }
       mbMap.addLayer(outlineLayerBottom);
       mbMap.addLayer(outlineLayerTop);
+    }
+  },
+  updateLuminosity(
+    mbMap,
+    layerId,
+    paintProp,
+  ) {
+    let hsl = mbMap.getPaintProperty(layerId, paintProp);
+    if (hsl) {
+      if (Array.isArray(hsl)) hsl = hsl[hsl.length - 1];
+      const nums = hsl.match(/\d+\.?\d*/gm);
+      if (nums.length === 3 || nums.length === 4) {
+        nums[2] = Math.min(parseInt(nums[2], 10) + 20, 100);
+        const bright = `hsl(${nums[0]}, ${nums[1]}%, ${nums[2]}%)`;
+        mbMap.setPaintProperty(layerId, paintProp, bright);
+      }
     }
   },
 };
