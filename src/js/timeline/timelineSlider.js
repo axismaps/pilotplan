@@ -3,6 +3,7 @@
  * @module timelineSlider
  * @memberof timeline
  */
+import Timeline from './timeline';
 import getSliderBase from './timelineSliderBase';
 import getSliderAxis from './timelineSliderAxis';
 import getTooltipMethods from './timelineTooltipMethods';
@@ -131,6 +132,7 @@ const privateMethods = {
       onDragEnd,
       tooltip,
       mobile,
+      uniqueYears,
     } = props;
 
     const { setTooltipPosition } = privateMethods;
@@ -155,7 +157,7 @@ const privateMethods = {
           newValue = valueRange[1];
           /* eslint-enable prefer-destructuring */
         }
-        onDragEnd(newValue);
+        onDragEnd(Timeline.getUniqueYear(newValue, uniqueYears));
       }));
   },
 };

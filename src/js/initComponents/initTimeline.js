@@ -12,6 +12,7 @@ const initTimeline = function initTimeline() {
     mobile: state.get('mobile'),
     language: state.get('language'),
     eras: this.data.eras,
+    uniqueYears: this.data.years,
     year: state.get('year'),
     updateYear(newYear) {
       state.update({ year: Math.round(newYear) });
