@@ -53,10 +53,10 @@ def project_raster(tif):
   os.system(mb_string.substitute(path=PATH, tif=tif, base=basename))
 
 if sys.argv[1]:
-  files = sys.argv[1].replace(PATH, '').split('/')
-  raster_bands(files[1], files[0] + '/')
-  os.system('source .env && node bin/raster.js && shopt -s extglob')
-  os.system('rm data/geotiff/converted/*.!(gitignore)')
+  FILES = sys.argv[1].replace(PATH, '').split('/')
+  raster_bands(FILES[1], FILES[0] + '/')
+  os.system('source .env && node bin/raster.js')
+  os.system('find data/geotiff/converted/ -type f  ! -name ".gitignore"  -delete')
 else:
   for subdir in os.listdir(PATH):
     if subdir[0] != '.' and subdir != 'converted':
