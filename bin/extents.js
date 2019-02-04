@@ -51,6 +51,7 @@ function writeStatic(f) {
     if (loaded === total) {
       fs.writeFile(path.join(__dirname, '../src/data/extents.json'), JSON.stringify(config, null, 2), () => {
         console.log('EXTENTS FILE WRITTEN');
+        uniqueYears = _.union(uniqueYears, [new Date().getFullYear()]).sort();
         fs.writeFile(path.join(__dirname, '../src/data/years.json'), JSON.stringify(uniqueYears, null, 2), () => {
           console.log('YEARS FILE WRITTEN');
         });
