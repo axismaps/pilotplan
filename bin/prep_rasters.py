@@ -45,10 +45,12 @@ def raster_bands(tif, sub):
 
 def project_raster(tif):
   basename = re.sub(r"\.tif$", '', tif)
-  s = Template("""gdalwarp -t_srs EPSG:3857 ${path}converted/${tif} ${path}converted/${base}_merc.tif &&
-    gdal_translate -of mbtiles ${path}converted/${base}_merc.tif ${path}converted/${base}.mbtiles &&
-    gdaladdo -r nearest ${path}converted/${base}.mbtiles 2 4 8 16 32""")
-  os.system(s.substitute(path=PATH, tif=tif, base=basename))
+  mb_string = Template("""gdalwarp -t_srs EPSG:3857 \
+      ${path}converted/${tif} ${path}converted/${base}_merc.tif &&
+    echo Converting to MBTiles
+    gdal2mbtiles --no-fill-borders --min-resolution 9 \
+      ${path}converted/${base}_merc.tif ${path}converted/${base}.mbtiles""")
+  os.system(mb_string.substitute(path=PATH, tif=tif, base=basename))
 
 if sys.argv[1]:
   files = sys.argv[1].replace(PATH, '').split('/')
