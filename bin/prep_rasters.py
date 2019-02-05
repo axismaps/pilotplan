@@ -1,12 +1,18 @@
 """Deal with raster transparency and convert to MBTiles for uploading"""
 
+import argparse
 import os
 import re
-import sys
 from string import Template
 from shutil import copyfile
 from osgeo import gdal
 import rasterio
+
+PARSER = argparse.ArgumentParser()
+PARSER.add_argument('file')
+PARSER.add_argument('--fixed')
+PARSER.add_argument('--nodata', type=int)
+ARGS = PARSER.parse_args()
 
 PATH = 'data/geotiff/'
 
@@ -16,7 +22,11 @@ def raster_bands(tif, sub):
     print 'Reading raster', tif_file
     src = gdal.Open(tif_file)
     ras = rasterio.open(tif_file)
-    val = ras.read(1)[0][0]
+
+    if ARGS.nodata:
+      val = ARGS.nodata
+    else:
+      val = ras.read(1)[0][0]
 
     if (src.RasterCount == 4 or (val != 0 and val != 255)) and ras.dtypes[0] == 'uint8':
       print '4 correct bands found'
@@ -55,7 +65,7 @@ def project_raster(tif):
     ${path}converted/${tif} ${path}converted/${base}_merc.tif""")
   os.system(merc_string.substitute(path=PATH, tif=tif, base=basename))
 
-  if len(sys.argv) > 2 and sys.argv[2] == '--fixed':
+  if ARGS.fixed:
     mb_string = Template("""echo Converting to MBTiles &&
       gdal2mbtiles --no-fill-borders --min-resolution 9 --max-resolution 17\
         ${path}converted/${base}_merc.tif ${path}converted/${base}.mbtiles""")
@@ -65,8 +75,8 @@ def project_raster(tif):
       gdaladdo -r nearest ${path}converted/${base}.mbtiles 2 4 8 16 32 64""")
   os.system(mb_string.substitute(path=PATH, tif=tif, base=basename))
 
-if sys.argv[1]:
-  FILES = sys.argv[1].replace(PATH, '').split('/')
+if ARGS.file:
+  FILES = ARGS.file.replace(PATH, '').split('/')
   raster_bands(FILES[1], FILES[0] + '/')
   os.system('source .env && node bin/raster.js')
   # os.system('find data/geotiff/converted/ -type f  ! -name ".gitignore"  -delete')
