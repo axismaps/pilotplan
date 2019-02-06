@@ -186,6 +186,7 @@ const rasterProbeMethods = {
         height: 14,
       },
       handleDetail: false,
+      opacitySlider: true,
     });
     return slider;
   },

@@ -50,6 +50,7 @@ const privateMethods = {
       onDragEnd: updateYear,
       tooltip: true,
       onDrag: null,
+      opacitySlider: false,
     });
   },
   setText() {
@@ -58,6 +59,7 @@ const privateMethods = {
       stepperTextContainer,
       uniqueYears,
     } = privateProps.get(this);
+
     stepperTextContainer.text(this.constructor.getUniqueYear(year, uniqueYears));
   },
   resizeSlider() {

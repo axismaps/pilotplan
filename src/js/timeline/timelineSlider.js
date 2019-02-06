@@ -133,6 +133,7 @@ const privateMethods = {
       tooltip,
       mobile,
       uniqueYears,
+      opacitySlider,
     } = props;
 
     const { setTooltipPosition } = privateMethods;
@@ -157,7 +158,11 @@ const privateMethods = {
           newValue = valueRange[1];
           /* eslint-enable prefer-destructuring */
         }
-        onDragEnd(Timeline.getUniqueYear(newValue, uniqueYears));
+        if (opacitySlider) {
+          onDragEnd(newValue);
+        } else {
+          onDragEnd(Timeline.getUniqueYear(newValue, uniqueYears));
+        }
       }));
   },
 };
