@@ -10,7 +10,7 @@ tippecanoe -Z 9 -z 10 -S 10 -ab -ai -pf -pk -f -o data/tiles/10.mbtiles \
   data/geojson/geography/RoadsLine.json \
   data/geojson/geography/UtilitiesLine.json \
   data/geojson/geography/UtilitiesPoly.json \
-  data/geojson/geography/VulnerabilityPoint.json \
+  # data/geojson/geography/VulnerabilityPoint.json \
   data/geojson/geography/WaterWorksPoly.json
 
 tippecanoe -Z 11 -z 11 -S 10 -ab -ai -pf -pk -f -o data/tiles/11.mbtiles \
@@ -25,8 +25,8 @@ tippecanoe -Z 11 -z 11 -S 10 -ab -ai -pf -pk -f -o data/tiles/11.mbtiles \
   data/geojson/geography/RoadsLine.json \
   data/geojson/geography/UtilitiesLine.json \
   data/geojson/geography/UtilitiesPoly.json \
-  data/geojson/geography/VulnerabilityPoint.json \
-  data/geojson/geography/VulnerabilityPoly.json \
+  # data/geojson/geography/VulnerabilityPoint.json \
+  # data/geojson/geography/VulnerabilityPoly.json \
   data/geojson/geography/WaterWorksPoly.json
 
 tippecanoe -Z 12 -z 12 -S 10 -ab -ai -pf -pk -f -o data/tiles/12.mbtiles \
@@ -43,8 +43,8 @@ tippecanoe -Z 12 -z 12 -S 10 -ab -ai -pf -pk -f -o data/tiles/12.mbtiles \
   data/geojson/geography/RoadsLine.json \
   data/geojson/geography/UtilitiesLine.json \
   data/geojson/geography/UtilitiesPoly.json \
-  data/geojson/geography/VulnerabilityPoint.json \
-  data/geojson/geography/VulnerabilityPoly.json \
+  # data/geojson/geography/VulnerabilityPoint.json \
+  # data/geojson/geography/VulnerabilityPoly.json \
   data/geojson/geography/WaterWorksPoly.json
 
 tippecanoe -Z 13 -z 13 -S 10 -ab -ai -pf -pk -f -o data/tiles/13.mbtiles \
@@ -60,8 +60,8 @@ tippecanoe -Z 13 -z 13 -S 10 -ab -ai -pf -pk -f -o data/tiles/13.mbtiles \
   data/geojson/geography/RoadsLine.json \
   data/geojson/geography/UtilitiesLine.json \
   data/geojson/geography/UtilitiesPoly.json \
-  data/geojson/geography/VulnerabilityPoint.json \
-  data/geojson/geography/VulnerabilityPoly.json \
+  # data/geojson/geography/VulnerabilityPoint.json \
+  # data/geojson/geography/VulnerabilityPoly.json \
   data/geojson/geography/WaterWorksPoly.json
 
 tippecanoe -Z 14 -z 17 -S 10 -ab -ai -pf -pk -f -o data/tiles/14.mbtiles \
@@ -77,22 +77,14 @@ tippecanoe -Z 14 -z 17 -S 10 -ab -ai -pf -pk -f -o data/tiles/14.mbtiles \
   data/geojson/geography/RoadsLine.json \
   data/geojson/geography/UtilitiesLine.json \
   data/geojson/geography/UtilitiesPoly.json \
-  data/geojson/geography/VulnerabilityPoint.json \
-  data/geojson/geography/VulnerabilityPoly.json \
+  # data/geojson/geography/VulnerabilityPoint.json \
+  # data/geojson/geography/VulnerabilityPoly.json \
   data/geojson/geography/WaterWorksPoly.json
 
 tile-join -pk -f -o data/tiles/houston.mbtiles data/tiles/10.mbtiles data/tiles/11.mbtiles data/tiles/12.mbtiles data/tiles/13.mbtiles data/tiles/14.mbtiles
 
-# if [ "$1" == dev ]; then
-#   id="axismaps.4dn6opyb"
-#   tileset="dev"
-# else
-#   id="axismaps.4dn6opyb"
-#   tileset="production"
-# fi
-
-# echo Uploading to $tileset tileset
-
-# source .env
-
-# mapbox upload $id data/tiles/houston.mbtiles
+cd data/tiles
+mb-util --image_format=pbf houston.mbtiles houston
+gzip -d -r -S .pbf *
+find . -type f -exec mv '{}' '{}'.pbf \;
+aws s3 sync . s3://highways-waterways/tiles/ --acl="public-read"
