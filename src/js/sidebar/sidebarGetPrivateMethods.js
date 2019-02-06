@@ -160,7 +160,6 @@ const getSidebarMethods = (privateProps) => {
         translations,
       } = props;
 
-
       layerGroups.each(function addLayers(d) {
         const layers = d3.select(this)
           .select('.sidebar__layer-block')

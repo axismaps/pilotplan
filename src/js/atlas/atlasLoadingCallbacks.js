@@ -18,29 +18,8 @@ const setLoadingCallbacks = ({ props, privateMethods }) => {
     drawHighlightedFeature,
     clearHighlightedFeature,
     getHighlightedGeoJSON,
+    updateLuminosity,
   } = highlightMethods;
-
-  props.correctAttribution = () => {
-    const {
-      initialLoadTimer,
-      attributedCorrected,
-    } = props;
-    if (attributedCorrected) return;
-    if (initialLoadTimer !== null) {
-      clearTimeout(initialLoadTimer);
-    }
-
-    props.initialLoadTimer = setTimeout(() => {
-      props.attributedCorrected = true;
-      d3.select('.mapboxgl-ctrl-attrib')
-
-        .html(`
-        <a href="https://www.mapbox.com/about/maps/" target="_blank">© Mapbox</a>
-        <a class="mapbox-improve-map" href="https://www.mapbox.com/feedback/?owner=axismaps&amp;id=cjlxzhuj652652smt1jf50bq5&amp;access_token=pk.eyJ1IjoiYXhpc21hcHMiLCJhIjoieUlmVFRmRSJ9.CpIxovz1TUWe_ecNLFuHNg" target="_blank">Improve this map</a>
-        <a href="https://www.digitalglobe.com/" target="_blank">© DigitalGlobe</a>
-        `);
-    }, 2000);
-  };
 
   props.onReturnToSearch = () => {
     const {
@@ -91,18 +70,19 @@ const setLoadingCallbacks = ({ props, privateMethods }) => {
           highlightedLayer.style === layer.id ||
           layer.id.includes(highlightedLayer.dataLayer);
 
-
         if (layer.type === 'line') {
           if (!isLayer) {
             mbMap.setPaintProperty(layer.id, 'line-opacity', 0.1);
           } else if (isLayer) {
             mbMap.setPaintProperty(layer.id, 'line-opacity', 1);
+            updateLuminosity(mbMap, layer.id, 'line-color');
           }
         } else if (layer.type === 'fill') {
           if (!isLayer) {
             mbMap.setPaintProperty(layer.id, 'fill-opacity', 0.1);
           } else if (isLayer) {
             mbMap.setPaintProperty(layer.id, 'fill-opacity', 1);
+            updateLuminosity(mbMap, layer.id, 'fill-color');
           }
         } else if (layer.type === 'symbol') {
           if (!isLayer) {

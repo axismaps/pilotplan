@@ -5,6 +5,7 @@ const turf = require('@turf/helpers');
 const getBBox = require('@turf/bbox').default;
 
 const config = {};
+let uniqueYears = [];
 let loaded = 0;
 let total = 0;
 
@@ -34,6 +35,7 @@ function processFeatures(features, name, layer) {
   });
   if (!config[layer]) config[layer] = {};
   config[layer][name] = extents;
+  uniqueYears = _.union(uniqueYears, years).sort();
 }
 
 function writeStatic(f) {
@@ -48,7 +50,11 @@ function writeStatic(f) {
     loaded += 1;
     if (loaded === total) {
       fs.writeFile(path.join(__dirname, '../src/data/extents.json'), JSON.stringify(config, null, 2), () => {
-        console.log('FILE WRITTEN');
+        console.log('EXTENTS FILE WRITTEN');
+        uniqueYears = _.union(uniqueYears, [new Date().getFullYear()]).sort();
+        fs.writeFile(path.join(__dirname, '../src/data/years.json'), JSON.stringify(uniqueYears, null, 2), () => {
+          console.log('YEARS FILE WRITTEN');
+        });
       });
     }
   });

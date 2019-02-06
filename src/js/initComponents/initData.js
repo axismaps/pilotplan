@@ -12,6 +12,7 @@ const loadData = (callback) => {
     d3.json('data/MapExtents.json'),
     d3.json('data/PlanExtents.json'),
     d3.json('data/extents.json'),
+    d3.json('data/years.json'),
     d3.csv('data/translations.csv'),
     d3.csv('img/legend/legend.csv'),
   ]).then((rawData) => {

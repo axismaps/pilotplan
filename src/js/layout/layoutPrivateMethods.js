@@ -103,6 +103,7 @@ const getPrivateMethods = ({ privateProps }) => ({
       toggleRegisterScreen,
       registerInnerContainer,
       registerCancelButton,
+      registerSubmitButton,
     } = privateProps.get(this);
     registerOuterContainer
       .on('click', () => {
@@ -110,6 +111,11 @@ const getPrivateMethods = ({ privateProps }) => ({
       });
 
     registerCancelButton
+      .on('click', () => {
+        toggleRegisterScreen(false);
+      });
+
+    registerSubmitButton
       .on('click', () => {
         toggleRegisterScreen(false);
       });

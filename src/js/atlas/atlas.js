@@ -32,17 +32,18 @@ const privateMethods = {
       onLayerSourceData,
       onFeatureSourceData,
       onReturnToSearch,
-      correctAttribution,
       translations,
     } = props;
 
     const {
       getCurrentStyle,
+      updateTileSet,
       getMap,
     } = generalMethods;
 
     d3.json('./data/style.json')
-      .then((style) => {
+      .then((rawStyle) => {
+        const style = updateTileSet(rawStyle);
         const mbMap = getMap({
           dataProbe,
           onMove,
@@ -51,7 +52,6 @@ const privateMethods = {
           onLayerSourceData,
           onFeatureSourceData,
           onReturnToSearch,
-          correctAttribution,
           setCancelClickSearch: () => {
             props.cancelClickSearch = true;
           },
@@ -179,9 +179,11 @@ const privateMethods = {
     const {
       mbMap,
     } = props;
-    const { getLayerOpacities } = generalMethods;
+    const { getLayerOpacities, getLayerFills } = generalMethods;
     const layerOpacities = getLayerOpacities({ mbMap });
+    const layerFills = getLayerFills({ mbMap });
     props.layerOpacities = layerOpacities;
+    props.layerFills = layerFills;
   },
   zoomToAndHighlightFeature({ props }) {
     const {

@@ -33,14 +33,16 @@ const privateMethods = {
     introBeginButtonText,
     introTitleText,
     introSummaryText,
+    introDisclaimerText,
   }) {
     introBeginButtonText
       .text(translations['explore-map-button-text'][language]);
-
     introTitleText
       .text(translations.h1[language]);
     introSummaryText
       .text(translations['era-description'][language]);
+    introDisclaimerText
+      .text(translations['disclaimer-text'][language]);
   },
 };
 
@@ -52,6 +54,7 @@ class Intro {
       introTitleText,
       introSubtitleText,
       introSummaryText,
+      introDisclaimerText,
     } = selections;
 
     privateProps.set(this, {
@@ -60,6 +63,7 @@ class Intro {
       introTitleText,
       introSubtitleText,
       introSummaryText,
+      introDisclaimerText,
       onBeginButtonClick: null,
       translations: null,
       language: null,
@@ -86,6 +90,7 @@ class Intro {
       introTitleText,
       introSubtitleText,
       introSummaryText,
+      introDisclaimerText,
     } = privateProps.get(this);
     const {
       setText,
@@ -96,6 +101,7 @@ class Intro {
       introTitleText,
       introSubtitleText,
       introSummaryText,
+      introDisclaimerText,
       language,
       translations,
     });

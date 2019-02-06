@@ -51,6 +51,11 @@ export const footerCategoryIcons = {
 
 export const accessToken = 'pk.eyJ1IjoiYXhpc21hcHMiLCJhIjoieUlmVFRmRSJ9.CpIxovz1TUWe_ecNLFuHNg';
 
+export const tilesets = {
+  dev: 'mapbox://axismaps.01c7rsvl',
+  prod: 'mapbox://axismaps.dd66zwg7',
+};
+
 export const selections = {
   outerContainer: d3.select('.outer-container'),
   areaSearchButton: d3.select('.area-button'),
@@ -117,6 +122,7 @@ export const selections = {
   registerInnerContainer: d3.select('.register__inner'),
   registerImageContainer: d3.select('.register__image'),
   registerCancelButton: d3.select('.register__cancel-button'),
+  registerSubmitButton: d3.select('.register__subscribe-button'),
 
   lightboxOuterContainer: d3.select('.lightbox__outer'),
   lightboxContentContainer: d3.select('.lightbox__content'),
@@ -156,6 +162,7 @@ export const selections = {
   introTitleText: d3.select('.intro__title'),
   introSubtitleText: d3.select('.intro__subtitle'),
   introSummaryText: d3.select('.intro__summary'),
+  introDisclaimerText: d3.select('.intro__disclaimer'),
 
   erasMapButtonContainer: d3.select('.eras__map-button'),
   erasStepperLeftButton: d3.select('.eras__stepper-icon-left'),

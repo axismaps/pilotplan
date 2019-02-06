@@ -38,6 +38,25 @@ function getStyleInfo() {
   });
 }
 
+function extendYears(years, first, last) {
+  if (years) {
+    const y = years;
+    let i = 0;
+    for (i; i < y.length; i += 1) {
+      if ((y[i][0] <= first + 1 && y[i][1] >= first - 1) || (y[i][0] <= last + 1 && y[i][1] >= last - 1)) {
+        y[i][0] = Math.min(y[i][0], first);
+        y[i][1] = Math.max(y[i][1], last);
+        break;
+      }
+    }
+    if (i === y.length) {
+      y.push([first, last]);
+    }
+    return _.sortBy(y, a => a[0]);
+  }
+  return [[first, last]];
+}
+
 function writeStatic(f) {
   fs.readFile(path.join(__dirname, '../data/geojson/geography', f), (err2, data) => {
     const name = f.replace(/\.json$/, '');
@@ -65,10 +84,7 @@ function writeStatic(f) {
         layer.features[sub].en = sub;
         layer.features[sub].pr = sub;
 
-        layer.features[sub].startYear = layer.features[sub].startYear ?
-          Math.min(layer.features[sub].startYear, p.FirstYear) : p.FirstYear;
-        layer.features[sub].endYear = layer.features[sub].endYear ?
-          Math.max(layer.features[sub].endYear, p.LastYear) : p.LastYear;
+        layer.features[sub].years = extendYears(layer.features[sub].years, p.FirstYear, p.LastYear);
       }
     });
 

@@ -3,7 +3,7 @@
  * @module atlasMethods
  * @memberof atlas
  */
-
+import { tilesets } from '../config/config';
 import getProbeConfig from '../dataProbe/dataProbeGetConfig';
 import atlasClickSearchMethods from './atlasClickSearchMethods';
 
@@ -62,6 +62,22 @@ const atlasMethods = {
       /* eslint-enable no-param-reassign */
     }, {});
   },
+  getLayerFills({
+    mbMap,
+  }) {
+    return mbMap.getStyle().layers.reduce((accumulator, layer) => {
+      /* eslint-disable no-param-reassign */
+      let fill;
+      if (layer.type === 'fill') {
+        fill = mbMap.getPaintProperty(layer.id, 'fill-color');
+      } else if (layer.type === 'line') {
+        fill = mbMap.getPaintProperty(layer.id, 'line-color');
+      }
+      accumulator[layer.id] = fill;
+      return accumulator;
+      /* eslint-enable no-param-reassign */
+    }, {});
+  },
   getCurrentStyle({
     style,
     year,
@@ -80,6 +96,13 @@ const atlasMethods = {
       style: mbMap.getStyle(),
       year,
     });
+  },
+  updateTileSet(style) {
+    const updatedSource = style;
+    if (/[?&]dev=true/.test(window.location.search)) {
+      updatedSource.sources.composite.url = tilesets.dev;
+    }
+    return updatedSource;
   },
   getMap({
     viewshedsGeo,
@@ -110,6 +133,7 @@ const atlasMethods = {
     const mbMap = new mapboxgl.Map({
       minZoom: 9,
       maxZoom: 17,
+      maxBounds: [[-49.6726203, -17.0908045], [-46.4447028, -12.9291031]],
       logoPosition: 'bottom-right',
       container: 'map',
       style,
