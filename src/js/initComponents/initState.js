@@ -66,8 +66,9 @@ const initState = function initState() {
         .map((layer) => {
           const newLayer = Object.assign({}, layer);
           newLayer.features = layer.features.filter(d =>
-            d.startYear <= year &&
-            d.endYear >= year &&
+            d.years.some(e =>
+              e[0] <= year &&
+              e[1] >= year) &&
             d.style !== undefined);
           return newLayer;
         })
