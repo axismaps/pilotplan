@@ -124,6 +124,7 @@ const getAtlasUpdateMethods = ({
         toggleOverlayFade(false);
         return;
       }
+
       props.highlightLayerLoading = true;
       props.highlightFeatureLoading = false;
       const newBounds = getLayerBounds({
@@ -138,12 +139,17 @@ const getAtlasUpdateMethods = ({
         padding: 0,
       });
 
-      mbMap.easeTo({
-        bearing: 0,
-        zoom: newZoom,
-        center: newBounds.getCenter(),
-        duration: 1500,
+      const rendered = mbMap.queryRenderedFeatures({
+        layers: [highlightedLayer.style],
       });
+      if (rendered.length === 0) {
+        mbMap.easeTo({
+          bearing: 0,
+          zoom: newZoom,
+          center: newBounds.getCenter(),
+          duration: 1500,
+        });
+      }
 
       onLayerSourceData();
     },

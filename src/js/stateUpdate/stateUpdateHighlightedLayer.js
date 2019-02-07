@@ -13,6 +13,7 @@ const getUpdateHighlightedLayer = ({
       sidebar,
     } = components;
     const { highlightedLayer } = this.props();
+
     sidebar.config({ highlightedLayer }).updateHighlightedLayer();
     atlas.config({ highlightedLayer }).updateHighlightedLayer();
   };
