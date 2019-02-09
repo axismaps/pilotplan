@@ -28,4 +28,5 @@ fs.readFile(path.join(__dirname, '../data/geojson/visual/ViewConesPoly.json'), '
 
   fs.writeFileSync(path.join(__dirname, '../data/geojson/geography/ViewConesPoint.json'), JSON.stringify(points));
   fs.writeFileSync(path.join(__dirname, '../src/data/ViewConesPoly.json'), JSON.stringify(polys));
+  fs.writeFileSync(path.join(__dirname, '../dist/data/ViewConesPoly.json'), JSON.stringify(polys));
 });
