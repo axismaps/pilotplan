@@ -245,6 +245,7 @@ body {
 .lightbox__inner {
   width: $lightbox-width;
   max-height: 85%;
+  max-width: 95%;
 }
 
 .lightbox__content {

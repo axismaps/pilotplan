@@ -3,8 +3,6 @@
   align-items: center;
 }
 
-
-
 .raster-probe {
   border-radius: 5px;
   box-shadow: $button-shadow;
@@ -69,6 +67,14 @@
   padding-right: 10px;
   padding-top: 5px;
   padding-bottom: 5px;
+}
+
+.lightbox__image{
+  background-size: contain !important;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100% !important;
+  height: 100% !important;
 }
 
 .raster-probe__close-button {
