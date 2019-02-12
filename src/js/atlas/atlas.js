@@ -18,7 +18,6 @@ import getPublicMethods from './atlasPublicMethods';
 
 const privateProps = new WeakMap();
 
-
 const privateMethods = {
   createMBMap({ initApp }) {
     const props = privateProps.get(this);
