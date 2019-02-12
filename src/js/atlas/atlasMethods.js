@@ -3,7 +3,7 @@
  * @module atlasMethods
  * @memberof atlas
  */
-import { tilesets } from '../config/config';
+import { tilesets, hillshades } from '../config/config';
 import getProbeConfig from '../dataProbe/dataProbeGetConfig';
 import atlasClickSearchMethods from './atlasClickSearchMethods';
 
@@ -101,6 +101,7 @@ const atlasMethods = {
     const updatedSource = style;
     if (/[?&]dev=true/.test(window.location.search)) {
       updatedSource.sources.composite.url = tilesets.dev;
+      updatedSource.sources[hillshades.prod].url = hillshades.dev;
     }
     return updatedSource;
   },

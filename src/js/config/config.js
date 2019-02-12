@@ -56,6 +56,11 @@ export const tilesets = {
   prod: 'mapbox://axismaps.dd66zwg7',
 };
 
+export const hillshades = {
+  dev: 'mapbox://axismaps.pilothillshadedev',
+  prod: 'mapbox://axismaps.pilothillshade',
+};
+
 export const selections = {
   outerContainer: d3.select('.outer-container'),
   areaSearchButton: d3.select('.area-button'),
