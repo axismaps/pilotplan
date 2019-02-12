@@ -9,9 +9,10 @@ from osgeo import gdal
 import rasterio
 
 PARSER = argparse.ArgumentParser()
-PARSER.add_argument('file')
+PARSER.add_argument('file', nargs='?')
 PARSER.add_argument('--fixed')
 PARSER.add_argument('--nodata', type=int)
+PARSER.add_argument('--dev')
 ARGS = PARSER.parse_args()
 
 PATH = 'data/geotiff/'
@@ -61,6 +62,9 @@ def raster_bands(tif, sub):
 
 def project_raster(tif):
   basename = re.sub(r"\.tif$", '', tif)
+  if ARGS.dev:
+    basename += 'dev'
+
   merc_string = Template("""gdalwarp -t_srs EPSG:3857 \
     ${path}converted/${tif} ${path}converted/${base}_merc.tif""")
   os.system(merc_string.substitute(path=PATH, tif=tif, base=basename))
