@@ -1,0 +1,103 @@
+﻿id,en,pr
+1892-1955,Future Federal District ,Futuro Distrito Federal
+1955-1965,"Design, Construction, and Inauguration","Planejamento, Construção e Inaguração"
+1964-1985,Military Dictatorship,Ditadura Militar
+1985-2018,New Republic,Nova República
+AerialExtentsPoly,Aerials,Aéreas 
+Agriculture,Agriculture,Agricultura
+Airport,Airport,Aeroporto
+Arterial,Arterial,Arterial
+back-to-text,Back to,Retornar para
+Barracks,Barracks,Quartéis
+Botanical Garden,Botanical Garden,Jardim Botânico
+BoundariesPoly,Areas,Áreas
+Boundary,Boundary,Limite
+Bucolic Scale,Bucolic Scale,Escala bucólica
+BuildingsPoly,Buildings,Edificações
+Built Domain,Built Domain,Mancha Urbana
+BuiltDomainPoly,Ground Cover,Cobertura do solo
+Bus Line,Bus Line,Linha de ônibus
+Cadastral,Cadastral,Cadastral
+Cemetery,Cemetery,Cemitério
+Cerrado Savannah,Cerrado Savannah,Cerrado
+Circulate,Circulate,Circular
+click-for-details,Click for details,Clique para ver os detalhes
+Clustered Scale,Clustered Scale,Escala gregária 
+Collector,Collector,Coletora
+Creek,Creek,Córrego
+Cultivate Body and Mind,Cultivate Body and Mind,Cultivar o corpo e o espírito
+disclaimer-text,"This product is for informational purposes and was neither prepared nor is suitable for legal, engineering, or surveying purposes. Represented objects have approximate locations relative to a particular moment of the research project. No warranty is made regarding specific accuracy or completeness. Rice University and the pilotPlan research team assume no liability or damages due to errors or omissions.","Este produto tem fins informativos e não foi produzido nem é adequado para fins legais, de engenharia ou de levantamento topográfico. Os elementos representados têm localizações aproximadas e correspondem a um momento particular do projeto de pesquisa, não havendo garantia quanto a sua exatidão. A Rice University e a equipe de pesquisa de pilotPlan não assumem qualquer responsabilidade em relação a danos devidos a erros ou omissões."
+Drinking Water,Drinking Water,Água Potável
+EntreQuadra,Entrequadra,Entrequadra
+era-description,"pilotPlan is a searchable digital atlas that illustrates the urban and architectural evolution of Brasilia, as it existed and as it was imagined. Views, historical maps, and ground floor plans –from iconographic, cartographic, and architectural archives– are located in both time and space while their visual and spatial data are integrated across a number of databases and servers, including a public repository of images, a geographic information system, an open-source relational database, and a content delivery web system. The relationship between the various project elements produces a web environment where vector, spatial, and raster data are simultaneously probed, toggled, viewed, and/or queried in a system that supports multiple expressions of diverse data sources. It is an environment where, for example, historians can visualize specific sites both temporally and spatially, where architects and urbanists can see proposed design projects in situ, and where literary scholars can map out novels while visualizing their contexts. Scaled down into a mobile version, the site allows tourists and residents to walk about town while visualizing the city as it once was as well as it was once projected.","O pilotPlan é um atlas digital pesquisável que ilustra a evolução arquitetônica e urbana de Brasília, tal como existia e como era imaginada.  Vistas, mapas históricos e plantas baixas de arquivos iconográficos, cartográficos e arquitetônicos  são localizados no tempo e no espaço, enquanto seus dados visuais e espaciais são integrados em vários bancos de dados e servidores, incluindo um repositório público de imagens, um sistema de informações geográficas, um banco de dados relacional de código aberto e um sistema online de disponibilização de conteúdo. A relação entre os vários elementos do projeto produz um ambiente web onde dados vetoriais, espaciais e matriciais são simultaneamente sondáveis, alternáveis, visualizáveis e/ou consultáveis em um sistema que suporta múltiplas expressões de diversas fontes de dados. É um ambiente onde, por exemplo, historiadores podem visualizar lugares específicos tanto temporalmente quanto espacialmente, onde arquitetos e urbanistas podem ver projetos propostos in situ, e onde pesquisadores literários podem mapear romances enquanto visualizam seus contextos. Adaptado para uma versão móvel, o site pode ser usado por turistas e moradores enquanto caminham pela cidade visualizando-a como era e como já foi projetada. "
+explore-map-button-text,Begin Exploring,Comece a explorar
+Expressway,Expressway,Rodovia
+Field,Field,Campo
+Forest,Forest,Floresta
+Fountain,Fountain,Fonte
+Freeway,Freeway,Rodovia
+go-to-map,Go to Map,Ir para o mapa
+Golf Club,Golf Club,Clube de golf
+h1,pilotPlan,planoPiloto
+InfrastructureLine,Infrastructure,Infraestrutura
+Jockey Club,Jockey Club,Clube de Jockey 
+jump-to-era,Jump to era...,Ir direto para o período...
+Lake,Lake,Lago
+Landscape,Landscape,Paisagem
+Lawn,Lawn,Gramado
+legend-title-text,Map Legend,Legenda
+Live,Live,Viver
+Local,Local,Local
+Main Road,Main Road,Via principal
+Mall,Mall,Mall
+MapExtentsPoly,Maps,Mapas
+Monumental Scale,Monumental Scale,Escala monumental
+Municipal,Municipal,Municipal
+OpenSpacesPoly,Open Spaces,Espaços Abertos
+Orchard,Orchard,Pomar
+Palm Grove,Palm Grove,Alameda
+Parcel,Parcel,Lote
+ParcelsPoly,Allotment,Loteamento
+Park,Park,Parque
+Parking Lot,Parking Lot,Estacionamento
+Pasture,Pasture,Pasto
+PlanExtentsPoly,Plans,Planos
+probe-area-text,Explore by area,Explorar por área
+probe-hint-text,"Click the map to explore, or","Clique no mapa para explorar, ou"
+probe-hint-text--mobile,Tap the map to explore...,Clique no mapa para explorar...
+Racetrack,Racetrack,Autódromo
+Rail,Rail,Trilhos
+Reflecting Pool,Reflecting Pool,Espelho d'água
+Reforested Area,Reforested Area,Área reflorestada
+Reservoir,Reservoir,Reservatório
+Residential Scale,Residential Scale,Escala residencial
+Retaining Wall,Retaining Wall,Muro de arrimo
+River,River,Rio
+RoadsLine,Roads,Vias
+search-map-layers,Search map layers...,Buscar nas camadas do mapa...
+SectorsPoly,Sectors,Setores
+Service Road,Service Road,Pistas laterais 
+Sewage,Sewage,Esgoto
+Square,Square,Praça
+start,start,o início
+State,State,Estadual 
+Storm Water,Storm Water,Águas Pluviais
+Stream,Stream,Ribeirão
+Subway,Subway,Metrô
+Superquadra,Superquadra,Superquadra
+Trail,Trail,Trilho
+Train Station,Train Station,Estação ferroviária
+Tree Belt,Tree Belt,Faixa verde 
+Tree Canopy,Tree Canopy,Copa de árvores
+Tunnel,Tunnel,Túnel
+Uncovered Area,Uncovered Area,Solo Exposto
+Urbanism,Urbanism,Urbanismo
+ViewConesPoly,View Cones,Cones de visão
+Water Treatment Plant,Water Treatment Plant,Estação de Tratamento de água
+WaterBodiesPoly,Water Bodies ,Corpos de água
+WatersLine,Rivers and Streams,Rios e Riachos
+Work,Work,Trabalhar
+Zoological Garden,Zoological Garden,Jardim Zoológico 
+Historical Overlays,Historical Overlays,Sobreposições Históricas
+Register,Register,Cadastrar-se
+Show all,Show all,Mostrar tudo

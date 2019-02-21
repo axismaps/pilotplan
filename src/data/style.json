@@ -1,0 +1,2591 @@
+{
+    "version": 8,
+    "name": "Brasilia-v3",
+    "metadata": {
+        "mapbox:autocomposite": true,
+        "mapbox:type": "template",
+        "mapbox:sdk-support": {
+            "js": "latest",
+            "android": "6.0.0",
+            "ios": "4.0.0"
+        },
+        "mapbox:groups": {
+            "d3e156b2fae7298da93c6c6cb9e8522a": {
+                "name": "Road Labels",
+                "collapsed": true
+            },
+            "a04428c037425a3d0df4ac9b17367f77": {
+                "name": "Road",
+                "collapsed": true
+            },
+            "5ab01a8793bdeeafe61620a1ef546372": {
+                "name": "Sector",
+                "collapsed": true
+            },
+            "2591203a36f77a2353d1e37c27ca8d4b": {
+                "name": "Water Labels",
+                "collapsed": true
+            },
+            "14aac24dcfe8ee3a1a67579284f36eab": {
+                "name": "InfrastructurePoly",
+                "collapsed": true
+            },
+            "a767fb3590355077e9f91cf672e9d186": {
+                "name": "Water",
+                "collapsed": true
+            },
+            "8d1ddf615db234b74698203cbe19c20e": {
+                "name": "OpenSpacesPoly",
+                "collapsed": true
+            },
+            "55a68e75394877ae97b05f788ef4d5eb": {
+                "name": "River",
+                "collapsed": true
+            },
+            "b16b3b3df4ffbbc42101a47ea38f43da": {
+                "name": "Building",
+                "collapsed": true
+            },
+            "0de5687b0d47951f32ae1375febbbb66": {
+                "name": "Builtdomain",
+                "collapsed": false
+            },
+            "31a94c2ff0376a41dc9488ba1cf1b08b": {
+                "name": "InfrastructureLine",
+                "collapsed": true
+            }
+        },
+        "mapbox:trackposition": false
+    },
+    "center": [-47.88241331711572, -15.789174982334913],
+    "zoom": 12.604030593124717,
+    "bearing": -72,
+    "pitch": 0,
+    "sources": {
+        "composite": {"url": "mapbox://axismaps.dd66zwg7", "type": "vector"},
+        "mapbox://axismaps.pilothillshade": {
+            "url": "mapbox://axismaps.pilothillshade",
+            "type": "raster",
+            "tileSize": 256
+        },
+        "mapbox://mapbox.satellite": {
+            "url": "mapbox://mapbox.satellite",
+            "type": "raster",
+            "tileSize": 256
+        }
+    },
+    "sprite": "mapbox://sprites/axismaps/cjqa5txmq37uw2rqyieyojxh7",
+    "glyphs": "mapbox://fonts/axismaps/{fontstack}/{range}.pbf",
+    "layers": [
+        {
+            "id": "background",
+            "type": "background",
+            "layout": {},
+            "paint": {"background-opacity": 1, "background-color": "#000000"}
+        },
+        {
+            "id": "Built Domain",
+            "type": "fill",
+            "metadata": {"mapbox:group": "0de5687b0d47951f32ae1375febbbb66"},
+            "source": "composite",
+            "source-layer": "BuiltDomainPoly",
+            "filter": [
+                "all",
+                ["==", "$type", "Polygon"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "Built Domain"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {},
+            "paint": {
+                "fill-color": "hsl(0, 0%, 9%)",
+                "fill-opacity": 1,
+                "fill-outline-color": "hsla(59, 0%, 21%, 0)",
+                "fill-pattern": "texture"
+            }
+        },
+        {
+            "id": "Bucolic Scale",
+            "type": "fill",
+            "metadata": {"mapbox:group": "5ab01a8793bdeeafe61620a1ef546372"},
+            "source": "composite",
+            "source-layer": "SectorsPoly",
+            "filter": [
+                "all",
+                ["==", "$type", "Polygon"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "Bucolic Scale"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {},
+            "paint": {
+                "fill-color": "#281f1a",
+                "fill-outline-color": "hsla(0, 0%, 0%, 0)",
+                "fill-pattern": "bucolic-texture-dark"
+            }
+        },
+        {
+            "id": "Clustered Scale",
+            "type": "fill",
+            "metadata": {"mapbox:group": "5ab01a8793bdeeafe61620a1ef546372"},
+            "source": "composite",
+            "source-layer": "SectorsPoly",
+            "filter": [
+                "all",
+                ["==", "$type", "Polygon"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "Clustered Scale"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {},
+            "paint": {
+                "fill-color": "#482d2d",
+                "fill-outline-color": "hsla(0, 0%, 0%, 0)",
+                "fill-pattern": "clustered-texture-dark"
+            }
+        },
+        {
+            "id": "Monumental Scale",
+            "type": "fill",
+            "metadata": {"mapbox:group": "5ab01a8793bdeeafe61620a1ef546372"},
+            "source": "composite",
+            "source-layer": "SectorsPoly",
+            "filter": [
+                "all",
+                ["==", "$type", "Polygon"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "Monumental Scale"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {},
+            "paint": {
+                "fill-color": "#472c1f",
+                "fill-outline-color": "hsla(0, 0%, 0%, 0)",
+                "fill-pattern": "monumental-texture-dark"
+            }
+        },
+        {
+            "id": "Residential Scale",
+            "type": "fill",
+            "metadata": {"mapbox:group": "5ab01a8793bdeeafe61620a1ef546372"},
+            "source": "composite",
+            "source-layer": "SectorsPoly",
+            "minzoom": 9,
+            "filter": [
+                "all",
+                ["==", "$type", "Polygon"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "Residential Scale"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {},
+            "paint": {
+                "fill-color": "#2e232b",
+                "fill-outline-color": "hsla(0, 0%, 0%, 0)",
+                "fill-pattern": "residential-texture-dark",
+                "fill-opacity": 1
+            }
+        },
+        {
+            "id": "Cerrado Savannah",
+            "type": "fill",
+            "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
+            "source": "composite",
+            "source-layer": "OpenSpacesPoly",
+            "filter": [
+                "all",
+                ["==", "$type", "Polygon"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "Cerrado Savannah"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {},
+            "paint": {
+                "fill-color": "hsl(100, 27%, 2%)",
+                "fill-outline-color": "hsla(75, 0%, 0%, 0)"
+            }
+        },
+        {
+            "id": "Cerrado Savannah Blur",
+            "type": "line",
+            "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
+            "source": "composite",
+            "source-layer": "OpenSpacesPoly",
+            "filter": [
+                "all",
+                ["==", "$type", "Polygon"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "Cerrado Savannah"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {"line-join": "round"},
+            "paint": {
+                "line-color": "#050704",
+                "line-width": [
+                    "interpolate",
+                    ["linear"],
+                    ["zoom"],
+                    11,
+                    6,
+                    22,
+                    30
+                ],
+                "line-blur": [
+                    "interpolate",
+                    ["linear"],
+                    ["zoom"],
+                    11,
+                    4,
+                    22,
+                    15
+                ]
+            }
+        },
+        {
+            "id": "Reforested Area",
+            "type": "fill",
+            "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
+            "source": "composite",
+            "source-layer": "OpenSpacesPoly",
+            "filter": [
+                "all",
+                ["==", "$type", "Polygon"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "Reforested Area"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {},
+            "paint": {
+                "fill-color": "#0f140b",
+                "fill-outline-color": "hsla(0, 0%, 0%, 0)"
+            }
+        },
+        {
+            "id": "Reforested Area Blur",
+            "type": "line",
+            "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
+            "source": "composite",
+            "source-layer": "OpenSpacesPoly",
+            "filter": [
+                "all",
+                ["==", "$type", "Polygon"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "Reforested Area"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {"line-join": "round", "line-miter-limit": 0},
+            "paint": {
+                "line-width": [
+                    "interpolate",
+                    ["linear"],
+                    ["zoom"],
+                    11,
+                    6,
+                    22,
+                    30
+                ],
+                "line-blur": [
+                    "interpolate",
+                    ["linear"],
+                    ["zoom"],
+                    11,
+                    4,
+                    22,
+                    15
+                ],
+                "line-color": "hsl(93, 29%, 6%)"
+            }
+        },
+        {
+            "id": "Forest",
+            "type": "fill",
+            "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
+            "source": "composite",
+            "source-layer": "OpenSpacesPoly",
+            "filter": [
+                "all",
+                ["==", "$type", "Polygon"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "Forest"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {},
+            "paint": {
+                "fill-color": "#0f140b",
+                "fill-outline-color": "hsla(0, 0%, 0%, 0)"
+            }
+        },
+        {
+            "id": "Forest Blur",
+            "type": "line",
+            "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
+            "source": "composite",
+            "source-layer": "OpenSpacesPoly",
+            "filter": [
+                "all",
+                ["==", "$type", "Polygon"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "Forest"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {"line-join": "round", "line-miter-limit": 0},
+            "paint": {
+                "line-width": [
+                    "interpolate",
+                    ["linear"],
+                    ["zoom"],
+                    11,
+                    6,
+                    22,
+                    30
+                ],
+                "line-blur": [
+                    "interpolate",
+                    ["linear"],
+                    ["zoom"],
+                    11,
+                    4,
+                    22,
+                    15
+                ],
+                "line-color": "hsl(93, 29%, 6%)"
+            }
+        },
+        {
+            "id": "Uncovered Area",
+            "type": "fill",
+            "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
+            "source": "composite",
+            "source-layer": "OpenSpacesPoly",
+            "filter": [
+                "all",
+                ["<=", "FirstYear", 2016],
+                ["==", "SubType", "Uncovered Area"],
+                [">=", "LastYear", 2016]
+            ],
+            "layout": {},
+            "paint": {
+                "fill-color": "hsl(33, 60%, 3%)",
+                "fill-outline-color": "hsla(0, 0%, 0%, 0)"
+            }
+        },
+        {
+            "id": "Uncovered Area Blur",
+            "type": "line",
+            "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
+            "source": "composite",
+            "source-layer": "OpenSpacesPoly",
+            "filter": [
+                "all",
+                ["<=", "FirstYear", 2016],
+                ["==", "SubType", "Uncovered Area"],
+                [">=", "LastYear", 2016]
+            ],
+            "layout": {"line-join": "round"},
+            "paint": {
+                "line-color": "#0c0803",
+                "line-width": [
+                    "interpolate",
+                    ["linear"],
+                    ["zoom"],
+                    11,
+                    6,
+                    22,
+                    30
+                ],
+                "line-blur": ["interpolate", ["linear"], ["zoom"], 0, 4, 22, 15]
+            }
+        },
+        {
+            "id": "Field",
+            "type": "fill",
+            "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
+            "source": "composite",
+            "source-layer": "OpenSpacesPoly",
+            "filter": [
+                "all",
+                ["<=", "FirstYear", 2016],
+                ["==", "SubType", "Field"],
+                [">=", "LastYear", 2016]
+            ],
+            "layout": {},
+            "paint": {
+                "fill-color": "hsl(33, 60%, 3%)",
+                "fill-outline-color": "hsla(0, 0%, 0%, 0)"
+            }
+        },
+        {
+            "id": "Field Blur",
+            "type": "line",
+            "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
+            "source": "composite",
+            "source-layer": "OpenSpacesPoly",
+            "filter": [
+                "all",
+                ["<=", "FirstYear", 2016],
+                ["==", "SubType", "Field"],
+                [">=", "LastYear", 2016]
+            ],
+            "layout": {"line-join": "round"},
+            "paint": {
+                "line-color": "#0c0803",
+                "line-width": [
+                    "interpolate",
+                    ["linear"],
+                    ["zoom"],
+                    11,
+                    6,
+                    22,
+                    30
+                ],
+                "line-blur": ["interpolate", ["linear"], ["zoom"], 0, 4, 22, 15]
+            }
+        },
+        {
+            "id": "Pasture",
+            "type": "fill",
+            "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
+            "source": "composite",
+            "source-layer": "OpenSpacesPoly",
+            "filter": [
+                "all",
+                ["==", "$type", "Polygon"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "Pasture"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {},
+            "paint": {
+                "fill-color": "hsl(70, 30%, 4%)",
+                "fill-outline-color": "hsla(0, 0%, 0%, 0)"
+            }
+        },
+        {
+            "id": "Pasture Blur",
+            "type": "line",
+            "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
+            "source": "composite",
+            "source-layer": "OpenSpacesPoly",
+            "filter": [
+                "all",
+                ["==", "$type", "Polygon"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "Pasture"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {"line-join": "round"},
+            "paint": {
+                "line-width": [
+                    "interpolate",
+                    ["linear"],
+                    ["zoom"],
+                    11,
+                    6,
+                    22,
+                    30
+                ],
+                "line-color": "hsl(70, 30%, 4%)",
+                "line-blur": [
+                    "interpolate",
+                    ["linear"],
+                    ["zoom"],
+                    11,
+                    4,
+                    22,
+                    15
+                ]
+            }
+        },
+        {
+            "id": "Agriculture",
+            "type": "fill",
+            "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
+            "source": "composite",
+            "source-layer": "OpenSpacesPoly",
+            "filter": [
+                "all",
+                ["==", "$type", "Polygon"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "Agriculture"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {},
+            "paint": {
+                "fill-color": "hsl(70, 30%, 4%)",
+                "fill-outline-color": "hsla(0, 0%, 0%, 0)"
+            }
+        },
+        {
+            "id": "Agriculture Blur",
+            "type": "line",
+            "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
+            "source": "composite",
+            "source-layer": "OpenSpacesPoly",
+            "filter": [
+                "all",
+                ["==", "$type", "Polygon"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "Agriculture"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {"line-join": "round"},
+            "paint": {
+                "line-width": [
+                    "interpolate",
+                    ["linear"],
+                    ["zoom"],
+                    11,
+                    6,
+                    22,
+                    30
+                ],
+                "line-color": "hsl(70, 30%, 4%)",
+                "line-blur": [
+                    "interpolate",
+                    ["linear"],
+                    ["zoom"],
+                    11,
+                    4,
+                    22,
+                    15
+                ]
+            }
+        },
+        {
+            "id": "Orchard",
+            "type": "fill",
+            "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
+            "source": "composite",
+            "source-layer": "OpenSpacesPoly",
+            "filter": [
+                "all",
+                ["==", "$type", "Polygon"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "Orchard"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {},
+            "paint": {
+                "fill-color": "hsl(131, 19%, 10%)",
+                "fill-outline-color": "hsla(0, 0%, 0%, 0)"
+            }
+        },
+        {
+            "id": "Park Blur",
+            "type": "line",
+            "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
+            "source": "composite",
+            "source-layer": "OpenSpacesPoly",
+            "filter": [
+                "all",
+                ["==", "$type", "Polygon"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "Park"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {"line-join": "round"},
+            "paint": {
+                "line-color": "hsl(120, 29%, 6%)",
+                "line-blur": [
+                    "interpolate",
+                    ["linear"],
+                    ["zoom"],
+                    11,
+                    3,
+                    22,
+                    10
+                ],
+                "line-width": [
+                    "interpolate",
+                    ["linear"],
+                    ["zoom"],
+                    11,
+                    6,
+                    22,
+                    20
+                ]
+            }
+        },
+        {
+            "id": "Park",
+            "type": "fill",
+            "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
+            "source": "composite",
+            "source-layer": "OpenSpacesPoly",
+            "filter": [
+                "all",
+                ["==", "$type", "Polygon"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "Park"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {},
+            "paint": {
+                "fill-color": "hsl(120, 29%, 6%)",
+                "fill-outline-color": "hsla(0, 0%, 0%, 0)"
+            }
+        },
+        {
+            "id": "Lawn Blur",
+            "type": "line",
+            "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
+            "source": "composite",
+            "source-layer": "OpenSpacesPoly",
+            "filter": [
+                "all",
+                ["==", "$type", "Polygon"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "Lawn"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {"line-join": "round"},
+            "paint": {
+                "line-color": "hsl(120, 29%, 6%)",
+                "line-blur": [
+                    "interpolate",
+                    ["linear"],
+                    ["zoom"],
+                    11,
+                    3,
+                    22,
+                    10
+                ],
+                "line-width": [
+                    "interpolate",
+                    ["linear"],
+                    ["zoom"],
+                    11,
+                    6,
+                    22,
+                    20
+                ]
+            }
+        },
+        {
+            "id": "Lawn",
+            "type": "fill",
+            "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
+            "source": "composite",
+            "source-layer": "OpenSpacesPoly",
+            "filter": [
+                "all",
+                ["==", "$type", "Polygon"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "Lawn"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {},
+            "paint": {
+                "fill-color": "hsl(120, 29%, 6%)",
+                "fill-outline-color": "hsla(0, 0%, 0%, 0)"
+            }
+        },
+        {
+            "id": "Mall Blur",
+            "type": "line",
+            "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
+            "source": "composite",
+            "source-layer": "OpenSpacesPoly",
+            "filter": [
+                "all",
+                ["==", "$type", "Polygon"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "Mall"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {"line-join": "round"},
+            "paint": {
+                "line-color": "hsl(120, 29%, 6%)",
+                "line-blur": [
+                    "interpolate",
+                    ["linear"],
+                    ["zoom"],
+                    11,
+                    3,
+                    22,
+                    10
+                ],
+                "line-width": [
+                    "interpolate",
+                    ["linear"],
+                    ["zoom"],
+                    11,
+                    6,
+                    22,
+                    20
+                ]
+            }
+        },
+        {
+            "id": "Mall",
+            "type": "fill",
+            "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
+            "source": "composite",
+            "source-layer": "OpenSpacesPoly",
+            "filter": [
+                "all",
+                ["==", "$type", "Polygon"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "Mall"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {},
+            "paint": {
+                "fill-color": "hsl(120, 29%, 6%)",
+                "fill-outline-color": "hsla(0, 0%, 0%, 0)"
+            }
+        },
+        {
+            "id": "EntreQuadra Blur",
+            "type": "line",
+            "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
+            "source": "composite",
+            "source-layer": "OpenSpacesPoly",
+            "filter": [
+                "all",
+                ["==", "$type", "Polygon"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "EntreQuadra"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {"line-join": "round"},
+            "paint": {
+                "line-color": "hsl(120, 29%, 6%)",
+                "line-blur": [
+                    "interpolate",
+                    ["linear"],
+                    ["zoom"],
+                    11,
+                    3,
+                    22,
+                    10
+                ],
+                "line-width": [
+                    "interpolate",
+                    ["linear"],
+                    ["zoom"],
+                    11,
+                    6,
+                    22,
+                    20
+                ]
+            }
+        },
+        {
+            "id": "EntreQuadra",
+            "type": "fill",
+            "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
+            "source": "composite",
+            "source-layer": "OpenSpacesPoly",
+            "filter": [
+                "all",
+                ["==", "$type", "Polygon"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "EntreQuadra"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {},
+            "paint": {
+                "fill-color": "hsl(120, 29%, 6%)",
+                "fill-outline-color": "hsla(0, 0%, 0%, 0)"
+            }
+        },
+        {
+            "id": "Botanical Garden",
+            "type": "fill",
+            "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
+            "source": "composite",
+            "source-layer": "OpenSpacesPoly",
+            "filter": [
+                "all",
+                ["==", "$type", "Polygon"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "Botanical Garden"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {},
+            "paint": {
+                "fill-color": "hsl(120, 29%, 6%)",
+                "fill-outline-color": "hsla(0, 0%, 0%, 0)"
+            }
+        },
+        {
+            "id": "Zoological Garden",
+            "type": "fill",
+            "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
+            "source": "composite",
+            "source-layer": "OpenSpacesPoly",
+            "filter": [
+                "all",
+                ["==", "$type", "Polygon"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "Zoological Garden"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {},
+            "paint": {
+                "fill-color": "hsl(120, 29%, 6%)",
+                "fill-outline-color": "hsla(0, 0%, 0%, 0)"
+            }
+        },
+        {
+            "id": "Golf Club",
+            "type": "fill",
+            "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
+            "source": "composite",
+            "source-layer": "OpenSpacesPoly",
+            "filter": [
+                "all",
+                ["==", "$type", "Polygon"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "Golf Club"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {},
+            "paint": {
+                "fill-color": "hsl(120, 29%, 6%)",
+                "fill-outline-color": "hsla(0, 0%, 0%, 0)"
+            }
+        },
+        {
+            "id": "Jockey Club",
+            "type": "fill",
+            "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
+            "source": "composite",
+            "source-layer": "OpenSpacesPoly",
+            "filter": [
+                "all",
+                ["==", "$type", "Polygon"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "Jockey Club"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {},
+            "paint": {
+                "fill-color": "hsl(120, 29%, 6%)",
+                "fill-outline-color": "hsla(0, 0%, 0%, 0)"
+            }
+        },
+        {
+            "id": "Cemetery",
+            "type": "fill",
+            "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
+            "source": "composite",
+            "source-layer": "OpenSpacesPoly",
+            "filter": [
+                "all",
+                ["==", "$type", "Polygon"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "Cemetery"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {},
+            "paint": {
+                "fill-color": "hsl(120, 29%, 6%)",
+                "fill-outline-color": "hsla(0, 0%, 0%, 0)"
+            }
+        },
+        {
+            "id": "Tree Belt",
+            "type": "fill",
+            "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
+            "source": "composite",
+            "source-layer": "OpenSpacesPoly",
+            "minzoom": 9,
+            "filter": [
+                "all",
+                ["==", "$type", "Polygon"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "Tree Belt"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {},
+            "paint": {
+                "fill-color": "hsl(95, 21%, 18%)",
+                "fill-outline-color": "hsla(0, 0%, 0%, 0)"
+            }
+        },
+        {
+            "id": "Lake and Reservoir",
+            "type": "fill",
+            "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
+            "source": "composite",
+            "source-layer": "WaterBodiesPoly",
+            "filter": [
+                "all",
+                ["==", "$type", "Polygon"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    [">=", "LastYear", 2016],
+                    ["in", "SubType", "Lake", "Reservoir"]
+                ]
+            ],
+            "layout": {},
+            "paint": {
+                "fill-color": "hsl(203, 42%, 6%)",
+                "fill-outline-color": "hsla(0, 0%, 100%, 0)"
+            }
+        },
+        {
+            "id": "Airport",
+            "type": "fill",
+            "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
+            "source": "composite",
+            "source-layer": "OpenSpacesPoly",
+            "filter": [
+                "all",
+                ["==", "$type", "Polygon"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "Airport"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {},
+            "paint": {"fill-color": "hsl(0, 0%, 10%)"}
+        },
+        {
+            "id": "Barracks",
+            "type": "fill",
+            "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
+            "source": "composite",
+            "source-layer": "OpenSpacesPoly",
+            "filter": [
+                "all",
+                ["==", "$type", "Polygon"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "Barracks"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {},
+            "paint": {"fill-color": "hsl(0, 0%, 10%)"}
+        },
+        {
+            "id": "Lake and Reservoir Blur",
+            "type": "line",
+            "metadata": {"mapbox:group": "a767fb3590355077e9f91cf672e9d186"},
+            "source": "composite",
+            "source-layer": "WaterBodiesPoly",
+            "filter": [
+                "all",
+                ["==", "$type", "Polygon"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    [">=", "LastYear", 2016],
+                    ["in", "SubType", "Lake", "Reservoir"]
+                ]
+            ],
+            "layout": {},
+            "paint": {
+                "line-width": [
+                    "interpolate",
+                    ["linear"],
+                    ["zoom"],
+                    11,
+                    3,
+                    22,
+                    10
+                ],
+                "line-blur": [
+                    "interpolate",
+                    ["linear"],
+                    ["zoom"],
+                    11,
+                    6,
+                    22,
+                    20
+                ],
+                "line-color": "#000"
+            }
+        },
+        {
+            "id": "Fountain and Reflecting Pool",
+            "type": "fill",
+            "metadata": {"mapbox:group": "a767fb3590355077e9f91cf672e9d186"},
+            "source": "composite",
+            "source-layer": "WaterBodiesPoly",
+            "filter": [
+                "all",
+                ["==", "$type", "Polygon"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    [">=", "LastYear", 2016],
+                    ["in", "SubType", "Fountain", "Reflecting Pool"]
+                ]
+            ],
+            "layout": {"visibility": "visible"},
+            "paint": {
+                "fill-color": "#070e12",
+                "fill-outline-color": "hsla(0, 0%, 0%, 0)"
+            }
+        },
+        {
+            "id": "Parking Lot",
+            "type": "fill",
+            "metadata": {"mapbox:group": "14aac24dcfe8ee3a1a67579284f36eab"},
+            "source": "composite",
+            "source-layer": "OpenSpacesPoly",
+            "minzoom": 12,
+            "filter": [
+                "all",
+                ["==", "$type", "Polygon"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "Parking Lot"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {"visibility": "visible"},
+            "paint": {
+                "fill-outline-color": "hsla(0, 0%, 0%, 0)",
+                "fill-color": "hsl(0, 0%, 10%)"
+            }
+        },
+        {
+            "id": "Case-Creek",
+            "type": "line",
+            "metadata": {"mapbox:group": "55a68e75394877ae97b05f788ef4d5eb"},
+            "source": "composite",
+            "source-layer": "WatersLine",
+            "filter": [
+                "all",
+                ["==", "$type", "LineString"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "Creek"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {"line-join": "round"},
+            "paint": {
+                "line-color": "hsl(202, 0%, 0%)",
+                "line-width": [
+                    "interpolate",
+                    ["exponential", 1.3],
+                    ["zoom"],
+                    9,
+                    6,
+                    22,
+                    24
+                ],
+                "line-blur": ["interpolate", ["linear"], ["zoom"], 9, 3, 22, 10]
+            }
+        },
+        {
+            "id": "Case-Stream",
+            "type": "line",
+            "metadata": {"mapbox:group": "55a68e75394877ae97b05f788ef4d5eb"},
+            "source": "composite",
+            "source-layer": "WatersLine",
+            "filter": [
+                "all",
+                ["==", "$type", "LineString"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "Stream"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {"line-join": "round"},
+            "paint": {
+                "line-opacity": 0.5,
+                "line-width": [
+                    "interpolate",
+                    ["exponential", 1.3],
+                    ["zoom"],
+                    9,
+                    10,
+                    22,
+                    30
+                ],
+                "line-blur": ["interpolate", ["linear"], ["zoom"], 9, 3, 22, 10]
+            }
+        },
+        {
+            "id": "Case-River",
+            "type": "line",
+            "metadata": {"mapbox:group": "55a68e75394877ae97b05f788ef4d5eb"},
+            "source": "composite",
+            "source-layer": "WatersLine",
+            "filter": [
+                "all",
+                ["==", "$type", "LineString"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "River"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {"line-join": "round"},
+            "paint": {
+                "line-color": "hsl(202, 0%, 0%)",
+                "line-width": [
+                    "interpolate",
+                    ["exponential", 1.3],
+                    ["zoom"],
+                    9,
+                    10,
+                    22,
+                    30
+                ],
+                "line-blur": [
+                    "interpolate",
+                    ["linear"],
+                    ["zoom"],
+                    9,
+                    3,
+                    22,
+                    10
+                ],
+                "line-opacity": 0.5
+            }
+        },
+        {
+            "id": "Creek",
+            "type": "line",
+            "metadata": {"mapbox:group": "55a68e75394877ae97b05f788ef4d5eb"},
+            "source": "composite",
+            "source-layer": "WatersLine",
+            "filter": [
+                "all",
+                ["==", "$type", "LineString"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "Creek"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {},
+            "paint": {
+                "line-color": "hsl(202, 44%, 8%)",
+                "line-width": [
+                    "interpolate",
+                    ["exponential", 1.3],
+                    ["zoom"],
+                    9,
+                    0.5,
+                    22,
+                    12
+                ],
+                "line-blur": 0
+            }
+        },
+        {
+            "id": "Stream",
+            "type": "line",
+            "metadata": {"mapbox:group": "55a68e75394877ae97b05f788ef4d5eb"},
+            "source": "composite",
+            "source-layer": "WatersLine",
+            "filter": [
+                "all",
+                ["==", "$type", "LineString"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "Stream"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {},
+            "paint": {
+                "line-color": "hsl(203, 42%, 6%)",
+                "line-width": [
+                    "interpolate",
+                    ["exponential", 1.3],
+                    ["zoom"],
+                    9,
+                    1.5,
+                    22,
+                    20
+                ],
+                "line-blur": 0
+            }
+        },
+        {
+            "id": "River",
+            "type": "line",
+            "metadata": {"mapbox:group": "55a68e75394877ae97b05f788ef4d5eb"},
+            "source": "composite",
+            "source-layer": "WatersLine",
+            "filter": [
+                "all",
+                ["==", "$type", "LineString"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "River"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {"visibility": "visible"},
+            "paint": {
+                "line-color": "hsl(202, 44%, 8%)",
+                "line-width": [
+                    "interpolate",
+                    ["exponential", 1.3],
+                    ["zoom"],
+                    9,
+                    1.5,
+                    22,
+                    20
+                ],
+                "line-blur": 0
+            }
+        },
+        {
+            "id": "Tunnel",
+            "type": "line",
+            "metadata": {"mapbox:group": "a04428c037425a3d0df4ac9b17367f77"},
+            "source": "composite",
+            "source-layer": "RoadsLine",
+            "minzoom": 12,
+            "filter": [
+                "all",
+                ["==", "$type", "LineString"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "Tunnel"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {"line-cap": "round", "line-join": "round"},
+            "paint": {
+                "line-color": [
+                    "interpolate",
+                    ["exponential", 0.7],
+                    ["zoom"],
+                    12,
+                    "hsl(0, 0%, 30%)",
+                    22,
+                    "hsl(0, 0%, 50%)"
+                ],
+                "line-width": [
+                    "interpolate",
+                    ["exponential", 1.7],
+                    ["zoom"],
+                    13,
+                    0.75,
+                    22,
+                    48
+                ],
+                "line-opacity": 0.4
+            }
+        },
+        {
+            "id": "Case-Trail",
+            "type": "line",
+            "metadata": {"mapbox:group": "a04428c037425a3d0df4ac9b17367f77"},
+            "source": "composite",
+            "source-layer": "RoadsLine",
+            "minzoom": 9,
+            "filter": [
+                "all",
+                ["==", "$type", "LineString"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "Trail"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {"line-join": "round"},
+            "paint": {
+                "line-width": [
+                    "interpolate",
+                    ["exponential", 1.3],
+                    ["zoom"],
+                    9,
+                    1.5,
+                    22,
+                    56
+                ],
+                "line-opacity": [
+                    "interpolate",
+                    ["linear"],
+                    ["zoom"],
+                    9,
+                    0,
+                    13,
+                    0.5
+                ]
+            }
+        },
+        {
+            "id": "Case-Collector",
+            "type": "line",
+            "metadata": {"mapbox:group": "a04428c037425a3d0df4ac9b17367f77"},
+            "source": "composite",
+            "source-layer": "RoadsLine",
+            "minzoom": 12,
+            "filter": [
+                "all",
+                ["==", "$type", "LineString"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "Collector"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {"line-join": "round"},
+            "paint": {
+                "line-width": [
+                    "interpolate",
+                    ["exponential", 1.3],
+                    ["zoom"],
+                    13,
+                    1.5,
+                    22,
+                    56
+                ],
+                "line-opacity": [
+                    "interpolate",
+                    ["linear"],
+                    ["zoom"],
+                    12,
+                    0,
+                    13,
+                    0.5
+                ],
+                "line-color": "#000000"
+            }
+        },
+        {
+            "id": "Case-Local Road",
+            "type": "line",
+            "metadata": {"mapbox:group": "a04428c037425a3d0df4ac9b17367f77"},
+            "source": "composite",
+            "source-layer": "RoadsLine",
+            "minzoom": 12,
+            "filter": [
+                "all",
+                ["==", "$type", "LineString"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "Local"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {"line-join": "round"},
+            "paint": {
+                "line-width": [
+                    "interpolate",
+                    ["exponential", 1.3],
+                    ["zoom"],
+                    13,
+                    1.5,
+                    22,
+                    56
+                ],
+                "line-opacity": [
+                    "interpolate",
+                    ["linear"],
+                    ["zoom"],
+                    12,
+                    0,
+                    13,
+                    0.5
+                ],
+                "line-color": "#000000"
+            }
+        },
+        {
+            "id": "Case-Service Road",
+            "type": "line",
+            "metadata": {"mapbox:group": "a04428c037425a3d0df4ac9b17367f77"},
+            "source": "composite",
+            "source-layer": "RoadsLine",
+            "minzoom": 12,
+            "filter": [
+                "all",
+                ["==", "$type", "LineString"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "Service Road"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {"line-join": "round"},
+            "paint": {
+                "line-width": [
+                    "interpolate",
+                    ["exponential", 1.3],
+                    ["zoom"],
+                    13,
+                    1.5,
+                    22,
+                    56
+                ],
+                "line-opacity": [
+                    "interpolate",
+                    ["linear"],
+                    ["zoom"],
+                    12,
+                    0,
+                    13,
+                    0.5
+                ],
+                "line-color": "#000000"
+            }
+        },
+        {
+            "id": "Case-Arterial",
+            "type": "line",
+            "metadata": {"mapbox:group": "a04428c037425a3d0df4ac9b17367f77"},
+            "source": "composite",
+            "source-layer": "RoadsLine",
+            "minzoom": 11,
+            "filter": [
+                "all",
+                ["==", "$type", "LineString"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "Arterial"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {"line-join": "round"},
+            "paint": {
+                "line-width": [
+                    "interpolate",
+                    ["exponential", 1.3],
+                    ["zoom"],
+                    12,
+                    3,
+                    22,
+                    66
+                ],
+                "line-opacity": 0.5
+            }
+        },
+        {
+            "id": "Case-Main Road",
+            "type": "line",
+            "metadata": {"mapbox:group": "a04428c037425a3d0df4ac9b17367f77"},
+            "source": "composite",
+            "source-layer": "RoadsLine",
+            "minzoom": 11,
+            "filter": [
+                "all",
+                ["==", "$type", "LineString"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "Main Road"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {"line-join": "round"},
+            "paint": {
+                "line-width": [
+                    "interpolate",
+                    ["exponential", 1.3],
+                    ["zoom"],
+                    12,
+                    3,
+                    22,
+                    66
+                ],
+                "line-opacity": 0.5
+            }
+        },
+        {
+            "id": "Case-Expressway",
+            "type": "line",
+            "metadata": {"mapbox:group": "a04428c037425a3d0df4ac9b17367f77"},
+            "source": "composite",
+            "source-layer": "RoadsLine",
+            "minzoom": 9,
+            "filter": [
+                "all",
+                ["==", "$type", "LineString"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "Expressway"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {"line-join": "round"},
+            "paint": {
+                "line-width": [
+                    "interpolate",
+                    ["exponential", 1.3],
+                    ["zoom"],
+                    9,
+                    3,
+                    22,
+                    80
+                ],
+                "line-opacity": 0.5
+            }
+        },
+        {
+            "id": "Collector",
+            "type": "line",
+            "metadata": {"mapbox:group": "a04428c037425a3d0df4ac9b17367f77"},
+            "source": "composite",
+            "source-layer": "RoadsLine",
+            "minzoom": 12,
+            "filter": [
+                "all",
+                ["==", "$type", "LineString"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "Collector"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {"line-cap": "round", "line-join": "round"},
+            "paint": {
+                "line-color": [
+                    "interpolate",
+                    ["exponential", 0.7],
+                    ["zoom"],
+                    12,
+                    "hsl(0, 0%, 30%)",
+                    22,
+                    "hsl(0, 0%, 50%)"
+                ],
+                "line-width": [
+                    "interpolate",
+                    ["exponential", 1.7],
+                    ["zoom"],
+                    13,
+                    0.75,
+                    22,
+                    48
+                ],
+                "line-opacity": ["step", ["zoom"], 0, 13, 1]
+            }
+        },
+        {
+            "id": "Trail",
+            "type": "line",
+            "metadata": {"mapbox:group": "a04428c037425a3d0df4ac9b17367f77"},
+            "source": "composite",
+            "source-layer": "RoadsLine",
+            "minzoom": 9,
+            "filter": [
+                "all",
+                ["==", "$type", "LineString"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 1950],
+                    ["==", "SubType", "Trail"],
+                    [">=", "LastYear", 1950]
+                ]
+            ],
+            "layout": {"line-cap": "round", "line-join": "round"},
+            "paint": {
+                "line-color": [
+                    "interpolate",
+                    ["exponential", 0.7],
+                    ["zoom"],
+                    12,
+                    "hsl(0, 0%, 30%)",
+                    22,
+                    "hsl(0, 0%, 50%)"
+                ],
+                "line-width": [
+                    "interpolate",
+                    ["exponential", 1.7],
+                    ["zoom"],
+                    9,
+                    0.75,
+                    22,
+                    48
+                ],
+                "line-opacity": ["step", ["zoom"], 0, 9, 1]
+            }
+        },
+        {
+            "id": "Service Road",
+            "type": "line",
+            "metadata": {"mapbox:group": "a04428c037425a3d0df4ac9b17367f77"},
+            "source": "composite",
+            "source-layer": "RoadsLine",
+            "minzoom": 12,
+            "filter": [
+                "all",
+                ["==", "$type", "LineString"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "Service Road"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {"line-cap": "round", "line-join": "round"},
+            "paint": {
+                "line-color": [
+                    "interpolate",
+                    ["exponential", 0.7],
+                    ["zoom"],
+                    12,
+                    "hsl(0, 0%, 30%)",
+                    22,
+                    "hsl(0, 0%, 50%)"
+                ],
+                "line-width": [
+                    "interpolate",
+                    ["exponential", 1.7],
+                    ["zoom"],
+                    13,
+                    0.75,
+                    22,
+                    48
+                ],
+                "line-opacity": ["step", ["zoom"], 0, 13, 1]
+            }
+        },
+        {
+            "id": "Local Road",
+            "type": "line",
+            "metadata": {"mapbox:group": "a04428c037425a3d0df4ac9b17367f77"},
+            "source": "composite",
+            "source-layer": "RoadsLine",
+            "minzoom": 12,
+            "filter": [
+                "all",
+                ["==", "$type", "LineString"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "Local"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {"line-cap": "round", "line-join": "round"},
+            "paint": {
+                "line-color": [
+                    "interpolate",
+                    ["exponential", 0.7],
+                    ["zoom"],
+                    12,
+                    "hsl(0, 0%, 30%)",
+                    22,
+                    "hsl(0, 0%, 50%)"
+                ],
+                "line-width": [
+                    "interpolate",
+                    ["exponential", 1.7],
+                    ["zoom"],
+                    13,
+                    0.75,
+                    22,
+                    48
+                ],
+                "line-opacity": ["step", ["zoom"], 0, 13, 1]
+            }
+        },
+        {
+            "id": "Arterial",
+            "type": "line",
+            "metadata": {"mapbox:group": "a04428c037425a3d0df4ac9b17367f77"},
+            "source": "composite",
+            "source-layer": "RoadsLine",
+            "minzoom": 11,
+            "filter": [
+                "all",
+                ["==", "$type", "LineString"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "Arterial"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {"line-join": "round", "line-cap": "round"},
+            "paint": {
+                "line-width": [
+                    "interpolate",
+                    ["exponential", 1.5],
+                    ["zoom"],
+                    11,
+                    0.5,
+                    22,
+                    56
+                ],
+                "line-color": [
+                    "interpolate",
+                    ["exponential", 0.7],
+                    ["zoom"],
+                    11,
+                    "hsl(0, 0%, 30%)",
+                    22,
+                    "hsl(0, 0%, 50%)"
+                ]
+            }
+        },
+        {
+            "id": "Main Road",
+            "type": "line",
+            "metadata": {"mapbox:group": "a04428c037425a3d0df4ac9b17367f77"},
+            "source": "composite",
+            "source-layer": "RoadsLine",
+            "minzoom": 11,
+            "filter": [
+                "all",
+                ["==", "$type", "LineString"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "Main Road"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {"line-join": "round", "line-cap": "round"},
+            "paint": {
+                "line-width": [
+                    "interpolate",
+                    ["exponential", 1.5],
+                    ["zoom"],
+                    11,
+                    0.5,
+                    22,
+                    56
+                ],
+                "line-color": [
+                    "interpolate",
+                    ["exponential", 0.7],
+                    ["zoom"],
+                    11,
+                    "hsl(0, 0%, 30%)",
+                    22,
+                    "hsl(0, 0%, 50%)"
+                ]
+            }
+        },
+        {
+            "id": "Expressway",
+            "type": "line",
+            "metadata": {"mapbox:group": "a04428c037425a3d0df4ac9b17367f77"},
+            "source": "composite",
+            "source-layer": "RoadsLine",
+            "minzoom": 9,
+            "filter": [
+                "all",
+                ["==", "$type", "LineString"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "Expressway"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {"line-cap": "round", "line-join": "round"},
+            "paint": {
+                "line-width": [
+                    "interpolate",
+                    ["exponential", 1.4],
+                    ["zoom"],
+                    9,
+                    0.25,
+                    22,
+                    70
+                ],
+                "line-color": [
+                    "interpolate",
+                    ["exponential", 0.7],
+                    ["zoom"],
+                    11,
+                    "hsl(0, 0%, 30%)",
+                    22,
+                    "hsl(0, 0%, 50%)"
+                ]
+            }
+        },
+        {
+            "id": "Case-Subway",
+            "type": "line",
+            "metadata": {"mapbox:group": "31a94c2ff0376a41dc9488ba1cf1b08b"},
+            "source": "composite",
+            "source-layer": "InfrastructureLine",
+            "minzoom": 11,
+            "filter": [
+                "all",
+                ["==", "$type", "LineString"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "StyleName", "transportationline"],
+                    ["==", "SubType", "Subway"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {"line-cap": "round"},
+            "paint": {
+                "line-color": "hsl(29, 0%, 0%)",
+                "line-opacity": [
+                    "interpolate",
+                    ["linear"],
+                    ["zoom"],
+                    11,
+                    0,
+                    12,
+                    1
+                ],
+                "line-width": [
+                    "interpolate",
+                    ["exponential", 1.3],
+                    ["zoom"],
+                    12,
+                    4,
+                    22,
+                    44
+                ]
+            }
+        },
+        {
+            "id": "Subway",
+            "type": "line",
+            "metadata": {"mapbox:group": "31a94c2ff0376a41dc9488ba1cf1b08b"},
+            "source": "composite",
+            "source-layer": "InfrastructureLine",
+            "minzoom": 11,
+            "filter": [
+                "all",
+                ["==", "$type", "LineString"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "Subway"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {"line-cap": "round"},
+            "paint": {
+                "line-color": "hsl(29, 93%, 40%)",
+                "line-dasharray": ["literal", [0, 2]],
+                "line-width": [
+                    "interpolate",
+                    ["exponential", 1.3],
+                    ["zoom"],
+                    12,
+                    1,
+                    22,
+                    24
+                ],
+                "line-opacity": [
+                    "interpolate",
+                    ["linear"],
+                    ["zoom"],
+                    11,
+                    0,
+                    12,
+                    1
+                ]
+            }
+        },
+        {
+            "id": "Case-Bus LIne",
+            "type": "line",
+            "metadata": {"mapbox:group": "31a94c2ff0376a41dc9488ba1cf1b08b"},
+            "source": "composite",
+            "source-layer": "InfrastructureLine",
+            "minzoom": 11,
+            "filter": [
+                "all",
+                ["==", "$type", "LineString"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "Bus Line"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {},
+            "paint": {
+                "line-color": "hsl(29, 0%, 0%)",
+                "line-width": [
+                    "interpolate",
+                    ["exponential", 1.3],
+                    ["zoom"],
+                    12,
+                    4,
+                    22,
+                    34
+                ],
+                "line-opacity": [
+                    "interpolate",
+                    ["linear"],
+                    ["zoom"],
+                    11,
+                    0,
+                    12,
+                    1
+                ]
+            }
+        },
+        {
+            "id": "Bus LIne",
+            "type": "line",
+            "metadata": {"mapbox:group": "31a94c2ff0376a41dc9488ba1cf1b08b"},
+            "source": "composite",
+            "source-layer": "InfrastructureLine",
+            "minzoom": 11,
+            "filter": [
+                "all",
+                ["==", "$type", "LineString"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "Bus Line"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {},
+            "paint": {
+                "line-color": "hsl(29, 93%, 40%)",
+                "line-width": [
+                    "interpolate",
+                    ["exponential", 1.3],
+                    ["zoom"],
+                    12,
+                    0.5,
+                    22,
+                    16
+                ],
+                "line-dasharray": [4, 2],
+                "line-opacity": [
+                    "interpolate",
+                    ["linear"],
+                    ["zoom"],
+                    11,
+                    0,
+                    12,
+                    1
+                ]
+            }
+        },
+        {
+            "id": "Case-Rail LIne",
+            "type": "line",
+            "metadata": {"mapbox:group": "31a94c2ff0376a41dc9488ba1cf1b08b"},
+            "source": "composite",
+            "source-layer": "InfrastructureLine",
+            "minzoom": 11,
+            "filter": [
+                "all",
+                ["==", "$type", "LineString"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "Rail"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {},
+            "paint": {
+                "line-color": "hsla(29, 43%, 88%, 0.75)",
+                "line-width": [
+                    "interpolate",
+                    ["exponential", 1.3],
+                    ["zoom"],
+                    12,
+                    4,
+                    22,
+                    34
+                ],
+                "line-opacity": [
+                    "interpolate",
+                    ["linear"],
+                    ["zoom"],
+                    11,
+                    0,
+                    12,
+                    1
+                ]
+            }
+        },
+        {
+            "id": "Rail LIne",
+            "type": "line",
+            "metadata": {"mapbox:group": "31a94c2ff0376a41dc9488ba1cf1b08b"},
+            "source": "composite",
+            "source-layer": "InfrastructureLine",
+            "minzoom": 11,
+            "filter": [
+                "all",
+                ["==", "$type", "LineString"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "Rail"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {},
+            "paint": {
+                "line-color": "hsl(29, 93%, 40%)",
+                "line-width": [
+                    "interpolate",
+                    ["exponential", 1.3],
+                    ["zoom"],
+                    12,
+                    0.5,
+                    22,
+                    16
+                ],
+                "line-dasharray": [4, 2],
+                "line-opacity": [
+                    "interpolate",
+                    ["linear"],
+                    ["zoom"],
+                    11,
+                    0,
+                    12,
+                    1
+                ]
+            }
+        },
+        {
+            "id": "Work",
+            "type": "fill",
+            "metadata": {"mapbox:group": "b16b3b3df4ffbbc42101a47ea38f43da"},
+            "source": "composite",
+            "source-layer": "BuildingsPoly",
+            "minzoom": 12,
+            "filter": [
+                "all",
+                ["==", "$type", "Polygon"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "Work"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {},
+            "paint": {
+                "fill-outline-color": "hsla(0, 0%, 0%, 0.2)",
+                "fill-color": "hsla(0, 59%, 36%, 0.8)"
+            }
+        },
+        {
+            "id": "Live",
+            "type": "fill",
+            "metadata": {"mapbox:group": "b16b3b3df4ffbbc42101a47ea38f43da"},
+            "source": "composite",
+            "source-layer": "BuildingsPoly",
+            "minzoom": 12,
+            "filter": [
+                "all",
+                ["==", "$type", "Polygon"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "Live"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {},
+            "paint": {
+                "fill-outline-color": "hsla(0, 0%, 0%, 0.2)",
+                "fill-color": "hsla(59, 41%, 39%, 0.8)"
+            }
+        },
+        {
+            "id": "Cultivate Body and Mind",
+            "type": "fill",
+            "metadata": {"mapbox:group": "b16b3b3df4ffbbc42101a47ea38f43da"},
+            "source": "composite",
+            "source-layer": "BuildingsPoly",
+            "minzoom": 12,
+            "filter": [
+                "all",
+                ["==", "$type", "Polygon"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "Cultivate Body and Mind"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {},
+            "paint": {
+                "fill-outline-color": "hsla(0, 0%, 0%, 0.2)",
+                "fill-color": "hsla(278, 30%, 33%, 0.8)"
+            }
+        },
+        {
+            "id": "Circulate",
+            "type": "fill",
+            "metadata": {"mapbox:group": "b16b3b3df4ffbbc42101a47ea38f43da"},
+            "source": "composite",
+            "source-layer": "BuildingsPoly",
+            "minzoom": 12,
+            "filter": [
+                "all",
+                ["==", "$type", "Polygon"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "Circulate"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {},
+            "paint": {
+                "fill-outline-color": "hsla(0, 0%, 0%, 0.2)",
+                "fill-color": "hsla(29, 93%, 31%, 0.8)"
+            }
+        },
+        {
+            "id": "boundariespoly",
+            "type": "line",
+            "metadata": {},
+            "source": "composite",
+            "source-layer": "BoundariesPoly",
+            "minzoom": 9,
+            "maxzoom": 17,
+            "filter": [
+                "all",
+                ["==", "$type", "Polygon"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "Boundary"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {"line-miter-limit": 2, "line-cap": "round"},
+            "paint": {
+                "line-dasharray": [4, 4],
+                "line-color": "hsla(0, 13%, 77%, 0.4)",
+                "line-gap-width": 0,
+                "line-width": [
+                    "interpolate",
+                    ["linear"],
+                    ["zoom"],
+                    9,
+                    3,
+                    11,
+                    6
+                ],
+                "line-blur": 1
+            }
+        },
+        {
+            "id": "axismaps-pilothillshade",
+            "type": "raster",
+            "source": "mapbox://axismaps.pilothillshade",
+            "layout": {},
+            "paint": {
+                "raster-opacity": 0.2,
+                "raster-saturation": 0,
+                "raster-hue-rotate": 0,
+                "raster-contrast": -0.5,
+                "raster-brightness-min": 0.5,
+                "raster-brightness-max": 1
+            }
+        },
+        {
+            "id": "Labels-Lake and Reservoir",
+            "type": "symbol",
+            "metadata": {"mapbox:group": "2591203a36f77a2353d1e37c27ca8d4b"},
+            "source": "composite",
+            "source-layer": "WaterBodiesPoly",
+            "filter": [
+                "all",
+                ["==", "$type", "Polygon"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    [">=", "LastYear", 2016],
+                    ["in", "SubType", "Lake", "Reservoir"]
+                ]
+            ],
+            "layout": {
+                "text-field": ["to-string", ["get", "Name"]],
+                "text-font": [
+                    "Helvetica Neue LT Std 66 Medium Italic",
+                    "Arial Unicode MS Regular"
+                ],
+                "text-size": [
+                    "interpolate",
+                    ["exponential", 1.3],
+                    ["zoom"],
+                    11,
+                    9,
+                    22,
+                    70
+                ],
+                "text-letter-spacing": 0.1,
+                "text-padding": 75
+            },
+            "paint": {
+                "text-color": "#53626a",
+                "text-halo-color": "hsla(0, 0%, 0%, 0.3)",
+                "text-halo-width": 2,
+                "text-halo-blur": 2
+            }
+        },
+        {
+            "id": "Labels-Stream",
+            "type": "symbol",
+            "metadata": {"mapbox:group": "2591203a36f77a2353d1e37c27ca8d4b"},
+            "source": "composite",
+            "source-layer": "WatersLine",
+            "filter": [
+                "all",
+                ["==", "$type", "LineString"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "Stream"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {
+                "text-field": ["to-string", ["get", "Name"]],
+                "symbol-placement": "line",
+                "text-font": [
+                    "Helvetica Neue LT Std 66 Medium Italic",
+                    "Arial Unicode MS Regular"
+                ],
+                "text-letter-spacing": 0.1,
+                "text-size": [
+                    "interpolate",
+                    ["exponential", 1.3],
+                    ["zoom"],
+                    11,
+                    9,
+                    22,
+                    50
+                ]
+            },
+            "paint": {
+                "text-color": "#53626a",
+                "text-halo-color": "hsla(0, 0%, 0%, 0.3)",
+                "text-halo-width": 2,
+                "text-halo-blur": 2
+            }
+        },
+        {
+            "id": "Labels-River",
+            "type": "symbol",
+            "metadata": {"mapbox:group": "2591203a36f77a2353d1e37c27ca8d4b"},
+            "source": "composite",
+            "source-layer": "WatersLine",
+            "filter": [
+                "all",
+                ["==", "$type", "LineString"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "River"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {
+                "text-size": [
+                    "interpolate",
+                    ["exponential", 1.3],
+                    ["zoom"],
+                    11,
+                    9,
+                    22,
+                    50
+                ],
+                "text-field": ["to-string", ["get", "Name"]],
+                "text-max-angle": 45,
+                "text-font": [
+                    "Helvetica Neue LT Std 66 Medium Italic",
+                    "Arial Unicode MS Regular"
+                ],
+                "text-letter-spacing": 0.1,
+                "symbol-placement": "line"
+            },
+            "paint": {
+                "text-color": "#53626a",
+                "text-halo-color": "hsla(0, 0%, 0%, 0.3)",
+                "text-halo-width": 2,
+                "text-halo-blur": 2
+            }
+        },
+        {
+            "id": "Labels-Collector and Local",
+            "type": "symbol",
+            "metadata": {"mapbox:group": "d3e156b2fae7298da93c6c6cb9e8522a"},
+            "source": "composite",
+            "source-layer": "RoadsLine",
+            "minzoom": 12,
+            "filter": [
+                "all",
+                ["<=", "FirstYear", 2016],
+                [">=", "LastYear", 2016],
+                ["in", "SubType", "Collector", "Local"]
+            ],
+            "layout": {
+                "text-size": [
+                    "interpolate",
+                    ["exponential", 1.3],
+                    ["zoom"],
+                    12,
+                    7,
+                    22,
+                    50
+                ],
+                "symbol-spacing": 250,
+                "text-font": [
+                    "Helvetica Neue Medium",
+                    "Arial Unicode MS Regular"
+                ],
+                "symbol-placement": "line",
+                "text-padding": 2,
+                "text-offset": [0, 0],
+                "text-field": ["to-string", ["get", "Name"]],
+                "text-letter-spacing": 0.1
+            },
+            "paint": {
+                "text-color": "hsl(0, 0%, 80%)",
+                "text-halo-color": "hsla(0, 0%, 0%, 0.6)",
+                "text-halo-width": 2,
+                "text-halo-blur": 2,
+                "text-translate": [0, 0],
+                "text-opacity": [
+                    "interpolate",
+                    ["linear"],
+                    ["zoom"],
+                    12,
+                    0,
+                    13,
+                    1
+                ]
+            }
+        },
+        {
+            "id": "Labels-Arterial",
+            "type": "symbol",
+            "metadata": {"mapbox:group": "d3e156b2fae7298da93c6c6cb9e8522a"},
+            "source": "composite",
+            "source-layer": "RoadsLine",
+            "minzoom": 11,
+            "filter": [
+                "all",
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "Arterial"],
+                    [">=", "LastYear", 2016]
+                ],
+                ["in", "$type", "LineString", "Point", "Polygon"]
+            ],
+            "layout": {
+                "text-field": ["to-string", ["get", "Name"]],
+                "symbol-placement": "line",
+                "text-font": [
+                    "Helvetica Neue Medium",
+                    "Arial Unicode MS Regular"
+                ],
+                "text-size": [
+                    "interpolate",
+                    ["exponential", 1.3],
+                    ["zoom"],
+                    11,
+                    8,
+                    22,
+                    60
+                ],
+                "text-letter-spacing": 0.1,
+                "text-max-width": 10,
+                "symbol-spacing": 250
+            },
+            "paint": {
+                "text-halo-blur": 2,
+                "text-halo-color": "hsla(0, 0%, 0%, 0.6)",
+                "text-halo-width": 2,
+                "text-color": "hsl(0, 0%, 80%)"
+            }
+        },
+        {
+            "id": "Labels-Expressway",
+            "type": "symbol",
+            "metadata": {"mapbox:group": "d3e156b2fae7298da93c6c6cb9e8522a"},
+            "source": "composite",
+            "source-layer": "RoadsLine",
+            "minzoom": 9,
+            "filter": [
+                "all",
+                ["<=", "FirstYear", 2016],
+                ["==", "SubType", "Expressway"],
+                [">=", "LastYear", 2016]
+            ],
+            "layout": {
+                "text-size": [
+                    "interpolate",
+                    ["exponential", 1.3],
+                    ["zoom"],
+                    9,
+                    6,
+                    22,
+                    70
+                ],
+                "text-max-angle": 45,
+                "symbol-spacing": 250,
+                "text-font": [
+                    "Helvetica Neue Medium",
+                    "Arial Unicode MS Regular"
+                ],
+                "symbol-placement": "line",
+                "text-padding": 2,
+                "text-field": ["to-string", ["get", "Name"]],
+                "text-letter-spacing": 0.1
+            },
+            "paint": {
+                "text-color": "hsl(0, 0%, 80%)",
+                "text-halo-width": 2,
+                "text-halo-blur": 2,
+                "text-halo-color": "hsla(0, 0%, 0%, 0.6)"
+            }
+        },
+        {
+            "id": "mapbox-satellite",
+            "type": "raster",
+            "source": "mapbox://mapbox.satellite",
+            "layout": {"visibility": "none"},
+            "paint": {"raster-opacity": 1}
+        },
+        {
+            "id": "viewconespoint",
+            "type": "symbol",
+            "source": "composite",
+            "source-layer": "ViewConesPoint",
+            "filter": [
+                "all",
+                ["==", "$type", "Point"],
+                ["all", ["<=", "FirstYear", 1892], [">=", "LastYear", 1892]]
+            ],
+            "layout": {
+                "icon-size": [
+                    "interpolate",
+                    ["linear"],
+                    ["zoom"],
+                    12,
+                    0.5,
+                    18,
+                    1
+                ],
+                "icon-image": "view",
+                "icon-allow-overlap": true,
+                "icon-padding": 0
+            },
+            "paint": {"icon-opacity": 0.9, "text-halo-width": 0}
+        }
+    ],
+    "created": "2018-12-30T00:31:55.026Z",
+    "id": "cjqa5txmq37uw2rqyieyojxh7",
+    "modified": "2019-02-06T11:12:09.931Z",
+    "owner": "axismaps",
+    "visibility": "private",
+    "draft": false
+}
