@@ -1,3 +1,0 @@
-data/geojson/**/* filter=lfs diff=lfs merge=lfs -text
-data/tiles/* filter=lfs diff=lfs merge=lfs -text
-data/geotiff/** filter=lfs diff=lfs merge=lfs -text
