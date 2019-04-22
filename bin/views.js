@@ -18,6 +18,9 @@ fs.readFile(path.join(__dirname, '../data/geojson/visual/ViewConesPoly.json'), '
     return feature;
   });
 
+  points.features = points.features.filter(p =>
+    p.geometry.coordinates[0] && p.geometry.coordinates[1]);
+
   polys.features = polys.features.map((p) => {
     const feature = p;
     const props = _.omit(p.properties, ['StyleName', 'ScaleRank', 'Latitude', 'Longitude', 'Shape_Leng', 'Shape_Area']);
