@@ -1,11 +1,11 @@
 for f in $1*.shp;\
   do mapshaper $f field-types=FirstYear:number,LastYear:number \
-    -each 'Name=null' where='Name=undefined' \
-    -each 'Type=null' where='Type=undefined' \
+    -each 'Name = Name || null' \
+    -each 'Type = Type || null' \
     -each 'FirstYear=Math.floor(FirstDate / 10000)' where='!FirstYear' \
     -each 'LastYear=Math.floor(LastDate / 10000)' where='!LastYear' \
-    -each 'FirstDate=null' where='FirstDate=undefined' \
-    -each 'LastDate=null' where='LastDate=undefined' \
+    -each 'FirstDate = FirstDate || null' \
+    -each 'LastDate = LastDate || null' \
     -filter-fields FirstYear,LastYear,FirstDate,LastDate,Name,Type \
     -o data/geojson/$(basename "$f" .shp).json;\
 done
