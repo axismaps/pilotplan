@@ -19,7 +19,7 @@ const makeUpload = (credentials) => {
   const title = `pilot${credentials.file.replace(/.*\/(SSID)?/gi, '').replace(/\.mbtiles$/gi, '').toLowerCase()}`;
   uploadsClient
     .createUpload({
-      mapId: `axismaps.${title}`,
+      mapId: `fdahdah.${title}`,
       url: credentials.url,
       tilesetName: `PilotPlan - SSID${title}`,
     })

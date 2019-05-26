@@ -48,7 +48,7 @@ if [ "$1" == dev ]; then
   id="axismaps.01c7rsvl"
   tileset="dev"
 else
-  id="axismaps.dd66zwg7"
+  id="fdahdah.90x45q50"
   tileset="production"
 fi
 
