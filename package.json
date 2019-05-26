@@ -15,7 +15,7 @@
     "dev-document": "documentation serve --watch ./src/js/index.js",
     "geojson": "./bin/geojson.sh",
     "test": "node_modules/.bin/jest",
-    "raster": "python bin/prep_rasters.py && source .env && node bin/raster.js && rm data/geotiff/converted/*",
+    "raster": "python bin/prep_rasters.py && source .env && node bin/raster.js",
     "static": "node bin/static.js && node bin/extents.js",
     "style": "node bin/styles.js",
     "tiles": "./bin/tiles.sh",
