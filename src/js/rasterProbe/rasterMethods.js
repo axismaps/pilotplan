@@ -56,7 +56,7 @@ const rasterMethods = {
     } else {
       imgPath = `/${metadata.image_url}`;
     }
-    return `https://tsprod.artstor.org/rosa-iiif-endpoint-1.0-SNAPSHOT/fpx${encodeURIComponent(imgPath)}/full/full/0/native.jpg`;
+    return `https://stor.artstor.org/iiif/fpx${encodeURI(imgPath)}/full/full/0/default.jpg`;
   },
   getMetadata({ data }, callback) {
     const { SSC_ID } = data;
