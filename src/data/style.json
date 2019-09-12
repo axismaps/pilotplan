@@ -62,7 +62,7 @@
     "bearing": -72,
     "pitch": 0,
     "sources": {
-        "composite": {"url": "mapbox://axismaps.dd66zwg7", "type": "vector"},
+        "composite": {"url": "mapbox://axismaps.7n5yto91", "type": "vector"},
         "mapbox://axismaps.pilothillshade": {
             "url": "mapbox://axismaps.pilothillshade",
             "type": "raster",
@@ -88,13 +88,14 @@
             "type": "fill",
             "metadata": {"mapbox:group": "0de5687b0d47951f32ae1375febbbb66"},
             "source": "composite",
-            "source-layer": "BuiltDomainPoly",
+            "source-layer": "poly",
             "filter": [
                 "all",
                 ["==", "$type", "Polygon"],
                 [
                     "all",
                     ["<=", "FirstYear", 2016],
+                    ["==", "Layer", "BuiltDomainPoly"],
                     ["==", "SubType", "Built Domain"],
                     [">=", "LastYear", 2016]
                 ]
@@ -112,13 +113,14 @@
             "type": "fill",
             "metadata": {"mapbox:group": "5ab01a8793bdeeafe61620a1ef546372"},
             "source": "composite",
-            "source-layer": "SectorsPoly",
+            "source-layer": "poly",
             "filter": [
                 "all",
                 ["==", "$type", "Polygon"],
                 [
                     "all",
                     ["<=", "FirstYear", 2016],
+                    ["==", "Layer", "SectorsPoly"],
                     ["==", "SubType", "Bucolic Scale"],
                     [">=", "LastYear", 2016]
                 ]
@@ -135,13 +137,14 @@
             "type": "fill",
             "metadata": {"mapbox:group": "5ab01a8793bdeeafe61620a1ef546372"},
             "source": "composite",
-            "source-layer": "SectorsPoly",
+            "source-layer": "poly",
             "filter": [
                 "all",
                 ["==", "$type", "Polygon"],
                 [
                     "all",
                     ["<=", "FirstYear", 2016],
+                    ["==", "Layer", "SectorsPoly"],
                     ["==", "SubType", "Clustered Scale"],
                     [">=", "LastYear", 2016]
                 ]
@@ -158,13 +161,14 @@
             "type": "fill",
             "metadata": {"mapbox:group": "5ab01a8793bdeeafe61620a1ef546372"},
             "source": "composite",
-            "source-layer": "SectorsPoly",
+            "source-layer": "poly",
             "filter": [
                 "all",
                 ["==", "$type", "Polygon"],
                 [
                     "all",
                     ["<=", "FirstYear", 2016],
+                    ["==", "Layer", "SectorsPoly"],
                     ["==", "SubType", "Monumental Scale"],
                     [">=", "LastYear", 2016]
                 ]
@@ -181,7 +185,7 @@
             "type": "fill",
             "metadata": {"mapbox:group": "5ab01a8793bdeeafe61620a1ef546372"},
             "source": "composite",
-            "source-layer": "SectorsPoly",
+            "source-layer": "poly",
             "minzoom": 9,
             "filter": [
                 "all",
@@ -189,6 +193,7 @@
                 [
                     "all",
                     ["<=", "FirstYear", 2016],
+                    ["==", "Layer", "SectorsPoly"],
                     ["==", "SubType", "Residential Scale"],
                     [">=", "LastYear", 2016]
                 ]
@@ -206,13 +211,14 @@
             "type": "fill",
             "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
             "source": "composite",
-            "source-layer": "OpenSpacesPoly",
+            "source-layer": "poly",
             "filter": [
                 "all",
                 ["==", "$type", "Polygon"],
                 [
                     "all",
                     ["<=", "FirstYear", 2016],
+                    ["==", "Layer", "OpenSpacesPoly"],
                     ["==", "SubType", "Cerrado Savannah"],
                     [">=", "LastYear", 2016]
                 ]
@@ -228,13 +234,14 @@
             "type": "line",
             "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
             "source": "composite",
-            "source-layer": "OpenSpacesPoly",
+            "source-layer": "poly",
             "filter": [
                 "all",
                 ["==", "$type", "Polygon"],
                 [
                     "all",
                     ["<=", "FirstYear", 2016],
+                    ["==", "Layer", "OpenSpacesPoly"],
                     ["==", "SubType", "Cerrado Savannah"],
                     [">=", "LastYear", 2016]
                 ]
@@ -267,13 +274,14 @@
             "type": "fill",
             "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
             "source": "composite",
-            "source-layer": "OpenSpacesPoly",
+            "source-layer": "poly",
             "filter": [
                 "all",
                 ["==", "$type", "Polygon"],
                 [
                     "all",
                     ["<=", "FirstYear", 2016],
+                    ["==", "Layer", "OpenSpacesPoly"],
                     ["==", "SubType", "Reforested Area"],
                     [">=", "LastYear", 2016]
                 ]
@@ -289,13 +297,14 @@
             "type": "line",
             "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
             "source": "composite",
-            "source-layer": "OpenSpacesPoly",
+            "source-layer": "poly",
             "filter": [
                 "all",
                 ["==", "$type", "Polygon"],
                 [
                     "all",
                     ["<=", "FirstYear", 2016],
+                    ["==", "Layer", "OpenSpacesPoly"],
                     ["==", "SubType", "Reforested Area"],
                     [">=", "LastYear", 2016]
                 ]
@@ -328,13 +337,14 @@
             "type": "fill",
             "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
             "source": "composite",
-            "source-layer": "OpenSpacesPoly",
+            "source-layer": "poly",
             "filter": [
                 "all",
                 ["==", "$type", "Polygon"],
                 [
                     "all",
                     ["<=", "FirstYear", 2016],
+                    ["==", "Layer", "OpenSpacesPoly"],
                     ["==", "SubType", "Forest"],
                     [">=", "LastYear", 2016]
                 ]
@@ -350,13 +360,14 @@
             "type": "line",
             "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
             "source": "composite",
-            "source-layer": "OpenSpacesPoly",
+            "source-layer": "poly",
             "filter": [
                 "all",
                 ["==", "$type", "Polygon"],
                 [
                     "all",
                     ["<=", "FirstYear", 2016],
+                    ["==", "Layer", "OpenSpacesPoly"],
                     ["==", "SubType", "Forest"],
                     [">=", "LastYear", 2016]
                 ]
@@ -389,10 +400,11 @@
             "type": "fill",
             "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
             "source": "composite",
-            "source-layer": "OpenSpacesPoly",
+            "source-layer": "poly",
             "filter": [
                 "all",
                 ["<=", "FirstYear", 2016],
+                ["==", "Layer", "OpenSpacesPoly"],
                 ["==", "SubType", "Uncovered Area"],
                 [">=", "LastYear", 2016]
             ],
@@ -407,10 +419,11 @@
             "type": "line",
             "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
             "source": "composite",
-            "source-layer": "OpenSpacesPoly",
+            "source-layer": "poly",
             "filter": [
                 "all",
                 ["<=", "FirstYear", 2016],
+                ["==", "Layer", "OpenSpacesPoly"],
                 ["==", "SubType", "Uncovered Area"],
                 [">=", "LastYear", 2016]
             ],
@@ -434,10 +447,11 @@
             "type": "fill",
             "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
             "source": "composite",
-            "source-layer": "OpenSpacesPoly",
+            "source-layer": "poly",
             "filter": [
                 "all",
                 ["<=", "FirstYear", 2016],
+                ["==", "Layer", "OpenSpacesPoly"],
                 ["==", "SubType", "Field"],
                 [">=", "LastYear", 2016]
             ],
@@ -452,10 +466,11 @@
             "type": "line",
             "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
             "source": "composite",
-            "source-layer": "OpenSpacesPoly",
+            "source-layer": "poly",
             "filter": [
                 "all",
                 ["<=", "FirstYear", 2016],
+                ["==", "Layer", "OpenSpacesPoly"],
                 ["==", "SubType", "Field"],
                 [">=", "LastYear", 2016]
             ],
@@ -479,13 +494,14 @@
             "type": "fill",
             "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
             "source": "composite",
-            "source-layer": "OpenSpacesPoly",
+            "source-layer": "poly",
             "filter": [
                 "all",
                 ["==", "$type", "Polygon"],
                 [
                     "all",
                     ["<=", "FirstYear", 2016],
+                    ["==", "Layer", "OpenSpacesPoly"],
                     ["==", "SubType", "Pasture"],
                     [">=", "LastYear", 2016]
                 ]
@@ -501,13 +517,14 @@
             "type": "line",
             "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
             "source": "composite",
-            "source-layer": "OpenSpacesPoly",
+            "source-layer": "poly",
             "filter": [
                 "all",
                 ["==", "$type", "Polygon"],
                 [
                     "all",
                     ["<=", "FirstYear", 2016],
+                    ["==", "Layer", "OpenSpacesPoly"],
                     ["==", "SubType", "Pasture"],
                     [">=", "LastYear", 2016]
                 ]
@@ -540,13 +557,14 @@
             "type": "fill",
             "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
             "source": "composite",
-            "source-layer": "OpenSpacesPoly",
+            "source-layer": "poly",
             "filter": [
                 "all",
                 ["==", "$type", "Polygon"],
                 [
                     "all",
                     ["<=", "FirstYear", 2016],
+                    ["==", "Layer", "OpenSpacesPoly"],
                     ["==", "SubType", "Agriculture"],
                     [">=", "LastYear", 2016]
                 ]
@@ -562,13 +580,14 @@
             "type": "line",
             "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
             "source": "composite",
-            "source-layer": "OpenSpacesPoly",
+            "source-layer": "poly",
             "filter": [
                 "all",
                 ["==", "$type", "Polygon"],
                 [
                     "all",
                     ["<=", "FirstYear", 2016],
+                    ["==", "Layer", "OpenSpacesPoly"],
                     ["==", "SubType", "Agriculture"],
                     [">=", "LastYear", 2016]
                 ]
@@ -601,13 +620,14 @@
             "type": "fill",
             "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
             "source": "composite",
-            "source-layer": "OpenSpacesPoly",
+            "source-layer": "poly",
             "filter": [
                 "all",
                 ["==", "$type", "Polygon"],
                 [
                     "all",
                     ["<=", "FirstYear", 2016],
+                    ["==", "Layer", "OpenSpacesPoly"],
                     ["==", "SubType", "Orchard"],
                     [">=", "LastYear", 2016]
                 ]
@@ -623,13 +643,14 @@
             "type": "line",
             "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
             "source": "composite",
-            "source-layer": "OpenSpacesPoly",
+            "source-layer": "poly",
             "filter": [
                 "all",
                 ["==", "$type", "Polygon"],
                 [
                     "all",
                     ["<=", "FirstYear", 2016],
+                    ["==", "Layer", "OpenSpacesPoly"],
                     ["==", "SubType", "Park"],
                     [">=", "LastYear", 2016]
                 ]
@@ -662,13 +683,14 @@
             "type": "fill",
             "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
             "source": "composite",
-            "source-layer": "OpenSpacesPoly",
+            "source-layer": "poly",
             "filter": [
                 "all",
                 ["==", "$type", "Polygon"],
                 [
                     "all",
                     ["<=", "FirstYear", 2016],
+                    ["==", "Layer", "OpenSpacesPoly"],
                     ["==", "SubType", "Park"],
                     [">=", "LastYear", 2016]
                 ]
@@ -684,13 +706,14 @@
             "type": "line",
             "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
             "source": "composite",
-            "source-layer": "OpenSpacesPoly",
+            "source-layer": "poly",
             "filter": [
                 "all",
                 ["==", "$type", "Polygon"],
                 [
                     "all",
                     ["<=", "FirstYear", 2016],
+                    ["==", "Layer", "OpenSpacesPoly"],
                     ["==", "SubType", "Lawn"],
                     [">=", "LastYear", 2016]
                 ]
@@ -723,13 +746,14 @@
             "type": "fill",
             "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
             "source": "composite",
-            "source-layer": "OpenSpacesPoly",
+            "source-layer": "poly",
             "filter": [
                 "all",
                 ["==", "$type", "Polygon"],
                 [
                     "all",
                     ["<=", "FirstYear", 2016],
+                    ["==", "Layer", "OpenSpacesPoly"],
                     ["==", "SubType", "Lawn"],
                     [">=", "LastYear", 2016]
                 ]
@@ -745,13 +769,14 @@
             "type": "line",
             "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
             "source": "composite",
-            "source-layer": "OpenSpacesPoly",
+            "source-layer": "poly",
             "filter": [
                 "all",
                 ["==", "$type", "Polygon"],
                 [
                     "all",
                     ["<=", "FirstYear", 2016],
+                    ["==", "Layer", "OpenSpacesPoly"],
                     ["==", "SubType", "Mall"],
                     [">=", "LastYear", 2016]
                 ]
@@ -784,13 +809,14 @@
             "type": "fill",
             "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
             "source": "composite",
-            "source-layer": "OpenSpacesPoly",
+            "source-layer": "poly",
             "filter": [
                 "all",
                 ["==", "$type", "Polygon"],
                 [
                     "all",
                     ["<=", "FirstYear", 2016],
+                    ["==", "Layer", "OpenSpacesPoly"],
                     ["==", "SubType", "Mall"],
                     [">=", "LastYear", 2016]
                 ]
@@ -806,13 +832,14 @@
             "type": "line",
             "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
             "source": "composite",
-            "source-layer": "OpenSpacesPoly",
+            "source-layer": "poly",
             "filter": [
                 "all",
                 ["==", "$type", "Polygon"],
                 [
                     "all",
                     ["<=", "FirstYear", 2016],
+                    ["==", "Layer", "OpenSpacesPoly"],
                     ["==", "SubType", "EntreQuadra"],
                     [">=", "LastYear", 2016]
                 ]
@@ -845,13 +872,14 @@
             "type": "fill",
             "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
             "source": "composite",
-            "source-layer": "OpenSpacesPoly",
+            "source-layer": "poly",
             "filter": [
                 "all",
                 ["==", "$type", "Polygon"],
                 [
                     "all",
                     ["<=", "FirstYear", 2016],
+                    ["==", "Layer", "OpenSpacesPoly"],
                     ["==", "SubType", "EntreQuadra"],
                     [">=", "LastYear", 2016]
                 ]
@@ -867,13 +895,14 @@
             "type": "fill",
             "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
             "source": "composite",
-            "source-layer": "OpenSpacesPoly",
+            "source-layer": "poly",
             "filter": [
                 "all",
                 ["==", "$type", "Polygon"],
                 [
                     "all",
                     ["<=", "FirstYear", 2016],
+                    ["==", "Layer", "OpenSpacesPoly"],
                     ["==", "SubType", "Botanical Garden"],
                     [">=", "LastYear", 2016]
                 ]
@@ -889,13 +918,14 @@
             "type": "fill",
             "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
             "source": "composite",
-            "source-layer": "OpenSpacesPoly",
+            "source-layer": "poly",
             "filter": [
                 "all",
                 ["==", "$type", "Polygon"],
                 [
                     "all",
                     ["<=", "FirstYear", 2016],
+                    ["==", "Layer", "OpenSpacesPoly"],
                     ["==", "SubType", "Zoological Garden"],
                     [">=", "LastYear", 2016]
                 ]
@@ -911,13 +941,14 @@
             "type": "fill",
             "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
             "source": "composite",
-            "source-layer": "OpenSpacesPoly",
+            "source-layer": "poly",
             "filter": [
                 "all",
                 ["==", "$type", "Polygon"],
                 [
                     "all",
                     ["<=", "FirstYear", 2016],
+                    ["==", "Layer", "OpenSpacesPoly"],
                     ["==", "SubType", "Golf Club"],
                     [">=", "LastYear", 2016]
                 ]
@@ -933,13 +964,14 @@
             "type": "fill",
             "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
             "source": "composite",
-            "source-layer": "OpenSpacesPoly",
+            "source-layer": "poly",
             "filter": [
                 "all",
                 ["==", "$type", "Polygon"],
                 [
                     "all",
                     ["<=", "FirstYear", 2016],
+                    ["==", "Layer", "OpenSpacesPoly"],
                     ["==", "SubType", "Jockey Club"],
                     [">=", "LastYear", 2016]
                 ]
@@ -955,13 +987,14 @@
             "type": "fill",
             "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
             "source": "composite",
-            "source-layer": "OpenSpacesPoly",
+            "source-layer": "poly",
             "filter": [
                 "all",
                 ["==", "$type", "Polygon"],
                 [
                     "all",
                     ["<=", "FirstYear", 2016],
+                    ["==", "Layer", "OpenSpacesPoly"],
                     ["==", "SubType", "Cemetery"],
                     [">=", "LastYear", 2016]
                 ]
@@ -977,7 +1010,7 @@
             "type": "fill",
             "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
             "source": "composite",
-            "source-layer": "OpenSpacesPoly",
+            "source-layer": "poly",
             "minzoom": 9,
             "filter": [
                 "all",
@@ -985,6 +1018,7 @@
                 [
                     "all",
                     ["<=", "FirstYear", 2016],
+                    ["==", "Layer", "OpenSpacesPoly"],
                     ["==", "SubType", "Tree Belt"],
                     [">=", "LastYear", 2016]
                 ]
@@ -1000,7 +1034,7 @@
             "type": "fill",
             "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
             "source": "composite",
-            "source-layer": "WaterBodiesPoly",
+            "source-layer": "poly",
             "filter": [
                 "all",
                 ["==", "$type", "Polygon"],
@@ -1008,6 +1042,7 @@
                     "all",
                     ["<=", "FirstYear", 2016],
                     [">=", "LastYear", 2016],
+                    ["==", "Layer", "WaterBodiesPoly"],
                     ["in", "SubType", "Lake", "Reservoir"]
                 ]
             ],
@@ -1022,13 +1057,14 @@
             "type": "fill",
             "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
             "source": "composite",
-            "source-layer": "OpenSpacesPoly",
+            "source-layer": "poly",
             "filter": [
                 "all",
                 ["==", "$type", "Polygon"],
                 [
                     "all",
                     ["<=", "FirstYear", 2016],
+                    ["==", "Layer", "OpenSpacesPoly"],
                     ["==", "SubType", "Airport"],
                     [">=", "LastYear", 2016]
                 ]
@@ -1041,13 +1077,14 @@
             "type": "fill",
             "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
             "source": "composite",
-            "source-layer": "OpenSpacesPoly",
+            "source-layer": "poly",
             "filter": [
                 "all",
                 ["==", "$type", "Polygon"],
                 [
                     "all",
                     ["<=", "FirstYear", 2016],
+                    ["==", "Layer", "OpenSpacesPoly"],
                     ["==", "SubType", "Barracks"],
                     [">=", "LastYear", 2016]
                 ]
@@ -1060,7 +1097,7 @@
             "type": "line",
             "metadata": {"mapbox:group": "a767fb3590355077e9f91cf672e9d186"},
             "source": "composite",
-            "source-layer": "WaterBodiesPoly",
+            "source-layer": "poly",
             "filter": [
                 "all",
                 ["==", "$type", "Polygon"],
@@ -1068,6 +1105,7 @@
                     "all",
                     ["<=", "FirstYear", 2016],
                     [">=", "LastYear", 2016],
+                    ["==", "Layer", "WaterBodiesPoly"],
                     ["in", "SubType", "Lake", "Reservoir"]
                 ]
             ],
@@ -1099,7 +1137,7 @@
             "type": "fill",
             "metadata": {"mapbox:group": "a767fb3590355077e9f91cf672e9d186"},
             "source": "composite",
-            "source-layer": "WaterBodiesPoly",
+            "source-layer": "poly",
             "filter": [
                 "all",
                 ["==", "$type", "Polygon"],
@@ -1107,6 +1145,7 @@
                     "all",
                     ["<=", "FirstYear", 2016],
                     [">=", "LastYear", 2016],
+                    ["==", "Layer", "WaterBodiesPoly"],
                     ["in", "SubType", "Fountain", "Reflecting Pool"]
                 ]
             ],
@@ -1121,7 +1160,7 @@
             "type": "fill",
             "metadata": {"mapbox:group": "14aac24dcfe8ee3a1a67579284f36eab"},
             "source": "composite",
-            "source-layer": "OpenSpacesPoly",
+            "source-layer": "poly",
             "minzoom": 12,
             "filter": [
                 "all",
@@ -1129,6 +1168,7 @@
                 [
                     "all",
                     ["<=", "FirstYear", 2016],
+                    ["==", "Layer", "OpenSpacesPoly"],
                     ["==", "SubType", "Parking Lot"],
                     [">=", "LastYear", 2016]
                 ]
@@ -1144,13 +1184,14 @@
             "type": "line",
             "metadata": {"mapbox:group": "55a68e75394877ae97b05f788ef4d5eb"},
             "source": "composite",
-            "source-layer": "WatersLine",
+            "source-layer": "line",
             "filter": [
                 "all",
                 ["==", "$type", "LineString"],
                 [
                     "all",
                     ["<=", "FirstYear", 2016],
+                    ["==", "Layer", "WatersLine"],
                     ["==", "SubType", "Creek"],
                     [">=", "LastYear", 2016]
                 ]
@@ -1175,13 +1216,14 @@
             "type": "line",
             "metadata": {"mapbox:group": "55a68e75394877ae97b05f788ef4d5eb"},
             "source": "composite",
-            "source-layer": "WatersLine",
+            "source-layer": "line",
             "filter": [
                 "all",
                 ["==", "$type", "LineString"],
                 [
                     "all",
                     ["<=", "FirstYear", 2016],
+                    ["==", "Layer", "WatersLine"],
                     ["==", "SubType", "Stream"],
                     [">=", "LastYear", 2016]
                 ]
@@ -1206,13 +1248,14 @@
             "type": "line",
             "metadata": {"mapbox:group": "55a68e75394877ae97b05f788ef4d5eb"},
             "source": "composite",
-            "source-layer": "WatersLine",
+            "source-layer": "line",
             "filter": [
                 "all",
                 ["==", "$type", "LineString"],
                 [
                     "all",
                     ["<=", "FirstYear", 2016],
+                    ["==", "Layer", "WatersLine"],
                     ["==", "SubType", "River"],
                     [">=", "LastYear", 2016]
                 ]
@@ -1246,13 +1289,14 @@
             "type": "line",
             "metadata": {"mapbox:group": "55a68e75394877ae97b05f788ef4d5eb"},
             "source": "composite",
-            "source-layer": "WatersLine",
+            "source-layer": "line",
             "filter": [
                 "all",
                 ["==", "$type", "LineString"],
                 [
                     "all",
                     ["<=", "FirstYear", 2016],
+                    ["==", "Layer", "WatersLine"],
                     ["==", "SubType", "Creek"],
                     [">=", "LastYear", 2016]
                 ]
@@ -1277,13 +1321,14 @@
             "type": "line",
             "metadata": {"mapbox:group": "55a68e75394877ae97b05f788ef4d5eb"},
             "source": "composite",
-            "source-layer": "WatersLine",
+            "source-layer": "line",
             "filter": [
                 "all",
                 ["==", "$type", "LineString"],
                 [
                     "all",
                     ["<=", "FirstYear", 2016],
+                    ["==", "Layer", "WatersLine"],
                     ["==", "SubType", "Stream"],
                     [">=", "LastYear", 2016]
                 ]
@@ -1308,13 +1353,14 @@
             "type": "line",
             "metadata": {"mapbox:group": "55a68e75394877ae97b05f788ef4d5eb"},
             "source": "composite",
-            "source-layer": "WatersLine",
+            "source-layer": "line",
             "filter": [
                 "all",
                 ["==", "$type", "LineString"],
                 [
                     "all",
                     ["<=", "FirstYear", 2016],
+                    ["==", "Layer", "WatersLine"],
                     ["==", "SubType", "River"],
                     [">=", "LastYear", 2016]
                 ]
@@ -1339,7 +1385,7 @@
             "type": "line",
             "metadata": {"mapbox:group": "a04428c037425a3d0df4ac9b17367f77"},
             "source": "composite",
-            "source-layer": "RoadsLine",
+            "source-layer": "line",
             "minzoom": 12,
             "filter": [
                 "all",
@@ -1347,6 +1393,7 @@
                 [
                     "all",
                     ["<=", "FirstYear", 2016],
+                    ["==", "Layer", "RoadsLine"],
                     ["==", "SubType", "Tunnel"],
                     [">=", "LastYear", 2016]
                 ]
@@ -1379,7 +1426,7 @@
             "type": "line",
             "metadata": {"mapbox:group": "a04428c037425a3d0df4ac9b17367f77"},
             "source": "composite",
-            "source-layer": "RoadsLine",
+            "source-layer": "line",
             "minzoom": 9,
             "filter": [
                 "all",
@@ -1387,6 +1434,7 @@
                 [
                     "all",
                     ["<=", "FirstYear", 2016],
+                    ["==", "Layer", "RoadsLine"],
                     ["==", "SubType", "Trail"],
                     [">=", "LastYear", 2016]
                 ]
@@ -1418,7 +1466,7 @@
             "type": "line",
             "metadata": {"mapbox:group": "a04428c037425a3d0df4ac9b17367f77"},
             "source": "composite",
-            "source-layer": "RoadsLine",
+            "source-layer": "line",
             "minzoom": 12,
             "filter": [
                 "all",
@@ -1426,6 +1474,7 @@
                 [
                     "all",
                     ["<=", "FirstYear", 2016],
+                    ["==", "Layer", "RoadsLine"],
                     ["==", "SubType", "Collector"],
                     [">=", "LastYear", 2016]
                 ]
@@ -1458,7 +1507,7 @@
             "type": "line",
             "metadata": {"mapbox:group": "a04428c037425a3d0df4ac9b17367f77"},
             "source": "composite",
-            "source-layer": "RoadsLine",
+            "source-layer": "line",
             "minzoom": 12,
             "filter": [
                 "all",
@@ -1466,6 +1515,7 @@
                 [
                     "all",
                     ["<=", "FirstYear", 2016],
+                    ["==", "Layer", "RoadsLine"],
                     ["==", "SubType", "Local"],
                     [">=", "LastYear", 2016]
                 ]
@@ -1498,7 +1548,7 @@
             "type": "line",
             "metadata": {"mapbox:group": "a04428c037425a3d0df4ac9b17367f77"},
             "source": "composite",
-            "source-layer": "RoadsLine",
+            "source-layer": "line",
             "minzoom": 12,
             "filter": [
                 "all",
@@ -1506,6 +1556,7 @@
                 [
                     "all",
                     ["<=", "FirstYear", 2016],
+                    ["==", "Layer", "RoadsLine"],
                     ["==", "SubType", "Service Road"],
                     [">=", "LastYear", 2016]
                 ]
@@ -1538,7 +1589,7 @@
             "type": "line",
             "metadata": {"mapbox:group": "a04428c037425a3d0df4ac9b17367f77"},
             "source": "composite",
-            "source-layer": "RoadsLine",
+            "source-layer": "line",
             "minzoom": 11,
             "filter": [
                 "all",
@@ -1546,6 +1597,7 @@
                 [
                     "all",
                     ["<=", "FirstYear", 2016],
+                    ["==", "Layer", "RoadsLine"],
                     ["==", "SubType", "Arterial"],
                     [">=", "LastYear", 2016]
                 ]
@@ -1569,7 +1621,7 @@
             "type": "line",
             "metadata": {"mapbox:group": "a04428c037425a3d0df4ac9b17367f77"},
             "source": "composite",
-            "source-layer": "RoadsLine",
+            "source-layer": "line",
             "minzoom": 11,
             "filter": [
                 "all",
@@ -1577,6 +1629,7 @@
                 [
                     "all",
                     ["<=", "FirstYear", 2016],
+                    ["==", "Layer", "RoadsLine"],
                     ["==", "SubType", "Main Road"],
                     [">=", "LastYear", 2016]
                 ]
@@ -1600,7 +1653,7 @@
             "type": "line",
             "metadata": {"mapbox:group": "a04428c037425a3d0df4ac9b17367f77"},
             "source": "composite",
-            "source-layer": "RoadsLine",
+            "source-layer": "line",
             "minzoom": 9,
             "filter": [
                 "all",
@@ -1608,6 +1661,7 @@
                 [
                     "all",
                     ["<=", "FirstYear", 2016],
+                    ["==", "Layer", "RoadsLine"],
                     ["==", "SubType", "Expressway"],
                     [">=", "LastYear", 2016]
                 ]
@@ -1631,7 +1685,7 @@
             "type": "line",
             "metadata": {"mapbox:group": "a04428c037425a3d0df4ac9b17367f77"},
             "source": "composite",
-            "source-layer": "RoadsLine",
+            "source-layer": "line",
             "minzoom": 12,
             "filter": [
                 "all",
@@ -1639,6 +1693,7 @@
                 [
                     "all",
                     ["<=", "FirstYear", 2016],
+                    ["==", "Layer", "RoadsLine"],
                     ["==", "SubType", "Collector"],
                     [">=", "LastYear", 2016]
                 ]
@@ -1671,7 +1726,7 @@
             "type": "line",
             "metadata": {"mapbox:group": "a04428c037425a3d0df4ac9b17367f77"},
             "source": "composite",
-            "source-layer": "RoadsLine",
+            "source-layer": "line",
             "minzoom": 9,
             "filter": [
                 "all",
@@ -1679,6 +1734,7 @@
                 [
                     "all",
                     ["<=", "FirstYear", 1950],
+                    ["==", "Layer", "RoadsLine"],
                     ["==", "SubType", "Trail"],
                     [">=", "LastYear", 1950]
                 ]
@@ -1711,7 +1767,7 @@
             "type": "line",
             "metadata": {"mapbox:group": "a04428c037425a3d0df4ac9b17367f77"},
             "source": "composite",
-            "source-layer": "RoadsLine",
+            "source-layer": "line",
             "minzoom": 12,
             "filter": [
                 "all",
@@ -1719,6 +1775,7 @@
                 [
                     "all",
                     ["<=", "FirstYear", 2016],
+                    ["==", "Layer", "RoadsLine"],
                     ["==", "SubType", "Service Road"],
                     [">=", "LastYear", 2016]
                 ]
@@ -1751,7 +1808,7 @@
             "type": "line",
             "metadata": {"mapbox:group": "a04428c037425a3d0df4ac9b17367f77"},
             "source": "composite",
-            "source-layer": "RoadsLine",
+            "source-layer": "line",
             "minzoom": 12,
             "filter": [
                 "all",
@@ -1759,6 +1816,7 @@
                 [
                     "all",
                     ["<=", "FirstYear", 2016],
+                    ["==", "Layer", "RoadsLine"],
                     ["==", "SubType", "Local"],
                     [">=", "LastYear", 2016]
                 ]
@@ -1791,7 +1849,7 @@
             "type": "line",
             "metadata": {"mapbox:group": "a04428c037425a3d0df4ac9b17367f77"},
             "source": "composite",
-            "source-layer": "RoadsLine",
+            "source-layer": "line",
             "minzoom": 11,
             "filter": [
                 "all",
@@ -1799,6 +1857,7 @@
                 [
                     "all",
                     ["<=", "FirstYear", 2016],
+                    ["==", "Layer", "RoadsLine"],
                     ["==", "SubType", "Arterial"],
                     [">=", "LastYear", 2016]
                 ]
@@ -1830,7 +1889,7 @@
             "type": "line",
             "metadata": {"mapbox:group": "a04428c037425a3d0df4ac9b17367f77"},
             "source": "composite",
-            "source-layer": "RoadsLine",
+            "source-layer": "line",
             "minzoom": 11,
             "filter": [
                 "all",
@@ -1838,6 +1897,7 @@
                 [
                     "all",
                     ["<=", "FirstYear", 2016],
+                    ["==", "Layer", "RoadsLine"],
                     ["==", "SubType", "Main Road"],
                     [">=", "LastYear", 2016]
                 ]
@@ -1869,7 +1929,7 @@
             "type": "line",
             "metadata": {"mapbox:group": "a04428c037425a3d0df4ac9b17367f77"},
             "source": "composite",
-            "source-layer": "RoadsLine",
+            "source-layer": "line",
             "minzoom": 9,
             "filter": [
                 "all",
@@ -1877,6 +1937,7 @@
                 [
                     "all",
                     ["<=", "FirstYear", 2016],
+                    ["==", "Layer", "RoadsLine"],
                     ["==", "SubType", "Expressway"],
                     [">=", "LastYear", 2016]
                 ]
@@ -1908,7 +1969,7 @@
             "type": "line",
             "metadata": {"mapbox:group": "31a94c2ff0376a41dc9488ba1cf1b08b"},
             "source": "composite",
-            "source-layer": "InfrastructureLine",
+            "source-layer": "line",
             "minzoom": 11,
             "filter": [
                 "all",
@@ -1916,7 +1977,7 @@
                 [
                     "all",
                     ["<=", "FirstYear", 2016],
-                    ["==", "StyleName", "transportationline"],
+                    ["==", "Layer", "InfrastructureLine"],
                     ["==", "SubType", "Subway"],
                     [">=", "LastYear", 2016]
                 ]
@@ -1949,7 +2010,7 @@
             "type": "line",
             "metadata": {"mapbox:group": "31a94c2ff0376a41dc9488ba1cf1b08b"},
             "source": "composite",
-            "source-layer": "InfrastructureLine",
+            "source-layer": "line",
             "minzoom": 11,
             "filter": [
                 "all",
@@ -1957,6 +2018,7 @@
                 [
                     "all",
                     ["<=", "FirstYear", 2016],
+                    ["==", "Layer", "InfrastructureLine"],
                     ["==", "SubType", "Subway"],
                     [">=", "LastYear", 2016]
                 ]
@@ -1990,7 +2052,7 @@
             "type": "line",
             "metadata": {"mapbox:group": "31a94c2ff0376a41dc9488ba1cf1b08b"},
             "source": "composite",
-            "source-layer": "InfrastructureLine",
+            "source-layer": "line",
             "minzoom": 11,
             "filter": [
                 "all",
@@ -1998,6 +2060,7 @@
                 [
                     "all",
                     ["<=", "FirstYear", 2016],
+                    ["==", "Layer", "InfrastructureLine"],
                     ["==", "SubType", "Bus Line"],
                     [">=", "LastYear", 2016]
                 ]
@@ -2030,7 +2093,7 @@
             "type": "line",
             "metadata": {"mapbox:group": "31a94c2ff0376a41dc9488ba1cf1b08b"},
             "source": "composite",
-            "source-layer": "InfrastructureLine",
+            "source-layer": "line",
             "minzoom": 11,
             "filter": [
                 "all",
@@ -2038,6 +2101,7 @@
                 [
                     "all",
                     ["<=", "FirstYear", 2016],
+                    ["==", "Layer", "InfrastructureLine"],
                     ["==", "SubType", "Bus Line"],
                     [">=", "LastYear", 2016]
                 ]
@@ -2071,7 +2135,7 @@
             "type": "line",
             "metadata": {"mapbox:group": "31a94c2ff0376a41dc9488ba1cf1b08b"},
             "source": "composite",
-            "source-layer": "InfrastructureLine",
+            "source-layer": "line",
             "minzoom": 11,
             "filter": [
                 "all",
@@ -2079,6 +2143,7 @@
                 [
                     "all",
                     ["<=", "FirstYear", 2016],
+                    ["==", "Layer", "InfrastructureLine"],
                     ["==", "SubType", "Rail"],
                     [">=", "LastYear", 2016]
                 ]
@@ -2111,7 +2176,7 @@
             "type": "line",
             "metadata": {"mapbox:group": "31a94c2ff0376a41dc9488ba1cf1b08b"},
             "source": "composite",
-            "source-layer": "InfrastructureLine",
+            "source-layer": "line",
             "minzoom": 11,
             "filter": [
                 "all",
@@ -2119,6 +2184,7 @@
                 [
                     "all",
                     ["<=", "FirstYear", 2016],
+                    ["==", "Layer", "InfrastructureLine"],
                     ["==", "SubType", "Rail"],
                     [">=", "LastYear", 2016]
                 ]
@@ -2152,7 +2218,7 @@
             "type": "fill",
             "metadata": {"mapbox:group": "b16b3b3df4ffbbc42101a47ea38f43da"},
             "source": "composite",
-            "source-layer": "BuildingsPoly",
+            "source-layer": "poly",
             "minzoom": 12,
             "filter": [
                 "all",
@@ -2160,6 +2226,7 @@
                 [
                     "all",
                     ["<=", "FirstYear", 2016],
+                    ["==", "Layer", "BuildingsPoly"],
                     ["==", "SubType", "Work"],
                     [">=", "LastYear", 2016]
                 ]
@@ -2175,7 +2242,7 @@
             "type": "fill",
             "metadata": {"mapbox:group": "b16b3b3df4ffbbc42101a47ea38f43da"},
             "source": "composite",
-            "source-layer": "BuildingsPoly",
+            "source-layer": "poly",
             "minzoom": 12,
             "filter": [
                 "all",
@@ -2183,6 +2250,7 @@
                 [
                     "all",
                     ["<=", "FirstYear", 2016],
+                    ["==", "Layer", "BuildingsPoly"],
                     ["==", "SubType", "Live"],
                     [">=", "LastYear", 2016]
                 ]
@@ -2198,7 +2266,7 @@
             "type": "fill",
             "metadata": {"mapbox:group": "b16b3b3df4ffbbc42101a47ea38f43da"},
             "source": "composite",
-            "source-layer": "BuildingsPoly",
+            "source-layer": "poly",
             "minzoom": 12,
             "filter": [
                 "all",
@@ -2206,6 +2274,7 @@
                 [
                     "all",
                     ["<=", "FirstYear", 2016],
+                    ["==", "Layer", "BuildingsPoly"],
                     ["==", "SubType", "Cultivate Body and Mind"],
                     [">=", "LastYear", 2016]
                 ]
@@ -2221,7 +2290,7 @@
             "type": "fill",
             "metadata": {"mapbox:group": "b16b3b3df4ffbbc42101a47ea38f43da"},
             "source": "composite",
-            "source-layer": "BuildingsPoly",
+            "source-layer": "poly",
             "minzoom": 12,
             "filter": [
                 "all",
@@ -2229,6 +2298,7 @@
                 [
                     "all",
                     ["<=", "FirstYear", 2016],
+                    ["==", "Layer", "BuildingsPoly"],
                     ["==", "SubType", "Circulate"],
                     [">=", "LastYear", 2016]
                 ]
@@ -2244,7 +2314,7 @@
             "type": "line",
             "metadata": {},
             "source": "composite",
-            "source-layer": "BoundariesPoly",
+            "source-layer": "poly",
             "minzoom": 9,
             "maxzoom": 17,
             "filter": [
@@ -2253,6 +2323,7 @@
                 [
                     "all",
                     ["<=", "FirstYear", 2016],
+                    ["==", "Layer", "BoundariesPoly"],
                     ["==", "SubType", "Boundary"],
                     [">=", "LastYear", 2016]
                 ]
@@ -2293,7 +2364,7 @@
             "type": "symbol",
             "metadata": {"mapbox:group": "2591203a36f77a2353d1e37c27ca8d4b"},
             "source": "composite",
-            "source-layer": "WaterBodiesPoly",
+            "source-layer": "poly",
             "filter": [
                 "all",
                 ["==", "$type", "Polygon"],
@@ -2301,6 +2372,7 @@
                     "all",
                     ["<=", "FirstYear", 2016],
                     [">=", "LastYear", 2016],
+                    ["==", "Layer", "WaterBodiesPoly"],
                     ["in", "SubType", "Lake", "Reservoir"]
                 ]
             ],
@@ -2334,13 +2406,14 @@
             "type": "symbol",
             "metadata": {"mapbox:group": "2591203a36f77a2353d1e37c27ca8d4b"},
             "source": "composite",
-            "source-layer": "WatersLine",
+            "source-layer": "line",
             "filter": [
                 "all",
                 ["==", "$type", "LineString"],
                 [
                     "all",
                     ["<=", "FirstYear", 2016],
+                    ["==", "Layer", "WatersLine"],
                     ["==", "SubType", "Stream"],
                     [">=", "LastYear", 2016]
                 ]
@@ -2375,13 +2448,14 @@
             "type": "symbol",
             "metadata": {"mapbox:group": "2591203a36f77a2353d1e37c27ca8d4b"},
             "source": "composite",
-            "source-layer": "WatersLine",
+            "source-layer": "line",
             "filter": [
                 "all",
                 ["==", "$type", "LineString"],
                 [
                     "all",
                     ["<=", "FirstYear", 2016],
+                    ["==", "Layer", "WatersLine"],
                     ["==", "SubType", "River"],
                     [">=", "LastYear", 2016]
                 ]
@@ -2417,12 +2491,13 @@
             "type": "symbol",
             "metadata": {"mapbox:group": "d3e156b2fae7298da93c6c6cb9e8522a"},
             "source": "composite",
-            "source-layer": "RoadsLine",
+            "source-layer": "line",
             "minzoom": 12,
             "filter": [
                 "all",
                 ["<=", "FirstYear", 2016],
                 [">=", "LastYear", 2016],
+                ["==", "Layer", "RoadsLine"],
                 ["in", "SubType", "Collector", "Local"]
             ],
             "layout": {
@@ -2468,13 +2543,14 @@
             "type": "symbol",
             "metadata": {"mapbox:group": "d3e156b2fae7298da93c6c6cb9e8522a"},
             "source": "composite",
-            "source-layer": "RoadsLine",
+            "source-layer": "line",
             "minzoom": 11,
             "filter": [
                 "all",
                 [
                     "all",
                     ["<=", "FirstYear", 2016],
+                    ["==", "Layer", "RoadsLine"],
                     ["==", "SubType", "Arterial"],
                     [">=", "LastYear", 2016]
                 ],
@@ -2512,11 +2588,12 @@
             "type": "symbol",
             "metadata": {"mapbox:group": "d3e156b2fae7298da93c6c6cb9e8522a"},
             "source": "composite",
-            "source-layer": "RoadsLine",
+            "source-layer": "line",
             "minzoom": 9,
             "filter": [
                 "all",
                 ["<=", "FirstYear", 2016],
+                ["==", "Layer", "RoadsLine"],
                 ["==", "SubType", "Expressway"],
                 [">=", "LastYear", 2016]
             ],
