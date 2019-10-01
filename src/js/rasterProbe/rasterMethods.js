@@ -50,23 +50,18 @@ const rasterMethods = {
     });
   },
   getImageUrl(metadata) {
-    let imgPath;
-    if (metadata.image_url.lastIndexOf('.fpx') > -1) {
-      imgPath = `/${metadata.image_url.substring(0, metadata.image_url.lastIndexOf('.fpx') + 4)}`;
-    } else {
-      imgPath = `/${metadata.image_url}`;
-    }
-    return `https://stor.artstor.org/iiif/fpx${encodeURI(imgPath)}/full/full/0/default.jpg`;
+    return `https://dmi.rice.edu:8443${metadata.retrieveLink}`;
   },
   getMetadata({ data }, callback) {
-    const { SSC_ID } = data;
-    window.fetch('https://library.artstor.org/api/secure/userinfo', { credentials: 'include' })
-      .then(() => {
-        window.fetch(`https://library.artstor.org/api/v1/metadata?object_ids=${SSC_ID}&openlib=true`, { credentials: 'include' })
+    const { SS_ID } = data;
+    window.fetch(`https://dmi.rice.edu:8443/rest/handle/${SS_ID}`, { credentials: 'include' })
+      .then(res => res.json())
+      .then((meta) => {
+        window.fetch(`https://dmi.rice.edu:8443/rest/items/${meta.uuid}/bitstreams`, { credentials: 'include' })
           .then(res => res.text())
           .then((text) => {
             const json = JSON.parse(text);
-            callback(json.metadata[0]);
+            callback(json[0]);
           })
           .catch((err) => {
             console.log(`Error: ${err.message}`);
