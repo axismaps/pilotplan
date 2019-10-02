@@ -217,7 +217,7 @@ const getAtlasUpdateMethods = ({
       if (currentOverlay === null) return;
 
       const dev = /[?&]dev=true/.test(window.location.search) ? 'dev' : '';
-      const sourceUrl = `mapbox://axismaps.pilot${currentOverlay.SS_ID}${dev}`;
+      const sourceUrl = `mapbox://axismaps.pilot${currentOverlay.Notes}${dev}`;
 
       mbMap.addSource(
         'overlay',

@@ -1,5 +1,6 @@
 const fs = require('fs');
 const getBBox = require('@turf/bbox').default;
+const _ = require('underscore');
 
 const processFile = (fileName) => {
   const path = 'data/geojson/visual/';
@@ -8,7 +9,18 @@ const processFile = (fileName) => {
     const data = JSON.parse(dataRaw);
 
     const cleanData = data.features.map((feature) => {
-      const record = Object.assign({}, feature.properties);
+      let record = Object.assign({}, feature.properties);
+      record = _.pick(record, [
+        'Creator',
+        'SS_ID',
+        'Notes',
+        'SSC_ID',
+        'FirstYear',
+        'LastYear',
+        'Title',
+        'CreditLine',
+        'Repository',
+      ]);
       record.bounds = getBBox(feature);
       return record;
     });
