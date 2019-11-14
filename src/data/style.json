@@ -62,7 +62,10 @@
     "bearing": -72,
     "pitch": 0,
     "sources": {
-        "composite": {"url": "mapbox://axismaps.dd66zwg7", "type": "vector"},
+      "composite": {
+        "tiles": ["http://pilotplan.s3-website-us-east-1.amazonaws.com/tiles/{z}/{x}/{y}"], 
+          "type": "vector"
+        },
         "mapbox://axismaps.pilothillshade": {
             "url": "mapbox://axismaps.pilothillshade",
             "type": "raster",
