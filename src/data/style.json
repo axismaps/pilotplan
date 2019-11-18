@@ -63,7 +63,7 @@
     "pitch": 0,
     "sources": {
       "composite": {
-        "tiles": ["http://pilotplan.s3-website-us-east-1.amazonaws.com/tiles/{z}/{x}/{y}"], 
+        "tiles": ["https://tiles.pilotplan.org/tiles/{z}/{x}/{y}"], 
           "type": "vector"
         },
         "mapbox://axismaps.pilothillshade": {
