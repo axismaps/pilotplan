@@ -53,6 +53,7 @@ const rasterMethods = {
     return `https://dmi.rice.edu:8443${metadata.retrieveLink}`;
   },
   getMetadata({ data }, callback) {
+    const { getImageUrl } = rasterMethods;
     const { SS_ID } = data;
     window.fetch(`https://dmi.rice.edu:8443/rest/handle/${SS_ID}`, { credentials: 'include' })
       .then(res => res.json())
@@ -60,8 +61,16 @@ const rasterMethods = {
         window.fetch(`https://dmi.rice.edu:8443/rest/items/${meta.uuid}/bitstreams`, { credentials: 'include' })
           .then(res => res.text())
           .then((text) => {
-            const json = JSON.parse(text);
-            callback(json[0]);
+            const json = JSON.parse(text)[0];
+            console.log(json);
+            const image = new Image();
+            // eslint-disable-next-line func-names
+            image.onload = function () {
+              json.width = this.width;
+              json.height = this.height;
+              callback(json);
+            };
+            image.src = getImageUrl(json);
           })
           .catch((err) => {
             console.log(`Error: ${err.message}`);
@@ -99,6 +108,7 @@ const rasterMethods = {
     }
   },
   setRasterBackground({ selection, url }) {
+    console.log(selection);
     selection
       .styles({
         'background-image': `url("${url}")`,
@@ -122,7 +132,7 @@ const rasterMethods = {
       url,
       selection,
     });
-
+    console.log(scaledDim);
     if (resizeContainer) {
       selection
         .styles({
