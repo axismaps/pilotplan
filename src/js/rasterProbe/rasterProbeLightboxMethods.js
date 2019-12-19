@@ -58,7 +58,6 @@ const localMethods = {
       cachedMetadata,
       resizeContainer: true,
       maxWidth: mobile ? window.innerWidth : 1054,
-      maxHeight: (window.innerHeight * 0.85) - 120,
     });
   },
   initSharedShelfButton({
