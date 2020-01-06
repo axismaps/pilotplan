@@ -35,6 +35,18 @@ $menu-speed: 250ms;
   white-space: nowrap;
 }
 
+.logo {
+  height: 80px;
+  margin-right: 20px;
+
+}
+
+.intro-logos {
+  bottom: 40px;
+  position: absolute;
+
+}
+
 .eras__stepper-years-inner {
   height: 100%;
   font-weight: 200;
@@ -215,14 +227,14 @@ $menu-speed: 250ms;
 .intro__language-dropdown-text {
   color: white;
   padding-left: 25px;
-  padding-right: 25px;  
+  padding-right: 25px;
 }
 
 .intro__language-dropdown {
   cursor: pointer;
   opacity: 0;
   pointer-events: none;
-  transition: opacity $menu-speed; 
+  transition: opacity $menu-speed;
   align-items: center;
   height: 25px;
 }
