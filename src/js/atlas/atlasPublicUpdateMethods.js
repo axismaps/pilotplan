@@ -26,7 +26,7 @@ const getAtlasUpdateMethods = ({
 
 
       layers
-        .filter(layer => layer.id !== 'mapbox-satellite')
+        .filter(layer => layer.id !== 'satellite')
         .forEach((layer) => {
           const visible = mbMap.getLayoutProperty(layer.id, 'visibility') === 'visible';
 

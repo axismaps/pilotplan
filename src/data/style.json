@@ -72,8 +72,8 @@
             "scheme": "tms",
             "tileSize": 256
         },
-        "mapbox://mapbox.satellite": {
-            "url": "mapbox://mapbox.satellite",
+        "satellite": {
+            "tiles": ["https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"],
             "type": "raster",
             "tileSize": 256
         }
@@ -2553,9 +2553,9 @@
             }
         },
         {
-            "id": "mapbox-satellite",
+            "id": "satellite",
             "type": "raster",
-            "source": "mapbox://mapbox.satellite",
+            "source": "satellite",
             "layout": {"visibility": "none"},
             "paint": {"raster-opacity": 1}
         },

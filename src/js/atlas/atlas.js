@@ -98,10 +98,10 @@ const privateMethods = {
 
     if (isCurrentYear && !aerialOverlayOn) {
       props.aerialOverlayOn = true;
-      mbMap.setLayoutProperty('mapbox-satellite', 'visibility', 'visible');
+      mbMap.setLayoutProperty('satellite', 'visibility', 'visible');
     } else if (!isCurrentYear && aerialOverlayOn) {
       props.aerialOverlayOn = false;
-      mbMap.setLayoutProperty('mapbox-satellite', 'visibility', 'none');
+      mbMap.setLayoutProperty('satellite', 'visibility', 'none');
     }
   },
   addRaster() {
