@@ -14,6 +14,7 @@ fs.readFile(path.join(__dirname, '../data/geojson/visual/ViewConesPoly.json'), '
       parseFloat(p.properties.Longitude),
       parseFloat(p.properties.Latitude),
     ];
+    if (feature.properties.SS_ID) feature.properties.SS_ID = feature.properties.SS_ID.replace(/^123456789\//, '');
     feature.properties = _.pick(p.properties, ['SS_ID', 'FirstYear', 'LastYear']);
     return feature;
   });
