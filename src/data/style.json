@@ -66,9 +66,10 @@
         "tiles": ["https://tiles.pilotplan.org/tiles/{z}/{x}/{y}"], 
           "type": "vector"
         },
-        "mapbox://axismaps.pilothillshade": {
-            "url": "mapbox://axismaps.pilothillshade",
+        "pilothillshade": {
+            "tiles": ["https://pilotplan.s3.amazonaws.com/hillshade/{z}/{x}/{y}.png"],
             "type": "raster",
+            "scheme": "tms",
             "tileSize": 256
         },
         "mapbox://mapbox.satellite": {
@@ -2280,7 +2281,7 @@
         {
             "id": "axismaps-pilothillshade",
             "type": "raster",
-            "source": "mapbox://axismaps.pilothillshade",
+            "source": "pilothillshade",
             "layout": {},
             "paint": {
                 "raster-opacity": 0.2,
