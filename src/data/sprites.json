@@ -1,0 +1,178 @@
+{
+  "hand_cone": {
+    "width": 55,
+    "height": 55,
+    "x": 0,
+    "y": 0,
+    "pixelRatio": 2,
+    "visible": true
+  },
+  "wiggle": {
+    "width": 104,
+    "height": 52,
+    "x": 0,
+    "y": 55,
+    "pixelRatio": 2,
+    "visible": true
+  },
+  "view": {
+    "width": 50,
+    "height": 50,
+    "x": 55,
+    "y": 0,
+    "pixelRatio": 2,
+    "visible": true
+  },
+  "bank-note": {
+    "width": 200,
+    "height": 40,
+    "x": 104,
+    "y": 55,
+    "pixelRatio": 2,
+    "visible": true
+  },
+  "park": {
+    "width": 24,
+    "height": 32,
+    "x": 304,
+    "y": 55,
+    "pixelRatio": 2,
+    "visible": true
+  },
+  "bucolic-diagonal-line": {
+    "width": 12,
+    "height": 12,
+    "x": 328,
+    "y": 55,
+    "pixelRatio": 2,
+    "visible": true
+  },
+  "clustered-diagonal-line": {
+    "width": 12,
+    "height": 12,
+    "x": 340,
+    "y": 55,
+    "pixelRatio": 2,
+    "visible": true
+  },
+  "monumental-diagonal-line": {
+    "width": 12,
+    "height": 12,
+    "x": 352,
+    "y": 55,
+    "pixelRatio": 2,
+    "visible": true
+  },
+  "residential-diagonal-line": {
+    "width": 12,
+    "height": 12,
+    "x": 364,
+    "y": 55,
+    "pixelRatio": 2,
+    "visible": true
+  },
+  "bucolic-texture": {
+    "width": 8,
+    "height": 8,
+    "x": 376,
+    "y": 55,
+    "pixelRatio": 2,
+    "visible": true
+  },
+  "bucolic-texture-dark": {
+    "width": 8,
+    "height": 8,
+    "x": 384,
+    "y": 55,
+    "pixelRatio": 2,
+    "visible": true
+  },
+  "bucolic-texture-light": {
+    "width": 8,
+    "height": 8,
+    "x": 392,
+    "y": 55,
+    "pixelRatio": 2,
+    "visible": true
+  },
+  "clustered-texture": {
+    "width": 8,
+    "height": 8,
+    "x": 105,
+    "y": 0,
+    "pixelRatio": 2,
+    "visible": true
+  },
+  "clustered-texture-dark": {
+    "width": 8,
+    "height": 8,
+    "x": 113,
+    "y": 0,
+    "pixelRatio": 2,
+    "visible": true
+  },
+  "clustered-texture-light": {
+    "width": 8,
+    "height": 8,
+    "x": 121,
+    "y": 0,
+    "pixelRatio": 2,
+    "visible": true
+  },
+  "monumental-texture": {
+    "width": 8,
+    "height": 8,
+    "x": 129,
+    "y": 0,
+    "pixelRatio": 2,
+    "visible": true
+  },
+  "monumental-texture-dark": {
+    "width": 8,
+    "height": 8,
+    "x": 137,
+    "y": 0,
+    "pixelRatio": 2,
+    "visible": true
+  },
+  "monumental-texture-light": {
+    "width": 8,
+    "height": 8,
+    "x": 145,
+    "y": 0,
+    "pixelRatio": 2,
+    "visible": true
+  },
+  "residential-texture": {
+    "width": 8,
+    "height": 8,
+    "x": 153,
+    "y": 0,
+    "pixelRatio": 2,
+    "visible": true
+  },
+  "residential-texture-dark": {
+    "width": 8,
+    "height": 8,
+    "x": 161,
+    "y": 0,
+    "pixelRatio": 2,
+    "visible": true
+  },
+  "residential-texture-light": {
+    "width": 8,
+    "height": 8,
+    "x": 169,
+    "y": 0,
+    "pixelRatio": 2,
+    "visible": true
+  },
+  "texture": {
+    "width": 8,
+    "height": 8,
+    "x": 177,
+    "y": 0,
+    "pixelRatio": 2,
+    "visible": true
+  }
+}

@@ -78,8 +78,8 @@
             "tileSize": 256
         }
     },
-    "sprite": "mapbox://sprites/axismaps/cjqa5txmq37uw2rqyieyojxh7",
-    "glyphs": "mapbox://fonts/axismaps/{fontstack}/{range}.pbf",
+    "sprite": "https://pilotplan.s3.amazonaws.com/tiles/sprites",
+    "glyphs": "https://pilotplan.s3.amazonaws.com/tiles/fonts/{fontstack}/{range}.pbf",
     "layers": [
         {
             "id": "background",
@@ -2311,8 +2311,7 @@
             "layout": {
                 "text-field": ["to-string", ["get", "Name"]],
                 "text-font": [
-                    "Helvetica Neue LT Std 66 Medium Italic",
-                    "Arial Unicode MS Regular"
+                    "Noto Sans Italic"
                 ],
                 "text-size": [
                     "interpolate",
@@ -2353,8 +2352,7 @@
                 "text-field": ["to-string", ["get", "Name"]],
                 "symbol-placement": "line",
                 "text-font": [
-                    "Helvetica Neue LT Std 66 Medium Italic",
-                    "Arial Unicode MS Regular"
+                    "Noto Sans Italic"
                 ],
                 "text-letter-spacing": 0.1,
                 "text-size": [
@@ -2403,8 +2401,7 @@
                 "text-field": ["to-string", ["get", "Name"]],
                 "text-max-angle": 45,
                 "text-font": [
-                    "Helvetica Neue LT Std 66 Medium Italic",
-                    "Arial Unicode MS Regular"
+                    "Noto Sans Italic"
                 ],
                 "text-letter-spacing": 0.1,
                 "symbol-placement": "line"
@@ -2441,8 +2438,7 @@
                 ],
                 "symbol-spacing": 250,
                 "text-font": [
-                    "Helvetica Neue Medium",
-                    "Arial Unicode MS Regular"
+                    "Noto Sans Regular"
                 ],
                 "symbol-placement": "line",
                 "text-padding": 2,
@@ -2488,8 +2484,7 @@
                 "text-field": ["to-string", ["get", "Name"]],
                 "symbol-placement": "line",
                 "text-font": [
-                    "Helvetica Neue Medium",
-                    "Arial Unicode MS Regular"
+                    "Noto Sans Regular"
                 ],
                 "text-size": [
                     "interpolate",
@@ -2537,8 +2532,7 @@
                 "text-max-angle": 45,
                 "symbol-spacing": 250,
                 "text-font": [
-                    "Helvetica Neue Medium",
-                    "Arial Unicode MS Regular"
+                    "Noto Sans Regular"
                 ],
                 "symbol-placement": "line",
                 "text-padding": 2,
