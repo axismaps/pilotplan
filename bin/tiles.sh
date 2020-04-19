@@ -42,18 +42,6 @@ tippecanoe -Z 13 -z 17 -pf -pk -ab -ai -f -o data/tiles/LocalRoads.mbtiles \
 
 tippecanoe -Z 9 -z 17 -pf -pk -r1 -pk -pf -f -o data/tiles/ViewCones.mbtiles data/geojson/geography/ViewConesPoint.json
 
-tile-join -f -o data/tiles/pilot.mbtiles data/tiles/allzooms.mbtiles data/tiles/BuildingsPoly.mbtiles data/tiles/LocalRoads.mbtiles data/tiles/ViewCones.mbtiles
+tile-join -pk -f -o data/tiles/pilot.mbtiles data/tiles/allzooms.mbtiles data/tiles/BuildingsPoly.mbtiles data/tiles/LocalRoads.mbtiles data/tiles/ViewCones.mbtiles
 
-if [ "$1" == dev ]; then
-  id="axismaps.01c7rsvl"
-  tileset="dev"
-else
-  id="fdahdah.90x45q50"
-  tileset="production"
-fi
-
-echo Uploading to $tileset tileset
-
-source .env
-
-mapbox upload $id data/tiles/pilot.mbtiles
+mapbox-tile-copy data/tiles/pilot.mbtiles "s3://pilotplan/tiles/{z}/{x}/{y}?timeout=10000"
