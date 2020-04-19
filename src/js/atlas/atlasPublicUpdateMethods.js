@@ -217,13 +217,14 @@ const getAtlasUpdateMethods = ({
       if (currentOverlay === null) return;
 
       const dev = /[?&]dev=true/.test(window.location.search) ? 'dev' : '';
-      const sourceUrl = `mapbox://axismaps.pilot${currentOverlay.Notes}${dev}`;
+      const sourceUrl = `https://pilotplan.s3.amazonaws.com/SSID${currentOverlay.Notes}${dev}/{z}/{x}/{y}.png`;
 
       mbMap.addSource(
         'overlay',
         {
           type: 'raster',
-          url: sourceUrl,
+          tiles: [sourceUrl],
+          scheme: 'tms',
         },
       );
 
