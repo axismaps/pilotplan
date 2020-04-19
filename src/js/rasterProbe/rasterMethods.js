@@ -50,23 +50,15 @@ const rasterMethods = {
     });
   },
   getImageUrl(metadata) {
-    return `https://dmi.rice.edu:8443${metadata.retrieveLink}`;
+    return `https://dmi-static-pilotplan.s3-sa-east-1.amazonaws.com/${metadata.retrieveLink}.jpg`;
   },
   getMetadata({ data }, callback) {
-    const { SS_ID } = data;
-    window.fetch(`https://dmi.rice.edu:8443/rest/handle/${SS_ID}`, { credentials: 'include' })
-      .then(res => res.json())
-      .then((meta) => {
-        window.fetch(`https://dmi.rice.edu:8443/rest/items/${meta.uuid}/bitstreams`, { credentials: 'include' })
-          .then(res => res.text())
-          .then((text) => {
-            const json = JSON.parse(text);
-            callback(json[0]);
-          })
-          .catch((err) => {
-            console.log(`Error: ${err.message}`);
-          });
-      });
+    const { Notes } = data;
+    return callback({
+      height: 1200,
+      width: 1200,
+      retrieveLink: Notes,
+    });
   },
   getSharedShelfURL({ currentRasterProbe }, callback) {
     window.fetch(`https://library.artstor.org/api/v1/metadata?object_ids=${currentRasterProbe.SSC_ID}&openlib=true`, { credentials: 'include' })
