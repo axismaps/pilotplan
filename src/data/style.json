@@ -1,62 +1,7 @@
 {
     "version": 8,
     "name": "Brasilia-v3",
-    "metadata": {
-        "mapbox:autocomposite": true,
-        "mapbox:type": "template",
-        "mapbox:sdk-support": {
-            "js": "latest",
-            "android": "6.0.0",
-            "ios": "4.0.0"
-        },
-        "mapbox:groups": {
-            "d3e156b2fae7298da93c6c6cb9e8522a": {
-                "name": "Road Labels",
-                "collapsed": true
-            },
-            "a04428c037425a3d0df4ac9b17367f77": {
-                "name": "Road",
-                "collapsed": true
-            },
-            "5ab01a8793bdeeafe61620a1ef546372": {
-                "name": "Sector",
-                "collapsed": true
-            },
-            "2591203a36f77a2353d1e37c27ca8d4b": {
-                "name": "Water Labels",
-                "collapsed": true
-            },
-            "14aac24dcfe8ee3a1a67579284f36eab": {
-                "name": "InfrastructurePoly",
-                "collapsed": true
-            },
-            "a767fb3590355077e9f91cf672e9d186": {
-                "name": "Water",
-                "collapsed": true
-            },
-            "8d1ddf615db234b74698203cbe19c20e": {
-                "name": "OpenSpacesPoly",
-                "collapsed": true
-            },
-            "55a68e75394877ae97b05f788ef4d5eb": {
-                "name": "River",
-                "collapsed": true
-            },
-            "b16b3b3df4ffbbc42101a47ea38f43da": {
-                "name": "Building",
-                "collapsed": true
-            },
-            "0de5687b0d47951f32ae1375febbbb66": {
-                "name": "Builtdomain",
-                "collapsed": false
-            },
-            "31a94c2ff0376a41dc9488ba1cf1b08b": {
-                "name": "InfrastructureLine",
-                "collapsed": true
-            }
-        },
-        "mapbox:trackposition": false
-    },
+    "metadata": {},
     "center": [-47.88241331711572, -15.789174982334913],
     "zoom": 12.604030593124717,
     "bearing": -72,
@@ -90,7 +35,6 @@
         {
             "id": "Built Domain",
             "type": "fill",
-            "metadata": {"mapbox:group": "0de5687b0d47951f32ae1375febbbb66"},
             "source": "composite",
             "source-layer": "BuiltDomainPoly",
             "filter": [
@@ -114,7 +58,7 @@
         {
             "id": "Bucolic Scale",
             "type": "fill",
-            "metadata": {"mapbox:group": "5ab01a8793bdeeafe61620a1ef546372"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "SectorsPoly",
             "filter": [
@@ -137,7 +81,7 @@
         {
             "id": "Clustered Scale",
             "type": "fill",
-            "metadata": {"mapbox:group": "5ab01a8793bdeeafe61620a1ef546372"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "SectorsPoly",
             "filter": [
@@ -160,7 +104,7 @@
         {
             "id": "Monumental Scale",
             "type": "fill",
-            "metadata": {"mapbox:group": "5ab01a8793bdeeafe61620a1ef546372"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "SectorsPoly",
             "filter": [
@@ -183,7 +127,7 @@
         {
             "id": "Residential Scale",
             "type": "fill",
-            "metadata": {"mapbox:group": "5ab01a8793bdeeafe61620a1ef546372"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "SectorsPoly",
             "minzoom": 9,
@@ -208,7 +152,7 @@
         {
             "id": "Cerrado Savannah",
             "type": "fill",
-            "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "OpenSpacesPoly",
             "filter": [
@@ -230,7 +174,7 @@
         {
             "id": "Cerrado Savannah Blur",
             "type": "line",
-            "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "OpenSpacesPoly",
             "filter": [
@@ -269,7 +213,7 @@
         {
             "id": "Reforested Area",
             "type": "fill",
-            "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "OpenSpacesPoly",
             "filter": [
@@ -291,7 +235,7 @@
         {
             "id": "Reforested Area Blur",
             "type": "line",
-            "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "OpenSpacesPoly",
             "filter": [
@@ -330,7 +274,7 @@
         {
             "id": "Forest",
             "type": "fill",
-            "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "OpenSpacesPoly",
             "filter": [
@@ -352,7 +296,7 @@
         {
             "id": "Forest Blur",
             "type": "line",
-            "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "OpenSpacesPoly",
             "filter": [
@@ -391,7 +335,7 @@
         {
             "id": "Uncovered Area",
             "type": "fill",
-            "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "OpenSpacesPoly",
             "filter": [
@@ -409,7 +353,7 @@
         {
             "id": "Uncovered Area Blur",
             "type": "line",
-            "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "OpenSpacesPoly",
             "filter": [
@@ -436,7 +380,7 @@
         {
             "id": "Field",
             "type": "fill",
-            "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "OpenSpacesPoly",
             "filter": [
@@ -454,7 +398,7 @@
         {
             "id": "Field Blur",
             "type": "line",
-            "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "OpenSpacesPoly",
             "filter": [
@@ -481,7 +425,7 @@
         {
             "id": "Pasture",
             "type": "fill",
-            "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "OpenSpacesPoly",
             "filter": [
@@ -503,7 +447,7 @@
         {
             "id": "Pasture Blur",
             "type": "line",
-            "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "OpenSpacesPoly",
             "filter": [
@@ -542,7 +486,7 @@
         {
             "id": "Agriculture",
             "type": "fill",
-            "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "OpenSpacesPoly",
             "filter": [
@@ -564,7 +508,7 @@
         {
             "id": "Agriculture Blur",
             "type": "line",
-            "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "OpenSpacesPoly",
             "filter": [
@@ -603,7 +547,7 @@
         {
             "id": "Orchard",
             "type": "fill",
-            "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "OpenSpacesPoly",
             "filter": [
@@ -625,7 +569,7 @@
         {
             "id": "Park Blur",
             "type": "line",
-            "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "OpenSpacesPoly",
             "filter": [
@@ -664,7 +608,7 @@
         {
             "id": "Park",
             "type": "fill",
-            "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "OpenSpacesPoly",
             "filter": [
@@ -686,7 +630,7 @@
         {
             "id": "Lawn Blur",
             "type": "line",
-            "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "OpenSpacesPoly",
             "filter": [
@@ -725,7 +669,7 @@
         {
             "id": "Lawn",
             "type": "fill",
-            "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "OpenSpacesPoly",
             "filter": [
@@ -747,7 +691,7 @@
         {
             "id": "Mall Blur",
             "type": "line",
-            "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "OpenSpacesPoly",
             "filter": [
@@ -786,7 +730,7 @@
         {
             "id": "Mall",
             "type": "fill",
-            "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "OpenSpacesPoly",
             "filter": [
@@ -808,7 +752,7 @@
         {
             "id": "EntreQuadra Blur",
             "type": "line",
-            "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "OpenSpacesPoly",
             "filter": [
@@ -847,7 +791,7 @@
         {
             "id": "EntreQuadra",
             "type": "fill",
-            "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "OpenSpacesPoly",
             "filter": [
@@ -869,7 +813,7 @@
         {
             "id": "Botanical Garden",
             "type": "fill",
-            "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "OpenSpacesPoly",
             "filter": [
@@ -891,7 +835,7 @@
         {
             "id": "Zoological Garden",
             "type": "fill",
-            "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "OpenSpacesPoly",
             "filter": [
@@ -913,7 +857,7 @@
         {
             "id": "Golf Club",
             "type": "fill",
-            "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "OpenSpacesPoly",
             "filter": [
@@ -935,7 +879,7 @@
         {
             "id": "Jockey Club",
             "type": "fill",
-            "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "OpenSpacesPoly",
             "filter": [
@@ -957,7 +901,7 @@
         {
             "id": "Cemetery",
             "type": "fill",
-            "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "OpenSpacesPoly",
             "filter": [
@@ -979,7 +923,7 @@
         {
             "id": "Tree Belt",
             "type": "fill",
-            "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "OpenSpacesPoly",
             "minzoom": 9,
@@ -1002,7 +946,7 @@
         {
             "id": "Lake and Reservoir",
             "type": "fill",
-            "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "WaterBodiesPoly",
             "filter": [
@@ -1024,7 +968,7 @@
         {
             "id": "Airport",
             "type": "fill",
-            "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "OpenSpacesPoly",
             "filter": [
@@ -1043,7 +987,7 @@
         {
             "id": "Barracks",
             "type": "fill",
-            "metadata": {"mapbox:group": "8d1ddf615db234b74698203cbe19c20e"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "OpenSpacesPoly",
             "filter": [
@@ -1062,7 +1006,7 @@
         {
             "id": "Lake and Reservoir Blur",
             "type": "line",
-            "metadata": {"mapbox:group": "a767fb3590355077e9f91cf672e9d186"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "WaterBodiesPoly",
             "filter": [
@@ -1101,7 +1045,7 @@
         {
             "id": "Fountain and Reflecting Pool",
             "type": "fill",
-            "metadata": {"mapbox:group": "a767fb3590355077e9f91cf672e9d186"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "WaterBodiesPoly",
             "filter": [
@@ -1123,7 +1067,7 @@
         {
             "id": "Parking Lot",
             "type": "fill",
-            "metadata": {"mapbox:group": "14aac24dcfe8ee3a1a67579284f36eab"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "OpenSpacesPoly",
             "minzoom": 12,
@@ -1146,7 +1090,7 @@
         {
             "id": "Case-Creek",
             "type": "line",
-            "metadata": {"mapbox:group": "55a68e75394877ae97b05f788ef4d5eb"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "WatersLine",
             "filter": [
@@ -1177,7 +1121,7 @@
         {
             "id": "Case-Stream",
             "type": "line",
-            "metadata": {"mapbox:group": "55a68e75394877ae97b05f788ef4d5eb"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "WatersLine",
             "filter": [
@@ -1208,7 +1152,7 @@
         {
             "id": "Case-River",
             "type": "line",
-            "metadata": {"mapbox:group": "55a68e75394877ae97b05f788ef4d5eb"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "WatersLine",
             "filter": [
@@ -1248,7 +1192,7 @@
         {
             "id": "Creek",
             "type": "line",
-            "metadata": {"mapbox:group": "55a68e75394877ae97b05f788ef4d5eb"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "WatersLine",
             "filter": [
@@ -1279,7 +1223,7 @@
         {
             "id": "Stream",
             "type": "line",
-            "metadata": {"mapbox:group": "55a68e75394877ae97b05f788ef4d5eb"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "WatersLine",
             "filter": [
@@ -1310,7 +1254,7 @@
         {
             "id": "River",
             "type": "line",
-            "metadata": {"mapbox:group": "55a68e75394877ae97b05f788ef4d5eb"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "WatersLine",
             "filter": [
@@ -1341,7 +1285,7 @@
         {
             "id": "Tunnel",
             "type": "line",
-            "metadata": {"mapbox:group": "a04428c037425a3d0df4ac9b17367f77"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "RoadsLine",
             "minzoom": 12,
@@ -1381,7 +1325,7 @@
         {
             "id": "Case-Trail",
             "type": "line",
-            "metadata": {"mapbox:group": "a04428c037425a3d0df4ac9b17367f77"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "RoadsLine",
             "minzoom": 9,
@@ -1420,7 +1364,7 @@
         {
             "id": "Case-Collector",
             "type": "line",
-            "metadata": {"mapbox:group": "a04428c037425a3d0df4ac9b17367f77"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "RoadsLine",
             "minzoom": 12,
@@ -1460,7 +1404,7 @@
         {
             "id": "Case-Local Road",
             "type": "line",
-            "metadata": {"mapbox:group": "a04428c037425a3d0df4ac9b17367f77"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "RoadsLine",
             "minzoom": 12,
@@ -1500,7 +1444,7 @@
         {
             "id": "Case-Service Road",
             "type": "line",
-            "metadata": {"mapbox:group": "a04428c037425a3d0df4ac9b17367f77"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "RoadsLine",
             "minzoom": 12,
@@ -1540,7 +1484,7 @@
         {
             "id": "Case-Arterial",
             "type": "line",
-            "metadata": {"mapbox:group": "a04428c037425a3d0df4ac9b17367f77"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "RoadsLine",
             "minzoom": 11,
@@ -1571,7 +1515,7 @@
         {
             "id": "Case-Main Road",
             "type": "line",
-            "metadata": {"mapbox:group": "a04428c037425a3d0df4ac9b17367f77"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "RoadsLine",
             "minzoom": 11,
@@ -1602,7 +1546,7 @@
         {
             "id": "Case-Expressway",
             "type": "line",
-            "metadata": {"mapbox:group": "a04428c037425a3d0df4ac9b17367f77"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "RoadsLine",
             "minzoom": 9,
@@ -1633,7 +1577,7 @@
         {
             "id": "Collector",
             "type": "line",
-            "metadata": {"mapbox:group": "a04428c037425a3d0df4ac9b17367f77"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "RoadsLine",
             "minzoom": 12,
@@ -1673,7 +1617,7 @@
         {
             "id": "Trail",
             "type": "line",
-            "metadata": {"mapbox:group": "a04428c037425a3d0df4ac9b17367f77"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "RoadsLine",
             "minzoom": 9,
@@ -1713,7 +1657,7 @@
         {
             "id": "Service Road",
             "type": "line",
-            "metadata": {"mapbox:group": "a04428c037425a3d0df4ac9b17367f77"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "RoadsLine",
             "minzoom": 12,
@@ -1753,7 +1697,7 @@
         {
             "id": "Local Road",
             "type": "line",
-            "metadata": {"mapbox:group": "a04428c037425a3d0df4ac9b17367f77"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "RoadsLine",
             "minzoom": 12,
@@ -1793,7 +1737,7 @@
         {
             "id": "Arterial",
             "type": "line",
-            "metadata": {"mapbox:group": "a04428c037425a3d0df4ac9b17367f77"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "RoadsLine",
             "minzoom": 11,
@@ -1832,7 +1776,7 @@
         {
             "id": "Main Road",
             "type": "line",
-            "metadata": {"mapbox:group": "a04428c037425a3d0df4ac9b17367f77"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "RoadsLine",
             "minzoom": 11,
@@ -1871,7 +1815,7 @@
         {
             "id": "Expressway",
             "type": "line",
-            "metadata": {"mapbox:group": "a04428c037425a3d0df4ac9b17367f77"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "RoadsLine",
             "minzoom": 9,
@@ -1910,7 +1854,7 @@
         {
             "id": "Case-Subway",
             "type": "line",
-            "metadata": {"mapbox:group": "31a94c2ff0376a41dc9488ba1cf1b08b"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "InfrastructureLine",
             "minzoom": 11,
@@ -1951,7 +1895,7 @@
         {
             "id": "Subway",
             "type": "line",
-            "metadata": {"mapbox:group": "31a94c2ff0376a41dc9488ba1cf1b08b"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "InfrastructureLine",
             "minzoom": 11,
@@ -1992,7 +1936,7 @@
         {
             "id": "Case-Bus LIne",
             "type": "line",
-            "metadata": {"mapbox:group": "31a94c2ff0376a41dc9488ba1cf1b08b"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "InfrastructureLine",
             "minzoom": 11,
@@ -2032,7 +1976,7 @@
         {
             "id": "Bus LIne",
             "type": "line",
-            "metadata": {"mapbox:group": "31a94c2ff0376a41dc9488ba1cf1b08b"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "InfrastructureLine",
             "minzoom": 11,
@@ -2073,7 +2017,7 @@
         {
             "id": "Case-Rail LIne",
             "type": "line",
-            "metadata": {"mapbox:group": "31a94c2ff0376a41dc9488ba1cf1b08b"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "InfrastructureLine",
             "minzoom": 11,
@@ -2113,7 +2057,7 @@
         {
             "id": "Rail LIne",
             "type": "line",
-            "metadata": {"mapbox:group": "31a94c2ff0376a41dc9488ba1cf1b08b"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "InfrastructureLine",
             "minzoom": 11,
@@ -2154,7 +2098,7 @@
         {
             "id": "Work",
             "type": "fill",
-            "metadata": {"mapbox:group": "b16b3b3df4ffbbc42101a47ea38f43da"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "BuildingsPoly",
             "minzoom": 12,
@@ -2177,7 +2121,7 @@
         {
             "id": "Live",
             "type": "fill",
-            "metadata": {"mapbox:group": "b16b3b3df4ffbbc42101a47ea38f43da"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "BuildingsPoly",
             "minzoom": 12,
@@ -2200,7 +2144,7 @@
         {
             "id": "Cultivate Body and Mind",
             "type": "fill",
-            "metadata": {"mapbox:group": "b16b3b3df4ffbbc42101a47ea38f43da"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "BuildingsPoly",
             "minzoom": 12,
@@ -2223,7 +2167,7 @@
         {
             "id": "Circulate",
             "type": "fill",
-            "metadata": {"mapbox:group": "b16b3b3df4ffbbc42101a47ea38f43da"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "BuildingsPoly",
             "minzoom": 12,
@@ -2295,7 +2239,7 @@
         {
             "id": "Labels-Lake and Reservoir",
             "type": "symbol",
-            "metadata": {"mapbox:group": "2591203a36f77a2353d1e37c27ca8d4b"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "WaterBodiesPoly",
             "filter": [
@@ -2335,7 +2279,7 @@
         {
             "id": "Labels-Stream",
             "type": "symbol",
-            "metadata": {"mapbox:group": "2591203a36f77a2353d1e37c27ca8d4b"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "WatersLine",
             "filter": [
@@ -2375,7 +2319,7 @@
         {
             "id": "Labels-River",
             "type": "symbol",
-            "metadata": {"mapbox:group": "2591203a36f77a2353d1e37c27ca8d4b"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "WatersLine",
             "filter": [
@@ -2416,7 +2360,7 @@
         {
             "id": "Labels-Collector and Local",
             "type": "symbol",
-            "metadata": {"mapbox:group": "d3e156b2fae7298da93c6c6cb9e8522a"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "RoadsLine",
             "minzoom": 12,
@@ -2466,7 +2410,7 @@
         {
             "id": "Labels-Arterial",
             "type": "symbol",
-            "metadata": {"mapbox:group": "d3e156b2fae7298da93c6c6cb9e8522a"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "RoadsLine",
             "minzoom": 11,
@@ -2509,7 +2453,7 @@
         {
             "id": "Labels-Expressway",
             "type": "symbol",
-            "metadata": {"mapbox:group": "d3e156b2fae7298da93c6c6cb9e8522a"},
+            "metadata": {},
             "source": "composite",
             "source-layer": "RoadsLine",
             "minzoom": 9,

@@ -113,7 +113,8 @@ const privateMethods = {
       'overlaytest',
       {
         type: 'raster',
-        url: 'mapbox://axismaps.pilot15584775',
+        tiles: ['https://pilotplan.s3.amazonaws.com/SSID15124698/{z}/{x}/{y}.png'],
+        scheme: 'tms',
       },
     );
   },

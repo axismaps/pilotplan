@@ -18,8 +18,6 @@ import initLayout from './initComponents/initLayout';
 import initTimeline from './initComponents/initTimeline';
 import initRasterProbe from './initComponents/initRasterProbe';
 
-import { accessToken } from './config/config';
-
 require('../scss/index.scss');
 
 const app = {
@@ -27,8 +25,6 @@ const app = {
   data: null,
   cachedMetadata: new Map(),
   init() {
-    mapboxgl.accessToken = accessToken;
-
     initData((cleanedData) => {
       this.data = cleanedData;
 
