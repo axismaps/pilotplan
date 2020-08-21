@@ -985,6 +985,25 @@
             "paint": {"fill-color": "hsl(0, 0%, 10%)"}
         },
         {
+            "id": "AirportTarmac",
+            "type": "fill",
+            "metadata": {},
+            "source": "composite",
+            "source-layer": "OpenSpacesPoly",
+            "filter": [
+                "all",
+                ["==", "$type", "Polygon"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "Airport Tarmac"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {},
+            "paint": {"fill-color": "hsl(0, 0%, 0%)"}
+        },
+        {
             "id": "Barracks",
             "type": "fill",
             "metadata": {},
@@ -1002,6 +1021,25 @@
             ],
             "layout": {},
             "paint": {"fill-color": "hsl(0, 0%, 10%)"}
+        },
+        {
+            "id": "Square",
+            "type": "fill",
+            "metadata": {},
+            "source": "composite",
+            "source-layer": "OpenSpacesPoly",
+            "filter": [
+                "all",
+                ["==", "$type", "Polygon"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "Square"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {},
+            "paint": {"fill-color": "hsl(0, 0%, 20%)"}
         },
         {
             "id": "Lake and Reservoir Blur",
@@ -1864,7 +1902,6 @@
                 [
                     "all",
                     ["<=", "FirstYear", 2016],
-                    ["==", "StyleName", "transportationline"],
                     ["==", "SubType", "Subway"],
                     [">=", "LastYear", 2016]
                 ]
@@ -1912,6 +1949,47 @@
             "layout": {"line-cap": "round"},
             "paint": {
                 "line-color": "hsl(29, 93%, 40%)",
+                "line-dasharray": ["literal", [0, 2]],
+                "line-width": [
+                    "interpolate",
+                    ["exponential", 1.3],
+                    ["zoom"],
+                    12,
+                    1,
+                    22,
+                    24
+                ],
+                "line-opacity": [
+                    "interpolate",
+                    ["linear"],
+                    ["zoom"],
+                    11,
+                    0,
+                    12,
+                    1
+                ]
+            }
+        },
+        {
+            "id": "Retaining",
+            "type": "line",
+            "metadata": {},
+            "source": "composite",
+            "source-layer": "InfrastructureLine",
+            "minzoom": 11,
+            "filter": [
+                "all",
+                ["==", "$type", "LineString"],
+                [
+                    "all",
+                    ["<=", "FirstYear", 2016],
+                    ["==", "SubType", "Retaining Wall"],
+                    [">=", "LastYear", 2016]
+                ]
+            ],
+            "layout": {"line-cap": "round"},
+            "paint": {
+                "line-color": "hsl(29, 13%, 44%)",
                 "line-dasharray": ["literal", [0, 2]],
                 "line-width": [
                     "interpolate",
