@@ -133,8 +133,8 @@ const getPrivateMethods = ({ privateProps }) => ({
       getCanvas,
       language,
       translations,
-      year,
     } = privateProps.get(this);
+    const map = this;
 
     headerDownloadButton
       .on('click', function exportMap() {
@@ -142,6 +142,8 @@ const getPrivateMethods = ({ privateProps }) => ({
           width,
           height,
         } = getCanvas().getBoundingClientRect();
+
+        const { year } = privateProps.get(map);
 
         const canvas = document.createElement('canvas');
         canvas.height = height;
