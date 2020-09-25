@@ -1,14 +1,4 @@
 {
-  "ViewConesPoint": {
-    "features": {},
-    "group": "Urbanism",
-    "icon": "poly.svg",
-    "en": "ViewConesPoint",
-    "pr": "ViewConesPoint",
-    "startYear": 1892,
-    "endYear": 1960,
-    "style": "viewconespoint"
-  },
   "BoundariesPoly": {
     "features": {
       "Boundary": {
@@ -40,17 +30,6 @@
   },
   "InfrastructureLine": {
     "features": {
-      "Bus Line": {
-        "en": "Bus Line",
-        "pr": "Bus Line",
-        "years": [
-          [
-            2012,
-            8888
-          ]
-        ],
-        "style": "Case-Bus LIne"
-      },
       "Subway": {
         "en": "Subway",
         "pr": "Subway",
@@ -81,7 +60,8 @@
             1957,
             1957
           ]
-        ]
+        ],
+        "style": "Retaining"
       }
     },
     "group": "Urbanism",
@@ -91,65 +71,126 @@
     "startYear": 1957,
     "endYear": 8888
   },
-  "WaterBodiesPoly": {
+  "BuiltDomainPoly": {
     "features": {
-      "Lake": {
-        "en": "Lake",
-        "pr": "Lake",
+      "Built Domain": {
+        "en": "Built Domain",
+        "pr": "Built Domain",
         "years": [
           [
-            1890,
+            1957,
             8888
           ]
         ],
-        "style": "Lake and Reservoir"
-      },
-      "Reservoir": {
-        "en": "Reservoir",
-        "pr": "Reservoir",
+        "style": "Built Domain"
+      }
+    },
+    "group": "Urbanism",
+    "icon": "poly.svg",
+    "en": "BuiltDomainPoly",
+    "pr": "BuiltDomainPoly",
+    "startYear": 1957,
+    "endYear": 8888
+  },
+  "RoadsLine": {
+    "features": {
+      "Local": {
+        "en": "Local",
+        "pr": "Local",
         "years": [
           [
-            1960,
+            1958,
             8888
-          ]
-        ],
-        "style": "Lake and Reservoir"
-      },
-      "Fountain": {
-        "en": "Fountain",
-        "pr": "Fountain",
-        "years": [
-          [
-            1963,
-            1965
           ],
           [
-            1973,
+            1998,
             8888
           ]
         ],
-        "style": "Fountain and Reflecting Pool"
+        "style": "Case-Local Road"
       },
-      "Reflecting Pool": {
-        "en": "Reflecting Pool",
-        "pr": "Reflecting Pool",
+      "Expressway": {
+        "en": "Expressway",
+        "pr": "Expressway",
+        "years": [
+          [
+            1958,
+            8888
+          ]
+        ],
+        "style": "Case-Expressway"
+      },
+      "Arterial": {
+        "en": "Arterial",
+        "pr": "Arterial",
+        "years": [
+          [
+            1958,
+            8888
+          ]
+        ],
+        "style": "Case-Arterial"
+      },
+      "Collector": {
+        "en": "Collector",
+        "pr": "Collector",
+        "years": [
+          [
+            1958,
+            8888
+          ]
+        ],
+        "style": "Case-Collector"
+      },
+      "Main Road": {
+        "en": "Main Road",
+        "pr": "Main Road",
+        "years": [
+          [
+            1957,
+            1958
+          ]
+        ],
+        "style": "Case-Main Road"
+      },
+      "Service Road": {
+        "en": "Service Road",
+        "pr": "Service Road",
         "years": [
           [
             1957,
             1957
-          ],
+          ]
+        ],
+        "style": "Case-Service Road"
+      },
+      "Trail": {
+        "en": "Trail",
+        "pr": "Trail",
+        "years": [
           [
-            1960,
+            1890,
+            1959
+          ]
+        ],
+        "style": "Case-Trail"
+      },
+      "Tunnel": {
+        "en": "Tunnel",
+        "pr": "Tunnel",
+        "years": [
+          [
+            1958,
             8888
           ]
         ],
-        "style": "Fountain and Reflecting Pool"
+        "style": "Tunnel"
       }
     },
-    "group": "Landscape",
-    "icon": "poly.svg",
-    "en": "WaterBodiesPoly",
-    "pr": "WaterBodiesPoly",
+    "group": "Urbanism",
+    "icon": "line.svg",
+    "en": "RoadsLine",
+    "pr": "RoadsLine",
     "startYear": 1890,
     "endYear": 8888
   },
@@ -185,21 +226,6 @@
         ],
         "style": "Residential Scale"
       },
-      "Monumental Scale": {
-        "en": "Monumental Scale",
-        "pr": "Monumental Scale",
-        "years": [
-          [
-            1957,
-            1957
-          ],
-          [
-            1960,
-            8888
-          ]
-        ],
-        "style": "Monumental Scale"
-      },
       "Clustered Scale": {
         "en": "Clustered Scale",
         "pr": "Clustered Scale",
@@ -214,6 +240,21 @@
           ]
         ],
         "style": "Clustered Scale"
+      },
+      "Monumental Scale": {
+        "en": "Monumental Scale",
+        "pr": "Monumental Scale",
+        "years": [
+          [
+            1957,
+            1957
+          ],
+          [
+            1960,
+            8888
+          ]
+        ],
+        "style": "Monumental Scale"
       }
     },
     "group": "Urbanism",
@@ -222,6 +263,16 @@
     "pr": "SectorsPoly",
     "startYear": 1957,
     "endYear": 8888
+  },
+  "ViewConesPoint": {
+    "features": {},
+    "group": "Urbanism",
+    "icon": "poly.svg",
+    "en": "ViewConesPoint",
+    "pr": "ViewConesPoint",
+    "startYear": 1892,
+    "endYear": 20941,
+    "style": "viewconespoint"
   },
   "WatersLine": {
     "features": {
@@ -266,406 +317,84 @@
     "startYear": 1890,
     "endYear": 8888
   },
-  "BuiltDomainPoly": {
+  "WaterBodiesPoly": {
     "features": {
-      "Built Domain": {
-        "en": "Built Domain",
-        "pr": "Built Domain",
+      "Lake": {
+        "en": "Lake",
+        "pr": "Lake",
         "years": [
           [
-            1957,
+            1890,
             8888
-          ]
-        ],
-        "style": "Built Domain"
-      }
-    },
-    "group": "Urbanism",
-    "icon": "poly.svg",
-    "en": "BuiltDomainPoly",
-    "pr": "BuiltDomainPoly",
-    "startYear": 1957,
-    "endYear": 8888
-  },
-  "RoadsLine": {
-    "features": {
-      "Local": {
-        "en": "Local",
-        "pr": "Local",
-        "years": [
-          [
-            1958,
-            8888
-          ]
-        ],
-        "style": "Case-Local Road"
-      },
-      "Main Road": {
-        "en": "Main Road",
-        "pr": "Main Road",
-        "years": [
+          ],
           [
             1957,
             1958
           ]
         ],
-        "style": "Case-Main Road"
+        "style": "Lake and Reservoir"
       },
-      "Service Road": {
-        "en": "Service Road",
-        "pr": "Service Road",
-        "years": [
-          [
-            1957,
-            1957
-          ]
-        ],
-        "style": "Case-Service Road"
-      },
-      "Arterial": {
-        "en": "Arterial",
-        "pr": "Arterial",
-        "years": [
-          [
-            1959,
-            8888
-          ]
-        ],
-        "style": "Case-Arterial"
-      },
-      "Expressway": {
-        "en": "Expressway",
-        "pr": "Expressway",
-        "years": [
-          [
-            1959,
-            8888
-          ]
-        ],
-        "style": "Case-Expressway"
-      },
-      "Collector": {
-        "en": "Collector",
-        "pr": "Collector",
-        "years": [
-          [
-            1959,
-            8888
-          ]
-        ],
-        "style": "Case-Collector"
-      },
-      "Trail": {
-        "en": "Trail",
-        "pr": "Trail",
-        "years": [
-          [
-            1890,
-            1959
-          ]
-        ],
-        "style": "Case-Trail"
-      },
-      "Tunnel": {
-        "en": "Tunnel",
-        "pr": "Tunnel",
-        "years": [
-          [
-            1959,
-            8888
-          ]
-        ],
-        "style": "Tunnel"
-      }
-    },
-    "group": "Urbanism",
-    "icon": "line.svg",
-    "en": "RoadsLine",
-    "pr": "RoadsLine",
-    "startYear": 1890,
-    "endYear": 8888
-  },
-  "BuildingsPoly": {
-    "features": {
-      "Work": {
-        "en": "Work",
-        "pr": "Work",
+      "Reservoir": {
+        "en": "Reservoir",
+        "pr": "Reservoir",
         "years": [
           [
             1960,
             8888
           ]
         ],
-        "style": "Work"
+        "style": "Lake and Reservoir"
       },
-      "Live": {
-        "en": "Live",
-        "pr": "Live",
+      "Reflecting Pool": {
+        "en": "Reflecting Pool",
+        "pr": "Reflecting Pool",
         "years": [
           [
-            1956,
+            1957,
+            1957
+          ],
+          [
+            1965,
             8888
           ]
         ],
-        "style": "Live"
+        "style": "Fountain and Reflecting Pool"
       },
-      "Cultivate Body and Mind": {
-        "en": "Cultivate Body and Mind",
-        "pr": "Cultivate Body and Mind",
+      "Fountain": {
+        "en": "Fountain",
+        "pr": "Fountain",
         "years": [
           [
-            1958,
+            1963,
+            1965
+          ],
+          [
+            1973,
             8888
           ]
         ],
-        "style": "Cultivate Body and Mind"
-      },
-      "Circulate": {
-        "en": "Circulate",
-        "pr": "Circulate",
-        "years": [
-          [
-            1958,
-            8888
-          ]
-        ],
-        "style": "Circulate"
+        "style": "Fountain and Reflecting Pool"
       }
     },
-    "group": "Urbanism",
+    "group": "Landscape",
     "icon": "poly.svg",
-    "en": "BuildingsPoly",
-    "pr": "BuildingsPoly",
-    "startYear": 1956,
+    "en": "WaterBodiesPoly",
+    "pr": "WaterBodiesPoly",
+    "startYear": 1890,
     "endYear": 8888
   },
   "OpenSpacesPoly": {
     "features": {
-      "Lawn": {
-        "en": "Lawn",
-        "pr": "Lawn",
-        "years": [
-          [
-            1957,
-            1957
-          ],
-          [
-            1960,
-            8888
-          ]
-        ],
-        "style": "Lawn Blur"
-      },
-      "Park": {
-        "en": "Park",
-        "pr": "Park",
-        "years": [
-          [
-            1960,
-            8888
-          ]
-        ],
-        "style": "Park Blur"
-      },
-      "EntreQuadra": {
-        "en": "EntreQuadra",
-        "pr": "EntreQuadra",
-        "years": [
-          [
-            1960,
-            8888
-          ]
-        ],
-        "style": "EntreQuadra Blur"
-      },
-      "Tree Belt": {
-        "en": "Tree Belt",
-        "pr": "Tree Belt",
-        "years": [
-          [
-            1957,
-            1957
-          ],
-          [
-            1960,
-            8888
-          ]
-        ],
-        "style": "Tree Belt"
-      },
-      "Jockey Club": {
-        "en": "Jockey Club",
-        "pr": "Jockey Club",
-        "years": [
-          [
-            1960,
-            1960
-          ]
-        ],
-        "style": "Jockey Club"
-      },
-      "Airport": {
-        "en": "Airport",
-        "pr": "Airport",
-        "years": [
-          [
-            1957,
-            1957
-          ],
-          [
-            1960,
-            8888
-          ]
-        ],
-        "style": "Airport"
-      },
-      "Botanical Garden": {
-        "en": "Botanical Garden",
-        "pr": "Botanical Garden",
-        "years": [
-          [
-            1957,
-            1957
-          ]
-        ],
-        "style": "Botanical Garden"
-      },
-      "Cemetery": {
-        "en": "Cemetery",
-        "pr": "Cemetery",
-        "years": [
-          [
-            1957,
-            1957
-          ]
-        ],
-        "style": "Cemetery"
-      },
-      "Golf Club": {
-        "en": "Golf Club",
-        "pr": "Golf Club",
-        "years": [
-          [
-            1957,
-            1957
-          ]
-        ],
-        "style": "Golf Club"
-      },
-      "Orchard": {
-        "en": "Orchard",
-        "pr": "Orchard",
-        "years": [
-          [
-            1957,
-            1957
-          ],
-          [
-            2016,
-            8888
-          ]
-        ],
-        "style": "Orchard"
-      },
-      "Zoological Garden": {
-        "en": "Zoological Garden",
-        "pr": "Zoological Garden",
-        "years": [
-          [
-            1957,
-            1957
-          ]
-        ],
-        "style": "Zoological Garden"
-      },
-      "Train Station": {
-        "en": "Train Station",
-        "pr": "Train Station",
-        "years": [
-          [
-            1957,
-            1957
-          ]
-        ]
-      },
-      "Mall": {
-        "en": "Mall",
-        "pr": "Mall",
-        "years": [
-          [
-            1957,
-            1957
-          ]
-        ],
-        "style": "Mall Blur"
-      },
-      "Tree Canopy": {
-        "en": "Tree Canopy",
-        "pr": "Tree Canopy",
-        "years": [
-          [
-            1957,
-            1957
-          ],
-          [
-            2016,
-            8888
-          ]
-        ]
-      },
-      "Barracks": {
-        "en": "Barracks",
-        "pr": "Barracks",
-        "years": [
-          [
-            1957,
-            1957
-          ]
-        ],
-        "style": "Barracks"
-      },
-      "Palm Grove": {
-        "en": "Palm Grove",
-        "pr": "Palm Grove",
-        "years": [
-          [
-            1957,
-            1957
-          ]
-        ]
-      },
       "Cerrado Savannah": {
         "en": "Cerrado Savannah",
         "pr": "Cerrado Savannah",
         "years": [
           [
             1957,
-            8888
+            2015
           ]
         ],
         "style": "Cerrado Savannah"
-      },
-      "Uncovered Area": {
-        "en": "Uncovered Area",
-        "pr": "Uncovered Area",
-        "years": [
-          [
-            2016,
-            8888
-          ]
-        ],
-        "style": "Uncovered Area"
-      },
-      "Forest": {
-        "en": "Forest",
-        "pr": "Forest",
-        "years": [
-          [
-            2016,
-            8888
-          ]
-        ],
-        "style": "Forest"
       },
       "Agriculture": {
         "en": "Agriculture",
@@ -700,41 +429,249 @@
         ],
         "style": "Field"
       },
-      "Pasture": {
-        "en": "Pasture",
-        "pr": "Pasture",
+      "Tree Canopy": {
+        "en": "Tree Canopy",
+        "pr": "Tree Canopy",
+        "years": [
+          [
+            1957,
+            1957
+          ],
+          [
+            2016,
+            8888
+          ]
+        ]
+      },
+      "Uncovered Area": {
+        "en": "Uncovered Area",
+        "pr": "Uncovered Area",
         "years": [
           [
             2016,
             8888
           ]
         ],
-        "style": "Pasture"
+        "style": "Uncovered Area"
       },
-      "Parking Lot": {
-        "en": "Parking Lot",
-        "pr": "Parking Lot",
+      "Orchard": {
+        "en": "Orchard",
+        "pr": "Orchard",
         "years": [
           [
-            1963,
-            1965
+            1957,
+            1957
           ],
           [
-            1997,
+            2016,
             8888
           ]
         ],
-        "style": "Parking Lot"
+        "style": "Orchard"
+      },
+      "Airport": {
+        "en": "Airport",
+        "pr": "Airport",
+        "years": [
+          [
+            1957,
+            1998
+          ],
+          [
+            1999,
+            8888
+          ]
+        ],
+        "style": "Airport"
+      },
+      "Zoological Garden": {
+        "en": "Zoological Garden",
+        "pr": "Zoological Garden",
+        "years": [
+          [
+            1957,
+            1957
+          ]
+        ],
+        "style": "Zoological Garden"
+      },
+      "Lawn": {
+        "en": "Lawn",
+        "pr": "Lawn",
+        "years": [
+          [
+            1957,
+            1957
+          ],
+          [
+            1960,
+            8888
+          ]
+        ],
+        "style": "Lawn Blur"
+      },
+      "Botanical Garden": {
+        "en": "Botanical Garden",
+        "pr": "Botanical Garden",
+        "years": [
+          [
+            1957,
+            1957
+          ]
+        ],
+        "style": "Botanical Garden"
+      },
+      "Cemetery": {
+        "en": "Cemetery",
+        "pr": "Cemetery",
+        "years": [
+          [
+            1957,
+            1957
+          ]
+        ],
+        "style": "Cemetery"
+      },
+      "Mall": {
+        "en": "Mall",
+        "pr": "Mall",
+        "years": [
+          [
+            1957,
+            1957
+          ]
+        ],
+        "style": "Mall Blur"
+      },
+      "Airport Tarmac": {
+        "en": "Airport Tarmac",
+        "pr": "Airport Tarmac",
+        "years": [
+          [
+            1958,
+            8888
+          ],
+          [
+            2014,
+            8888
+          ]
+        ],
+        "style": "AirportTarmac"
+      },
+      "Park": {
+        "en": "Park",
+        "pr": "Park",
+        "years": [
+          [
+            1960,
+            8888
+          ]
+        ],
+        "style": "Park Blur"
+      },
+      "Jockey Club": {
+        "en": "Jockey Club",
+        "pr": "Jockey Club",
+        "years": [
+          [
+            1960,
+            1960
+          ]
+        ],
+        "style": "Jockey Club"
+      },
+      "Train Station": {
+        "en": "Train Station",
+        "pr": "Train Station",
+        "years": [
+          [
+            1957,
+            1957
+          ]
+        ]
+      },
+      "Barracks": {
+        "en": "Barracks",
+        "pr": "Barracks",
+        "years": [
+          [
+            1957,
+            1957
+          ]
+        ],
+        "style": "Barracks"
       },
       "Square": {
         "en": "Square",
         "pr": "Square",
         "years": [
           [
-            1969,
+            1957,
+            8888
+          ],
+          [
+            1959,
+            8888
+          ]
+        ],
+        "style": "Square"
+      },
+      "Parking Lot": {
+        "en": "Parking Lot",
+        "pr": "Parking Lot",
+        "years": [
+          [
+            1960,
+            8888
+          ]
+        ],
+        "style": "Parking Lot"
+      },
+      "Tree Belt": {
+        "en": "Tree Belt",
+        "pr": "Tree Belt",
+        "years": [
+          [
+            1957,
+            1957
+          ],
+          [
+            1960,
+            8888
+          ]
+        ],
+        "style": "Tree Belt"
+      },
+      "Entrequadra": {
+        "en": "Entrequadra",
+        "pr": "Entrequadra",
+        "years": [
+          [
+            1960,
             8888
           ]
         ]
+      },
+      "Palm Grove": {
+        "en": "Palm Grove",
+        "pr": "Palm Grove",
+        "years": [
+          [
+            1957,
+            1957
+          ]
+        ]
+      },
+      "Golf Club": {
+        "en": "Golf Club",
+        "pr": "Golf Club",
+        "years": [
+          [
+            1957,
+            1957
+          ]
+        ],
+        "style": "Golf Club"
       }
     },
     "group": "Landscape",
@@ -742,6 +679,60 @@
     "en": "OpenSpacesPoly",
     "pr": "OpenSpacesPoly",
     "startYear": 1957,
+    "endYear": 8888
+  },
+  "BuildingsPoly": {
+    "features": {
+      "Cultivate Body and Mind": {
+        "en": "Cultivate Body and Mind",
+        "pr": "Cultivate Body and Mind",
+        "years": [
+          [
+            1958,
+            8888
+          ]
+        ],
+        "style": "Cultivate Body and Mind"
+      },
+      "Work": {
+        "en": "Work",
+        "pr": "Work",
+        "years": [
+          [
+            1959,
+            8888
+          ]
+        ],
+        "style": "Work"
+      },
+      "Circulate": {
+        "en": "Circulate",
+        "pr": "Circulate",
+        "years": [
+          [
+            1958,
+            8888
+          ]
+        ],
+        "style": "Circulate"
+      },
+      "Live": {
+        "en": "Live",
+        "pr": "Live",
+        "years": [
+          [
+            1956,
+            8888
+          ]
+        ],
+        "style": "Live"
+      }
+    },
+    "group": "Urbanism",
+    "icon": "poly.svg",
+    "en": "BuildingsPoly",
+    "pr": "BuildingsPoly",
+    "startYear": 1956,
     "endYear": 8888
   },
   "ParcelsPoly": {

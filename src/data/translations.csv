@@ -6,6 +6,7 @@
 AerialExtentsPoly,Aerials,Aéreas
 Agriculture,Agriculture,Agricultura
 Airport,Airport,Aeroporto
+Airport Tarmac,Airport Tarmac,Aeroporto Tarmac
 Arterial,Arterial,Arterial
 back-to-text,Back to,Retornar para
 Barracks,Barracks,Quartéis
@@ -29,7 +30,7 @@ Cultivate Body and Mind,Cultivate Body and Mind,Cultivar o corpo e o espírito
 disclaimer-text,"This product is for informational purposes and was neither prepared nor is suitable for legal, engineering, or surveying purposes. Represented objects have approximate locations relative to a particular moment of the research project. No warranty is made regarding specific accuracy or completeness. Rice University and the pilotPlan research team assume no liability or damages due to errors or omissions.","Este produto tem fins informativos e não foi produzido nem é adequado para fins legais, de engenharia ou de levantamento topográfico. Os elementos representados têm localizações aproximadas e correspondem a um momento particular do projeto de pesquisa, não havendo garantia quanto a sua exatidão. A Rice University e a equipe de pesquisa de pilotPlan não assumem qualquer responsabilidade em relação a danos devidos a erros ou omissões."
 Drinking Water,Drinking Water,Água Potável
 EntreQuadra,Entrequadra,Entrequadra
-era-description,"pilotPlan is a searchable digital atlas that illustrates the urban and architectural evolution of Brasilia, as it existed and as it was imagined. Views, historical maps, and ground floor plans –from iconographic, cartographic, and architectural archives– are located in both time and space while their visual and spatial data are integrated across a number of databases and servers, including a public repository of images, a geographic information system, an open-source relational database, and a content delivery web system.","O pilotPlan é um atlas digital pesquisável que ilustra a evolução arquitetônica e urbana de Brasília, tal como existia e como era imaginada.  Vistas, mapas históricos e plantas baixas de arquivos iconográficos, cartográficos e arquitetônicos  são localizados no tempo e no espaço, enquanto seus dados visuais e espaciais são integrados em vários bancos de dados e servidores, incluindo um repositório público de imagens, um sistema de informações geográficas, um banco de dados relacional de código aberto e um sistema online de disponibilização de conteúdo."
+era-description,"pilotPlan is a searchable digital atlas that illustrates the urban and architectural evolution of Brasilia, as it existed and as it was imagined.","O pilotPlan é um atlas digital pesquisável que ilustra a evolução arquitetônica e urbana de Brasília, tal como existia e como era imaginada."
 explore-map-button-text,Begin Exploring,Comece a explorar
 Expressway,Expressway,Rodovia
 Field,Field,Campo
