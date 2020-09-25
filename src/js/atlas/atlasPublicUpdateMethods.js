@@ -217,7 +217,7 @@ const getAtlasUpdateMethods = ({
       if (currentOverlay === null) return;
 
       const dev = /[?&]dev=true/.test(window.location.search) ? 'dev' : '';
-      const sourceUrl = `https://pilotplan.s3.amazonaws.com/SSID${currentOverlay.Notes}${dev}/{z}/{x}/{y}.png`;
+      const sourceUrl = `https://pilotplan.s3.amazonaws.com/SSID${currentOverlay.SS_ID}${dev}/{z}/{x}/{y}.png`;
 
       mbMap.addSource(
         'overlay',

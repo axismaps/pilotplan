@@ -50,14 +50,13 @@ const rasterMethods = {
     });
   },
   getImageUrl(metadata) {
-    return `https://dmi-static-pilotplan.s3-sa-east-1.amazonaws.com/${metadata.retrieveLink}.jpg`;
+    return `https://pilotplan.s3.amazonaws.com/images/${metadata.retrieveLink}/`;
   },
   getMetadata({ data }, callback) {
-    const { Notes } = data;
     return callback({
       height: 1200,
       width: 1200,
-      retrieveLink: Notes,
+      retrieveLink: `SSID${data.SS_ID}`,
     });
   },
   getSharedShelfURL({ currentRasterProbe }, callback) {
@@ -76,19 +75,9 @@ const rasterMethods = {
     const {
       getSharedShelfURL,
     } = rasterMethods;
-    if (cachedSharedShelfURLs.has(currentRasterProbe.SS_ID)) {
-      const url = cachedSharedShelfURLs.get(currentRasterProbe.SS_ID);
-      selection.on('click', () => {
-        window.open(url, '_blank');
-      });
-    } else {
-      getSharedShelfURL({ currentRasterProbe }, (url) => {
-        cachedSharedShelfURLs.set(currentRasterProbe.SS_ID, url);
-        selection.on('click', () => {
-          window.open(url, '_blank');
-        });
-      });
-    }
+    selection.on('click', () => {
+      window.open(`https://library.artstor.org/#/asset/${currentRasterProbe.SSC_ID}`, '_blank');
+    });
   },
   setRasterBackground({ selection, url }) {
     selection
@@ -108,7 +97,15 @@ const rasterMethods = {
       setRasterBackground,
     } = rasterMethods;
 
-    const url = getImageUrl(metadata);
+    let url = getImageUrl(metadata);
+
+    if (scaledDim.width <= 130 || scaledDim.height <= 130) {
+      url += 'thumb.jpg';
+    } else if (scaledDim.width <= 400 || scaledDim.height <= 400) {
+      url += 'medium.jpg';
+    } else {
+      url += 'full.jpg';
+    }
 
     setRasterBackground({
       url,
