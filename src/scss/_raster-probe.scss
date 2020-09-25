@@ -115,6 +115,11 @@
   cursor: pointer;
   min-height: 400px;
   background-position: center center;
+  height: 100% !important;
+  width: 100% !important;
+  background-size: contain !important;
+  background-position: center center;
+  background-repeat: no-repeat;
 }
 
 .raster-probe__remove-overlay:hover {
