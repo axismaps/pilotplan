@@ -39,7 +39,7 @@
     "leaflet": "^1.1.0",
     "leaflet-draw": "^1.0.2",
     "mapbox-gl": "^1.9.1",
-    "underscore": "^1.8.3",
+    "underscore": "^1.12.1",
     "whatwg-fetch": "^3.0.0"
   },
   "engines": {
