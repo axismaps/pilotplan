@@ -6,5 +6,7 @@
     "**/bundle.js": true
   },
   "python.pythonPath": "/Users/davidheyman/.pyenv/versions/miniconda3-latest/bin/python",
-  "python.linting.pylintEnabled": true
+  "python.linting.pylintEnabled": true,
+  "ponicode.testSettings.testLocation.locationType": "Same folder as source file",
+  "ponicode.testSettings.testLocation.path": "{rootDir}/{filePath}/{fileName}.test.{ext}"
 }

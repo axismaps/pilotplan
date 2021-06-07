@@ -8,7 +8,7 @@
     "pitch": 0,
     "sources": {
       "composite": {
-        "tiles": ["https://tiles.pilotplan.org/tiles/{z}/{x}/{y}"], 
+        "tiles": ["https://pilotplan.s3.amazonaws.com/tiles/{z}/{x}/{y}"], 
           "type": "vector"
         },
         "pilothillshade": {
@@ -985,7 +985,7 @@
             "paint": {"fill-color": "hsl(0, 0%, 10%)"}
         },
         {
-            "id": "AirportTarmac",
+            "id": "Airport Tarmac",
             "type": "fill",
             "metadata": {},
             "source": "composite",
