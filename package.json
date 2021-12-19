@@ -30,7 +30,7 @@
     "@turf/helpers": "^6.1.4",
     "@turf/length": "^6.0.2",
     "@turf/union": "^6.0.3",
-    "aws-sdk": "^2.291.0",
+    "aws-sdk": "^2.814.0",
     "d3": "^5.5.0",
     "d3-dispatch": "1.0.3",
     "d3-selection-multi": "^1.0.1",
