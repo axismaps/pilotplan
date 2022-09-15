@@ -53,7 +53,7 @@
     "babel-preset-env": "^1.7.0",
     "copy-webpack-plugin": "^4.5.2",
     "css-loader": "^0.28.11",
-    "documentation": "^8.1.2",
+    "documentation": "^14.0.0",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-config-airbnb-base": "^11.3.1",
