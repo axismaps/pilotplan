@@ -24,7 +24,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@mapbox/mapbox-sdk": "^0.4.0",
+    "@mapbox/mapbox-sdk": "^0.14.0",
     "@turf/area": "^6.0.1",
     "@turf/bbox": "^6.0.1",
     "@turf/helpers": "^6.1.4",
